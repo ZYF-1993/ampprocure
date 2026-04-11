@@ -1,30 +1,32 @@
-﻿import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/lib/blog-posts'
-import { JYINS_BASE_PATHS, JYINS_LOCALES } from '@/lib/jyins-routes'
+import { CATALOG_PRODUCTS } from '@/lib/catalog-products'
 import { SITE_URL } from '@/lib/site-config'
+import { CORE_ROUTES } from '@/lib/site-content'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
-  const urls = new Set<string>()
 
-  for (const basePath of JYINS_BASE_PATHS) {
-    urls.add(basePath)
-    for (const locale of JYINS_LOCALES) {
-      urls.add(basePath === '/' ? `/${locale}` : `/${locale}${basePath}`)
-    }
-  }
-
-  for (const post of BLOG_POSTS) {
-    urls.add(post.path)
-    for (const locale of JYINS_LOCALES) {
-      urls.add(`/${locale}${post.path}`)
-    }
-  }
-
-  return Array.from(urls).map((path) => ({
+  const coreEntries: MetadataRoute.Sitemap = CORE_ROUTES.filter((path) => path !== '/thank-you').map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: now,
-    changeFrequency: path.includes('/news/') ? 'weekly' : 'monthly',
-    priority: path === '/' ? 1 : 0.7,
+    changeFrequency: path === '/' ? 'weekly' : 'monthly',
+    priority: path === '/' ? 1 : 0.8,
   }))
+
+  const productEntries: MetadataRoute.Sitemap = CATALOG_PRODUCTS.map((product) => ({
+    url: `${SITE_URL}/products/${product.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  }))
+
+  const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.updatedAt),
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  }))
+
+  return [...coreEntries, ...productEntries, ...blogEntries]
 }

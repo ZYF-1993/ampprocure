@@ -1,6 +1,8 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { Noto_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
+import SiteFooter from '@/components/SiteFooter'
+import SiteHeader from '@/components/SiteHeader'
 import { DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 const notoSans = Noto_Sans({
@@ -56,9 +58,6 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [DEFAULT_OG_IMAGE],
   },
-  alternates: {
-    canonical: '/',
-  },
 }
 
 export default function RootLayout({
@@ -68,7 +67,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${notoSans.variable} ${spaceGrotesk.variable} h-full antialiased`}>
-      <body className="min-h-full bg-slate-50 text-slate-900">{children}</body>
+      <body className="min-h-full bg-slate-50 text-slate-900">
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   )
 }
