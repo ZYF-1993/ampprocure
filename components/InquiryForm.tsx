@@ -196,7 +196,7 @@ export default function InquiryForm({
           value={form.product}
           onChange={updateField}
           className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-sm focus:border-slate-500 focus:outline-none"
-          placeholder="Example: 3000W Pure Sine Wave Inverter"
+          placeholder="Placeholder product name"
         />
       </div>
 

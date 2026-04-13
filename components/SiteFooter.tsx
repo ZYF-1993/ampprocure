@@ -1,57 +1,89 @@
 import Link from 'next/link'
-import { CATALOG_CATEGORIES, CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
+import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
+import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
 
 export default function SiteFooter() {
   return (
-    <footer className="mt-16 border-t border-slate-200 bg-slate-950 text-slate-100">
-      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3 lg:px-8">
-        <section>
-          <h2 className="font-display text-lg font-bold">AmpProcure Power</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-300">
-            B2B product platform for inverters, chargers, portable power stations, and inverter boards with quote-ready technical data.
-          </p>
-        </section>
+    <footer className="bg-gray-900 text-gray-300">
+      <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <section className="lg:col-span-1">
+            <Link href="/" className="inline-flex items-center" aria-label="Go to homepage">
+              <span className="font-display text-2xl font-bold italic tracking-tight text-emerald-500">YOUR BRAND</span>
+            </Link>
+            <p className="mt-4 text-sm leading-relaxed text-gray-400">Placeholder footer company description. Replace this paragraph with your own brand introduction.</p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {['Placeholder Badge 01', 'Placeholder Badge 02', 'Placeholder Badge 03'].map((badge) => (
+                <span key={badge} className="rounded border border-gray-700 px-2 py-0.5 text-xs font-medium text-gray-400">
+                  {badge}
+                </span>
+              ))}
+            </div>
+          </section>
 
-        <section>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-200">Quick Links</h2>
-          <div className="mt-3 grid gap-2 text-sm text-slate-300">
-            <Link href="/about" className="transition hover:text-white">
-              About
-            </Link>
-            <Link href="/products" className="transition hover:text-white">
-              Products
-            </Link>
-            <Link href="/blog" className="transition hover:text-white">
-              Blog
-            </Link>
-            <Link href="/contact" className="transition hover:text-white">
-              Contact
-            </Link>
-          </div>
-        </section>
+          <section>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Products</h3>
+            <ul className="mt-4 space-y-2.5">
+              {FRAMEWORK_CATEGORIES.map((category) => (
+                <li key={category.slug}>
+                  <Link href={`/categories/${category.slug}`} className="text-sm text-gray-400 transition-colors hover:text-white">
+                    {category.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-        <section>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-200">Legal</h2>
-          <div className="mt-3 grid gap-2 text-sm text-slate-300">
-            <Link href="/privacy-policy" className="transition hover:text-white">
-              Privacy Policy
-            </Link>
-            <Link href="/terms-of-service" className="transition hover:text-white">
-              Terms of Service
-            </Link>
-            <Link href="/thank-you" className="transition hover:text-white">
-              Thank You
-            </Link>
-          </div>
-        </section>
+          <section>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Quick Links</h3>
+            <ul className="mt-4 space-y-2.5">
+              {[
+                { href: '/', label: 'Home' },
+                { href: '/products', label: 'Products' },
+                { href: '/blog', label: 'Blog' },
+                { href: '/about', label: 'About' },
+                { href: '/contact', label: 'Contact' },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-gray-400 transition-colors hover:text-white">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Contact</h3>
+            <ul className="mt-4 space-y-3">
+              <li className="text-sm text-gray-400">[Placeholder Contact Label]</li>
+              <li className="text-sm text-gray-400">
+                <a href="mailto:placeholder@example.com" className="transition-colors hover:text-white">
+                  placeholder@example.com
+                </a>
+              </li>
+              <li className="text-sm text-gray-400">
+                <a href="tel:+10000000000" className="transition-colors hover:text-white">
+                  +1 000 000 0000
+                </a>
+              </li>
+              <li className="text-sm text-gray-400">{CATALOG_PRODUCT_COUNT} placeholder products listed.</li>
+            </ul>
+          </section>
+        </div>
       </div>
 
-      <div className="border-t border-slate-800">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-4 py-4 text-xs text-slate-400 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <p>
-            {CATALOG_PRODUCT_COUNT} products across {CATALOG_CATEGORIES.length} categories.
-          </p>
-          <p>Copyright {new Date().getFullYear()} AmpProcure Power. All rights reserved.</p>
+      <div className="border-t border-gray-800">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
+          <p className="text-xs text-gray-500">? {new Date().getFullYear()} Your Brand. All rights reserved.</p>
+          <div className="flex gap-5">
+            <Link href="/privacy" className="text-xs text-gray-500 transition-colors hover:text-gray-300">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-xs text-gray-500 transition-colors hover:text-gray-300">
+              Terms of Use
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

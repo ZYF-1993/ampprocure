@@ -6,10 +6,11 @@ export const CORE_ROUTES = [
   '/about',
   '/blog',
   '/contact',
-  '/privacy-policy',
-  '/terms-of-service',
+  '/privacy',
+  '/terms',
   '/thank-you',
   '/products',
+  '/site-map',
 ] as const
 
 export const PRODUCT_CATEGORY_MATRIX = CATALOG_CATEGORIES.map((category) => {

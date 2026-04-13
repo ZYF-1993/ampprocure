@@ -1,108 +1,122 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { CATALOG_CATEGORIES, CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
 import { getCatalogPageImage } from '@/lib/catalog-utils'
-import { DEFAULT_KEYWORDS } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: 'About',
-  description:
-    'Learn about our B2B manufacturing capabilities, OEM/ODM process, and quality-first approach for industrial power product sourcing.',
-  keywords: [...DEFAULT_KEYWORDS, 'about inverter manufacturer', 'OEM ODM power electronics', 'factory quality control'],
+  description: 'Placeholder about page description. Replace with your company profile overview.',
   alternates: {
     canonical: '/about',
   },
 }
 
-const capabilityItems = [
-  {
-    title: 'OEM/ODM Development',
-    detail: 'Model adaptation, private labeling, custom packaging, and documentation matching for target markets.',
-  },
-  {
-    title: 'Quality Assurance Process',
-    detail: 'Incoming materials checks, in-line test points, and shipment inspection records for consistent delivery quality.',
-  },
-  {
-    title: 'Technical Presales Support',
-    detail: 'Power sizing, parameter matching, and catalog-page references to reduce decision errors before ordering.',
-  },
-  {
-    title: 'After-Sales Coordination',
-    detail: 'Standardized troubleshooting flow, replacement guidance, and project continuity support for channel partners.',
-  },
-] as const
-
 export default function AboutPage() {
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <section className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-        <article>
-          <p className="inline-flex rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sky-800">
-            About Our B2B Platform
+    <main className="bg-white">
+      <section className="border-b border-gray-100 bg-gray-50 py-12">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-sm text-slate-500">
+            <Link href="/" className="hover:text-slate-700">
+              Home
+            </Link>{' '}
+            / <span className="text-slate-600">About</span>
           </p>
-          <h1 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-slate-950 sm:text-5xl">
-            A sourcing-focused website built for industrial power buyers
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600">
-            We organize product data, technical specifications, and inquiry flows so distributors, importers, and project teams can evaluate
-            options quickly and move to commercial discussion with confidence.
-          </p>
-          <div className="mt-7 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs uppercase tracking-wide text-slate-500">Products</p>
-              <p className="mt-1 font-display text-2xl font-bold text-slate-950">{CATALOG_PRODUCT_COUNT}</p>
-            </div>
-            <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs uppercase tracking-wide text-slate-500">Categories</p>
-              <p className="mt-1 font-display text-2xl font-bold text-slate-950">{CATALOG_CATEGORIES.length}</p>
-            </div>
-          </div>
-        </article>
-
-        <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <Image
-            src={getCatalogPageImage(24)}
-            alt="Factory facility placeholder"
-            width={1200}
-            height={800}
-            sizes="(max-width: 1024px) 100vw, 45vw"
-            className="h-auto w-full"
-          />
-        </article>
-      </section>
-
-      <section className="mt-14">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-slate-950">Core Capabilities</h2>
-        <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {capabilityItems.map((item) => (
-            <article key={item.title} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{item.detail}</p>
-            </article>
-          ))}
+          <h1 className="mt-4 text-5xl font-bold tracking-tight text-slate-900">Placeholder About Page Title</h1>
+          <p className="mt-3 max-w-3xl text-xl leading-8 text-slate-600">Placeholder page intro. Replace with your brand story and positioning summary.</p>
         </div>
       </section>
 
-      <section className="mt-14 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-slate-950">Work With Our Team</h2>
-        <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-          Whether you are building a new product line or scaling repeat orders, we support technical evaluation, model roadmap planning, and
-          stable delivery collaboration.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link
-            href="/products"
-            className="inline-flex items-center justify-center rounded-md bg-orange-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-700"
-          >
-            Explore Products
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
-          >
-            Contact Sales
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <article>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Placeholder Label</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Placeholder Section Headline</h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600">Placeholder paragraph one. Replace with your real company background and key strengths.</p>
+            <p className="mt-3 text-sm leading-7 text-slate-600">Placeholder paragraph two. Replace with your production or service highlights.</p>
+
+            <div className="mt-6 grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
+              {['Placeholder Feature 01', 'Placeholder Feature 02', 'Placeholder Feature 03', 'Placeholder Feature 04', 'Placeholder Feature 05', 'Placeholder Feature 06'].map((item) => (
+                <p key={item}>- {item}</p>
+              ))}
+            </div>
+
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/products" className="inline-flex items-center justify-center rounded-lg bg-green-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-800">
+                Placeholder Products CTA
+              </Link>
+              <Link href="/contact" className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100">
+                Placeholder Contact CTA
+              </Link>
+            </div>
+          </article>
+
+          <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <Image src={getCatalogPageImage(25)} alt="About section placeholder image" width={1200} height={860} className="h-auto w-full" sizes="(max-width: 1024px) 100vw, 45vw" />
+          </article>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-16 sm:py-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Placeholder Capabilities Label</p>
+          <h2 className="mt-3 text-center text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Placeholder Capabilities Headline</h2>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              'Placeholder Capability Card 01',
+              'Placeholder Capability Card 02',
+              'Placeholder Capability Card 03',
+              'Placeholder Capability Card 04',
+            ].map((title) => (
+              <article key={title} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h3 className="text-base font-semibold text-slate-900">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">Placeholder card description. Replace with real capability details.</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Placeholder Timeline Headline</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              { year: '20XX', event: 'Placeholder milestone item 01' },
+              { year: '20XX', event: 'Placeholder milestone item 02' },
+              { year: '20XX', event: 'Placeholder milestone item 03' },
+              { year: '20XX', event: 'Placeholder milestone item 04' },
+            ].map((item, index) => (
+              <article key={`${item.year}-${index}`} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <p className="text-sm font-bold text-green-700">{item.year}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-700">{item.event}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-16 sm:py-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Placeholder Certifications Headline</h2>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {['Placeholder Cert 01', 'Placeholder Cert 02', 'Placeholder Cert 03', 'Placeholder Cert 04'].map((item) => (
+              <span key={item} className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-green-700 py-14">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
+          <article>
+            <h2 className="text-3xl font-bold tracking-tight text-white">Placeholder Partnership CTA</h2>
+            <p className="mt-2 text-sm text-green-100">Replace this CTA with your own conversion message.</p>
+          </article>
+          <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-green-700 transition hover:bg-green-50">
+            Placeholder CTA Button
           </Link>
         </div>
       </section>

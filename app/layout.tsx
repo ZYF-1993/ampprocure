@@ -1,26 +1,13 @@
 import type { Metadata } from 'next'
-import { Noto_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import SiteFooter from '@/components/SiteFooter'
 import SiteHeader from '@/components/SiteHeader'
 import { DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site-config'
 
-const notoSans = Noto_Sans({
-  variable: '--font-noto-sans',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-})
-
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
-  subsets: ['latin'],
-  weight: ['500', '700'],
-})
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | B2B Industrial Power Solutions`,
+    default: `${SITE_NAME} | Placeholder Website`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -40,7 +27,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | B2B Industrial Power Solutions`,
+    title: `${SITE_NAME} | Placeholder Website`,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     images: [
@@ -48,13 +35,13 @@ export const metadata: Metadata = {
         url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: 'B2B power solutions showcase',
+        alt: 'Website placeholder image',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE_NAME} | B2B Industrial Power Solutions`,
+    title: `${SITE_NAME} | Placeholder Website`,
     description: SITE_DESCRIPTION,
     images: [DEFAULT_OG_IMAGE],
   },
@@ -66,8 +53,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${notoSans.variable} ${spaceGrotesk.variable} h-full antialiased`}>
-      <body className="min-h-full bg-slate-50 text-slate-900">
+    <html lang="en" className="h-full antialiased">
+      <body className="min-h-full bg-white text-slate-900">
         <SiteHeader />
         {children}
         <SiteFooter />

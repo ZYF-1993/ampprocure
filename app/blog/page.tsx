@@ -7,22 +7,21 @@ import { DEFAULT_KEYWORDS, SITE_URL } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description:
-    'Read B2B buying guides, technical selection tips, and sourcing playbooks for inverters, battery chargers, and portable power systems.',
-  keywords: [...DEFAULT_KEYWORDS, 'inverter buying guide', 'B2B product sourcing blog', 'industrial power SEO content'],
+  description: 'Placeholder blog listing description. Replace with your content strategy summary.',
+  keywords: [...DEFAULT_KEYWORDS, 'placeholder blog keyword'],
   alternates: {
     canonical: '/blog',
   },
 }
 
-const sortedPosts = [...BLOG_POSTS].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt))
+const posts = [...BLOG_POSTS].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt))
 
 const blogListJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
-  name: 'AmpProcure Power Blog',
+  name: 'Placeholder Blog',
   url: `${SITE_URL}/blog`,
-  blogPost: sortedPosts.slice(0, 20).map((post) => ({
+  blogPost: posts.slice(0, 20).map((post) => ({
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
@@ -34,7 +33,7 @@ const blogListJsonLd = {
 
 export default function BlogPage() {
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <main className="bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -42,46 +41,64 @@ export default function BlogPage() {
         }}
       />
 
-      <section>
-        <p className="inline-flex rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sky-800">Industry Blog</p>
-        <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">Customer-Focused B2B Knowledge Center</h1>
-        <p className="mt-5 max-w-3xl text-base leading-7 text-slate-600">
-          Learn how to compare models, validate parameters, and reduce procurement risks with practical guides written for importers,
-          distributors, and project integrators.
-        </p>
+      <section className="border-b border-gray-100 bg-gray-50 py-12">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-sm text-slate-500">
+            <Link href="/" className="hover:text-slate-700">
+              Home
+            </Link>{' '}
+            / <span className="text-slate-600">Blog</span>
+          </p>
+          <h1 className="mt-4 text-5xl font-bold tracking-tight text-slate-900">Placeholder Blog Listing Title</h1>
+          <p className="mt-3 max-w-3xl text-xl leading-8 text-slate-600">Placeholder blog intro. Replace with your own editorial direction and keyword clusters.</p>
+        </div>
       </section>
 
-      <section className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {sortedPosts.map((post, index) => (
-          <article key={post.slug} className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-            <Image
-              src={getCatalogPageImage(10 + (index % 12))}
-              alt={`${post.title} cover image`}
-              width={780}
-              height={520}
-              sizes="(max-width: 1024px) 100vw, 33vw"
-              className="h-44 w-full object-cover"
-            />
-            <div className="p-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{post.category}</p>
-              <h2 className="mt-2 text-xl font-semibold leading-8 text-slate-900">{post.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{post.description}</p>
-              <p className="mt-3 text-xs text-slate-500">
-                Published {post.publishedAt} | {post.readingMinutes} min read
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {post.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link href={`/blog/${post.slug}`} className="mt-4 inline-block text-sm font-semibold text-orange-700 transition hover:text-orange-800">
-                Read Full Article
-              </Link>
-            </div>
+      <section className="py-12">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {posts.map((post, index) => (
+              <article key={post.slug} className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+                <Image
+                  src={getCatalogPageImage(30 + (index % 15))}
+                  alt={`${post.title} placeholder cover image`}
+                  width={780}
+                  height={520}
+                  className="h-48 w-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                />
+                <div className="p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{post.category}</p>
+                  <h2 className="mt-2 text-xl font-semibold leading-8 text-slate-900">{post.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{post.description}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {post.tags.slice(0, 3).map((tag) => (
+                      <span key={tag} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <Link href={`/blog/${post.slug}`} className="mt-4 inline-flex items-center text-sm font-semibold text-green-700 hover:text-green-800">
+                    Placeholder Read Link
+                    <span className="ml-2">-&gt;</span>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-gray-100 bg-gray-50 py-12">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
+          <article>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900">Placeholder Blog CTA Headline</h2>
+            <p className="mt-2 text-sm text-slate-600">Replace this line with your own blog-to-product conversion message.</p>
           </article>
-        ))}
+          <Link href="/products" className="inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-800">
+            Placeholder CTA Button
+          </Link>
+        </div>
       </section>
     </main>
   )

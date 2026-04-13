@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import InquiryForm from '@/components/InquiryForm'
-import { DEFAULT_KEYWORDS } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description:
-    'Contact our B2B sales team for model recommendations, technical validation, and wholesale quotation support.',
-  keywords: [...DEFAULT_KEYWORDS, 'contact inverter supplier', 'B2B RFQ form', 'wholesale quotation'],
+  description: 'Placeholder contact page description. Replace with your inquiry and support messaging.',
   alternates: {
     canonical: '/contact',
   },
@@ -14,33 +12,66 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <section className="grid gap-10 lg:grid-cols-[1fr_1fr]">
-        <article>
-          <p className="inline-flex rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sky-800">Contact Sales</p>
-          <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">Start your B2B inquiry with clear technical requirements</h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600">
-            Tell us your load profile, voltage platform, quantity plan, and compliance requirements. We will provide model recommendations and a
-            quotation roadmap.
+    <main className="bg-white">
+      <section className="border-b border-gray-100 bg-gray-50 py-12">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-sm text-slate-500">
+            <Link href="/" className="hover:text-slate-700">
+              Home
+            </Link>{' '}
+            / <span className="text-slate-600">Contact</span>
           </p>
+          <h1 className="mt-4 text-5xl font-bold tracking-tight text-slate-900">Placeholder Contact Page Title</h1>
+          <p className="mt-3 max-w-3xl text-xl leading-8 text-slate-600">Placeholder contact intro. Replace with your real response promise and support process.</p>
+        </div>
+      </section>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <article className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-700">Response Workflow</h2>
-              <p className="mt-2 text-sm leading-6 text-slate-600">Requirement review, model shortlist, and quote alignment with your project scope.</p>
-            </article>
-            <article className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-700">RFQ Best Practice</h2>
-              <p className="mt-2 text-sm leading-6 text-slate-600">Include target market, expected order volume, and timeline for faster feedback quality.</p>
-            </article>
+      <section className="py-12">
+        <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+          <article>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900">Placeholder Contact Block</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">Replace this with your contact instructions and inquiry expectations.</p>
+
+            <ul className="mt-8 space-y-5">
+              <li className="text-sm text-slate-700">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Address</p>
+                <p className="mt-1">[Placeholder Address]</p>
+              </li>
+              <li className="text-sm text-slate-700">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Email</p>
+                <a href="mailto:placeholder@example.com" className="mt-1 inline-block hover:text-green-700">
+                  placeholder@example.com
+                </a>
+              </li>
+              <li className="text-sm text-slate-700">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Phone / WhatsApp</p>
+                <a href="tel:+10000000000" className="mt-1 inline-block hover:text-green-700">
+                  +1 000 000 0000
+                </a>
+              </li>
+            </ul>
+          </article>
+
+          <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900">Placeholder Form Header</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">Replace with your form helper text and expected response timeline.</p>
+            <InquiryForm source="contact-sales" submitLabel="Placeholder Submit" twoColumnOnDesktop redirectOnSuccess="/thank-you" />
+          </article>
+        </div>
+      </section>
+
+      <section className="border-t border-gray-100 bg-gray-50 py-12">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900">Placeholder Service Highlights</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {['Placeholder Service Card 01', 'Placeholder Service Card 02', 'Placeholder Service Card 03'].map((title) => (
+              <article key={title} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <h3 className="text-base font-semibold text-slate-900">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">Placeholder card description. Replace with your own operational statement.</p>
+              </article>
+            ))}
           </div>
-        </article>
-
-        <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-950">Submit Inquiry</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-600">After submission, you will be redirected to the Thank You page.</p>
-          <InquiryForm source="contact-page" submitLabel="Submit Inquiry" twoColumnOnDesktop redirectOnSuccess="/thank-you" />
-        </article>
+        </div>
       </section>
     </main>
   )

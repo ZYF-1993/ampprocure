@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/lib/blog-posts'
 import { CATALOG_PRODUCTS } from '@/lib/catalog-products'
+import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
 import { SITE_URL } from '@/lib/site-config'
 import { CORE_ROUTES } from '@/lib/site-content'
 
@@ -21,6 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }))
 
+  const categoryEntries: MetadataRoute.Sitemap = FRAMEWORK_CATEGORIES.map((category) => ({
+    url: `${SITE_URL}/categories/${category.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.85,
+  }))
+
   const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.updatedAt),
@@ -28,5 +36,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }))
 
-  return [...coreEntries, ...productEntries, ...blogEntries]
+  return [...coreEntries, ...categoryEntries, ...productEntries, ...blogEntries]
 }

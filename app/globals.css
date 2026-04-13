@@ -1,8 +1,10 @@
 ﻿@import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
+  --background: #ffffff;
   --foreground: #0f172a;
+  --font-noto-sans: 'Segoe UI', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-space-grotesk: 'Trebuchet MS', 'Avenir Next', 'Segoe UI', sans-serif;
 }
 
 @theme inline {

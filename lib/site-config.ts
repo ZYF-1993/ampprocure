@@ -1,19 +1,17 @@
-﻿export const SITE_NAME = 'AmpProcure Power'
+export const SITE_NAME = 'Your Brand Name'
 
 export const SITE_DESCRIPTION =
-  'B2B manufacturer platform for inverters, portable power stations, battery chargers, and inverter boards, built for distributors and project buyers.'
+  'Placeholder B2B website description. Replace this text with your company positioning and SEO summary.'
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://example.com'
 
-export const DEFAULT_OG_IMAGE = '/catalog/thumbs/page-010.jpg'
+export const DEFAULT_OG_IMAGE = '/placeholders/industrial-placeholder.svg'
 
 export const DEFAULT_KEYWORDS = [
-  'B2B inverter manufacturer',
-  'pure sine wave inverter supplier',
-  'modified sine wave inverter factory',
-  'portable power station OEM',
-  'battery charger manufacturer',
-  'inverter board ODM',
-  'industrial power solutions',
-  'energy storage products',
+  'placeholder keyword 1',
+  'placeholder keyword 2',
+  'placeholder keyword 3',
+  'placeholder keyword 4',
+  'placeholder keyword 5',
+  'placeholder keyword 6',
 ]
