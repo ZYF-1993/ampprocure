@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
@@ -16,7 +17,7 @@ const MAIN_LINKS = [
 function Chevron({ open }: { open: boolean }) {
   return (
     <svg
-      className={`h-4 w-4 transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
+      className={`h-5 w-5 transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden="true"
@@ -37,44 +38,67 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white transition-shadow duration-200">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between lg:h-[72px]">
+        <div className="flex h-[88px] items-center justify-between lg:h-24">
           <Link href="/" className="flex shrink-0 items-center" aria-label="Go to homepage">
-            <span className="font-display text-2xl font-bold italic tracking-tight text-emerald-600">YOUR BRAND</span>
+            <Image src="/branding/site-logo.png" alt="Site logo" width={440} height={120} priority className="h-14 w-auto lg:h-16" />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
             <Link
               href="/"
-              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+              className={`rounded-md px-4 py-2 text-[15px] font-medium transition-colors ${
                 pathname === '/' ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
               }`}
             >
               Home
             </Link>
 
-            <div className="relative" onMouseEnter={() => setDesktopProductsOpen(true)} onMouseLeave={() => setDesktopProductsOpen(false)}>
-              <button
-                type="button"
-                aria-expanded={desktopProductsOpen}
-                aria-haspopup="true"
-                className={`flex items-center gap-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${
-                  isProductsRoute ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                }`}
-              >
-                Product
-                <Chevron open={desktopProductsOpen} />
-              </button>
+            <div
+              className="relative"
+              onMouseEnter={() => setDesktopProductsOpen(true)}
+              onMouseLeave={() => setDesktopProductsOpen(false)}
+              onFocusCapture={() => setDesktopProductsOpen(true)}
+              onBlurCapture={(event) => {
+                const nextTarget = event.relatedTarget as Node | null
+                if (!nextTarget || !event.currentTarget.contains(nextTarget)) {
+                  setDesktopProductsOpen(false)
+                }
+              }}
+            >
+              <div className="inline-flex items-center rounded-md">
+                <Link
+                  href="/products"
+                  className={`rounded-l-md px-4 py-2 text-[15px] font-medium transition-colors ${
+                    isProductsRoute ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  Product
+                </Link>
+                <button
+                  type="button"
+                  aria-expanded={desktopProductsOpen}
+                  aria-haspopup="true"
+                  aria-label="Toggle product menu"
+                  onClick={() => setDesktopProductsOpen((prev) => !prev)}
+                  className={`rounded-r-md px-2 py-2 transition-colors ${
+                    isProductsRoute ? 'text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  <Chevron open={desktopProductsOpen} />
+                </button>
+              </div>
 
               <div
-                className={`absolute left-1/2 top-full z-50 mt-2 w-[360px] -translate-x-1/2 rounded-xl border border-gray-100 bg-white p-3 shadow-xl transition ${
-                  desktopProductsOpen ? 'visible opacity-100' : 'invisible opacity-0'
+                className={`absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 transition ${
+                  desktopProductsOpen ? 'visible opacity-100' : 'invisible opacity-0 pointer-events-none'
                 }`}
               >
-                <ul className="space-y-1">
+                <ul className="w-[380px] space-y-1 rounded-xl border border-gray-100 bg-white p-3 shadow-xl">
                   <li>
                     <Link
                       href="/products"
-                      className="flex items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold text-green-700 hover:bg-green-50"
+                      onClick={() => setDesktopProductsOpen(false)}
+                      className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-green-700 hover:bg-green-50"
                     >
                       <span>All Products</span>
                       <span className="text-xs text-gray-400">{CATALOG_PRODUCT_COUNT}</span>
@@ -84,7 +108,8 @@ export default function SiteHeader() {
                     <li key={category.slug}>
                       <Link
                         href={`/categories/${category.slug}`}
-                        className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-green-700"
+                        onClick={() => setDesktopProductsOpen(false)}
+                        className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-green-700"
                       >
                         <span>{category.title}</span>
                         <span className="text-xs text-gray-400">{category.count}</span>
@@ -99,7 +124,7 @@ export default function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                className={`rounded-md px-4 py-2 text-[15px] font-medium transition-colors ${
                   pathname === link.href ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                 }`}
               >
@@ -111,7 +136,7 @@ export default function SiteHeader() {
           <div className="hidden items-center gap-3 lg:flex">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-800"
+              className="inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-[15px] font-semibold text-white transition hover:bg-green-800"
             >
               Contact Us
             </Link>

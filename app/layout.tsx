@@ -6,6 +6,13 @@ import { DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_U
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: [
+      { url: '/branding/site-favicon.png?v=3', type: 'image/png' },
+      { url: '/branding/site-favicon.png?v=3', rel: 'shortcut icon' },
+    ],
+    apple: [{ url: '/branding/site-favicon.png?v=3' }],
+  },
   title: {
     default: `${SITE_NAME} | Placeholder Website`,
     template: `%s | ${SITE_NAME}`,

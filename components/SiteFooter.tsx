@@ -1,3 +1,4 @@
+﻿import Image from 'next/image'
 import Link from 'next/link'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
 import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
@@ -9,7 +10,7 @@ export default function SiteFooter() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <section className="lg:col-span-1">
             <Link href="/" className="inline-flex items-center" aria-label="Go to homepage">
-              <span className="font-display text-2xl font-bold italic tracking-tight text-emerald-500">YOUR BRAND</span>
+              <Image src="/branding/site-logo.png" alt="Site logo" width={400} height={110} className="h-14 w-auto lg:h-16" />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-gray-400">Placeholder footer company description. Replace this paragraph with your own brand introduction.</p>
             <div className="mt-5 flex flex-wrap gap-2">
@@ -75,7 +76,7 @@ export default function SiteFooter() {
 
       <div className="border-t border-gray-800">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
-          <p className="text-xs text-gray-500">? {new Date().getFullYear()} Your Brand. All rights reserved.</p>
+          <p className="text-xs text-gray-500">© {new Date().getFullYear()} Your Brand. All rights reserved.</p>
           <div className="flex gap-5">
             <Link href="/privacy" className="text-xs text-gray-500 transition-colors hover:text-gray-300">
               Privacy Policy
