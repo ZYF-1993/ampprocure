@@ -2,10 +2,14 @@ import type { Metadata } from 'next'
 import './globals.css'
 import SiteFooter from '@/components/SiteFooter'
 import SiteHeader from '@/components/SiteHeader'
+import I18nRuntime from '@/components/I18nRuntime'
 import { DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  other: {
+    google: 'notranslate',
+  },
   icons: {
     icon: [
       { url: '/branding/site-favicon.png?v=3', type: 'image/png' },
@@ -60,8 +64,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" translate="no" className="h-full antialiased notranslate">
       <body className="min-h-full bg-white text-slate-900">
+        <I18nRuntime />
         <SiteHeader />
         {children}
         <SiteFooter />

@@ -1,14 +1,10 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
 import { getCatalogPageImage, normalizeHighlightValue } from '@/lib/catalog-utils'
 import { FRAMEWORK_CATEGORIES, getProductsByCategorySlug } from '@/lib/framework-data'
 import { SITE_URL } from '@/lib/site-config'
-
-type ProductsPageProps = {
-  searchParams: Promise<{ category?: string }>
-}
 
 type CategoryBucket = {
   slug: string
@@ -20,7 +16,7 @@ type CategoryBucket = {
 const productsJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'Placeholder Products Page',
+  name: 'All Products',
   url: `${SITE_URL}/products`,
 }
 
@@ -37,21 +33,19 @@ function getBuckets(): CategoryBucket[] {
 }
 
 export const metadata: Metadata = {
-  title: 'Products',
-  description: 'Placeholder products page description. Replace with your own product overview copy.',
+  title: 'All Products',
+  description: 'Explore all product categories with modern B2B navigation and direct access to technical product pages.',
   alternates: {
     canonical: '/products',
   },
 }
 
-export default async function ProductsPage({ searchParams }: ProductsPageProps) {
-  const query = await searchParams
+export default function ProductsPage() {
   const buckets = getBuckets()
-  const selectedSlug = query.category && buckets.some((bucket) => bucket.slug === query.category) ? query.category : 'all'
-  const selectedProducts = selectedSlug === 'all' ? buckets.flatMap((bucket) => bucket.products) : (buckets.find((bucket) => bucket.slug === selectedSlug)?.products ?? [])
+  const selectedProducts = buckets.flatMap((bucket) => bucket.products)
 
   return (
-    <main className="bg-white">
+    <main className="bg-slate-50">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -59,80 +53,100 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         }}
       />
 
-      <section className="border-b border-gray-100 bg-gray-50 py-12">
+      <section className="border-b border-slate-200 bg-white py-12">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="text-sm text-slate-500">
             <Link href="/" className="hover:text-slate-700">
-              Home
+              <span data-i18n="header.home">Home</span>
             </Link>{' '}
-            / <span className="text-slate-600">Products</span>
+            / <span className="text-slate-600" data-i18n="products.breadcrumbProducts">Products</span>
           </p>
-          <h1 className="mt-4 text-5xl font-bold tracking-tight text-slate-900">Placeholder Product Listing Title</h1>
-          <p className="mt-3 max-w-3xl text-2xl leading-9 text-slate-600">{CATALOG_PRODUCT_COUNT} placeholder products across {FRAMEWORK_CATEGORIES.length} placeholder categories.</p>
+
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl" data-i18n="products.title">
+            All Products
+          </h1>
+
+          <p className="mt-3 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl" data-i18n="products.subtitle">
+            Discover complete product lines with quick category navigation and direct access to technical details.
+          </p>
+
+          <div className="mt-5 flex flex-wrap items-center gap-2.5">
+            <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700">{CATALOG_PRODUCT_COUNT}</span>
+            <span className="text-sm text-slate-500" data-i18n="products.totalLabel">Total Listed Models</span>
+            <span className="ml-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">{FRAMEWORK_CATEGORIES.length}</span>
+            <span className="text-sm text-slate-500" data-i18n="products.categoryCountLabel">Active Categories</span>
+          </div>
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[290px_1fr] lg:px-8">
-          <aside className="lg:sticky lg:top-24 lg:self-start">
-            <h2 className="text-xs font-bold uppercase tracking-[0.18em] text-slate-900">Categories</h2>
-            <nav className="mt-4 rounded-xl border border-gray-200 bg-white p-2" aria-label="Product categories">
-              <Link
-                href="/products"
-                className={`flex items-center justify-between rounded-md px-3 py-2 text-base font-medium transition ${
-                  selectedSlug === 'all' ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-gray-100'
-                }`}
-              >
-                <span>All Products</span>
-                <span className="text-slate-400">{CATALOG_PRODUCT_COUNT}</span>
+      <section className="py-10 md:py-12">
+        <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-[280px_1fr] lg:px-8">
+          <aside className="products-catalog-sidebar lg:sticky lg:top-24 lg:self-start">
+            <h2 className="products-catalog-sidebar-title" data-i18n="products.navTitle">
+              Categories
+            </h2>
+            <nav className="products-catalog-nav" aria-label="Product categories">
+              <Link href="/products" className="products-catalog-nav-item products-catalog-nav-item-active">
+                <span data-i18n="header.allProducts">All Products</span>
+                <span className="products-catalog-count">{CATALOG_PRODUCT_COUNT}</span>
               </Link>
 
               {buckets.map((bucket) => (
-                <Link
-                  key={bucket.slug}
-                  href={`/categories/${bucket.slug}`}
-                  className={`mt-1 flex items-center justify-between rounded-md px-3 py-2 text-base font-medium transition ${
-                    selectedSlug === bucket.slug ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-gray-100'
-                  }`}
-                >
+                <Link key={bucket.slug} href={`/categories/${bucket.slug}`} className="products-catalog-nav-item">
                   <span>{bucket.title}</span>
-                  <span className="text-slate-400">{bucket.count}</span>
+                  <span className="products-catalog-count">{bucket.count}</span>
                 </Link>
               ))}
             </nav>
           </aside>
 
           <section>
-            <h2 className="sr-only">Product cards</h2>
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <div className="mb-4 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+              <h2 className="text-lg font-semibold text-slate-900" data-i18n="products.gridTitle">
+                Product Listing Grid
+              </h2>
+              <p className="mt-1 text-sm text-slate-500" data-i18n="products.catalogHint">
+                Select a category from the left navigation or browse all products below.
+              </p>
+            </div>
+
+            <div className="products-card-grid">
               {selectedProducts.map((product) => (
-                <article key={`product-${product.id}`} className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                  <div className="flex h-64 items-center justify-center bg-gray-100 p-6">
+                <Link key={`product-${product.id}`} href={`/products/${product.slug}`} className="products-card group">
+                  <div className="products-card-media">
+                    <div className="products-card-media-placeholder" aria-hidden="true" />
                     <Image
                       src={getCatalogPageImage(product.catalogPage)}
-                      alt={`${product.name} placeholder image`}
+                      alt={`${product.name} product image`}
                       width={320}
                       height={220}
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                      className="h-full w-auto max-w-full object-contain"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                      className="products-card-image"
                     />
                   </div>
 
-                  <div className="border-t border-gray-100 p-5">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">{product.category}</p>
-                    <h3 className="mt-2 text-2xl font-semibold leading-8 text-slate-900">{product.name}</h3>
-                    <p className="mt-3 text-base leading-7 text-slate-600">{product.technicalSummary}</p>
-                    <p className="mt-3 text-sm text-slate-700">
-                      <span className="font-semibold">Placeholder Key Spec:</span>{' '}
+                  <div className="products-card-body">
+                    <div className="products-card-meta-row">
+                      <p className="products-card-category">{product.category}</p>
+                      <span className="products-card-page-chip">P.{product.catalogPage}</span>
+                    </div>
+
+                    <h3 className="products-card-title">{product.name}</h3>
+                    <p className="products-card-description">{product.technicalSummary}</p>
+
+                    <p className="products-card-spec">
+                      <span data-i18n="products.keySpecLabel">Key Spec:</span>{' '}
                       {product.highlights.slice(0, 1).map((item) => `${item.label} ${normalizeHighlightValue(item.value)}`).join(', ')}
                     </p>
 
-                    <Link href={`/products/${product.slug}`} className="mt-4 inline-flex items-center text-lg font-semibold text-emerald-700 hover:text-emerald-800">
-                      Placeholder Details Link
-                      <span className="ml-2">-&gt;</span>
-                    </Link>
+                    <span className="products-card-link">
+                      <span data-i18n="products.learnMore">View Details</span>
+                      <svg className="products-card-link-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </span>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
           </section>
@@ -142,11 +156,15 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       <section className="border-t border-gray-100 bg-gray-50 py-12">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
           <article>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900">Placeholder Support CTA</h2>
-            <p className="mt-2 text-sm text-slate-600">Replace this line with your own category support message.</p>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900" data-i18n="products.cta.title">
+              Need Product Matching Support?
+            </h2>
+            <p className="mt-2 text-sm text-slate-600" data-i18n="products.cta.description">
+              Share your target application and we will recommend the right model combination.
+            </p>
           </article>
           <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-800">
-            Placeholder CTA Button
+            <span data-i18n="products.cta.button">Contact Sales</span>
           </Link>
         </div>
       </section>
