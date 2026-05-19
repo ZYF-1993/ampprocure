@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
   // Key must be a route glob (e.g. '/*'), values must start with './' per docs.
   outputFileTracingExcludes: {
     '/*': [
+      './public/images/**',
       './node_modules/@next/swc-linux-x64-gnu/**/*',
       './node_modules/@next/swc-linux-x64-musl/**/*',
       './node_modules/@next/swc-win32-x64-msvc/**/*',
