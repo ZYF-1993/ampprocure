@@ -2,6 +2,23 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR || '.next',
+
+  // Exclude build-time-only binaries from serverless function bundles.
+  // @next/swc-* are compiler binaries (~130 MB each) required only during
+  // `next build`, never at runtime. Without this, Vercel bundles them into
+  // every serverless function and exceeds the 250 MB uncompressed limit.
+  outputFileTracingExcludes: {
+    '*': [
+      'node_modules/@next/swc-*/**',
+      'node_modules/@img/**',
+      'node_modules/typescript/**',
+      'node_modules/eslint/**',
+      'node_modules/@typescript-eslint/**',
+      'node_modules/eslint-plugin-react-hooks/**',
+      'node_modules/axe-core/**',
+    ],
+  },
+
   async rewrites() {
     return [
       { source: '/inquire', destination: '/contact' },
