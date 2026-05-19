@@ -170,23 +170,58 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-slate-950 py-16 sm:py-20">
+        {/* Circuit-grid dot background */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: 'radial-gradient(circle, rgba(74,222,128,0.18) 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+          }}
+        />
+        {/* Edge fades */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-linear-to-b from-slate-950 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-linear-to-t from-slate-950 to-transparent" />
+
+        <div className="relative mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Our Journey</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Company Milestones</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-400">Our Journey</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Company Milestones</h2>
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-slate-400">
+              16 years of steady growth — from a local circuit breaker workshop to a global electrical protection supplier.
+            </p>
           </div>
 
-          <ol className="mt-12 space-y-6">
+          <ol className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {milestones.map((item, index) => (
-              <li key={item.year} className="grid gap-4 sm:grid-cols-[120px_1fr] sm:gap-6">
-                <div className="flex items-center gap-3 sm:justify-end">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-700 text-xs font-bold text-white">{index + 1}</span>
-                  <span className="text-lg font-bold text-green-700">{item.year}</span>
+              <li key={item.year}
+                className="group relative overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-900/70 p-5 backdrop-blur-sm transition-all duration-300 hover:border-green-500/70 hover:shadow-[0_0_28px_rgba(74,222,128,0.18)]"
+              >
+                {/* Corner glow */}
+                <div className="absolute -right-5 -top-5 h-20 w-20 rounded-full bg-green-500/10 blur-2xl transition-all duration-500 group-hover:bg-green-500/25" />
+
+                <div className="relative flex items-center justify-between">
+                  {/* Year badge with lightning bolt */}
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-green-800 bg-green-950 px-3 py-1 text-xs font-bold text-green-400">
+                    <svg className="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
+                    {item.year}
+                  </span>
+                  {/* Animated pulse node */}
+                  <div className="relative flex h-5 w-5 items-center justify-center">
+                    <span
+                      className="absolute inline-flex h-4 w-4 animate-ping rounded-full bg-green-400/30"
+                      style={{ animationDelay: `${index * 0.45}s`, animationDuration: '2.8s' }}
+                    />
+                    <span className="relative h-2.5 w-2.5 rounded-full bg-green-500 shadow-[0_0_6px_rgba(74,222,128,0.8)]" />
+                  </div>
                 </div>
-                <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-                  <p className="text-sm leading-6 text-gray-600">{item.event}</p>
-                </div>
+
+                <p className="relative mt-3.5 text-sm leading-6 text-slate-300">{item.event}</p>
+
+                {/* Bottom scan line on hover */}
+                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-linear-to-r from-transparent via-green-500/70 to-transparent transition-all duration-500 group-hover:w-full" />
               </li>
             ))}
           </ol>
