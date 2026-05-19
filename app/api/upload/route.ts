@@ -1,6 +1,5 @@
-import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { NextResponse } from 'next/server'
-import { r2 } from '@/lib/r2'
+import { createR2Client } from '@/lib/r2'
 
 export async function POST(request: Request) {
   try {
@@ -25,6 +24,9 @@ export async function POST(request: Request) {
     const buffer = Buffer.from(arrayBuffer)
     const safeName = file.name.replace(/[^\w.-]+/g, '_')
     const uniqueFilename = `${Date.now()}-${safeName}`
+
+    const { PutObjectCommand } = await import('@aws-sdk/client-s3')
+    const r2 = await createR2Client()
 
     const command = new PutObjectCommand({
       Bucket: bucketName,

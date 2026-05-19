@@ -3,6 +3,16 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR || '.next',
 
+  // These packages are loaded from node_modules at runtime (not bundled by webpack).
+  // This prevents their entire dependency trees from being inlined into function bundles.
+  serverExternalPackages: [
+    '@aws-sdk/client-s3',
+    '@aws-sdk/s3-request-presigner',
+    '@supabase/supabase-js',
+    '@supabase/ssr',
+    'resend',
+  ],
+
   // Exclude build-time-only binaries from serverless function bundles.
   // @next/swc-* are compiler binaries (~130 MB each) required only during
   // `next build`, never at runtime. Without this, Vercel bundles them into

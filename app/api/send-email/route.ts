@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server'
-import { Resend } from 'resend'
 
 type SendEmailPayload = {
   name?: string
@@ -114,6 +113,7 @@ export async function POST(request: Request) {
       )
       .join('')
 
+    const { Resend } = await import('resend')
     const resend = new Resend(resendApiKey)
     const { data, error } = await resend.emails.send({
       from: senderEmail,
