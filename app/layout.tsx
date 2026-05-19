@@ -1,9 +1,17 @@
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import SiteFooter from '@/components/SiteFooter'
 import SiteHeader from '@/components/SiteHeader'
+import WhatsAppChat from '@/components/WhatsAppChat'
 import I18nRuntime from '@/components/I18nRuntime'
 import { DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site-config'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -18,7 +26,7 @@ export const metadata: Metadata = {
     apple: [{ url: '/branding/site-favicon.png?v=3' }],
   },
   title: {
-    default: `${SITE_NAME} | Placeholder Website`,
+    default: `${SITE_NAME} | Electrical Protection Products Supplier`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -38,7 +46,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | Placeholder Website`,
+    title: `${SITE_NAME} | Electrical Protection Products Supplier`,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     images: [
@@ -46,13 +54,13 @@ export const metadata: Metadata = {
         url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: 'Website placeholder image',
+        alt: 'upprocure electrical protection products',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE_NAME} | Placeholder Website`,
+    title: `${SITE_NAME} | Electrical Protection Products Supplier`,
     description: SITE_DESCRIPTION,
     images: [DEFAULT_OG_IMAGE],
   },
@@ -64,12 +72,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" translate="no" className="h-full antialiased notranslate">
+    <html lang="en" translate="no" className={`h-full antialiased notranslate ${inter.variable}`}>
       <body className="min-h-full bg-white text-slate-900">
         <I18nRuntime />
         <SiteHeader />
         {children}
         <SiteFooter />
+        <WhatsAppChat />
       </body>
     </html>
   )

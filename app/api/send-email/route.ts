@@ -7,6 +7,7 @@ type SendEmailPayload = {
   email?: string
   phone?: string
   product?: string
+  inquiryType?: string
   source?: string
   pageUrl?: string
   title?: string
@@ -77,6 +78,7 @@ export async function POST(request: Request) {
     const email = sanitize(payload.email, 180)
     const phone = sanitize(payload.phone, 80)
     const product = sanitize(payload.product, 200)
+    const inquiryType = sanitize(payload.inquiryType, 120)
     const source = sanitize(payload.source, 120)
     const pageUrl = sanitize(payload.pageUrl, 500)
     const legacyTitle = sanitize(payload.title, 200)
@@ -96,6 +98,7 @@ export async function POST(request: Request) {
       { label: 'Email', value: email || 'Not provided' },
       { label: 'Phone', value: phone || 'Not provided' },
       { label: 'Product', value: product || 'Not specified' },
+      { label: 'Inquiry Type', value: inquiryType || 'Not specified' },
       { label: 'Source', value: source || 'Website form' },
       { label: 'Page URL', value: pageUrl || 'Not provided' },
     ]
@@ -134,6 +137,7 @@ export async function POST(request: Request) {
         `Email: ${email || 'Not provided'}`,
         `Phone: ${phone || 'Not provided'}`,
         `Product: ${product || 'Not specified'}`,
+        `Inquiry Type: ${inquiryType || 'Not specified'}`,
         `Source: ${source || 'Website form'}`,
         `Page URL: ${pageUrl || 'Not provided'}`,
         '',

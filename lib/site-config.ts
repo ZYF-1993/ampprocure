@@ -1,17 +1,17 @@
-export const SITE_NAME = 'Your Brand Name'
+export const SITE_NAME = 'UPprocure'
 
 export const SITE_DESCRIPTION =
-  'Placeholder B2B website description. Replace this text with your company positioning and SEO summary.'
+  'UPprocure supplies low-voltage electrical protection products for distributors, panel builders, system integrators, and project contractors.'
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://example.com'
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://www.upprocure.com'
 
-export const DEFAULT_OG_IMAGE = '/placeholders/industrial-placeholder.svg'
+export const DEFAULT_OG_IMAGE = '/images/company-exterior.jpg'
 
 export const DEFAULT_KEYWORDS = [
-  'placeholder keyword 1',
-  'placeholder keyword 2',
-  'placeholder keyword 3',
-  'placeholder keyword 4',
-  'placeholder keyword 5',
-  'placeholder keyword 6',
+  'circuit breaker',
+  'surge protector',
+  'DC fuse holder',
+  'power meter',
+  'ATS dual power switch',
+  'PV combiner box',
 ]

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(curl -s -L \"https://www.elesoltree.com/solutions/aerosol-fire-extinguisher\" -o \"d:/网站项目组/ampprocure/.tmp_solutions_page.html\" --max-time 30)",
+      "Bash(curl -s \"https://www.elesoltree.com/solutions/aerosol-fire-extinguisher\" -o \"d:/网站项目组/ampprocure/.tmp_aerosol_page.html\" --max-time 30)",
+      "Bash(curl -s \"https://www.elesoltree.com/contact\" -o \"d:/网站项目组/ampprocure/.tmp_contact_page.html\" --max-time 30)",
+      "Bash(powershell -Command ' *)"
+    ]
+  }
+}

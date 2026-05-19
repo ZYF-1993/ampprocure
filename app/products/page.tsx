@@ -2,7 +2,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
-import { getCatalogPageImage, normalizeHighlightValue } from '@/lib/catalog-utils'
 import { FRAMEWORK_CATEGORIES, getProductsByCategorySlug } from '@/lib/framework-data'
 import { SITE_URL } from '@/lib/site-config'
 
@@ -33,8 +32,9 @@ function getBuckets(): CategoryBucket[] {
 }
 
 export const metadata: Metadata = {
-  title: 'All Products',
-  description: 'Explore all product categories with modern B2B navigation and direct access to technical product pages.',
+  title: 'Products',
+  description:
+    "Browse upprocure's full range of low-voltage electrical protection products: circuit breakers, SPDs, DC fuse holders, power meters, ATS, PV combiner boxes and more.",
   alternates: {
     canonical: '/products',
   },
@@ -45,7 +45,7 @@ export default function ProductsPage() {
   const selectedProducts = buckets.flatMap((bucket) => bucket.products)
 
   return (
-    <main className="bg-slate-50">
+    <main className="bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -53,117 +53,107 @@ export default function ProductsPage() {
         }}
       />
 
-      <section className="border-b border-slate-200 bg-white py-12">
+      <section className="border-b border-gray-100 bg-gray-50 py-12">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-sm text-slate-500">
-            <Link href="/" className="hover:text-slate-700">
+          <nav className="mb-4 flex items-center gap-2 text-xs text-gray-400" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-gray-600">
               <span data-i18n="header.home">Home</span>
-            </Link>{' '}
-            / <span className="text-slate-600" data-i18n="products.breadcrumbProducts">Products</span>
-          </p>
+            </Link>
+            <span>/</span>
+            <span className="text-gray-600" data-i18n="products.breadcrumbProducts">
+              Products
+            </span>
+          </nav>
 
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl" data-i18n="products.title">
+          <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl" data-i18n="products.title">
             All Products
           </h1>
 
-          <p className="mt-3 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl" data-i18n="products.subtitle">
-            Discover complete product lines with quick category navigation and direct access to technical details.
+          <p className="mt-3 max-w-2xl text-base text-gray-500" data-i18n="products.subtitle">
+            {CATALOG_PRODUCT_COUNT} products across {FRAMEWORK_CATEGORIES.length} categories - CE certified, IEC compliant, wholesale & OEM pricing available.
           </p>
+        </div>
+      </section>
 
-          <div className="mt-5 flex flex-wrap items-center gap-2.5">
-            <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700">{CATALOG_PRODUCT_COUNT}</span>
-            <span className="text-sm text-slate-500" data-i18n="products.totalLabel">Total Listed Models</span>
-            <span className="ml-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">{FRAMEWORK_CATEGORIES.length}</span>
-            <span className="text-sm text-slate-500" data-i18n="products.categoryCountLabel">Active Categories</span>
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-8 lg:flex-row">
+            <aside className="shrink-0 lg:w-56">
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-900" data-i18n="products.navTitle">
+                Categories
+              </h2>
+              <nav aria-label="Product categories">
+                <ul className="mt-3 space-y-0.5">
+                  <li>
+                    <Link href="/products" className="flex items-center justify-between rounded-lg bg-green-50 px-3 py-2 text-sm font-medium text-green-700">
+                      <span data-i18n="header.allProducts">All Products</span>
+                      <span className="text-xs text-gray-400">{CATALOG_PRODUCT_COUNT}</span>
+                    </Link>
+                  </li>
+
+                  {buckets.map((bucket) => (
+                    <li key={bucket.slug}>
+                      <Link
+                        href={`/categories/${bucket.slug}`}
+                        className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-green-700"
+                      >
+                        <span>{bucket.title}</span>
+                        <span className="text-xs text-gray-400">{bucket.count}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </aside>
+
+            <div className="flex-1">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+                {selectedProducts.map((product) => (
+                  <Link
+                    key={product.id}
+                    href={`/products/${product.slug}`}
+                    className="group flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-green-200 hover:shadow-lg"
+                    aria-label={product.name}
+                  >
+                    <div className="relative h-48 w-full overflow-hidden bg-gray-50">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+
+                    <div className="flex flex-1 flex-col p-5">
+                      <p className="text-xs font-medium uppercase tracking-wide text-green-700">{product.category}</p>
+                      <h3 className="mt-1 text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-green-700">{product.name}</h3>
+                      <p className="mt-2 line-clamp-3 flex-1 text-xs leading-relaxed text-gray-500">{product.technicalSummary}</p>
+
+                      <span className="mt-4 flex items-center gap-1 text-xs font-semibold text-green-700">
+                        <span data-i18n="products.learnMore">View Details</span>
+                        <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-10 md:py-12">
-        <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-[280px_1fr] lg:px-8">
-          <aside className="products-catalog-sidebar lg:sticky lg:top-24 lg:self-start">
-            <h2 className="products-catalog-sidebar-title" data-i18n="products.navTitle">
-              Categories
-            </h2>
-            <nav className="products-catalog-nav" aria-label="Product categories">
-              <Link href="/products" className="products-catalog-nav-item products-catalog-nav-item-active">
-                <span data-i18n="header.allProducts">All Products</span>
-                <span className="products-catalog-count">{CATALOG_PRODUCT_COUNT}</span>
-              </Link>
-
-              {buckets.map((bucket) => (
-                <Link key={bucket.slug} href={`/categories/${bucket.slug}`} className="products-catalog-nav-item">
-                  <span>{bucket.title}</span>
-                  <span className="products-catalog-count">{bucket.count}</span>
-                </Link>
-              ))}
-            </nav>
-          </aside>
-
-          <section>
-            <div className="mb-4 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-              <h2 className="text-lg font-semibold text-slate-900" data-i18n="products.gridTitle">
-                Product Listing Grid
-              </h2>
-              <p className="mt-1 text-sm text-slate-500" data-i18n="products.catalogHint">
-                Select a category from the left navigation or browse all products below.
-              </p>
-            </div>
-
-            <div className="products-card-grid">
-              {selectedProducts.map((product) => (
-                <Link key={`product-${product.id}`} href={`/products/${product.slug}`} className="products-card group">
-                  <div className="products-card-media">
-                    <div className="products-card-media-placeholder" aria-hidden="true" />
-                    <Image
-                      src={getCatalogPageImage(product.catalogPage)}
-                      alt={`${product.name} product image`}
-                      width={320}
-                      height={220}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                      className="products-card-image"
-                    />
-                  </div>
-
-                  <div className="products-card-body">
-                    <div className="products-card-meta-row">
-                      <p className="products-card-category">{product.category}</p>
-                      <span className="products-card-page-chip">P.{product.catalogPage}</span>
-                    </div>
-
-                    <h3 className="products-card-title">{product.name}</h3>
-                    <p className="products-card-description">{product.technicalSummary}</p>
-
-                    <p className="products-card-spec">
-                      <span data-i18n="products.keySpecLabel">Key Spec:</span>{' '}
-                      {product.highlights.slice(0, 1).map((item) => `${item.label} ${normalizeHighlightValue(item.value)}`).join(', ')}
-                    </p>
-
-                    <span className="products-card-link">
-                      <span data-i18n="products.learnMore">View Details</span>
-                      <svg className="products-card-link-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                      </svg>
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        </div>
-      </section>
-
       <section className="border-t border-gray-100 bg-gray-50 py-12">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
-          <article>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900" data-i18n="products.cta.title">
-              Need Product Matching Support?
-            </h2>
-            <p className="mt-2 text-sm text-slate-600" data-i18n="products.cta.description">
-              Share your target application and we will recommend the right model combination.
-            </p>
-          </article>
-          <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-800">
+        <div className="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="text-xl font-bold text-gray-900" data-i18n="products.cta.title">
+            Can't find what you need?
+          </h2>
+          <p className="mt-2 text-sm text-gray-500" data-i18n="products.cta.description">
+            Contact our sales team for custom specifications, OEM programmes, or bulk pricing.
+          </p>
+          <Link href="/contact" className="mt-6 inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-800">
             <span data-i18n="products.cta.button">Contact Sales</span>
           </Link>
         </div>

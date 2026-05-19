@@ -1,6 +1,5 @@
-﻿import Image from 'next/image'
+import Image from 'next/image'
 import Link from 'next/link'
-import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
 import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
 
 export default function SiteFooter() {
@@ -8,36 +7,31 @@ export default function SiteFooter() {
     <footer className="bg-gray-900 text-gray-300">
       <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
           <section className="lg:col-span-1">
-            <Link href="/" className="inline-flex w-full max-w-[280px] items-center" aria-label="Go to homepage">
+            <Link href="/" className="inline-flex items-center" aria-label="Go to homepage">
               <Image
                 src="/branding/site-logo.png"
-                alt="Site logo"
+                alt="upprocure logo"
                 width={520}
                 height={140}
-                className="h-12 w-auto max-w-full object-contain lg:h-14"
+                className="h-8 w-auto object-contain"
               />
             </Link>
-            <p className="mt-4 text-sm leading-relaxed text-gray-400" data-i18n="footer.description">
-              Placeholder footer company description. Replace this paragraph with your own brand introduction.
+            <p className="mt-4 text-sm leading-relaxed text-gray-400">
+              upprocure is an electrical equipment company committed to providing quality products at affordable prices. We&apos;re proud to have maintained a 98.9% customer satisfaction rate through dedication and excellent service.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
-              {[
-                { key: 'footer.badge01', text: 'Placeholder Badge 01' },
-                { key: 'footer.badge02', text: 'Placeholder Badge 02' },
-                { key: 'footer.badge03', text: 'Placeholder Badge 03' },
-              ].map((badge) => (
-                <span key={badge.key} className="rounded border border-gray-700 px-2 py-0.5 text-xs font-medium text-gray-400" data-i18n={badge.key}>
-                  {badge.text}
+              {['CE', 'RoHS', 'ISO 9001', 'IEC', 'TÜV'].map((badge) => (
+                <span key={badge} className="rounded border border-gray-700 px-2 py-0.5 text-xs font-medium text-gray-400">
+                  {badge}
                 </span>
               ))}
             </div>
           </section>
 
           <section>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white" data-i18n="footer.products">
-              Products
-            </h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Products</h3>
             <ul className="mt-4 space-y-2.5">
               {FRAMEWORK_CATEGORIES.map((category) => (
                 <li key={category.slug}>
@@ -50,19 +44,17 @@ export default function SiteFooter() {
           </section>
 
           <section>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white" data-i18n="footer.quickLinks">
-              Quick Links
-            </h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Quick Links</h3>
             <ul className="mt-4 space-y-2.5">
               {[
-                { href: '/', label: 'Home', i18nKey: 'footer.home' },
-                { href: '/products', label: 'Products', i18nKey: 'footer.productsLink' },
-                { href: '/blog', label: 'Blog', i18nKey: 'footer.blog' },
-                { href: '/about', label: 'About', i18nKey: 'footer.about' },
-                { href: '/contact', label: 'Contact', i18nKey: 'footer.contactLink' },
+                { href: '/', label: 'Home' },
+                { href: '/products', label: 'Products' },
+                { href: '/blog', label: 'Blog' },
+                { href: '/about', label: 'About Us' },
+                { href: '/contact', label: 'Contact Us' },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-sm text-gray-400 transition-colors hover:text-white" data-i18n={item.i18nKey}>
+                  <Link href={item.href} className="text-sm text-gray-400 transition-colors hover:text-white">
                     {item.label}
                   </Link>
                 </li>
@@ -71,41 +63,52 @@ export default function SiteFooter() {
           </section>
 
           <section>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white" data-i18n="footer.contact">
-              Contact
-            </h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Contact</h3>
             <ul className="mt-4 space-y-3">
-              <li className="text-sm text-gray-400" data-i18n="footer.placeholderContactLabel">
-                [Placeholder Contact Label]
+              <li className="flex items-start gap-3 text-sm text-gray-400">
+                <svg className="mt-0.5 h-4 w-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                Fenghuang Industrial Zone, Baishi Town, Yueqing Zhejiang P. R. China
               </li>
-              <li className="text-sm text-gray-400">
-                <a href="mailto:placeholder@example.com" className="transition-colors hover:text-white">
-                  placeholder@example.com
+              <li className="flex items-center gap-3 text-sm text-gray-400">
+                <svg className="h-4 w-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                <a href="mailto:zyf5732@gmail.com" className="transition-colors hover:text-white">
+                  zyf5732@gmail.com
                 </a>
               </li>
-              <li className="text-sm text-gray-400">
-                <a href="tel:+10000000000" className="transition-colors hover:text-white">
-                  +1 000 000 0000
+              <li className="flex items-center gap-3 text-sm text-gray-400">
+                <svg className="h-4 w-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                </svg>
+                <a href="tel:+8613552727303" className="transition-colors hover:text-white">
+                  +86-13552727303
                 </a>
               </li>
-              <li className="text-sm text-gray-400">{CATALOG_PRODUCT_COUNT} placeholder products listed.</li>
+              <li className="flex items-center gap-3 text-sm text-gray-400">
+                <svg className="h-4 w-4 shrink-0 text-green-500" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.965.985-3.595A9.816 9.816 0 012.12 12c0-5.453 4.436-9.88 9.909-9.88S21.938 6.547 21.938 12c0 5.454-4.437 9.88-9.909 9.88z" />
+                </svg>
+                <a href="https://wa.me/8613552727303" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
+                  WhatsApp: +86-13552727303
+                </a>
+              </li>
             </ul>
           </section>
+
         </div>
       </div>
 
       <div className="border-t border-gray-800">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
-          <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} <span data-i18n="footer.rights">Your Brand. All rights reserved.</span>
-          </p>
+          <p className="text-xs text-gray-500">© {new Date().getFullYear()} upprocure. All rights reserved.</p>
           <div className="flex gap-5">
-            <Link href="/privacy" className="text-xs text-gray-500 transition-colors hover:text-gray-300" data-i18n="footer.privacy">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-xs text-gray-500 transition-colors hover:text-gray-300" data-i18n="footer.terms">
-              Terms of Use
-            </Link>
+            <Link href="/privacy" className="text-xs text-gray-500 transition-colors hover:text-gray-300">Privacy Policy</Link>
+            <Link href="/terms" className="text-xs text-gray-500 transition-colors hover:text-gray-300">Terms of Use</Link>
           </div>
         </div>
       </div>

@@ -1,247 +1,178 @@
 'use client'
 
-import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react'
+import Link from 'next/link'
+import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
-import { t } from '@/lib/i18n'
 
-type InquiryFormProps = {
+type Props = {
   submitLabel?: string
   source: string
   defaultProduct?: string
   twoColumnOnDesktop?: boolean
   redirectOnSuccess?: string
+  showInquiryType?: boolean
 }
 
-type InquiryFormState = {
+type FormState = {
   name: string
   company: string
   email: string
   phone: string
-  product: string
+  inquiryType: string
   message: string
 }
 
-type FeedbackState = {
-  type: 'success' | 'error'
-  message: string
-}
+const EMPTY: FormState = { name: '', company: '', email: '', phone: '', inquiryType: '', message: '' }
 
-const EMPTY_FORM: InquiryFormState = {
-  name: '',
-  company: '',
-  email: '',
-  phone: '',
-  product: '',
-  message: '',
-}
+const INQUIRY_TYPES = [
+  'Product Enquiry',
+  'Request for Quotation',
+  'OEM / Private Label',
+  'Sample Request',
+  'Technical Support',
+  'Distributor Partnership',
+  'Other',
+] as const
+
+const labelCls = 'mb-1.5 block text-sm font-medium text-gray-700'
+const inputCls = 'w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm placeholder:text-gray-400 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500'
 
 export default function InquiryForm({
-  submitLabel = 'Submit Inquiry',
+  submitLabel = 'Send Enquiry',
   source,
   defaultProduct = '',
-  twoColumnOnDesktop = false,
   redirectOnSuccess,
-}: InquiryFormProps) {
+  showInquiryType = false,
+}: Props) {
   const router = useRouter()
-  const [form, setForm] = useState<InquiryFormState>({
-    ...EMPTY_FORM,
-    product: defaultProduct,
-  })
+  const [form, setForm] = useState<FormState>(EMPTY)
   const [submitting, setSubmitting] = useState(false)
-  const [feedback, setFeedback] = useState<FeedbackState | null>(null)
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    const queryParams = new URLSearchParams(window.location.search)
-    const productFromQuery = queryParams.get('product')?.trim()
-    if (!productFromQuery) return
-
-    setForm((prev) => {
-      if (prev.product.trim().length > 0) return prev
-      return {
-        ...prev,
-        product: productFromQuery,
-      }
-    })
-  }, [])
-
-  function updateField(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const { name, value } = event.currentTarget
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
+  function update(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+    const { name, value } = e.currentTarget
+    setForm((prev) => ({ ...prev, [name]: value }))
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    setFeedback(null)
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setError(null)
     setSubmitting(true)
-
     try {
-      const response = await fetch('/api/send-email', {
+      const res = await fetch('/api/send-email', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...form,
-          source,
-          pageUrl: window.location.href,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, product: defaultProduct, source, pageUrl: window.location.href }),
       })
-
-      const result = (await response.json()) as { success?: boolean; error?: string }
-      if (!response.ok) {
-        throw new Error(result.error ?? 'Unable to send inquiry right now.')
-      }
-
-      setFeedback({
-        type: 'success',
-        message: t('inquiry.success', 'Inquiry sent successfully. Our sales team will contact you shortly.'),
-      })
-      setForm({
-        ...EMPTY_FORM,
-        product: form.product,
-      })
-
+      const result = (await res.json()) as { success?: boolean; error?: string }
+      if (!res.ok) throw new Error(result.error ?? 'Unable to send inquiry right now.')
+      setForm(EMPTY)
       if (redirectOnSuccess) {
         router.push(redirectOnSuccess)
+      } else {
+        setSubmitted(true)
       }
-    } catch (error) {
-      setFeedback({
-        type: 'error',
-        message: error instanceof Error ? error.message : t('inquiry.error', 'Request failed. Please try again.'),
-      })
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Request failed. Please try again.')
     } finally {
       setSubmitting(false)
     }
   }
 
+  if (submitted) {
+    return (
+      <div className="flex flex-col items-center py-10 text-center">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+          <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth={2.2} stroke="currentColor" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </div>
+        <h3 className="mt-5 text-xl font-bold text-gray-900">Message Sent!</h3>
+        <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-500">
+          Thank you for reaching out. Our sales team will reply within <strong className="font-semibold text-gray-700">24 business hours</strong>.
+        </p>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <button
+            onClick={() => setSubmitted(false)}
+            className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
+          >
+            Send Another
+          </button>
+          <Link
+            href="/products"
+            className="rounded-lg bg-green-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-green-800"
+          >
+            Browse Products
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <form className={twoColumnOnDesktop ? 'mt-5 grid gap-4 md:grid-cols-2' : 'mt-5 space-y-4'} onSubmit={handleSubmit} noValidate>
-      <div>
-        <label htmlFor={`${source}-name`} className="mb-1 block text-sm font-medium text-slate-800" data-i18n="inquiry.fullName">
-          Full Name
-        </label>
-        <input
-          id={`${source}-name`}
-          name="name"
-          type="text"
-          value={form.name}
-          onChange={updateField}
-          autoComplete="name"
-          required
-          className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-sm focus:border-slate-500 focus:outline-none"
-          placeholder="Your name"
-          data-i18n-placeholder="inquiry.fullNamePlaceholder"
-        />
+    <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor={`${source}-name`} className={labelCls}>Full Name *</label>
+          <input id={`${source}-name`} name="name" type="text" required value={form.name} onChange={update} placeholder="Your name" className={inputCls} />
+        </div>
+        <div>
+          <label htmlFor={`${source}-phone`} className={labelCls}>Phone / WhatsApp</label>
+          <input id={`${source}-phone`} name="phone" type="tel" value={form.phone} onChange={update} placeholder="+86-13552727303" className={inputCls} />
+        </div>
       </div>
 
       <div>
-        <label htmlFor={`${source}-company`} className="mb-1 block text-sm font-medium text-slate-800" data-i18n="inquiry.companyName">
-          Company Name
-        </label>
-        <input
-          id={`${source}-company`}
-          name="company"
-          type="text"
-          value={form.company}
-          onChange={updateField}
-          autoComplete="organization"
-          className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-sm focus:border-slate-500 focus:outline-none"
-          placeholder="Your company name"
-          data-i18n-placeholder="inquiry.companyNamePlaceholder"
-        />
+        <label htmlFor={`${source}-email`} className={labelCls}>Email Address *</label>
+        <input id={`${source}-email`} name="email" type="email" required value={form.email} onChange={update} placeholder="your@email.com" className={inputCls} />
       </div>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor={`${source}-company`} className={labelCls}>Company</label>
+          <input id={`${source}-company`} name="company" type="text" value={form.company} onChange={update} placeholder="Company name" className={inputCls} />
+        </div>
+        <div>
+          <label htmlFor={`${source}-phone2`} className={labelCls}>Phone / WhatsApp</label>
+          <input id={`${source}-phone2`} name="phone" type="tel" value={form.phone} onChange={update} placeholder="+86-13552727303" className={inputCls} />
+        </div>
+      </div>
+
+      {showInquiryType && (
+        <div>
+          <label htmlFor={`${source}-inquiry`} className={labelCls}>Inquiry Type *</label>
+          <select id={`${source}-inquiry`} name="inquiryType" required value={form.inquiryType} onChange={update} className={inputCls + ' bg-white'}>
+            <option value="" disabled>Select inquiry type...</option>
+            {INQUIRY_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+          </select>
+        </div>
+      )}
 
       <div>
-        <label htmlFor={`${source}-email`} className="mb-1 block text-sm font-medium text-slate-800" data-i18n="inquiry.workEmail">
-          Work Email
-        </label>
-        <input
-          id={`${source}-email`}
-          name="email"
-          type="email"
-          value={form.email}
-          onChange={updateField}
-          autoComplete="email"
-          required
-          className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-sm focus:border-slate-500 focus:outline-none"
-          placeholder="email@company.com"
-          data-i18n-placeholder="inquiry.workEmailPlaceholder"
-        />
+        <label htmlFor={`${source}-message`} className={labelCls}>Message *</label>
+        <textarea id={`${source}-message`} name="message" rows={4} required value={form.message} onChange={update} placeholder="Please describe your requirements, including product names, quantities, and any special specifications..." className={inputCls} />
       </div>
 
-      <div>
-        <label htmlFor={`${source}-phone`} className="mb-1 block text-sm font-medium text-slate-800" data-i18n="inquiry.phoneWhatsApp">
-          Phone / WhatsApp
-        </label>
-        <input
-          id={`${source}-phone`}
-          name="phone"
-          type="tel"
-          value={form.phone}
-          onChange={updateField}
-          autoComplete="tel"
-          className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-sm focus:border-slate-500 focus:outline-none"
-          placeholder="+1 000 000 0000"
-          data-i18n-placeholder="inquiry.phonePlaceholder"
-        />
-      </div>
-
-      <div className={twoColumnOnDesktop ? 'md:col-span-2' : undefined}>
-        <label htmlFor={`${source}-product`} className="mb-1 block text-sm font-medium text-slate-800" data-i18n="inquiry.interestedProduct">
-          Interested Product
-        </label>
-        <input
-          id={`${source}-product`}
-          name="product"
-          type="text"
-          value={form.product}
-          onChange={updateField}
-          className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-sm focus:border-slate-500 focus:outline-none"
-          placeholder="Placeholder product name"
-          data-i18n-placeholder="inquiry.interestedProductPlaceholder"
-        />
-      </div>
-
-      <div className={twoColumnOnDesktop ? 'md:col-span-2' : undefined}>
-        <label htmlFor={`${source}-message`} className="mb-1 block text-sm font-medium text-slate-800" data-i18n="inquiry.requirementDetails">
-          Requirement Details
-        </label>
-        <textarea
-          id={`${source}-message`}
-          name="message"
-          rows={twoColumnOnDesktop ? 5 : 4}
-          value={form.message}
-          onChange={updateField}
-          required
-          className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-sm focus:border-slate-500 focus:outline-none"
-          placeholder="Power range, voltage platform, quantity, delivery timeline, and certification requirements"
-          data-i18n-placeholder="inquiry.requirementPlaceholder"
-        />
-      </div>
-
-      <div className={twoColumnOnDesktop ? 'md:col-span-2' : undefined}>
-        <button
-          type="submit"
-          disabled={submitting}
-          className="inline-flex w-full items-center justify-center rounded-md bg-orange-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-orange-400"
-        >
-          {submitting ? t('inquiry.submitting', 'Sending Inquiry...') : <span data-i18n="inquiry.submit">{submitLabel}</span>}
-        </button>
-      </div>
-
-      <p
-        role="status"
-        aria-live="polite"
-        className={`${twoColumnOnDesktop ? 'md:col-span-2' : ''} text-sm ${
-          feedback?.type === 'error' ? 'text-red-700' : 'text-emerald-700'
-        }`}
+      <button
+        type="submit"
+        disabled={submitting}
+        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-green-700 px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {feedback?.message ?? t('inquiry.defaultStatus', 'Your inquiry is sent directly to our sales mailbox.')}
-      </p>
+        {submitting ? (
+          <>
+            <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+            Sending...
+          </>
+        ) : submitLabel}
+      </button>
+
+      {error && (
+        <p role="alert" className="text-sm text-red-600">{error}</p>
+      )}
     </form>
   )
 }

@@ -15,6 +15,10 @@ const MAIN_LINKS = [
   { href: '/contact', label: 'Contact Us' },
 ] as const
 
+const SOLUTION_LINKS = [
+  { href: '/solutions/aerosol-fire-extinguisher', label: 'Aerosol Fire Extinguisher Solution' },
+] as const
+
 function Chevron({ open }: { open: boolean }) {
   return (
     <svg
@@ -32,9 +36,12 @@ export default function SiteHeader() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false)
   const [desktopProductsOpen, setDesktopProductsOpen] = useState(false)
+  const [desktopSolutionsOpen, setDesktopSolutionsOpen] = useState(false)
 
   const isProductsRoute = pathname.startsWith('/products') || pathname.startsWith('/categories')
+  const isSolutionsRoute = pathname.startsWith('/solutions')
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white transition-shadow duration-200">
@@ -47,8 +54,8 @@ export default function SiteHeader() {
           <nav className="hidden flex-1 items-center justify-center gap-0.5 lg:ml-10 lg:flex xl:ml-14 xl:gap-1" aria-label="Main navigation">
             <Link
               href="/"
-              className={`whitespace-nowrap rounded-md px-3 py-2 text-[13px] font-medium transition-colors xl:px-4 xl:text-[14px] ${
-                pathname === '/' ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+              className={`whitespace-nowrap rounded-md px-3 py-2 text-[13px] font-semibold transition-colors xl:px-4 xl:text-[14px] ${
+                pathname === '/' ? 'font-bold text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
               }`}
             >
               <span data-i18n="header.home">Home</span>
@@ -69,8 +76,8 @@ export default function SiteHeader() {
               <div className="inline-flex items-center rounded-md">
                 <Link
                   href="/products"
-                  className={`whitespace-nowrap rounded-l-md px-3 py-2 text-[13px] font-medium transition-colors xl:px-4 xl:text-[14px] ${
-                    isProductsRoute ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  className={`whitespace-nowrap rounded-l-md px-3 py-2 text-[13px] font-semibold transition-colors xl:px-4 xl:text-[14px] ${
+                    isProductsRoute ? 'font-bold text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                   }`}
                 >
                   <span data-i18n="header.product">Product</span>
@@ -82,7 +89,7 @@ export default function SiteHeader() {
                   aria-label="Toggle product menu"
                   onClick={() => setDesktopProductsOpen((prev) => !prev)}
                   className={`rounded-r-md px-2 py-2 transition-colors ${
-                    isProductsRoute ? 'text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                    isProductsRoute ? 'text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                   }`}
                 >
                   <Chevron open={desktopProductsOpen} />
@@ -90,7 +97,7 @@ export default function SiteHeader() {
               </div>
 
               <div
-                className={`absolute left-1/2 top-full z-50 w-[min(940px,calc(100vw-2rem))] -translate-x-1/2 pt-3 transition-all duration-200 ${
+                className={`absolute left-1/2 top-full z-50 w-[min(1000px,calc(100vw-2rem))] -translate-x-1/2 pt-3 transition-all duration-200 ${
                   desktopProductsOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-1 opacity-0 pointer-events-none'
                 }`}
               >
@@ -117,15 +124,19 @@ export default function SiteHeader() {
                       {FRAMEWORK_CATEGORIES.map((category) => (
                         <li key={category.slug}>
                           <Link href={`/categories/${category.slug}`} onClick={() => setDesktopProductsOpen(false)} className="product-mega-item">
+                            <div className="product-mega-item-thumb">
+                              <Image
+                                src={`/images/categories/${category.slug}.png`}
+                                alt={category.title}
+                                width={100}
+                                height={76}
+                                className="h-[76px] w-auto object-contain"
+                              />
+                            </div>
                             <span className="product-mega-item-label">
-                              <span className="product-mega-icon" aria-hidden="true">
-                                <svg viewBox="0 0 6 6" fill="currentColor">
-                                  <circle cx="3" cy="3" r="3" />
-                                </svg>
-                              </span>
                               <span>{category.title}</span>
+                              <span className="product-mega-item-count">{category.count}</span>
                             </span>
-                            <span className="product-mega-item-count">{category.count}</span>
                           </Link>
                         </li>
                       ))}
@@ -135,15 +146,72 @@ export default function SiteHeader() {
               </div>
             </div>
 
-            {MAIN_LINKS.slice(1).map((link) => (
+            {MAIN_LINKS.slice(1, 3).map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`whitespace-nowrap rounded-md px-3 py-2 text-[13px] font-medium transition-colors xl:px-4 xl:text-[14px] ${
-                  pathname === link.href ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                className={`whitespace-nowrap rounded-md px-3 py-2 text-[13px] font-semibold transition-colors xl:px-4 xl:text-[14px] ${
+                  pathname === link.href ? 'font-bold text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                 } ${link.href === '/contact' ? 'mr-5 xl:mr-8' : ''}`}
               >
                 <span data-i18n={`header.${link.label === 'Contact Us' ? 'contactUs' : link.label.toLowerCase()}`}>{link.label}</span>
+              </Link>
+            ))}
+
+            <div
+              className="relative"
+              onMouseEnter={() => setDesktopSolutionsOpen(true)}
+              onMouseLeave={() => setDesktopSolutionsOpen(false)}
+              onFocusCapture={() => setDesktopSolutionsOpen(true)}
+              onBlurCapture={(event) => {
+                const nextTarget = event.relatedTarget as Node | null
+                if (!nextTarget || !event.currentTarget.contains(nextTarget)) {
+                  setDesktopSolutionsOpen(false)
+                }
+              }}
+            >
+              <button
+                type="button"
+                aria-expanded={desktopSolutionsOpen}
+                aria-haspopup="true"
+                onClick={() => setDesktopSolutionsOpen((prev) => !prev)}
+                className={`inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-[13px] font-semibold transition-colors xl:px-4 xl:text-[14px] ${
+                  isSolutionsRoute ? 'font-bold text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                }`}
+              >
+                <span data-i18n="header.solutions">Solutions</span>
+                <Chevron open={desktopSolutionsOpen} />
+              </button>
+
+              <div
+                className={`absolute left-0 top-full z-50 w-72 pt-3 transition-all duration-200 ${
+                  desktopSolutionsOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-1 opacity-0 pointer-events-none'
+                }`}
+              >
+                <div className="rounded-xl border border-gray-100 bg-white p-2 shadow-xl">
+                  {SOLUTION_LINKS.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setDesktopSolutionsOpen(false)}
+                      className="block rounded-lg px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-green-50 hover:text-green-700"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {MAIN_LINKS.slice(3).map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`mr-5 whitespace-nowrap rounded-md px-3 py-2 text-[13px] font-semibold transition-colors xl:mr-8 xl:px-4 xl:text-[14px] ${
+                  pathname === link.href ? 'font-bold text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                }`}
+              >
+                <span data-i18n="header.contactUs">{link.label}</span>
               </Link>
             ))}
           </nav>
@@ -217,7 +285,7 @@ export default function SiteHeader() {
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
+                className={`flex rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
                   pathname === '/' ? 'bg-green-50 font-semibold text-green-700' : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
@@ -229,7 +297,7 @@ export default function SiteHeader() {
               <button
                 type="button"
                 onClick={() => setMobileProductsOpen((prev) => !prev)}
-                className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
+                className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
                   isProductsRoute ? 'bg-green-50 font-semibold text-green-700' : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
@@ -264,15 +332,58 @@ export default function SiteHeader() {
             </li>
 
             {MAIN_LINKS.slice(1).map((link) => (
+              link.href === '/contact' ? null : (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
+                      pathname === link.href ? 'bg-green-50 font-semibold text-green-700' : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <span data-i18n={`header.${link.label.toLowerCase()}`}>{link.label}</span>
+                  </Link>
+                </li>
+              )
+            ))}
+            <li>
+              <button
+                type="button"
+                onClick={() => setMobileSolutionsOpen((prev) => !prev)}
+                className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
+                  isSolutionsRoute ? 'bg-green-50 font-semibold text-green-700' : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <span data-i18n="header.solutions">Solutions</span>
+                <Chevron open={mobileSolutionsOpen} />
+              </button>
+
+              <div className={`overflow-hidden transition-all duration-200 ${mobileSolutionsOpen ? 'max-h-[180px]' : 'max-h-0'}`}>
+                <ul className="mt-1 ml-4 space-y-0.5 border-l-2 border-gray-100 pl-4">
+                  {SOLUTION_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex rounded-lg px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-green-50 hover:text-green-700"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+            {MAIN_LINKS.slice(3).map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
+                  className={`flex rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
                     pathname === link.href ? 'bg-green-50 font-semibold text-green-700' : 'text-gray-700 hover:bg-gray-50'
                   }`}
                 >
-                  <span data-i18n={`header.${link.label === 'Contact Us' ? 'contactUs' : link.label.toLowerCase()}`}>{link.label}</span>
+                  <span data-i18n="header.contactUs">{link.label}</span>
                 </Link>
               </li>
             ))}

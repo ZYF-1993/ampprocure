@@ -8,15 +8,15 @@ export type FrameworkCategory = {
 }
 
 const CATEGORY_SUMMARY_BY_CODE: Readonly<Record<string, string>> = {
-  'circuit-breaker': 'Placeholder category summary. Replace with your category positioning and technical value statement.',
-  'surge-protector-device': 'Placeholder category summary. Replace with your category positioning and technical value statement.',
-  'dc-fuse-holder': 'Placeholder category summary. Replace with your category positioning and technical value statement.',
-  'over-voltage-protector': 'Placeholder category summary. Replace with your category positioning and technical value statement.',
-  'power-meter': 'Placeholder category summary. Replace with your category positioning and technical value statement.',
-  'wifi-smart-low-voltage-device': 'Placeholder category summary. Replace with your category positioning and technical value statement.',
-  'pv-combiner-box': 'Placeholder category summary. Replace with your category positioning and technical value statement.',
-  'ats-dual-power-switch': 'Placeholder category summary. Replace with your category positioning and technical value statement.',
-  'aerosol-fire-extinguisher': 'Placeholder category summary. Replace with your category positioning and technical value statement.',
+  'circuit-breaker': 'Reliable overcurrent and short-circuit protection for LV systems.',
+  'surge-protector-device': 'Transient overvoltage suppression for sensitive equipment.',
+  'dc-fuse-holder': 'Safe and compact fuse mounting for DC circuits up to 1500V.',
+  'over-voltage-protector': 'Automatic load disconnection against sustained overvoltage.',
+  'power-meter': 'Precision energy measurement for industrial and commercial use.',
+  'wifi-smart-low-voltage-device': 'IoT-enabled low-voltage devices for smart building control.',
+  'pv-combiner-box': 'String combiner solutions for solar PV arrays.',
+  'ats-dual-power-switch': 'Automatic transfer switching for uninterrupted power supply.',
+  'aerosol-fire-extinguisher': 'Compact aerosol-based fire suppression for rapid response.',
 }
 
 export const FRAMEWORK_CATEGORIES: readonly FrameworkCategory[] = Array.from(
@@ -40,39 +40,39 @@ export const FRAMEWORK_CATEGORIES: readonly FrameworkCategory[] = Array.from(
 
     return map
   }, new Map()).values()
-).sort((a, b) => b.count - a.count)
+)
 
 export const HEADER_FEATURED_PRODUCTS = [...CATALOG_PRODUCTS].sort((a, b) => a.catalogPage - b.catalogPage).slice(0, 8)
 
 export const TOPBAR_ITEMS = [
-  `${CATALOG_PRODUCTS.length} Placeholder Models`,
-  `${new Set(CATALOG_PRODUCTS.map((item) => item.categoryCode)).size} Placeholder Categories`,
-  'Placeholder Service Label',
-  'Placeholder Response Promise',
+  `${CATALOG_PRODUCTS.length} Product Models`,
+  `${new Set(CATALOG_PRODUCTS.map((item) => item.categoryCode)).size} Product Categories`,
+  'OEM Support',
+  '24h Quote Response',
 ] as const
 
 export const HOME_CORE_BLOCKS = [
   {
-    title: 'Placeholder Core Block A',
-    text: 'Placeholder text for homepage core value section. Replace with your real conversion message.',
+    title: 'Electrical Protection Supply',
+    text: 'Core products for distributors, panel builders, and project contractors.',
   },
   {
-    title: 'Placeholder Core Block B',
-    text: 'Placeholder text for homepage core value section. Replace with your real conversion message.',
+    title: 'OEM Cooperation',
+    text: 'Packaging, label, and mixed-order support for repeat B2B procurement.',
   },
   {
-    title: 'Placeholder Core Block C',
-    text: 'Placeholder text for homepage core value section. Replace with your real conversion message.',
+    title: 'Responsive Quotation',
+    text: 'Clear product matching and RFQ follow-up for low-voltage applications.',
   },
 ] as const
 
 export const HOME_PROCESS_STEPS = [
-  'Placeholder Step 01',
-  'Placeholder Step 02',
-  'Placeholder Step 03',
-  'Placeholder Step 04',
-  'Placeholder Step 05',
-  'Placeholder Step 06',
+  'Confirm Requirements',
+  'Match Products',
+  'Prepare Samples',
+  'Confirm Order',
+  'Arrange Production',
+  'Support Delivery',
 ] as const
 
 export function getCategoryBySlug(slug: string): FrameworkCategory | null {

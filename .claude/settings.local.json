@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "WebFetch(domain:www.elesoltree.com)",
+      "PowerShell($r = Invoke-WebRequest -Uri http://localhost:3000/ -UseBasicParsing; $r.Content | Out-File -FilePath D:\\\\网站项目组\\\\ampprocure\\\\.tmp_local_home.html -Encoding utf8; \"size: \" + \\(Get-Item D:\\\\网站项目组\\\\ampprocure\\\\.tmp_local_home.html\\).Length)",
+      "PowerShell(Start-Sleep -Seconds 2; $r = Invoke-WebRequest -Uri http://localhost:3000/ -UseBasicParsing; $r.Content | Out-File -FilePath D:\\\\网站项目组\\\\ampprocure\\\\.tmp_local_home.html -Encoding utf8; \"size: \" + \\(Get-Item D:\\\\网站项目组\\\\ampprocure\\\\.tmp_local_home.html\\).Length)"
     ]
   }
 }
