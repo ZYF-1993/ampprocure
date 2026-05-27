@@ -5,7 +5,7 @@ import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
 export default function SiteFooter() {
   return (
     <footer className="bg-gray-900 text-gray-300">
-      <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div className="container py-14">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
 
           <section className="lg:col-span-1">
@@ -104,8 +104,8 @@ export default function SiteFooter() {
       </div>
 
       <div className="border-t border-gray-800">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
-          <p className="text-xs text-gray-500">© {new Date().getFullYear()} upprocure. All rights reserved.</p>
+        <div className="container flex flex-col items-center justify-between gap-3 py-5 sm:flex-row">
+          <p className="text-xs text-gray-500">(c) {new Date().getFullYear()} upprocure. All rights reserved.</p>
           <div className="flex gap-5">
             <Link href="/privacy" className="text-xs text-gray-500 transition-colors hover:text-gray-300">Privacy Policy</Link>
             <Link href="/terms" className="text-xs text-gray-500 transition-colors hover:text-gray-300">Terms of Use</Link>

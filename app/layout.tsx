@@ -72,8 +72,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" translate="no" className={`h-full antialiased notranslate ${inter.variable}`}>
-      <body className="min-h-full bg-white text-slate-900">
+    <html lang="en" translate="no" className={`notranslate ${inter.variable}`}>
+      <body className="flex min-h-screen flex-col bg-white antialiased">
         <I18nRuntime />
         <SiteHeader />
         {children}

@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
 import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
-import LanguageSwitcher from '@/components/LanguageSwitcher'
 
 const MAIN_LINKS = [
   { href: '/', label: 'Home' },
@@ -45,17 +44,17 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white transition-shadow duration-200">
-      <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        <div className="flex h-[60px] items-center justify-between lg:h-[68px] xl:h-[72px]">
+      <div className="container">
+        <div className="flex h-16 items-center justify-between lg:h-[72px]">
           <Link href="/" className="flex shrink-0 items-center" aria-label="Go to homepage">
-            <Image src="/branding/site-logo.png" alt="Site logo" width={340} height={92} priority className="h-7 w-auto sm:h-8 lg:h-[34px] xl:h-9" />
+            <Image src="/branding/site-logo.png" alt="Site logo" width={340} height={92} priority className="h-8 w-auto object-contain lg:h-9" />
           </Link>
 
-          <nav className="hidden flex-1 items-center justify-center gap-0.5 lg:ml-10 lg:flex xl:ml-14 xl:gap-1" aria-label="Main navigation">
+          <nav className="hidden lg:flex lg:items-center lg:gap-1" aria-label="Main navigation">
             <Link
               href="/"
-              className={`whitespace-nowrap rounded-md px-3 py-2 text-[13px] font-semibold transition-colors xl:px-4 xl:text-[14px] ${
-                pathname === '/' ? 'font-bold text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                pathname === '/' ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
               }`}
             >
               <span data-i18n="header.home">Home</span>
@@ -76,8 +75,8 @@ export default function SiteHeader() {
               <div className="inline-flex items-center rounded-md">
                 <Link
                   href="/products"
-                  className={`whitespace-nowrap rounded-l-md px-3 py-2 text-[13px] font-semibold transition-colors xl:px-4 xl:text-[14px] ${
-                    isProductsRoute ? 'font-bold text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                  className={`rounded-l-md px-4 py-2 text-sm font-medium transition-colors ${
+                    isProductsRoute ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   }`}
                 >
                   <span data-i18n="header.product">Product</span>
@@ -89,7 +88,7 @@ export default function SiteHeader() {
                   aria-label="Toggle product menu"
                   onClick={() => setDesktopProductsOpen((prev) => !prev)}
                   className={`rounded-r-md px-2 py-2 transition-colors ${
-                    isProductsRoute ? 'text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                    isProductsRoute ? 'text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   }`}
                 >
                   <Chevron open={desktopProductsOpen} />
@@ -150,9 +149,9 @@ export default function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`whitespace-nowrap rounded-md px-3 py-2 text-[13px] font-semibold transition-colors xl:px-4 xl:text-[14px] ${
-                  pathname === link.href ? 'font-bold text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-                } ${link.href === '/contact' ? 'mr-5 xl:mr-8' : ''}`}
+                className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                  pathname === link.href ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                }`}
               >
                 <span data-i18n={`header.${link.label === 'Contact Us' ? 'contactUs' : link.label.toLowerCase()}`}>{link.label}</span>
               </Link>
@@ -175,8 +174,8 @@ export default function SiteHeader() {
                 aria-expanded={desktopSolutionsOpen}
                 aria-haspopup="true"
                 onClick={() => setDesktopSolutionsOpen((prev) => !prev)}
-                className={`inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-[13px] font-semibold transition-colors xl:px-4 xl:text-[14px] ${
-                  isSolutionsRoute ? 'font-bold text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                className={`inline-flex items-center gap-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                  isSolutionsRoute ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                 }`}
               >
                 <span data-i18n="header.solutions">Solutions</span>
@@ -207,8 +206,8 @@ export default function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`mr-5 whitespace-nowrap rounded-md px-3 py-2 text-[13px] font-semibold transition-colors xl:mr-8 xl:px-4 xl:text-[14px] ${
-                  pathname === link.href ? 'font-bold text-green-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                  pathname === link.href ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                 }`}
               >
                 <span data-i18n="header.contactUs">{link.label}</span>
@@ -216,53 +215,15 @@ export default function SiteHeader() {
             ))}
           </nav>
 
-          <div className="hidden shrink-0 items-center justify-end gap-2 lg:ml-14 lg:flex xl:ml-16 xl:gap-2.5">
-            <Link
-              href="/search"
-              aria-label="Search"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-700 transition hover:bg-slate-50 xl:hidden"
-            >
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
-                <circle cx="11" cy="11" r="7" />
-                <path d="m20 20-3.5-3.5" />
-              </svg>
-            </Link>
-            <form action="/search" method="get" className="hidden items-center gap-0 xl:flex">
-              <label htmlFor="desktop-header-search" className="sr-only">
-                Search in site
-              </label>
-              <input
-                id="desktop-header-search"
-                name="q"
-                placeholder="Search in site..."
-                data-i18n-placeholder="header.searchPlaceholder"
-                className="h-10 w-36 rounded-l-md border border-r-0 border-slate-300 px-3 text-sm text-slate-800 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100 2xl:w-40"
-              />
-              <button
-                type="submit"
-                aria-label="Search"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-r-md border border-slate-300 bg-white text-slate-700 transition hover:bg-slate-50"
-              >
-                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="m20 20-3.5-3.5" />
-                </svg>
-              </button>
-            </form>
-            <div>
-              <LanguageSwitcher />
-            </div>
-            <Link
-              href="/contact"
-              className="inline-flex h-9 items-center justify-center whitespace-nowrap rounded-lg bg-green-700 px-4 text-[12px] font-semibold text-white transition hover:bg-green-800 xl:h-10 xl:px-5 xl:text-[13px]"
-            >
+          <div className="hidden lg:flex lg:items-center lg:gap-3">
+            <Link href="/contact" className="btn-primary">
               <span data-i18n="header.contactUs">Contact Us</span>
             </Link>
           </div>
 
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 lg:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 lg:hidden"
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -279,7 +240,7 @@ export default function SiteHeader() {
       </div>
 
       <div className={`overflow-hidden border-t border-gray-100 transition-all duration-300 lg:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-64px)]' : 'max-h-0'}`}>
-        <nav className="mx-auto max-h-[calc(100vh-64px)] w-full max-w-7xl overflow-y-auto px-4 py-4 sm:px-6 lg:px-8" aria-label="Mobile navigation">
+        <nav className="container max-h-[calc(100vh-64px)] overflow-y-auto py-4" aria-label="Mobile navigation">
           <ul className="space-y-0.5">
             <li>
               <Link
@@ -387,30 +348,10 @@ export default function SiteHeader() {
                 </Link>
               </li>
             ))}
-            <li className="pt-2">
-              <form action="/search" method="get" className="space-y-2">
-                <label htmlFor="mobile-header-search" className="block text-xs font-semibold uppercase tracking-wide text-slate-500" data-i18n="header.mobileSearchLabel">
-                  Search In Site
-                </label>
-                <div className="flex gap-2">
-                  <input
-                    id="mobile-header-search"
-                    name="q"
-                    placeholder="Keyword..."
-                    data-i18n-placeholder="header.mobileSearchPlaceholder"
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
-                  />
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center rounded-md bg-green-700 px-3 py-2 text-sm font-semibold text-white transition hover:bg-green-800"
-                  >
-                    <span data-i18n="header.mobileSearchGo">Go</span>
-                  </button>
-                </div>
-              </form>
-            </li>
-            <li className="pt-2">
-              <LanguageSwitcher />
+            <li className="mt-4 border-t border-gray-100 pt-4">
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn-primary w-full justify-center">
+                <span data-i18n="header.contactUs">Contact Us</span>
+              </Link>
             </li>
           </ul>
         </nav>
