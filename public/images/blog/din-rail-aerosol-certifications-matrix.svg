@@ -64,5 +64,5 @@
     <text x="100" y="38" font-size="14" fill="#92400e">CE self-declaration is NOT sufficient for EN 15276 - a Notified Body certificate is required.</text>
   </g>
 
-  <text x="600" y="640" text-anchor="middle" font-size="14" fill="#9ca3af">Soltree | Verify each certificate number on the issuing body database</text>
+  <text x="600" y="640" text-anchor="middle" font-size="14" fill="#9ca3af">UPprocure | Verify each certificate number on the issuing body database</text>
 </svg>

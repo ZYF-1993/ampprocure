@@ -5,7 +5,19 @@
       "Bash(curl -s -L \"https://www.elesoltree.com/solutions/aerosol-fire-extinguisher\" -o \"d:/网站项目组/ampprocure/.tmp_solutions_page.html\" --max-time 30)",
       "Bash(curl -s \"https://www.elesoltree.com/solutions/aerosol-fire-extinguisher\" -o \"d:/网站项目组/ampprocure/.tmp_aerosol_page.html\" --max-time 30)",
       "Bash(curl -s \"https://www.elesoltree.com/contact\" -o \"d:/网站项目组/ampprocure/.tmp_contact_page.html\" --max-time 30)",
-      "Bash(powershell -Command ' *)"
+      "Bash(powershell -Command ' *)",
+      "PowerShell(grep -n \"outputFileTracingExcludes\" \"d:\\\\��վ��Ŀ��\\\\ampprocure\\\\node_modules\\\\next\\\\dist\\\\server\\\\config-shared.d.ts\")",
+      "PowerShell(head -10)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(xargs grep -l \"outputFileTracingExcludes\\\\|tracingExclude\")",
+      "Bash(xargs grep -l \"outputFileTracing\")",
+      "Bash(git commit *)",
+      "PowerShell(Get-ChildItem \"d:\\\\网站项目组\\\\ampprocure\\\\app\\\\admin\" -Recurse | ForEach-Object { $_.FullName })",
+      "Bash(Get-ChildItem \"d:\\\\网站项目组\\\\ampprocure\" -Directory)",
+      "Bash(Select-Object Name)",
+      "Read(//d/��վ��Ŀ��/**)"
     ]
   }
 }

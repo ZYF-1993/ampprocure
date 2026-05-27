@@ -44,7 +44,7 @@ async function main() {
       continue
     }
 
-    const url = `https://www.elesoltree.com${src}`
+    const url = `https://www.upprocure.com${src}`
     process.stdout.write(`Downloading ${filename}... `)
     try {
       await download(url, target)

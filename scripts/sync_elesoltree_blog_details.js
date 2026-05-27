@@ -127,7 +127,7 @@ function extractPost(html) {
     title: titleMatch ? decodeEntities(titleMatch[1].replace(/<[^>]+>/g, '')) : '',
     metaTitle: getMeta(html, 'og:title'),
     description: getMeta(html, 'description'),
-    author: authorMatch ? decodeEntities(authorMatch[1]) : 'Soltree Engineering Team',
+    author: authorMatch ? decodeEntities(authorMatch[1]) : 'Procure Engineering Team',
     wordCount: wordCountMatch ? Number(wordCountMatch[1]) : 0,
     articleHtml,
   }
@@ -141,7 +141,7 @@ async function main() {
   const entries = []
 
   for (const slug of slugs) {
-    const url = `https://www.elesoltree.com/blog/${slug}`
+    const url = `https://www.upprocure.com/blog/${slug}`
     process.stdout.write(`Fetching ${slug}... `)
     const html = await fetchUrl(url)
     const post = extractPost(html)
