@@ -98,23 +98,6 @@ const services = [
   ],
 ] as const
 
-const testimonials = [
-  {
-    quote:
-      "We've installed these in 200+ enclosures. No power, no wiring, zero maintenance - and they stopped a fire in one of our cabinets. Super reliable.",
-    name: 'Jizzakh Polytechnic Institute',
-    role: 'Electrical cabinet project',
-    avatar: 'avatar-1.jpg',
-  },
-  {
-    quote:
-      'Zero-maintenance fire protection that works. Install and forget - total peace of mind for our critical equipment.',
-    name: 'Mark',
-    role: 'BIPV Philippines',
-    avatar: 'avatar-2.jpg',
-  },
-] as const
-
 const faqs = [
   ['What is a DIN Rail Aerosol Fire Extinguisher and where is it used?', 'A DIN Rail Aerosol Fire Extinguisher is a compact fire suppression device designed specifically to snap onto standard 35mm DIN rails found in electrical cabinets. It is used to protect enclosed spaces like meter boxes, server racks, and low-voltage switchgear by extinguishing fires at the source before they spread.'],
   ['Is the aerosol residue harmful to electronics?', 'No. upprocure aerosol produces a micron-sized particulate that is non-corrosive and non-conductive. After a discharge, the fine dust can be blown out or wiped away. It does not damage circuit boards like water or foam would.'],
@@ -272,7 +255,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
           <div className="relative min-h-[430px] overflow-hidden rounded-3xl bg-gray-100">
             <Image src={`${imageBase}/Aerosol-Fire-Extinguisher-factory.jpg`} alt="upprocure aerosol fire extinguisher manufacturing facility" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             <div className="absolute bottom-5 left-5 rounded-2xl bg-white/95 p-5 shadow-lg">
-              <p className="text-3xl font-bold text-green-700">15+</p>
+              <p className="text-3xl font-bold text-blue-700">15+</p>
               <p className="mt-1 text-sm font-medium text-gray-700">Years of Experience</p>
             </div>
           </div>

@@ -66,11 +66,15 @@ export default function AdminPage() {
         setLoginError(error.message)
       }
 
-      const sessionUserEmail = data.session?.user?.email ?? ''
+      const sessionUserEmail =
+        data.session?.user?.app_metadata?.role === 'admin' ? data.session.user.email ?? '' : ''
       setUserEmail(sessionUserEmail)
 
       if (sessionUserEmail) {
         await loadSettings()
+      } else if (data.session?.user) {
+        await supabase.auth.signOut()
+        setLoginError('This account does not have administrator access.')
       }
 
       setAuthChecking(false)
@@ -79,12 +83,15 @@ export default function AdminPage() {
     void bootstrap()
 
     const { data } = supabase.auth.onAuthStateChange((_event, session) => {
-      const nextEmail = session?.user?.email ?? ''
+      const nextEmail = session?.user?.app_metadata?.role === 'admin' ? session.user.email ?? '' : ''
       setUserEmail(nextEmail)
       setLoginError('')
 
       if (nextEmail) {
         void loadSettings()
+      } else if (session?.user) {
+        void supabase.auth.signOut()
+        setLoginError('This account does not have administrator access.')
       } else {
         setSettings(EMPTY_SETTINGS)
         setSaveFeedback(null)
@@ -109,6 +116,13 @@ export default function AdminPage() {
 
     if (error) {
       setLoginError(error.message)
+      setAuthLoading(false)
+      return
+    }
+
+    if (data.user?.app_metadata?.role !== 'admin') {
+      await supabase.auth.signOut()
+      setLoginError('This account does not have administrator access.')
       setAuthLoading(false)
       return
     }

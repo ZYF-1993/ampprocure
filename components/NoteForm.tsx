@@ -18,12 +18,23 @@ export default function NoteForm() {
     let uploadedImageUrl: string | null = null
 
     try {
+      const { data: sessionData } = await supabase.auth.getSession()
+      const accessToken = sessionData.session?.access_token
+
+      if (!accessToken) {
+        alert('Please sign in before submitting.')
+        return
+      }
+
       if (file) {
         const formData = new FormData()
         formData.append('file', file)
 
         const uploadResponse = await fetch('/api/upload', {
           method: 'POST',
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
           body: formData,
         })
 
@@ -52,7 +63,10 @@ export default function NoteForm() {
 
         fetch('/api/send-email', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({ title: emailContent }),
         }).catch((sendError) => console.error('Notification email failed:', sendError))
 

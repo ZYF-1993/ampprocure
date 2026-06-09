@@ -20,9 +20,10 @@ type FormState = {
   phone: string
   inquiryType: string
   message: string
+  website: string
 }
 
-const EMPTY: FormState = { name: '', company: '', email: '', phone: '', inquiryType: '', message: '' }
+const EMPTY: FormState = { name: '', company: '', email: '', phone: '', inquiryType: '', message: '', website: '' }
 
 const INQUIRY_TYPES = [
   'Product Enquiry',
@@ -41,6 +42,7 @@ export default function InquiryForm({
   submitLabel = 'Send Enquiry',
   source,
   defaultProduct = '',
+  twoColumnOnDesktop = false,
   redirectOnSuccess,
   showInquiryType = false,
 }: Props) {
@@ -49,6 +51,7 @@ export default function InquiryForm({
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const fieldGridCls = twoColumnOnDesktop ? 'grid grid-cols-1 gap-4 lg:grid-cols-2' : 'space-y-4'
 
   function update(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     const { name, value } = e.currentTarget
@@ -111,31 +114,37 @@ export default function InquiryForm({
   }
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit} noValidate>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="website"
+        value={form.website}
+        onChange={update}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
+
+      <div className={fieldGridCls}>
         <div>
           <label htmlFor={`${source}-name`} className={labelCls}>Full Name *</label>
           <input id={`${source}-name`} name="name" type="text" required value={form.name} onChange={update} placeholder="Your name" className={inputCls} />
         </div>
         <div>
-          <label htmlFor={`${source}-phone`} className={labelCls}>Phone / WhatsApp</label>
-          <input id={`${source}-phone`} name="phone" type="tel" value={form.phone} onChange={update} placeholder="+86-13552727303" className={inputCls} />
+          <label htmlFor={`${source}-email`} className={labelCls}>Email Address *</label>
+          <input id={`${source}-email`} name="email" type="email" required value={form.email} onChange={update} placeholder="your@email.com" className={inputCls} />
         </div>
       </div>
 
-      <div>
-        <label htmlFor={`${source}-email`} className={labelCls}>Email Address *</label>
-        <input id={`${source}-email`} name="email" type="email" required value={form.email} onChange={update} placeholder="your@email.com" className={inputCls} />
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className={fieldGridCls}>
         <div>
           <label htmlFor={`${source}-company`} className={labelCls}>Company</label>
           <input id={`${source}-company`} name="company" type="text" value={form.company} onChange={update} placeholder="Company name" className={inputCls} />
         </div>
         <div>
-          <label htmlFor={`${source}-phone2`} className={labelCls}>Phone / WhatsApp</label>
-          <input id={`${source}-phone2`} name="phone" type="tel" value={form.phone} onChange={update} placeholder="+86-13552727303" className={inputCls} />
+          <label htmlFor={`${source}-phone`} className={labelCls}>Phone / WhatsApp</label>
+          <input id={`${source}-phone`} name="phone" type="tel" value={form.phone} onChange={update} placeholder="+86-13552727303" className={inputCls} />
         </div>
       </div>
 

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { getAuthenticatedAdmin } from '@/lib/supabase-auth'
 
 type SendEmailPayload = {
   name?: string
@@ -11,6 +12,7 @@ type SendEmailPayload = {
   pageUrl?: string
   title?: string
   message?: string
+  website?: string
 }
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -18,6 +20,10 @@ const FALLBACK_SENDER_EMAIL = 'onboarding@resend.dev'
 
 const resendApiKey = process.env.RESEND_API_KEY
 const senderEmail = process.env.RESEND_FROM_EMAIL?.trim() || FALLBACK_SENDER_EMAIL
+const MAX_BODY_BYTES = 16_000
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000
+const RATE_LIMIT_MAX_REQUESTS = 5
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
 
 function isValidEmail(value: string): boolean {
   return EMAIL_REGEX.test(value.trim())
@@ -45,17 +51,76 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;')
 }
 
+function isRateLimited(request: Request): boolean {
+  const forwardedFor = request.headers.get('x-forwarded-for')
+  const clientId = forwardedFor?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown'
+  const now = Date.now()
+  const current = rateLimitStore.get(clientId)
+
+  if (!current || current.resetAt <= now) {
+    rateLimitStore.set(clientId, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+    return false
+  }
+
+  current.count += 1
+
+  if (rateLimitStore.size > 10_000) {
+    for (const [key, value] of rateLimitStore) {
+      if (value.resetAt <= now) rateLimitStore.delete(key)
+    }
+  }
+
+  return current.count > RATE_LIMIT_MAX_REQUESTS
+}
+
+function hasValidOrigin(request: Request): boolean {
+  const origin = request.headers.get('origin')
+  if (!origin) return false
+
+  const forwardedHost = request.headers.get('x-forwarded-host')
+  const host = forwardedHost || request.headers.get('host')
+  const forwardedProtocol = request.headers.get('x-forwarded-proto')
+  const protocol = forwardedProtocol || new URL(request.url).protocol.replace(':', '')
+
+  if (!host) return false
+
+  try {
+    return new URL(origin).host === host && new URL(origin).protocol === `${protocol}:`
+  } catch {
+    return false
+  }
+}
+
 export async function POST(request: Request) {
   try {
+    const contentType = request.headers.get('content-type') ?? ''
+    const contentLength = Number(request.headers.get('content-length') ?? 0)
+
+    if (!hasValidOrigin(request)) {
+      return NextResponse.json({ error: 'Invalid request origin.' }, { status: 403 })
+    }
+
+    if (!contentType.startsWith('application/json')) {
+      return NextResponse.json({ error: 'Content-Type must be application/json.' }, { status: 415 })
+    }
+
+    if (contentLength > MAX_BODY_BYTES) {
+      return NextResponse.json({ error: 'Request body is too large.' }, { status: 413 })
+    }
+
+    if (isRateLimited(request)) {
+      return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 })
+    }
+
     if (!resendApiKey) {
       return NextResponse.json({ error: 'RESEND_API_KEY is missing.' }, { status: 500 })
     }
 
-    const notificationRecipients = [
+    const notificationRecipients = new Set([
       ...parseEmailList(process.env.NOTIFICATION_EMAILS),
       ...parseEmailList(process.env.RESEND_TO_EMAIL),
-    ]
-    const recipients = notificationRecipients
+    ])
+    const recipients = [...notificationRecipients]
 
     if (recipients.length === 0) {
       return NextResponse.json(
@@ -82,9 +147,20 @@ export async function POST(request: Request) {
     const pageUrl = sanitize(payload.pageUrl, 500)
     const legacyTitle = sanitize(payload.title, 200)
     const message = sanitize(payload.message, 3000)
+    const website = sanitize(payload.website, 200)
 
-    if (message.length === 0 && legacyTitle.length === 0) {
-      return NextResponse.json({ error: 'Please provide inquiry details before submitting.' }, { status: 400 })
+    if (website) {
+      return NextResponse.json({ success: true })
+    }
+
+    const authenticatedAdmin = legacyTitle ? await getAuthenticatedAdmin(request) : null
+    const isAuthenticatedNotification = Boolean(legacyTitle && authenticatedAdmin)
+
+    if (!isAuthenticatedNotification && (!name || !isValidEmail(email) || !message)) {
+      return NextResponse.json(
+        { error: 'Name, a valid email address, and inquiry details are required.' },
+        { status: 400 }
+      )
     }
 
     const summary = message || legacyTitle || 'A new inquiry was submitted from the website.'
@@ -147,13 +223,12 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error('Resend API returned an error:', error)
-      return NextResponse.json({ error: error.message || 'Failed to dispatch email via Resend.' }, { status: 502 })
+      return NextResponse.json({ error: 'Unable to send your inquiry right now.' }, { status: 502 })
     }
 
-    return NextResponse.json({ success: true, data })
+    return NextResponse.json({ success: true, id: data?.id })
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unknown email error'
     console.error('Email dispatch failed:', error)
-    return NextResponse.json({ error: message }, { status: 500 })
+    return NextResponse.json({ error: 'Unable to send your inquiry right now.' }, { status: 500 })
   }
 }

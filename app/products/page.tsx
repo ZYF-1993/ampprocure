@@ -148,7 +148,7 @@ export default function ProductsPage() {
       <section className="border-t border-gray-100 bg-gray-50 py-12">
         <div className="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold text-gray-900" data-i18n="products.cta.title">
-            Can't find what you need?
+            Can&apos;t find what you need?
           </h2>
           <p className="mt-2 text-sm text-gray-500" data-i18n="products.cta.description">
             Contact our sales team for custom specifications, OEM programmes, or bulk pricing.

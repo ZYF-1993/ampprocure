@@ -4,7 +4,6 @@ import Link from 'next/link'
 import InquiryForm from '@/components/InquiryForm'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
-import { getCatalogPageImage } from '@/lib/catalog-utils'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 const focusBlocks = [
@@ -63,8 +62,6 @@ const trustCards = [
     icon: 'support',
   },
 ] as const
-
-const certifications = ['CE', 'RoHS', 'ISO 9001', 'IEC Standards', 'TUV'] as const
 
 const insights = [
   {
@@ -153,30 +150,6 @@ const productCategoryCards = [
   },
 ] as const
 
-const testimonials = [
-  {
-    quote:
-      'upprocure has been a steady supplier for our switchgear assembly line. Lead times are predictable and the technical team replies fast on selection questions.',
-    name: 'Andrei K.',
-    role: 'Procurement Manager, LV Panel Builder',
-    region: 'Eastern Europe',
-  },
-  {
-    quote:
-      'We import surge protectors and DC fuse holders for utility-scale PV projects. Documentation is complete and the OEM packaging support fits our brand well.',
-    name: 'Sofia M.',
-    role: 'Solar Distributor',
-    region: 'Latin America',
-  },
-  {
-    quote:
-      'Mixed-container planning saved us a lot of warehousing pain. They are responsive on RFQs and clear on what is and is not in stock.',
-    name: 'Daniel O.',
-    role: 'Electrical Wholesale Importer',
-    region: 'Middle East',
-  },
-] as const
-
 const homeJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -191,14 +164,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-}
-
-function CheckIcon({ className = 'h-5 w-5' }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-    </svg>
-  )
 }
 
 function CardIcon({ type }: { type: (typeof trustCards)[number]['icon'] }) {
@@ -283,7 +248,7 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <dl className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4">
             <div className="text-center">
-              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">15+</dt>
+              <dt className="text-4xl font-extrabold tracking-tight text-blue-700 sm:text-5xl">15+</dt>
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Years of Industry Focus</dd>
             </div>
             <div className="text-center">
@@ -291,7 +256,7 @@ export default function HomePage() {
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Export Markets Supported</dd>
             </div>
             <div className="text-center">
-              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">{CATALOG_PRODUCT_COUNT}+</dt>
+              <dt className="text-4xl font-extrabold tracking-tight text-orange-500 sm:text-5xl">{CATALOG_PRODUCT_COUNT}+</dt>
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Catalog Models Listed</dd>
             </div>
             <div className="text-center">
@@ -556,7 +521,7 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
-            {insights.map((post, index) => (
+            {insights.map((post) => (
               <Link key={post.title} href={post.href} className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:shadow-md">
                 <div className="relative h-48 w-full overflow-hidden bg-gray-100">
                   <Image src={post.image} alt={post.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-105" />

@@ -33,8 +33,6 @@ export default function TestimonialsCarousel() {
   const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length)
   const next = () => setCurrent((c) => (c + 1) % testimonials.length)
 
-  const t = testimonials[current]
-
   return (
     <section className="relative overflow-hidden py-20 sm:py-24">
       <div className="pointer-events-none absolute inset-0">
