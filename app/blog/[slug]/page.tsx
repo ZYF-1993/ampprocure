@@ -259,7 +259,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
                 <div className="relative h-36 w-full">
                   <Image
-                    src="/images/factory.jpg"
+                    src="/images/banner/about-bg.jpg"
                     alt="UPPROCURE factory — IEC-certified electrical component manufacturer"
                     fill
                     sizes="280px"
