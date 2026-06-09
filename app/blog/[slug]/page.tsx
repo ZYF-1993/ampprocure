@@ -199,7 +199,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             ))}
           </div>
 
-          <h1 className="mt-4 max-w-none text-3xl font-bold leading-tight text-gray-900 sm:text-4xl xl:whitespace-nowrap xl:text-[32px] 2xl:text-[34px]">
+          <h1 className="mt-4 max-w-full break-words text-pretty text-3xl font-bold leading-tight text-gray-900 sm:text-4xl xl:text-[32px] 2xl:text-[34px]">
             {detail.title}
           </h1>
           <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-gray-400 sm:gap-4">

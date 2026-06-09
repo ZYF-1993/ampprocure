@@ -821,10 +821,12 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
             <ProductGallery images={galleryImages} name={product.name} />
 
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-semibold uppercase tracking-widest text-green-700">{product.category}</p>
 
-              <h1 className="mt-2 text-2xl font-bold leading-tight text-gray-900 sm:text-3xl lg:whitespace-nowrap">{product.name}</h1>
+              <h1 className="mt-2 max-w-full break-words text-pretty text-2xl font-bold leading-tight text-gray-900 sm:text-3xl">
+                {product.name}
+              </h1>
 
               <div className="mt-4 space-y-3 text-base leading-relaxed text-gray-600">
                 <p>{detailCopy.description}</p>
