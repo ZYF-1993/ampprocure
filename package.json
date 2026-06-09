@@ -15,7 +15,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "check": "npm run lint && npm run typecheck && npm run build",
-    "sync:r2-assets": "node --env-file=.env.local scripts/sync_r2_assets.mjs"
+    "sync:r2-assets": "node --env-file=.env.local scripts/sync_r2_assets.mjs",
+    "generate:product-galleries": "node scripts/generate_product_galleries.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1026.0",

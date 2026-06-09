@@ -1,5 +1,3 @@
-import { existsSync, readdirSync } from 'fs'
-import { join } from 'path'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,6 +5,7 @@ import { notFound } from 'next/navigation'
 import ProductGallery from '@/components/ProductGallery'
 import { CATALOG_PRODUCTS, type CatalogProduct } from '@/lib/catalog-products'
 import { PRODUCT_DETAIL_CONTENT } from '@/lib/product-detail-content'
+import { PRODUCT_GALLERY_IMAGES } from '@/lib/product-gallery-images.generated'
 import { SITE_URL } from '@/lib/site-config'
 import { getProductBySlug } from '@/lib/site-content'
 
@@ -18,29 +17,8 @@ function buildProductDescription(product: CatalogProduct): string {
   return product.technicalSummary
 }
 
-function publicFileExists(publicPath: string): boolean {
-  return existsSync(join(process.cwd(), 'public', publicPath.replace(/^\//, '')))
-}
-
-function getProductGalleryImages(product: CatalogProduct): string[] {
-  const directoryPath = join(process.cwd(), 'public', 'images', 'products')
-  const fileName = product.image.split('/').pop()
-  const match = fileName?.match(/^(.*?)(\d+)(\.[a-zA-Z0-9]+)$/)
-
-  if (!match || !existsSync(directoryPath)) {
-    return publicFileExists(product.image) ? [product.image] : []
-  }
-
-  const [, prefix, , extension] = match
-
-  return readdirSync(directoryPath)
-    .map((item) => {
-      const imageMatch = item.match(new RegExp(`^${prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(\\d+)${extension.replace('.', '\\.')}$`))
-      return imageMatch ? { fileName: item, index: Number(imageMatch[1]) } : null
-    })
-    .filter((item): item is { fileName: string; index: number } => Boolean(item))
-    .sort((a, b) => a.index - b.index)
-    .map((item) => `/images/products/${item.fileName}`)
+function getProductGalleryImages(product: CatalogProduct): readonly string[] {
+  return PRODUCT_GALLERY_IMAGES[product.image] ?? [product.image]
 }
 
 function getProductDetailCopy(product: CatalogProduct) {
