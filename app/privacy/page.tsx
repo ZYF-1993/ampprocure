@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { CONTACT_EMAIL } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -32,7 +33,7 @@ const sections = [
   },
   {
     title: 'Your Rights & Contact',
-    body: `You have the right to request access to, correction of, or deletion of the personal data we hold about you. To exercise any of these rights, or if you have any questions or concerns about this Privacy Policy, please contact us by email at zyf5732@gmail.com or by phone at +86-13552727303. This policy may be updated from time to time; the latest version will always be available on this page.`,
+    body: `You have the right to request access to, correction of, or deletion of the personal data we hold about you. To exercise any of these rights, or if you have any questions or concerns about this Privacy Policy, please contact us by email at ${CONTACT_EMAIL} or by phone at +86-13552727303. This policy may be updated from time to time; the latest version will always be available on this page.`,
   },
 ] as const
 

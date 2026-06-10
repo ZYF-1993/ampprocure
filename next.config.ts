@@ -84,17 +84,33 @@ const nextConfig: NextConfig = {
           { key: 'Strict-Transport-Security', value: 'max-age=31536000' },
         ],
       },
+      {
+        source: '/images/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      {
+        source: '/branding/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+        ],
+      },
+    ]
+  },
+
+  async redirects() {
+    return [
+      { source: '/inquire', destination: '/contact', permanent: true },
+      { source: '/product/:slug*', destination: '/products/:slug*', permanent: true },
+      { source: '/productshow/:slug*', destination: '/products/:slug*', permanent: true },
     ]
   },
 
   async rewrites() {
     return {
       beforeFiles: remoteAssetRewrites,
-      afterFiles: [
-        { source: '/inquire', destination: '/contact' },
-        { source: '/product/:slug*', destination: '/products/:slug*' },
-        { source: '/productshow/:slug*', destination: '/products/:slug*' },
-      ],
+      afterFiles: [],
       fallback: [],
     }
   },

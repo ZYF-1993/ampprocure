@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation'
+import { permanentRedirect } from 'next/navigation'
 import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
 
 type LegacyCategoryPageProps = {
@@ -11,5 +11,5 @@ export function generateStaticParams() {
 
 export default async function LegacyCategoryPage({ params }: LegacyCategoryPageProps) {
   const { slug } = await params
-  redirect(`/categories/${slug}`)
+  permanentRedirect(`/categories/${slug}`)
 }

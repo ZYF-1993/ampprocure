@@ -5,7 +5,8 @@ import { notFound } from 'next/navigation'
 import { BLOG_DETAIL_CONTENT } from '@/lib/blog-detail-content'
 import { BLOG_POSTS } from '@/lib/blog-posts'
 import { CATALOG_PRODUCTS } from '@/lib/catalog-products'
-import { DEFAULT_KEYWORDS, SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { truncateSeoText } from '@/lib/seo'
+import { DEFAULT_KEYWORDS, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site-config'
 import { getBlogBySlug } from '@/lib/site-content'
 
 type BlogDetailPageProps = {
@@ -73,18 +74,25 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
     }
   }
 
+  const title = truncateSeoText(detail?.metaTitle || post.title, 57)
+  const description = detail?.description || post.description
+
   return {
-    title: detail?.metaTitle || post.title,
-    description: detail?.description || post.description,
+    title,
+    description,
     keywords: [...DEFAULT_KEYWORDS, ...post.tags],
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
     openGraph: {
-      title: detail?.metaTitle || post.title,
-      description: detail?.description || post.description,
+      title,
+      description,
       url: `${SITE_URL}/blog/${post.slug}`,
       type: 'article',
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
+      authors: [`${SITE_URL}/about`],
+      tags: [...post.tags],
       images: [
         {
           url: `${SITE_URL}${post.image}`,
@@ -93,6 +101,12 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
           alt: detail?.title || post.title,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${SITE_URL}${post.image}`],
     },
   }
 }
@@ -126,6 +140,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     publisher: {
       '@type': 'Organization',
       name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}${SITE_LOGO}`,
+      },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import InquiryForm from '@/components/InquiryForm'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
-import { SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { CONTACT_EMAIL, CONTACT_PHONE, SITE_DESCRIPTION, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 const focusBlocks = [
   {
@@ -155,7 +155,18 @@ const homeJsonLd = {
   '@type': 'Organization',
   name: SITE_NAME,
   url: SITE_URL,
-  description: 'upprocure supplies low-voltage electrical protection products for global B2B customers.',
+  logo: `${SITE_URL}${SITE_LOGO}`,
+  image: `${SITE_URL}/images/company-exterior.jpg`,
+  description: SITE_DESCRIPTION,
+  email: CONTACT_EMAIL,
+  telephone: CONTACT_PHONE,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    email: CONTACT_EMAIL,
+    telephone: CONTACT_PHONE,
+    availableLanguage: ['English', 'Chinese'],
+  },
 }
 
 export const metadata: Metadata = {
@@ -560,8 +571,8 @@ export default function HomePage() {
               <ul className="mt-8 space-y-5">
                 <li className="text-sm text-gray-700">
                   <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Email</p>
-                  <a href="mailto:zyf5732@gmail.com" className="mt-1 inline-block hover:text-green-700">
-                    zyf5732@gmail.com
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 inline-block hover:text-green-700">
+                    {CONTACT_EMAIL}
                   </a>
                 </li>
                 <li className="text-sm text-gray-700">

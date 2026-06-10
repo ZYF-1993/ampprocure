@@ -4,6 +4,7 @@ import Link from 'next/link'
 import InquiryForm from '@/components/InquiryForm'
 import AboutTestimonials from '@/components/AboutTestimonials'
 import FaqAccordion from '@/components/FaqAccordion'
+import { CONTACT_EMAIL } from '@/lib/site-config'
 
 const imageBase = '/images/solutions/aerosol-fire-extinguisher'
 
@@ -423,7 +424,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Email</p>
-                <a href="mailto:zyf5732@gmail.com" className="mt-1 block text-sm text-gray-800 hover:text-green-700">zyf5732@gmail.com</a>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 block text-sm text-gray-800 hover:text-green-700">{CONTACT_EMAIL}</a>
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Phone / WhatsApp</p>

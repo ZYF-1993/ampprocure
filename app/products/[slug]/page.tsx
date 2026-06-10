@@ -6,15 +6,12 @@ import ProductGallery from '@/components/ProductGallery'
 import { CATALOG_PRODUCTS, type CatalogProduct } from '@/lib/catalog-products'
 import { PRODUCT_DETAIL_CONTENT } from '@/lib/product-detail-content'
 import { PRODUCT_GALLERY_IMAGES } from '@/lib/product-gallery-images.generated'
-import { SITE_URL } from '@/lib/site-config'
+import { getProductDisplayName, getProductSeoDescription, getProductSeoTitle, getProductVariant } from '@/lib/seo'
+import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 import { getProductBySlug } from '@/lib/site-content'
 
 type ProductDetailPageProps = {
   params: Promise<{ slug: string }>
-}
-
-function buildProductDescription(product: CatalogProduct): string {
-  return product.technicalSummary
 }
 
 function getProductGalleryImages(product: CatalogProduct): readonly string[] {
@@ -744,22 +741,33 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
     }
   }
 
+  const title = getProductSeoTitle(product)
+  const description = getProductSeoDescription(product)
+  const displayName = getProductDisplayName(product)
+
   return {
-    title: product.name,
-    description: buildProductDescription(product),
+    title,
+    description,
     alternates: {
       canonical: `/products/${product.slug}`,
     },
     openGraph: {
-      title: product.name,
-      description: buildProductDescription(product),
+      title: `${title} | ${SITE_NAME}`,
+      description,
+      url: `${SITE_URL}/products/${product.slug}`,
       images: [
         {
           url: product.image,
-          alt: product.name,
+          alt: displayName,
         },
       ],
       type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} | ${SITE_NAME}`,
+      description,
+      images: [product.image],
     },
   }
 }
@@ -775,16 +783,52 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   const galleryImages = getProductGalleryImages(product)
   const relatedProducts = CATALOG_PRODUCTS.filter((item) => item.category === product.category && item.id !== product.id).slice(0, 4)
   const detailCopy = getProductDetailCopy(product)
+  const displayName = getProductDisplayName(product)
+  const seoDescription = getProductSeoDescription(product)
+  const variant = getProductVariant(product)
+  const productUrl = `${SITE_URL}/products/${product.slug}`
 
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: product.name,
-    description: buildProductDescription(product),
+    name: displayName,
+    description: seoDescription,
     sku: product.slug,
+    model: product.slug,
     category: product.category,
-    image: `${SITE_URL}${product.image}`,
-    url: `${SITE_URL}/products/${product.slug}`,
+    image: galleryImages.map((image) => `${SITE_URL}${image}`),
+    url: productUrl,
+    brand: {
+      '@type': 'Brand',
+      name: SITE_NAME,
+    },
+    manufacturer: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    ...(variant ? { color: variant } : {}),
+    additionalProperty: detailCopy.specs.map(([name, value]) => ({
+      '@type': 'PropertyValue',
+      name,
+      value,
+    })),
+  }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/products` },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: product.category,
+        item: `${SITE_URL}/categories/${product.categoryCode}`,
+      },
+      { '@type': 'ListItem', position: 4, name: displayName, item: productUrl },
+    ],
   }
 
   return (
@@ -793,6 +837,12 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(productJsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, '\\u003c'),
         }}
       />
 
@@ -811,7 +861,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               {product.category}
             </Link>
             <span>/</span>
-            <span className="max-w-[160px] truncate text-gray-600">{product.name}</span>
+            <span className="max-w-[160px] truncate text-gray-600">{displayName}</span>
           </nav>
         </div>
       </div>
@@ -819,13 +869,13 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       <section className="section">
         <div className="container">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-            <ProductGallery images={galleryImages} name={product.name} />
+            <ProductGallery images={galleryImages} name={displayName} />
 
             <div className="min-w-0">
               <p className="text-xs font-semibold uppercase tracking-widest text-green-700">{product.category}</p>
 
               <h1 className="mt-2 max-w-full break-words text-pretty text-2xl font-bold leading-tight text-gray-900 sm:text-3xl">
-                {product.name}
+                {displayName}
               </h1>
 
               <div className="mt-4 space-y-3 text-base leading-relaxed text-gray-600">
@@ -850,7 +900,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href={`/contact?product=${encodeURIComponent(product.name)}`}
+                  href={`/contact?product=${encodeURIComponent(displayName)}`}
                   className="btn-primary-lg flex-1 justify-center"
                   data-i18n="product.requestQuote"
                 >

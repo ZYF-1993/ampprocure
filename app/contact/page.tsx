@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import InquiryForm from '@/components/InquiryForm'
+import { CONTACT_EMAIL } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -55,7 +56,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Email</p>
-                  <a href="mailto:zyf5732@gmail.com" className="mt-0.5 text-sm text-gray-800 transition-colors hover:text-green-700">zyf5732@gmail.com</a>
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="mt-0.5 text-sm text-gray-800 transition-colors hover:text-green-700">{CONTACT_EMAIL}</a>
                 </div>
               </div>
 

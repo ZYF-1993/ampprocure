@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { FRAMEWORK_CATEGORIES, getCategoryBySlug, getProductsByCategorySlug } from '@/lib/framework-data'
+import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 type CategoryPageProps = {
   params: Promise<{ slug: string }>
@@ -23,17 +24,32 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     }
   }
 
+  const title = `${category.title} Manufacturer & Supplier`
+  const image = `/images/categories/${category.slug}.png`
+
   return {
-    title: `${category.title} | Category`,
+    title,
     description: category.summary,
     alternates: {
       canonical: `/categories/${category.slug}`,
     },
     openGraph: {
-      title: `${category.title} | Product Category`,
+      title: `${title} | ${SITE_NAME}`,
       description: category.summary,
-      url: `/categories/${category.slug}`,
+      url: `${SITE_URL}/categories/${category.slug}`,
       type: 'website',
+      images: [
+        {
+          url: image,
+          alt: `${category.title} product range`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} | ${SITE_NAME}`,
+      description: category.summary,
+      images: [image],
     },
   }
 }
@@ -47,6 +63,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   const products = getProductsByCategorySlug(category.slug)
+  const categoryUrl = `${SITE_URL}/categories/${category.slug}`
 
   const categoryJsonLd = {
     '@context': 'https://schema.org',
@@ -54,9 +71,29 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     name: category.title,
     description: category.summary,
     about: 'Industrial product category',
-    isPartOf: '/products',
+    isPartOf: `${SITE_URL}/products`,
     numberOfItems: products.length,
-    url: `/categories/${category.slug}`,
+    url: categoryUrl,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: products.length,
+      itemListElement: products.map((product, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: product.name,
+        url: `${SITE_URL}/products/${product.slug}`,
+      })),
+    },
+  }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/products` },
+      { '@type': 'ListItem', position: 3, name: category.title, item: categoryUrl },
+    ],
   }
 
   return (
@@ -65,6 +102,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(categoryJsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, '\\u003c'),
         }}
       />
 

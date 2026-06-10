@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/site-map',
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 }
 
 const corePages = [

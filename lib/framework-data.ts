@@ -8,15 +8,15 @@ export type FrameworkCategory = {
 }
 
 const CATEGORY_SUMMARY_BY_CODE: Readonly<Record<string, string>> = {
-  'circuit-breaker': 'Reliable overcurrent and short-circuit protection for LV systems.',
-  'surge-protector-device': 'Transient overvoltage suppression for sensitive equipment.',
-  'dc-fuse-holder': 'Safe and compact fuse mounting for DC circuits up to 1500V.',
-  'over-voltage-protector': 'Automatic load disconnection against sustained overvoltage.',
-  'power-meter': 'Precision energy measurement for industrial and commercial use.',
-  'wifi-smart-low-voltage-device': 'IoT-enabled low-voltage devices for smart building control.',
-  'pv-combiner-box': 'String combiner solutions for solar PV arrays.',
-  'ats-dual-power-switch': 'Automatic transfer switching for uninterrupted power supply.',
-  'aerosol-fire-extinguisher': 'Compact aerosol-based fire suppression for rapid response.',
+  'circuit-breaker': 'Source AC and DC miniature circuit breakers for residential, commercial, solar, and industrial panels, with B2B quotation and OEM support.',
+  'surge-protector-device': 'Compare AC and DC surge protective devices for distribution boards and solar PV systems, including multi-pole 40kA DIN rail options.',
+  'dc-fuse-holder': 'Find DIN rail fuse holders for AC and DC protection, from compact 10x38mm models to high-current industrial configurations.',
+  'over-voltage-protector': 'Explore self-resetting voltage protectors and monitoring relays with adjustable over-voltage, under-voltage, and over-current protection.',
+  'power-meter': 'Compare DIN rail power and energy meters for residential sub-metering, commercial panels, and industrial monitoring applications.',
+  'wifi-smart-low-voltage-device': 'Source WiFi smart circuit breakers and leakage protectors with remote control, energy monitoring, and Tuya or Smart Life connectivity.',
+  'pv-combiner-box': 'Compare IP65 PV combiner boxes with integrated DC breakers, fuses, isolators, and surge protection for solar array projects.',
+  'ats-dual-power-switch': 'Find automatic transfer switches for mains, generator, inverter, and backup power systems, with 2P, 3P, and 4P configurations.',
+  'aerosol-fire-extinguisher': 'Source compact DIN rail aerosol fire suppression devices for electrical cabinets, PV combiner boxes, and enclosed control equipment.',
 }
 
 export const FRAMEWORK_CATEGORIES: readonly FrameworkCategory[] = Array.from(

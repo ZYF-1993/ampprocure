@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { CONTACT_EMAIL } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
@@ -32,7 +33,7 @@ const sections = [
   },
   {
     title: 'Limitation of Liability',
-    body: `To the fullest extent permitted by applicable law, upprocure and its officers, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of this website or reliance on its content. Our total liability in any matter arising out of or relating to these terms shall not exceed the amount you have paid to upprocure in the three months preceding the event giving rise to the claim. For questions about these Terms, please contact us at zyf5732@gmail.com.`,
+    body: `To the fullest extent permitted by applicable law, upprocure and its officers, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of this website or reliance on its content. Our total liability in any matter arising out of or relating to these terms shall not exceed the amount you have paid to upprocure in the three months preceding the event giving rise to the claim. For questions about these Terms, please contact us at ${CONTACT_EMAIL}.`,
   },
 ] as const
 
