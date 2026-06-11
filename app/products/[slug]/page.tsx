@@ -6,7 +6,7 @@ import ProductGallery from '@/components/ProductGallery'
 import { CATALOG_PRODUCTS, type CatalogProduct } from '@/lib/catalog-products'
 import { PRODUCT_DETAIL_CONTENT } from '@/lib/product-detail-content'
 import { PRODUCT_GALLERY_IMAGES } from '@/lib/product-gallery-images.generated'
-import { getProductDisplayName, getProductSeoDescription, getProductSeoTitle, getProductVariant } from '@/lib/seo'
+import { getProductDisplayName, getProductSeoDescription, getProductSeoTitle } from '@/lib/seo'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 import { getProductBySlug } from '@/lib/site-content'
 
@@ -784,36 +784,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   const relatedProducts = CATALOG_PRODUCTS.filter((item) => item.category === product.category && item.id !== product.id).slice(0, 4)
   const detailCopy = getProductDetailCopy(product)
   const displayName = getProductDisplayName(product)
-  const seoDescription = getProductSeoDescription(product)
-  const variant = getProductVariant(product)
   const productUrl = `${SITE_URL}/products/${product.slug}`
-
-  const productJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: displayName,
-    description: seoDescription,
-    sku: product.slug,
-    model: product.slug,
-    category: product.category,
-    image: galleryImages.map((image) => `${SITE_URL}${image}`),
-    url: productUrl,
-    brand: {
-      '@type': 'Brand',
-      name: SITE_NAME,
-    },
-    manufacturer: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
-    ...(variant ? { color: variant } : {}),
-    additionalProperty: detailCopy.specs.map(([name, value]) => ({
-      '@type': 'PropertyValue',
-      name,
-      value,
-    })),
-  }
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -833,12 +804,6 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
   return (
     <main className="bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productJsonLd).replace(/</g, '\\u003c'),
-        }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
