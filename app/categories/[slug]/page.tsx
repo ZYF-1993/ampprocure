@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { getCategoryContent } from '@/lib/category-content'
 import { FRAMEWORK_CATEGORIES, getCategoryBySlug, getProductsByCategorySlug } from '@/lib/framework-data'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 
@@ -63,7 +64,24 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   const products = getProductsByCategorySlug(category.slug)
+  const content = getCategoryContent(category.slug)
   const categoryUrl = `${SITE_URL}/categories/${category.slug}`
+
+  const faqJsonLd =
+    content && content.faq.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: content.faq.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.answer,
+            },
+          })),
+        }
+      : null
 
   const categoryJsonLd = {
     '@context': 'https://schema.org',
@@ -110,6 +128,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, '\\u003c'),
         }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqJsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
+      )}
 
       <section className="border-b border-slate-200 bg-white py-12">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -230,6 +256,66 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
         </div>
       </section>
+
+      {content && (
+        <section className="border-t border-slate-200 bg-white py-12 sm:py-16">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-12 lg:grid-cols-3">
+              <div className="space-y-12 lg:col-span-2">
+                <article>
+                  <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                    {content.buyingGuideTitle}
+                  </h2>
+                  <div className="mt-4 space-y-4 text-base leading-7 text-slate-600">
+                    {content.buyingGuide.map((paragraph) => (
+                      <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                    ))}
+                  </div>
+                </article>
+
+                <article>
+                  <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                    Industry Application Scenarios
+                  </h2>
+                  <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                    {content.applications.map((application) => (
+                      <div key={application.title} className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                        <h3 className="text-sm font-semibold text-slate-900">{application.title}</h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">{application.body}</p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+
+                <article>
+                  <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                    Frequently Asked Questions
+                  </h2>
+                  <dl className="mt-5 divide-y divide-slate-200 border-t border-slate-200">
+                    {content.faq.map((item) => (
+                      <div key={item.question} className="py-5">
+                        <dt className="text-base font-semibold text-slate-900">{item.question}</dt>
+                        <dd className="mt-2 text-sm leading-6 text-slate-600">{item.answer}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </article>
+              </div>
+
+              <aside className="lg:col-span-1">
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 lg:sticky lg:top-8">
+                  <h2 className="text-lg font-bold text-slate-900">Global Logistics &amp; Commercial Terms</h2>
+                  <div className="mt-3 space-y-3 text-sm leading-6 text-slate-600">
+                    {content.logistics.map((paragraph) => (
+                      <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="border-t border-slate-200 bg-white py-12">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">

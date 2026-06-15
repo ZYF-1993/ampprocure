@@ -420,7 +420,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
             <div className="mt-7 space-y-5">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Address</p>
-                <p className="mt-1 text-sm text-gray-700">Fenghuang Industrial Zone, Baishi Town, Yueqing Zhejiang P. R. China</p>
+                <p className="mt-1 text-sm text-gray-700">No. 24, Lane 3, Ouchao South Road, Huanghua Village, Liushi Town, Yueqing City, Wenzhou, Zhejiang Province, China</p>
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Email</p>

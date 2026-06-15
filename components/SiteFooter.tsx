@@ -71,7 +71,7 @@ export default function SiteFooter() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                 </svg>
-                Fenghuang Industrial Zone, Baishi Town, Yueqing Zhejiang P. R. China
+                No. 24, Lane 3, Ouchao South Road, Huanghua Village, Liushi Town, Yueqing City, Wenzhou, Zhejiang Province, China
               </li>
               <li className="flex items-center gap-3 text-sm text-gray-400">
                 <svg className="h-4 w-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
