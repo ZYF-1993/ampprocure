@@ -93,6 +93,10 @@ const insights = [
   },
 ] as const
 
+const HEADLINE = 'One-Stop Industrial Electrical Sourcing Platform.'
+const SUBHEADLINE = 'Leveraging the unparalleled manufacturing cluster of Liushi, Wenzhou—the capital of electrical appliances—UPprocure delivers end-to-end procurement for global buyers. We integrate multi-category matching, rigorous QC inspections, and flexible MOQ options into a seamless, contract-ready supply chain.'
+const TRUST_BADGES = ['Flexible MOQ', 'Factory-Direct Costing', '100% Quality Inspected', 'Global Logistics Control'] as const
+
 const productCategoryCards = [
   {
     slug: 'circuit-breaker',
@@ -150,6 +154,37 @@ const productCategoryCards = [
   },
 ] as const
 
+const heroMetrics = [
+  {
+    value: '87+',
+    label: 'Certified Products',
+    icon: 'circuit',
+    tone: 'text-blue-600',
+    bg: 'bg-blue-50',
+  },
+  {
+    value: '99.8%',
+    label: 'QC Pass Rate',
+    icon: 'shield',
+    tone: 'text-emerald-600',
+    bg: 'bg-emerald-50',
+  },
+  {
+    value: 'Flexible',
+    label: 'MOQ Options',
+    icon: 'globe',
+    tone: 'text-violet-600',
+    bg: 'bg-violet-50',
+  },
+  {
+    value: '24/7',
+    label: 'Response Time',
+    icon: 'bolt',
+    tone: 'text-amber-600',
+    bg: 'bg-amber-50',
+  },
+] as const
+
 export const metadata: Metadata = {
   title: { absolute: 'UPprocure | Electrical Protection Products Supplier' },
   description: 'upprocure supplies circuit breakers, surge protectors, DC fuse holders, power meters, ATS switches, and PV combiner boxes for B2B wholesale and OEM projects.',
@@ -190,44 +225,132 @@ function CardIcon({ type }: { type: (typeof trustCards)[number]['icon'] }) {
   )
 }
 
+function HeroMetricIcon({ type }: { type: (typeof heroMetrics)[number]['icon'] }) {
+  if (type === 'circuit') {
+    return (
+      <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h6m4 0h6M4 17h6m4 0h6M10 7a2 2 0 1 0 4 0 2 2 0 0 0-4 0Zm0 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0ZM12 9v6" />
+      </svg>
+    )
+  }
+
+  if (type === 'shield') {
+    return (
+      <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3.5 19 6v5.2c0 4.3-2.8 7.8-7 9.3-4.2-1.5-7-5-7-9.3V6l7-2.5Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m8.8 12.1 2 2 4.5-4.7" />
+      </svg>
+    )
+  }
+
+  if (type === 'globe') {
+    return (
+      <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 20.5a8.5 8.5 0 1 0 0-17 8.5 8.5 0 0 0 0 17Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.8 12h16.4M12 3.5c2.1 2.3 3.1 5.1 3.1 8.5s-1 6.2-3.1 8.5M12 3.5C9.9 5.8 8.9 8.6 8.9 12s1 6.2 3.1 8.5" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="m13 2.8-8 11h6l-1 7.4 8-11h-6l1-7.4Z" />
+    </svg>
+  )
+}
+
+function WhatsAppIcon() {
+  return (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2.1A9.82 9.82 0 0 0 3.6 16.93L2.4 21.3l4.48-1.17a9.8 9.8 0 0 0 5.16 1.46h.01A9.82 9.82 0 0 0 12.04 2.1Zm5.79 14.04c-.24.67-1.38 1.28-1.93 1.36-.49.07-1.12.1-1.8-.11-.42-.13-.95-.31-1.64-.61-2.88-1.24-4.75-4.13-4.9-4.32-.14-.19-1.17-1.56-1.17-2.98 0-1.42.74-2.12 1-2.41.27-.29.59-.36.78-.36h.56c.18.01.43-.07.67.51.24.58.83 2 .9 2.15.08.14.12.31.03.5-.1.2-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.58.17.29.76 1.25 1.62 2.03 1.12.99 2.06 1.3 2.35 1.44.29.15.46.12.63-.07.17-.2.72-.84.91-1.13.2-.29.39-.24.66-.15.27.1 1.72.82 2.02.96.29.15.49.22.56.34.07.12.07.7-.17 1.37Z" />
+    </svg>
+  )
+}
+
+function HeroSection() {
+  return (
+    <section className="relative isolate overflow-hidden bg-slate-950 py-20 sm:py-24 lg:py-28">
+      {/* 背景：使用本地生成图，并叠加深色遮罩，保证白色主标题与背景有清晰区分 */}
+      <Image
+        src="/images/hero-industrial-sourcing-bg.png"
+        alt="Industrial electrical sourcing and global logistics background"
+        fill
+        priority
+        sizes="100vw"
+        className="-z-20 object-cover object-center"
+      />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-slate-950/72" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.92)_0%,rgba(15,23,42,0.78)_42%,rgba(15,23,42,0.42)_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-slate-950 to-transparent" />
+
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* 左侧：品牌承诺、标题、副标题与转化按钮 */}
+          <div>
+            <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.05] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.45)] sm:text-5xl lg:text-6xl">
+              {HEADLINE}
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
+              {SUBHEADLINE}
+            </p>
+
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(37,99,235,0.35)] transition duration-200 hover:scale-105 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-[0.98]"
+              >
+                Request a Free Quote
+              </Link>
+              <a
+                href="https://wa.me/8613552727303"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/35 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white shadow-sm backdrop-blur-md transition duration-200 hover:scale-105 hover:border-emerald-300 hover:bg-white/15 hover:text-emerald-100 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-[0.98]"
+              >
+                <WhatsAppIcon />
+                Talk on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          {/* 右侧：纯代码智能供应链数据面板 */}
+          <div className="relative">
+            <div className="absolute inset-6 -z-10 rounded-[2rem] bg-blue-400/20 blur-3xl" />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {heroMetrics.map((metric) => (
+                <article
+                  key={metric.label}
+                  className="rounded-lg border border-white/15 bg-white/10 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.26)] backdrop-blur-md"
+                >
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-full ${metric.bg} ${metric.tone}`}>
+                    <HeroMetricIcon type={metric.icon} />
+                  </div>
+                  <p className="mt-6 text-3xl font-extrabold leading-none text-white">{metric.value}</p>
+                  <p className="mt-2 text-sm font-medium leading-6 text-slate-200">{metric.label}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* 底部：工业采购信任标签 */}
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs font-semibold uppercase text-slate-300">
+          {TRUST_BADGES.map((badge, index) => (
+            <span key={badge} className="inline-flex items-center gap-x-3">
+              {index > 0 ? <span className="text-blue-300/70">·</span> : null}
+              {badge}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function HomePage() {
   return (
     <main className="bg-white">
-      <section className="relative overflow-hidden py-20 sm:py-24">
-        <div className="pointer-events-none absolute inset-0">
-          <Image src="/images/company-exterior.jpg" alt="upprocure company exterior" fill priority sizes="100vw" className="object-cover object-center" />
-          <div className="absolute inset-0 bg-slate-950/80" />
-        </div>
-
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <article className="mx-auto max-w-4xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-300">B2B Electrical Protection Supplier</p>
-            <h1 className="mt-3 text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Reliable Low-Voltage Components for Global Distributors
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-              Source circuit breakers, surge protectors, DC fuse holders, ATS switches, power meters, and PV combiner boxes from one supply partner with responsive OEM support.
-            </p>
-
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link href="/products" className="inline-flex w-full items-center justify-center rounded-lg bg-green-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 sm:w-auto">
-                Explore Products
-              </Link>
-              <Link href="/contact" className="inline-flex w-full items-center justify-center rounded-lg border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20 sm:w-auto">
-                Request a Quote
-              </Link>
-            </div>
-
-            <div className="mt-7 flex flex-wrap justify-center gap-2">
-              {['IEC', 'CE', 'ISO 9001', 'OEM', 'Private Label'].map((tag) => (
-                <span key={tag} className="rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold text-slate-100">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </article>
-        </div>
-      </section>
+      <HeroSection />
 
       <section className="border-b border-gray-100 bg-white">
         <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
