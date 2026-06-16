@@ -4,7 +4,7 @@ import Link from 'next/link'
 import InquiryForm from '@/components/InquiryForm'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
-import { CONTACT_EMAIL, CONTACT_PHONE, SITE_DESCRIPTION, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { CONTACT_EMAIL } from '@/lib/site-config'
 
 const focusBlocks = [
   {
@@ -150,25 +150,6 @@ const productCategoryCards = [
   },
 ] as const
 
-const homeJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: SITE_NAME,
-  url: SITE_URL,
-  logo: `${SITE_URL}${SITE_LOGO}`,
-  image: `${SITE_URL}/images/company-exterior.jpg`,
-  description: SITE_DESCRIPTION,
-  email: CONTACT_EMAIL,
-  telephone: CONTACT_PHONE,
-  contactPoint: {
-    '@type': 'ContactPoint',
-    contactType: 'sales',
-    email: CONTACT_EMAIL,
-    telephone: CONTACT_PHONE,
-    availableLanguage: ['English', 'Chinese'],
-  },
-}
-
 export const metadata: Metadata = {
   title: { absolute: 'UPprocure | Electrical Protection Products Supplier' },
   description: 'upprocure supplies circuit breakers, surge protectors, DC fuse holders, power meters, ATS switches, and PV combiner boxes for B2B wholesale and OEM projects.',
@@ -212,13 +193,6 @@ function CardIcon({ type }: { type: (typeof trustCards)[number]['icon'] }) {
 export default function HomePage() {
   return (
     <main className="bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(homeJsonLd).replace(/</g, '\\u003c'),
-        }}
-      />
-
       <section className="relative overflow-hidden py-20 sm:py-24">
         <div className="pointer-events-none absolute inset-0">
           <Image src="/images/company-exterior.jpg" alt="upprocure company exterior" fill priority sizes="100vw" className="object-cover object-center" />
