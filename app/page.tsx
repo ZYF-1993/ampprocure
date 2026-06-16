@@ -355,19 +355,19 @@ export default function HomePage() {
       <section className="border-b border-gray-100 bg-white">
         <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <dl className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4">
-            <div className="text-center">
-              <dt className="text-4xl font-extrabold tracking-tight text-blue-700 sm:text-5xl">15+</dt>
+            <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
+              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">15+</dt>
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Years of Industry Focus</dd>
             </div>
-            <div className="text-center">
+            <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
               <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">80+</dt>
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Export Markets Supported</dd>
             </div>
-            <div className="text-center">
+            <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
               <dt className="text-4xl font-extrabold tracking-tight text-orange-500 sm:text-5xl">{CATALOG_PRODUCT_COUNT}+</dt>
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Catalog Models Listed</dd>
             </div>
-            <div className="text-center">
+            <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
               <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">24h</dt>
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Typical Quote Response</dd>
             </div>
@@ -379,7 +379,7 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {focusBlocks.map((item) => (
-              <article key={item.title} className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+              <article key={item.title} className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
                 <h2 className="text-xs font-bold uppercase tracking-widest text-green-700">{item.title}</h2>
                 <p className="mt-2 text-sm leading-6 text-gray-600">{item.text}</p>
               </article>
@@ -388,8 +388,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-16 sm:py-20">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Module 3 — Staggered Timeline Flow */}
+      <section className="bg-white py-16 sm:py-24">
+        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">How We Work</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Smooth B2B Procurement Flow</h2>
@@ -398,117 +399,126 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step, index) => (
-              <article key={step.title} className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-green-700 text-xs font-bold text-white">{index + 1}</span>
-                <h3 className="mt-4 text-base font-semibold text-gray-900">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-gray-500">{step.text}</p>
-              </article>
-            ))}
+          <ol className="mt-16 space-y-12">
+            {processSteps.map((step, index) => {
+              const reversed = index % 2 === 1
+              return (
+                <li
+                  key={step.title}
+                  className={`grid items-center gap-6 md:grid-cols-2 md:gap-12 ${index > 0 ? 'border-t border-dashed border-gray-200 pt-12' : ''}`}
+                >
+                  <div className={`flex items-center gap-5 ${reversed ? 'md:order-2 md:flex-row-reverse md:text-right' : ''}`}>
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-green-600 text-lg font-bold text-white shadow-[0_10px_30px_rgba(34,197,94,0.25)]">{index + 1}</span>
+                    <h3 className="text-xl font-semibold text-gray-900">{step.title}</h3>
+                  </div>
+                  <p className={`text-sm leading-relaxed text-gray-600 ${reversed ? 'md:order-1' : ''}`}>{step.text}</p>
+                </li>
+              )
+            })}
+          </ol>
+        </div>
+      </section>
+
+      {/* Module 4 — Split-Screen Category Hub */}
+      <section className="bg-gray-50 py-16 sm:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <div className="lg:sticky lg:top-24">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Our Product Range</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">{productCategoryCards.length} Product Categories</h2>
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-500">
+                  From miniature circuit breakers to smart WiFi devices, every upprocure product category is selected for performance, safety, and long-term sourcing reliability.
+                </p>
+                <Link
+                  href="/products"
+                  className="mt-8 inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition-all duration-300 ease-in-out hover:border-blue-600 hover:bg-blue-600 hover:text-white"
+                >
+                  View All Products
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-8 xl:grid-cols-3">
+              {productCategoryCards.map((category) => (
+                <Link
+                  key={category.slug}
+                  href={`/categories/${category.slug}`}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_20px_50px_rgba(59,130,246,0.06)]"
+                >
+                  <div className="flex items-center justify-center bg-gray-50 p-6 transition-colors group-hover:bg-green-50">
+                    <Image
+                      src={category.image}
+                      alt={`${category.title} product category`}
+                      width={160}
+                      height={160}
+                      className="h-24 w-24 object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="border-t border-gray-100 p-4">
+                    <h3 className="text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-green-700">{category.title}</h3>
+                    <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-gray-500">{category.text}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-16 sm:py-20">
+      {/* Module 5 — Editorial: Why upprocure (trust) */}
+      <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Our Product Range</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">{productCategoryCards.length} Product Categories</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
-              From miniature circuit breakers to smart WiFi devices, every upprocure product category is selected for performance, safety, and long-term sourcing reliability.
-            </p>
-          </div>
-
-          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            {productCategoryCards.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/categories/${category.slug}`}
-                className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-200 hover:border-green-300 hover:shadow-lg"
-              >
-                <div className="flex items-center justify-center bg-gray-50 p-6 transition-colors group-hover:bg-green-50" style={{ aspectRatio: '4/3' }}>
-                  <Image
-                    src={category.image}
-                    alt={`${category.title} product category`}
-                    width={160}
-                    height={160}
-                    className="h-32 w-32 object-contain transition-transform duration-200 group-hover:scale-105"
-                  />
-                </div>
-                <div className="border-t border-gray-100 px-4 py-3 text-center">
-                  <h3 className="text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-green-700">{category.title}</h3>
-                  <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-gray-500">{category.text}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-8 text-center">
-            <Link
-              href="/products"
-              className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition hover:border-green-300 hover:bg-green-50 hover:text-green-700"
-            >
-              View All Products
-            </Link>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Why upprocure</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Your Trusted Manufacturing Partner</h2>
+              <p className="mt-4 text-sm leading-relaxed text-gray-500">
+                We combine international quality standards with tailored services to ensure a seamless supply chain experience for every partner.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-8">
+              {trustCards.map((card) => (
+                <article key={card.title} className="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_20px_50px_rgba(59,130,246,0.06)]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 text-green-700">
+                    <CardIcon type={card.icon} />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-gray-900">{card.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-500">{card.text}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-slate-50 py-16 sm:py-20">
+      {/* Module 6 — Editorial: About (full-bleed image + bold green metrics) */}
+      <section className="bg-gray-50 py-16 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Why upprocure</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Your Trusted Manufacturing Partner</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
-              We combine international quality standards with tailored services to ensure a seamless supply chain experience for every partner.
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {trustCards.map((card) => (
-              <article key={card.title} className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 text-green-700">
-                  <CardIcon type={card.icon} />
-                </div>
-                <h3 className="mt-4 text-base font-semibold text-gray-900">{card.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-gray-500">{card.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">About upprocure</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Factory-Direct Electrical Solutions</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
-              Explore our 50,000 m² facility with automated lines and R&amp;D centers. We deliver reliable electrical solutions.
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-            <div className="relative overflow-hidden rounded-2xl shadow-lg" style={{ height: '440px' }}>
-              <Image src="/images/company-exterior.jpg" alt="upprocure manufacturing facility" fill className="object-cover" />
+          <div className="grid grid-cols-1 items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="relative min-h-[360px] overflow-hidden rounded-3xl shadow-lg lg:min-h-full">
+              <Image src="/images/company-exterior.jpg" alt="upprocure manufacturing facility" fill className="h-full w-full object-cover" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold leading-snug text-gray-900 sm:text-3xl">Reliable &amp; Smart Power Solutions.</h3>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">About upprocure</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Factory-Direct Electrical Solutions</h2>
+              <p className="mt-4 text-sm leading-relaxed text-gray-500">
+                Explore our 50,000 m² facility with automated lines and R&amp;D centers. We deliver reliable electrical solutions.
+              </p>
+              <h3 className="mt-8 text-2xl font-bold leading-snug text-gray-900 sm:text-3xl">Reliable &amp; Smart Power Solutions.</h3>
               <p className="mt-4 text-sm leading-relaxed text-gray-600">
                 <span className="font-semibold text-gray-900">With over 15 years of manufacturing expertise,</span>{' '}
                 upprocure produces a full range of low-voltage electrical products, including circuit breakers, SPDs, DC fuse holders, power meters, and ATS systems. Our solutions are widely used in residential, commercial, and industrial applications. Backed by ISO 9001 certification and advanced production facilities, we deliver consistent quality at competitive prices.
               </p>
-              <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
                 {['ISO & CE Certified Quality', 'Factory Direct Supply', 'Smart Power Monitoring', 'Wide Application', 'Global Customer Trust', 'Competitive Pricing'].map((item) => (
-                  <div key={item} className="flex items-center gap-2">
-                    <svg className="h-5 w-5 shrink-0 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span className="text-sm font-medium text-gray-700">{item}</span>
+                  <div key={item} className="border-l-2 border-green-500 pl-3">
+                    <span className="text-base font-bold leading-snug text-green-700">{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-8">
-                <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-800">
+              <div className="mt-10">
+                <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
                   Get Contact
                 </Link>
               </div>
@@ -517,48 +527,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-16 sm:py-20">
+      {/* Module 8 — Editorial: Certifications */}
+      <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Global Presence</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Exhibitions &amp; Events</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
-              Join us at global trade shows to discover our electrical and solar innovations. Let&apos;s build a reliable partnership together.
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
-            <div className="col-span-2 overflow-hidden rounded-xl md:col-span-1 md:row-span-2">
-              <div className="relative h-64 w-full md:h-full" style={{ minHeight: '320px' }}>
-                <Image alt="upprocure exhibition booth" fill sizes="(max-width: 768px) 100vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片1.jpg" />
-              </div>
-            </div>
-            <div className="overflow-hidden rounded-xl">
-              <div className="relative h-52 w-full md:h-64">
-                <Image alt="upprocure trade show photo 2" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片2.jpg" />
-              </div>
-            </div>
-            <div className="overflow-hidden rounded-xl">
-              <div className="relative h-52 w-full md:h-64">
-                <Image alt="upprocure trade show photo 3" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片3.jpg" />
-              </div>
-            </div>
-            <div className="overflow-hidden rounded-xl">
-              <div className="relative h-52 w-full md:h-64">
-                <Image alt="upprocure trade show photo 4" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片4.jpg" />
-              </div>
-            </div>
-            <div className="overflow-hidden rounded-xl">
-              <div className="relative h-52 w-full md:h-64">
-                <Image alt="upprocure trade show photo 5" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片5.jpg" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Certifications</p>
               <h2 className="mt-3 text-3xl font-bold leading-snug tracking-tight text-gray-900 sm:text-4xl">
@@ -584,7 +556,7 @@ export default function HomePage() {
                 ))}
               </ul>
               <div className="mt-8">
-                <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-800">
+                <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
                   Get a Free Quote
                 </Link>
               </div>
@@ -596,20 +568,67 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-green-700 py-14">
-        <div className="pointer-events-none absolute inset-0 opacity-30 [background:radial-gradient(circle_at_20%_20%,#ffffff_0,transparent_48%)]" />
-        <div className="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Ready to Start Your Next Order?</h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-green-100">
-            Tell us your market, specs, and target quantity. Our technical sales team will send a clear quotation plan within one business day.
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-3.5 text-base font-semibold text-green-700 shadow-sm transition-all hover:bg-green-50 active:scale-[0.98]">
-              Contact Our Sales Team
-            </Link>
-            <Link href="/products" className="inline-flex items-center rounded-lg border border-white/50 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-white/10 active:scale-[0.98]">
-              Browse Products
-            </Link>
+      {/* Module 7 — Exhibitions (relocated after editorial flow) */}
+      <section className="bg-gray-50 py-16 sm:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Global Presence</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Exhibitions &amp; Events</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
+              Join us at global trade shows to discover our electrical and solar innovations. Let&apos;s build a reliable partnership together.
+            </p>
+          </div>
+          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
+            <div className="col-span-2 overflow-hidden rounded-2xl md:col-span-1 md:row-span-2">
+              <div className="relative h-64 w-full md:h-full" style={{ minHeight: '320px' }}>
+                <Image alt="upprocure exhibition booth" fill sizes="(max-width: 768px) 100vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片1.jpg" />
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-2xl">
+              <div className="relative h-52 w-full md:h-64">
+                <Image alt="upprocure trade show photo 2" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片2.jpg" />
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-2xl">
+              <div className="relative h-52 w-full md:h-64">
+                <Image alt="upprocure trade show photo 3" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片3.jpg" />
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-2xl">
+              <div className="relative h-52 w-full md:h-64">
+                <Image alt="upprocure trade show photo 4" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片4.jpg" />
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-2xl">
+              <div className="relative h-52 w-full md:h-64">
+                <Image alt="upprocure trade show photo 5" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片5.jpg" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Module 9 — Floating Inset Banner */}
+      <section className="bg-white py-12 sm:py-16">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-tr from-slate-900 via-blue-950 to-slate-900 px-8 py-14 shadow-[0_30px_80px_rgba(15,23,42,0.35)] sm:px-12 lg:px-16">
+            <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
+            <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+              <div>
+                <h2 className="text-3xl font-bold text-white sm:text-4xl">Ready to Start Your Next Order?</h2>
+                <p className="mt-4 max-w-xl text-base text-blue-100/90">
+                  Tell us your market, specs, and target quantity. Our technical sales team will send a clear quotation plan within one business day.
+                </p>
+              </div>
+              <div className="flex flex-col gap-4 lg:items-end">
+                <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-3.5 text-base font-semibold text-blue-700 shadow-sm transition-all hover:bg-blue-50 active:scale-[0.98]">
+                  Contact Our Sales Team
+                </Link>
+                <Link href="/products" className="inline-flex items-center justify-center rounded-lg border border-white/40 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-white/10 active:scale-[0.98]">
+                  Browse Products
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -630,7 +649,7 @@ export default function HomePage() {
           </div>
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
             {insights.map((post) => (
-              <Link key={post.title} href={post.href} className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:shadow-md">
+              <Link key={post.title} href={post.href} className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_20px_50px_rgba(59,130,246,0.06)]">
                 <div className="relative h-48 w-full overflow-hidden bg-gray-100">
                   <Image src={post.image} alt={post.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-105" />
                 </div>
