@@ -8,7 +8,7 @@ import { PRODUCT_DETAIL_CONTENT } from '@/lib/product-detail-content'
 import { PRODUCT_GALLERY_IMAGES } from '@/lib/product-gallery-images.generated'
 import { getProductDisplayName, getProductSeoDescription, getProductSeoTitle } from '@/lib/seo'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
-import { getProductBySlug } from '@/lib/site-content'
+import { getCanonicalProductSlug, getProductBySlug } from '@/lib/site-content'
 
 type ProductDetailPageProps = {
   params: Promise<{ slug: string }>
@@ -749,7 +749,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
     title,
     description,
     alternates: {
-      canonical: `/products/${product.slug}`,
+      canonical: `/products/${getCanonicalProductSlug(product.slug)}`,
     },
     openGraph: {
       title: `${title} | ${SITE_NAME}`,
@@ -802,8 +802,46 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
     ],
   }
 
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: displayName,
+    image: galleryImages.map((src) => (src.startsWith('http') ? src : `${SITE_URL}${src}`)),
+    description: detailCopy.description,
+    sku: product.slug,
+    mpn: product.slug,
+    brand: {
+      '@type': 'Brand',
+      name: SITE_NAME,
+    },
+    category: product.category,
+    url: productUrl,
+    additionalProperty: detailCopy.specs.map(([name, value]) => ({
+      '@type': 'PropertyValue',
+      name,
+      value,
+    })),
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      itemCondition: 'https://schema.org/NewCondition',
+      availability: 'https://schema.org/InStock',
+      url: productUrl,
+      seller: {
+        '@type': 'Organization',
+        name: SITE_NAME,
+      },
+    },
+  }
+
   return (
     <main className="bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productJsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
