@@ -113,7 +113,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" translate="no" className={`notranslate scroll-smooth ${inter.variable}`}>
+    <html lang="en" translate="no" className={`notranslate ${inter.variable}`}>
       <body className="flex min-h-screen flex-col bg-white antialiased">
         <script
           type="application/ld+json"

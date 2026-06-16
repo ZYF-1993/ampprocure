@@ -347,19 +347,6 @@ function HeroSection() {
   )
 }
 
-// 各产品大类的 3 条核心技术要点（口径与 lib/category-content.ts 选购指南一致，非虚构参数；productCategoryCards 不变）
-const categoryHighlights: Readonly<Record<string, readonly string[]>> = {
-  'circuit-breaker': ['B / C / D trip curves', '1P–4P · up to 63A', 'IEC 60898-1 / 60947-2'],
-  'surge-protector-device': ['Type 1 / Type 2 / PV DC', 'Up to 1000V / 1500V DC', 'IEC 61643-11 / 61643-31'],
-  'dc-fuse-holder': ['10×38 / 14×51 / 22×58 mm', 'gPV links · up to 1000V DC', 'IEC 60269-6'],
-  'over-voltage-protector': ['Adjustable OV / UV trip', '40 / 63 / 80A rated', 'Auto-recovery delay'],
-  'power-meter': ['Class 1 / Class 0.5S', 'Modbus RS-485 output', 'MID-ready variants'],
-  'wifi-smart-low-voltage-device': ['Tuya / Smart Life app', '2.4GHz WiFi · remote', 'Live energy metering'],
-  'pv-combiner-box': ['600 / 1000 / 1500V DC', 'IP65 outdoor enclosure', 'DC breaker + SPD'],
-  'ats-dual-power-switch': ['PC / CB class', '2P / 3P / 4P poles', 'IEC 60947-6-1'],
-  'aerosol-fire-extinguisher': ['Thermal auto ~170°C', 'Halon-free clean agent', 'Cabinet fire suppression'],
-}
-
 export default function HomePage() {
   return (
     <main className="bg-white">
@@ -369,11 +356,11 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <dl className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4">
             <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
-              <dt className="text-4xl font-extrabold tracking-tight text-blue-600 sm:text-5xl">15+</dt>
+              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">15+</dt>
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Years of Industry Focus</dd>
             </div>
             <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
-              <dt className="text-4xl font-extrabold tracking-tight text-blue-600 sm:text-5xl">80+</dt>
+              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">80+</dt>
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Export Markets Supported</dd>
             </div>
             <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
@@ -381,120 +368,139 @@ export default function HomePage() {
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Catalog Models Listed</dd>
             </div>
             <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
-              <dt className="text-4xl font-extrabold tracking-tight text-blue-600 sm:text-5xl">24h</dt>
+              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">24h</dt>
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Typical Quote Response</dd>
             </div>
           </dl>
         </div>
       </section>
 
-      {/* 第三屏 — Module 4 — Product Hub（3 列高密度大卡：大图 + 3 条技术要点 + Inquire Now） */}
-      <section className="bg-gray-50 py-16 sm:py-24">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Our Product Range</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">{productCategoryCards.length} Product Categories</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
-              From miniature circuit breakers to smart WiFi devices, every upprocure product category is selected for performance, safety, and long-term sourcing reliability.
-            </p>
-          </div>
-
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-            {productCategoryCards.map((category) => (
-              <article
-                key={category.slug}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.06)]"
-              >
-                <Link href={`/categories/${category.slug}`} className="flex items-center justify-center bg-gray-50 p-8 transition-colors group-hover:bg-blue-50">
-                  <Image
-                    src={category.image}
-                    alt={`${category.title} product category`}
-                    width={220}
-                    height={220}
-                    className="h-36 w-36 object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-                </Link>
-                <div className="flex flex-1 flex-col p-6">
-                  <Link href={`/categories/${category.slug}`}>
-                    <h3 className="text-lg font-bold text-gray-900 transition-colors group-hover:text-blue-600">{category.title}</h3>
-                  </Link>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-600">{category.text}</p>
-                  <ul className="mt-4 space-y-2">
-                    {(categoryHighlights[category.slug] ?? []).map((point) => (
-                      <li key={point} className="flex items-center gap-2 text-xs font-medium text-gray-700">
-                        <svg className="h-4 w-4 shrink-0 text-blue-600" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                        </svg>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href="#inquiry" className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700">
-                    Inquire Now
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                    </svg>
-                  </Link>
-                </div>
+      <section className="border-b border-gray-100 bg-white">
+        <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            {focusBlocks.map((item) => (
+              <article key={item.title} className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
+                <h2 className="text-xs font-bold uppercase tracking-widest text-green-700">{item.title}</h2>
+                <p className="mt-2 text-sm leading-6 text-gray-600">{item.text}</p>
               </article>
             ))}
-          </div>
-
-          <div className="mt-10 text-center">
-            <Link href="/products" className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition-all duration-300 hover:scale-105 hover:border-blue-600 hover:bg-blue-600 hover:text-white">
-              View All Products
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* 第四屏 — Module 2 + Module 5 — 能力交错证明（左：聚焦能力 / 右：信任卡） */}
+      {/* Module 3 — Staggered Timeline Flow */}
+      <section className="bg-white py-16 sm:py-24">
+        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">How We Work</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Smooth B2B Procurement Flow</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
+              We keep communication clear from first inquiry to final delivery, helping you shorten sourcing cycles and reduce project risk.
+            </p>
+          </div>
+
+          <ol className="mt-16 space-y-12">
+            {processSteps.map((step, index) => {
+              const reversed = index % 2 === 1
+              return (
+                <li
+                  key={step.title}
+                  className={`grid items-center gap-6 md:grid-cols-2 md:gap-12 ${index > 0 ? 'border-t border-dashed border-gray-200 pt-12' : ''}`}
+                >
+                  <div className={`flex items-center gap-5 ${reversed ? 'md:order-2 md:flex-row-reverse md:text-right' : ''}`}>
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-green-600 text-lg font-bold text-white shadow-[0_10px_30px_rgba(34,197,94,0.25)]">{index + 1}</span>
+                    <h3 className="text-xl font-semibold text-gray-900">{step.title}</h3>
+                  </div>
+                  <p className={`text-sm leading-relaxed text-gray-600 ${reversed ? 'md:order-1' : ''}`}>{step.text}</p>
+                </li>
+              )
+            })}
+          </ol>
+        </div>
+      </section>
+
+      {/* Module 4 — Split-Screen Category Hub */}
+      <section className="bg-gray-50 py-16 sm:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <div className="lg:sticky lg:top-24">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Our Product Range</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">{productCategoryCards.length} Product Categories</h2>
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-500">
+                  From miniature circuit breakers to smart WiFi devices, every upprocure product category is selected for performance, safety, and long-term sourcing reliability.
+                </p>
+                <Link
+                  href="/products"
+                  className="mt-8 inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition-all duration-300 ease-in-out hover:border-blue-600 hover:bg-blue-600 hover:text-white"
+                >
+                  View All Products
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-8 xl:grid-cols-3">
+              {productCategoryCards.map((category) => (
+                <Link
+                  key={category.slug}
+                  href={`/categories/${category.slug}`}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_20px_50px_rgba(59,130,246,0.06)]"
+                >
+                  <div className="flex items-center justify-center bg-gray-50 p-6 transition-colors group-hover:bg-green-50">
+                    <Image
+                      src={category.image}
+                      alt={`${category.title} product category`}
+                      width={160}
+                      height={160}
+                      className="h-24 w-24 object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="border-t border-gray-100 p-4">
+                    <h3 className="text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-green-700">{category.title}</h3>
+                    <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-gray-500">{category.text}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Module 5 — Editorial: Why upprocure (trust) */}
       <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Why upprocure</p>
+            <div className="lg:col-span-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Why upprocure</p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Your Trusted Manufacturing Partner</h2>
               <p className="mt-4 text-sm leading-relaxed text-gray-500">
                 We combine international quality standards with tailored services to ensure a seamless supply chain experience for every partner.
               </p>
-              <div className="mt-8 space-y-4">
-                {focusBlocks.map((item) => (
-                  <article key={item.title} className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.06)]">
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-blue-600">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-gray-600">{item.text}</p>
-                  </article>
-                ))}
-              </div>
             </div>
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                {trustCards.map((card) => (
-                  <article key={card.title} className="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.06)]">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                      <CardIcon type={card.icon} />
-                    </div>
-                    <h3 className="mt-4 text-base font-semibold text-gray-900">{card.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-gray-500">{card.text}</p>
-                  </article>
-                ))}
-              </div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-8">
+              {trustCards.map((card) => (
+                <article key={card.title} className="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_20px_50px_rgba(59,130,246,0.06)]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 text-green-700">
+                    <CardIcon type={card.icon} />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-gray-900">{card.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-500">{card.text}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* 第五屏 — Module 6 + Module 8 — 企业工厂故事（左：毛玻璃工厂图 / 右：实力 + 认证 Specification Matrix） */}
+      {/* Module 6 — Editorial: About (full-bleed image + bold green metrics) */}
       <section className="bg-gray-50 py-16 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className="relative min-h-[420px] overflow-hidden rounded-3xl shadow-lg lg:sticky lg:top-24 lg:min-h-[560px]">
+          <div className="grid grid-cols-1 items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="relative min-h-[360px] overflow-hidden rounded-3xl shadow-lg lg:min-h-full">
               <Image src="/images/company-exterior.jpg" alt="upprocure manufacturing facility" fill className="h-full w-full object-cover" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-900/30 via-transparent to-white/10 backdrop-blur-[1px]" />
             </div>
-
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">About upprocure</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">About upprocure</p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Factory-Direct Electrical Solutions</h2>
               <p className="mt-4 text-sm leading-relaxed text-gray-500">
                 Explore our 50,000 m² facility with automated lines and R&amp;D centers. We deliver reliable electrical solutions.
@@ -506,47 +512,57 @@ export default function HomePage() {
               </p>
               <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
                 {['ISO & CE Certified Quality', 'Factory Direct Supply', 'Smart Power Monitoring', 'Wide Application', 'Global Customer Trust', 'Competitive Pricing'].map((item) => (
-                  <div key={item} className="border-l-2 border-blue-500 pl-3">
-                    <span className="text-base font-bold leading-snug text-blue-600">{item}</span>
+                  <div key={item} className="border-l-2 border-green-500 pl-3">
+                    <span className="text-base font-bold leading-snug text-green-700">{item}</span>
                   </div>
                 ))}
               </div>
-
-              <div className="mt-10 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Certifications</p>
-                <h3 className="mt-2 text-xl font-bold leading-snug tracking-tight text-gray-900">
-                  Quality You Can Trust, Certified Worldwide.
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                  upprocure maintains a global presence, supplying certified low-voltage electrical products to customers in over 80 countries. Every product is backed by internationally recognized certifications, ensuring compliance, safety, and reliability across markets.
-                </p>
-                <ul className="mt-5 divide-y divide-gray-100 border-y border-gray-100">
-                  {[
-                    'ISO 9001:2015 Quality Management System',
-                    'CE Marking — IEC/EN Standards Compliant',
-                    'CCC Certification (China Compulsory Certificate)',
-                    'RoHS Compliant — Environmentally Responsible',
-                    'Trusted Supplier for Global Electrical Brands',
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2.5 py-3">
-                      <svg className="h-5 w-5 shrink-0 text-blue-600" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span className="text-sm font-medium text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Image src="/images/证书图片.png" alt="upprocure certifications" width={720} height={540} className="mt-5 w-full rounded-lg object-contain" />
-              </div>
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700">
+              <div className="mt-10">
+                <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
                   Get Contact
                 </Link>
-                <Link href="#inquiry" className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition-all duration-300 hover:scale-105 hover:border-blue-600 hover:bg-blue-600 hover:text-white">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Module 8 — Editorial: Certifications */}
+      <section className="bg-white py-16 sm:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Certifications</p>
+              <h2 className="mt-3 text-3xl font-bold leading-snug tracking-tight text-gray-900 sm:text-4xl">
+                Quality You Can Trust,<br />Certified Worldwide.
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-gray-600">
+                upprocure maintains a global presence, supplying certified low-voltage electrical products to customers in over 80 countries. Every product is backed by internationally recognized certifications, ensuring compliance, safety, and reliability across markets.
+              </p>
+              <ul className="mt-6 space-y-2.5">
+                {[
+                  'ISO 9001:2015 Quality Management System',
+                  'CE Marking — IEC/EN Standards Compliant',
+                  'CCC Certification (China Compulsory Certificate)',
+                  'RoHS Compliant — Environmentally Responsible',
+                  'Trusted Supplier for Global Electrical Brands',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-sm text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8">
+                <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
                   Get a Free Quote
                 </Link>
               </div>
+            </div>
+            <div>
+              <Image src="/images/证书图片.png" alt="upprocure certifications" width={720} height={540} className="w-full object-contain" />
             </div>
           </div>
         </div>
@@ -556,7 +572,7 @@ export default function HomePage() {
       <section className="bg-gray-50 py-16 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Global Presence</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Global Presence</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Exhibitions &amp; Events</h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
               Join us at global trade shows to discover our electrical and solar innovations. Let&apos;s build a reliable partnership together.
@@ -592,41 +608,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 第六屏 — Module 3 — How We Work（下单前 SOP 流程小结） */}
-      <section className="bg-white py-16 sm:py-24">
-        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">How We Work</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Smooth B2B Procurement Flow</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
-              We keep communication clear from first inquiry to final delivery, helping you shorten sourcing cycles and reduce project risk.
-            </p>
-          </div>
-
-          <ol className="mt-16 space-y-12">
-            {processSteps.map((step, index) => {
-              const reversed = index % 2 === 1
-              return (
-                <li
-                  key={step.title}
-                  className={`grid items-center gap-6 md:grid-cols-2 md:gap-12 ${index > 0 ? 'border-t border-dashed border-gray-200 pt-12' : ''}`}
-                >
-                  <div className={`flex items-center gap-5 ${reversed ? 'md:order-2 md:flex-row-reverse md:text-right' : ''}`}>
-                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-600 text-lg font-bold text-white shadow-[0_10px_30px_rgba(59,130,246,0.25)]">{index + 1}</span>
-                    <h3 className="text-xl font-semibold text-gray-900">{step.title}</h3>
-                  </div>
-                  <p className={`text-sm leading-relaxed text-gray-600 ${reversed ? 'md:order-1' : ''}`}>{step.text}</p>
-                </li>
-              )
-            })}
-          </ol>
-        </div>
-      </section>
-
-      {/* 第七屏 — Module 9 — Floating Inset Banner（深蓝悬浮太空舱；主按钮平滑滚动至底部询盘表单 #inquiry） */}
-      <section className="bg-gray-50 py-12 sm:py-16">
+      {/* Module 9 — Floating Inset Banner */}
+      <section className="bg-white py-12 sm:py-16">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 px-8 py-14 shadow-[0_30px_80px_rgba(15,23,42,0.35)] sm:px-12 lg:px-16">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-tr from-slate-900 via-blue-950 to-slate-900 px-8 py-14 shadow-[0_30px_80px_rgba(15,23,42,0.35)] sm:px-12 lg:px-16">
             <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
             <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
               <div>
@@ -636,7 +621,7 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="flex flex-col gap-4 lg:items-end">
-                <Link href="#inquiry" className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-3.5 text-base font-semibold text-blue-700 shadow-sm transition-all hover:scale-105 hover:bg-blue-50 active:scale-[0.98]">
+                <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-3.5 text-base font-semibold text-blue-700 shadow-sm transition-all hover:bg-blue-50 active:scale-[0.98]">
                   Contact Our Sales Team
                 </Link>
                 <Link href="/products" className="inline-flex items-center justify-center rounded-lg border border-white/40 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-white/10 active:scale-[0.98]">
@@ -652,10 +637,10 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Technical Resources</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Technical Resources</p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Latest Articles</h2>
             </div>
-            <Link href="/blog" className="hidden items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 sm:flex">
+            <Link href="/blog" className="hidden items-center gap-1 text-sm font-semibold text-green-700 hover:text-green-800 sm:flex">
               All articles
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -671,10 +656,10 @@ export default function HomePage() {
                 <div className="flex flex-1 flex-col p-5">
                   <div className="flex flex-wrap gap-1.5">
                     {post.tags.map((tag) => (
-                      <span key={tag} className="rounded bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-600">{tag}</span>
+                      <span key={tag} className="rounded bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700">{tag}</span>
                     ))}
                   </div>
-                  <h3 className="mt-3 line-clamp-2 text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-blue-600">{post.title}</h3>
+                  <h3 className="mt-3 line-clamp-2 text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-green-700">{post.title}</h3>
                   <p className="mt-2 flex-1 line-clamp-3 text-xs leading-relaxed text-gray-500">{post.text}</p>
                   <div className="mt-4 flex items-center justify-between text-xs text-gray-400">
                     <span>{post.date}</span>
@@ -689,11 +674,11 @@ export default function HomePage() {
 
       <TestimonialsCarousel />
 
-      <section id="inquiry" className="scroll-mt-24 bg-slate-50 py-16 sm:py-20">
+      <section className="bg-slate-50 py-16 sm:py-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
             <article className="lg:col-span-1">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Contact upprocure</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Contact upprocure</p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Send Your Product Requirement</h2>
               <p className="mt-3 text-sm leading-relaxed text-gray-500">
                 Tell us the product category, voltage platform, quantity, packaging needs, and target delivery timeline. Our team will reply with next-step details.
@@ -702,13 +687,13 @@ export default function HomePage() {
               <ul className="mt-8 space-y-5">
                 <li className="text-sm text-gray-700">
                   <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Email</p>
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 inline-block hover:text-blue-600">
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 inline-block hover:text-green-700">
                     {CONTACT_EMAIL}
                   </a>
                 </li>
                 <li className="text-sm text-gray-700">
                   <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Phone</p>
-                  <a href="tel:+8613552727303" className="mt-1 inline-block hover:text-blue-600">
+                  <a href="tel:+8613552727303" className="mt-1 inline-block hover:text-green-700">
                     +86-13552727303
                   </a>
                 </li>
@@ -718,7 +703,7 @@ export default function HomePage() {
                     href="https://wa.me/8613552727303"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-1 inline-block hover:text-blue-600"
+                    className="mt-1 inline-block hover:text-green-700"
                   >
                     +86-13552727303
                   </a>
