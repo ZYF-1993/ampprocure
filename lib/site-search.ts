@@ -1,6 +1,7 @@
 import { BLOG_POSTS } from '@/lib/blog-posts'
 import { CATALOG_PRODUCTS } from '@/lib/catalog-products'
 import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
+import { SOLUTIONS } from '@/lib/solutions'
 
 export type SiteSearchItemType = 'Product' | 'Category' | 'Blog' | 'Page'
 
@@ -54,6 +55,22 @@ const CORE_PAGES: readonly SiteSearchItem[] = [
     href: '/contact',
     tags: ['contact', 'inquiry', 'support'],
   },
+  {
+    id: 'page-solutions',
+    type: 'Page',
+    title: 'Solutions',
+    summary: 'Application pages for cabinet equipment, including aerosol fire extinguishers and 22mm digital display indicators.',
+    href: '/solutions',
+    tags: ['solutions', 'applications'],
+  },
+  ...SOLUTIONS.map((solution) => ({
+    id: `page-${solution.href}`,
+    type: 'Page' as const,
+    title: solution.title,
+    summary: solution.summary,
+    href: solution.href,
+    tags: ['solutions', solution.navLabel],
+  })),
 ]
 
 const PRODUCT_ITEMS: readonly SiteSearchItem[] = CATALOG_PRODUCTS.map((product) => ({

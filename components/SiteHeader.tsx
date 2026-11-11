@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
 import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
+import { SOLUTIONS } from '@/lib/solutions'
 import { inquiryMailto, inquiryMessage, whatsappHref } from '@/lib/site-config'
 import HeaderSearch from '@/components/HeaderSearch'
 import OptimizedImage from '@/components/OptimizedImage'
@@ -16,9 +17,7 @@ const MAIN_LINKS = [
   { href: '/contact', label: 'Contact Us' },
 ] as const
 
-const SOLUTION_LINKS = [
-  { href: '/solutions/aerosol-fire-extinguisher', label: 'Aerosol Fire Extinguisher Solution' },
-] as const
+const SOLUTION_LINKS = SOLUTIONS.map((item) => ({ href: item.href, label: item.navLabel }))
 
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -172,25 +171,42 @@ export default function SiteHeader() {
                 }
               }}
             >
-              <button
-                type="button"
-                aria-expanded={desktopSolutionsOpen}
-                aria-haspopup="true"
-                onClick={() => setDesktopSolutionsOpen((prev) => !prev)}
-                className={`inline-flex items-center gap-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${
-                  isSolutionsRoute ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                }`}
-              >
-                <span data-i18n="header.solutions">Solutions</span>
-                <Chevron open={desktopSolutionsOpen} />
-              </button>
+              <div className="inline-flex items-center rounded-md">
+                <Link
+                  href="/solutions"
+                  className={`rounded-l-md px-4 py-2 text-sm font-medium transition-colors ${
+                    isSolutionsRoute ? 'font-semibold text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  <span data-i18n="header.solutions">Solutions</span>
+                </Link>
+                <button
+                  type="button"
+                  aria-expanded={desktopSolutionsOpen}
+                  aria-haspopup="true"
+                  aria-label="Toggle solutions menu"
+                  onClick={() => setDesktopSolutionsOpen((prev) => !prev)}
+                  className={`rounded-r-md px-2 py-2 transition-colors ${
+                    isSolutionsRoute ? 'text-green-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  <Chevron open={desktopSolutionsOpen} />
+                </button>
+              </div>
 
               <div
-                className={`absolute left-0 top-full z-50 w-72 pt-3 transition-all duration-200 ${
+                className={`absolute left-0 top-full z-50 w-80 pt-3 transition-all duration-200 ${
                   desktopSolutionsOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-1 opacity-0 pointer-events-none'
                 }`}
               >
                 <div className="rounded-xl border border-gray-100 bg-white p-2 shadow-xl">
+                  <Link
+                    href="/solutions"
+                    onClick={() => setDesktopSolutionsOpen(false)}
+                    className="block rounded-lg px-4 py-3 text-sm font-semibold text-green-700 transition hover:bg-green-50"
+                  >
+                    All solutions
+                  </Link>
                   {SOLUTION_LINKS.map((link) => (
                     <Link
                       key={link.href}
@@ -337,8 +353,17 @@ export default function SiteHeader() {
                 <Chevron open={mobileSolutionsOpen} />
               </button>
 
-              <div className={`overflow-hidden transition-all duration-200 ${mobileSolutionsOpen ? 'max-h-[180px]' : 'max-h-0'}`}>
+              <div className={`overflow-hidden transition-all duration-200 ${mobileSolutionsOpen ? 'max-h-80' : 'max-h-0'}`}>
                 <ul className="mt-1 ml-4 space-y-0.5 border-l-2 border-gray-100 pl-4">
+                  <li>
+                    <Link
+                      href="/solutions"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex rounded-lg px-3 py-2 text-sm font-semibold text-green-700 hover:bg-green-50"
+                    >
+                      All solutions
+                    </Link>
+                  </li>
                   {SOLUTION_LINKS.map((link) => (
                     <li key={link.href}>
                       <Link

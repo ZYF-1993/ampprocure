@@ -6,8 +6,7 @@ import { absoluteOptimizedSrc } from '@/lib/optimized-image'
 import { PRODUCT_GALLERY_IMAGES } from '@/lib/product-gallery-images.generated'
 import { absoluteUrl } from '@/lib/seo'
 import { CORE_ROUTES } from '@/lib/site-content'
-
-const SOLUTION_PATH = '/solutions/aerosol-fire-extinguisher'
+import { SOLUTIONS } from '@/lib/solutions'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const coreEntries: MetadataRoute.Sitemap = CORE_ROUTES
@@ -18,10 +17,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
 
   const solutionEntry: MetadataRoute.Sitemap = [
-    {
-      url: absoluteUrl(SOLUTION_PATH),
-      images: [absoluteOptimizedSrc('/images/solutions/aerosol-fire-extinguisher/hero-bg.jpg')],
-    },
+    { url: absoluteUrl('/solutions') },
+    ...SOLUTIONS.map((solution) => ({
+      url: absoluteUrl(solution.href),
+      images: [absoluteOptimizedSrc(solution.image)],
+    })),
   ]
 
   const productEntries: MetadataRoute.Sitemap = CATALOG_PRODUCTS.map((product) => ({
