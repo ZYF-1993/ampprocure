@@ -5,7 +5,14 @@ const useR2Assets = process.env.USE_R2_ASSETS === 'true' || process.env.VERCEL =
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, '')
 
 if (useR2Assets && !r2PublicUrl) {
-  throw new Error('R2_PUBLIC_URL is required when deploying with remote static assets.')
+  // Production still fails closed. Preview builds often do not receive
+  // production-scoped env vars, and the pages now ship static files from
+  // /optimized, so a missing R2 URL should skip the rewrite instead of
+  // aborting the deployment.
+  if (process.env.VERCEL_ENV === 'production') {
+    throw new Error('R2_PUBLIC_URL is required when deploying with remote static assets.')
+  }
+  console.warn('R2_PUBLIC_URL is unset; remote image rewrites are disabled for this build.')
 }
 
 const connectSources = ["'self'"]
@@ -66,6 +73,7 @@ const nextConfig: NextConfig = {
   outputFileTracingExcludes: {
     '/*': [
       './public/images/**',
+      './public/optimized/**',
       './node_modules/@next/swc-linux-x64-gnu/**/*',
       './node_modules/@next/swc-linux-x64-musl/**/*',
       './node_modules/@next/swc-win32-x64-msvc/**/*',
