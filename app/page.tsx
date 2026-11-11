@@ -4,7 +4,9 @@ import InquiryForm from '@/components/InquiryForm'
 import OptimizedImage from '@/components/OptimizedImage'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
+import { getFeaturedProducts, getHomeGuides } from '@/lib/internal-links'
 import { buildPageMetadata } from '@/lib/seo'
+import { SOLUTIONS } from '@/lib/solutions'
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, inquiryMailto, inquiryMessage, whatsappHref } from '@/lib/site-config'
 
 const focusBlocks = [
@@ -185,6 +187,9 @@ const heroMetrics = [
     bg: 'bg-amber-50',
   },
 ] as const
+
+const featuredProducts = getFeaturedProducts()
+const homeGuides = getHomeGuides()
 
 export const metadata = buildPageMetadata({
   title: 'UPprocure | Electrical Protection Products Supplier',
@@ -449,6 +454,51 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="border-y border-gray-100 bg-white py-16 sm:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Solutions</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Cabinet and protection solutions</h2>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-gray-500">
+            Application pages for aerosol fire extinguishers, 22mm digital display indicators, and metal push buttons supplied with the electrical catalog.
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <Link href="/solutions" className="flex h-full flex-col justify-between rounded-2xl border border-gray-100 bg-slate-950 p-5 text-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+              <span className="text-sm font-semibold">All solutions</span>
+              <span className="mt-3 text-xs leading-5 text-slate-300">Browse the three application pages.</span>
+            </Link>
+            {SOLUTIONS.map((solution) => (
+              <Link key={solution.href} href={solution.href} className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:border-green-200 hover:shadow-md">
+                <div className="relative h-36 bg-gray-50">
+                  <OptimizedImage src={solution.image} alt={solution.imageAlt} fill variant="thumb" sizes="(max-width: 1024px) 50vw, 25vw" className="object-contain p-3" />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-sm font-semibold text-gray-900">{solution.navLabel}</h3>
+                  <p className="mt-2 line-clamp-3 text-xs leading-5 text-gray-500">{solution.summary}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <h2 className="mt-16 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Featured products</h2>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-gray-500">
+            Adjustable voltage protectors, DIN-rail meters, miniature breakers, and the 500V PV combiner boxes buyers compare most often.
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredProducts.map((product) => (
+              <Link key={product.slug} href={`/products/${product.slug}`} className="flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:border-green-200 hover:shadow-md">
+                <div className="relative h-40 bg-gray-50">
+                  <OptimizedImage src={product.image} alt="" fill variant="thumb" sizes="(max-width: 1024px) 50vw, 25vw" className="object-contain p-4" />
+                </div>
+                <div className="p-4">
+                  <p className="text-xs font-medium uppercase tracking-wide text-green-700">{product.category}</p>
+                  <h3 className="mt-1 text-sm font-semibold leading-snug text-gray-900">{product.name}</h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Module 5 — Editorial: Why upprocure (trust) */}
       <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -500,7 +550,10 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <div className="mt-10">
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Link href="/about" className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition hover:border-green-600 hover:text-green-700">
+                  About UPprocure
+                </Link>
                 <Link href="/contact#rfq" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
                   Contact Sales
                 </Link>
@@ -652,6 +705,20 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
+          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+            {homeGuides.map((post) => (
+              <li key={post.slug}>
+                <Link href={`/blog/${post.slug}`} className="text-sm font-semibold text-green-700 hover:text-green-800">
+                  {post.title}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link href="/blog" className="text-sm font-semibold text-slate-700 hover:text-green-700 sm:hidden">
+                All articles
+              </Link>
+            </li>
+          </ul>
         </div>
       </section>
 

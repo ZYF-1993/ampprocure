@@ -6,12 +6,15 @@ import InquiryActions from '@/components/InquiryActions'
 import InquiryChannels from '@/components/InquiryChannels'
 import OptimizedImage from '@/components/OptimizedImage'
 import ProductGallery from '@/components/ProductGallery'
+import RelatedResources from '@/components/RelatedResources'
 import { CATALOG_PRODUCTS, type CatalogProduct } from '@/lib/catalog-products'
+import { getRelatedPostsForTopic } from '@/lib/internal-links'
 import { absoluteOptimizedSrc } from '@/lib/optimized-image'
 import { PRODUCT_DETAIL_CONTENT } from '@/lib/product-detail-content'
 import { PRODUCT_GALLERY_IMAGES } from '@/lib/product-gallery-images.generated'
+import { getProductEnrichment } from '@/lib/product-seo'
 import { absoluteUrl, getProductDisplayName, getProductSeoDescription, getProductSeoTitle, jsonLdScript } from '@/lib/seo'
-import { SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { SITE_NAME } from '@/lib/site-config'
 import { getCanonicalProductSlug, getProductBySlug } from '@/lib/site-content'
 
 type ProductDetailPageProps = {
@@ -746,18 +749,20 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
     }
   }
 
-  const title = getProductSeoTitle(product)
-  const description = getProductSeoDescription(product)
+  const enrichment = getProductEnrichment(product.slug)
+  const title = enrichment?.title ?? getProductSeoTitle(product)
+  const description = enrichment?.description ?? getProductSeoDescription(product)
   const displayName = getProductDisplayName(product)
+  const fullTitle = enrichment ? title : `${title} | ${SITE_NAME}`
 
   return {
-    title,
+    title: enrichment ? { absolute: title } : title,
     description,
     alternates: {
-      canonical: `/products/${getCanonicalProductSlug(product.slug)}`,
+      canonical: absoluteUrl(`/products/${getCanonicalProductSlug(product.slug)}`),
     },
     openGraph: {
-      title: `${title} | ${SITE_NAME}`,
+      title: fullTitle,
       description,
       url: absoluteUrl(`/products/${getCanonicalProductSlug(product.slug)}`),
       images: [
@@ -770,7 +775,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | ${SITE_NAME}`,
+      title: fullTitle,
       description,
       images: [absoluteOptimizedSrc(product.image)],
     },
@@ -786,10 +791,25 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   }
 
   const galleryImages = getProductGalleryImages(product)
-  const relatedProducts = CATALOG_PRODUCTS.filter((item) => item.category === product.category && item.id !== product.id).slice(0, 4)
+  const enrichment = getProductEnrichment(product.slug)
+  const preferredRelated = (enrichment?.relatedSlugs ?? []).flatMap((relatedSlug) => {
+    const match = CATALOG_PRODUCTS.find((item) => item.slug === relatedSlug)
+    return match ? [match] : []
+  })
+  const sameCategory = CATALOG_PRODUCTS.filter((item) => item.category === product.category && item.id !== product.id)
+  const relatedSeen = new Set<string>()
+  const relatedProducts = [...preferredRelated, ...sameCategory]
+    .filter((item) => {
+      if (item.slug === product.slug || relatedSeen.has(item.slug)) {
+        return false
+      }
+      relatedSeen.add(item.slug)
+      return true
+    })
+    .slice(0, 4)
   const detailCopy = getProductDetailCopy(product)
   const displayName = getProductDisplayName(product)
-  const productUrl = `${SITE_URL}/products/${product.slug}`
+  const productUrl = absoluteUrl(`/products/${product.slug}`)
 
   const productJsonLd = {
     '@context': 'https://schema.org',
@@ -806,7 +826,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
     manufacturer: {
       '@type': 'Organization',
       name: SITE_NAME,
-      url: SITE_URL,
+      url: absoluteUrl('/'),
     },
     category: product.category,
     url: productUrl,
@@ -881,6 +901,17 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             </div>
           </div>
 
+          {enrichment && (
+            <div className="mt-16">
+              <h2 className="text-xl font-bold text-gray-900">Applications</h2>
+              <div className="mt-4 space-y-3 text-sm leading-7 text-gray-600">
+                {enrichment.applications.map((paragraph) => (
+                  <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="mt-16">
             <h2 className="text-xl font-bold text-gray-900" data-i18n="product.specsTitle">
               Technical Specifications
@@ -917,7 +948,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         <section className="border-t border-gray-100 bg-white py-14 sm:py-16">
           <div className="container">
             <h2 className="text-xl font-bold text-gray-900" data-i18n="product.relatedTitle">
-              More in {product.category}
+              {enrichment ? 'Related products' : `More in ${product.category}`}
             </h2>
             <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {relatedProducts.map((item) => (
@@ -927,6 +958,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           </div>
         </section>
       )}
+
+      <RelatedResources posts={getRelatedPostsForTopic(product.categoryCode)} postHeading="Related articles" />
     </main>
   )
 }

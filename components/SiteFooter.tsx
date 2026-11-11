@@ -58,6 +58,9 @@ export default function SiteFooter() {
                 { href: '/blog', label: 'Blog' },
                 { href: '/about', label: 'About Us' },
                 { href: '/solutions', label: 'Solutions' },
+                { href: '/solutions/aerosol-fire-extinguisher', label: 'Aerosol Fire Extinguisher' },
+                { href: '/solutions/22mm-digital-display-indicator', label: '22mm Digital Display Indicator' },
+                { href: '/solutions/metal-push-button', label: 'Metal Push Button' },
                 { href: '/contact', label: 'Contact Us' },
               ].map((item) => (
                 <li key={item.href}>

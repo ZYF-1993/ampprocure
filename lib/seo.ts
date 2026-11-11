@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
 import type { CatalogProduct } from '@/lib/catalog-products'
-import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { DEFAULT_OG_IMAGE, SITE_NAME } from '@/lib/site-config'
+
+/** Production origin used for self-referencing canonicals and the sitemap. */
+export const CANONICAL_ORIGIN = 'https://www.upprocure.com'
 
 export function absoluteUrl(path: string): string {
   if (!path || path === '/') {
-    return SITE_URL
+    return CANONICAL_ORIGIN
   }
-  return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
+  return `${CANONICAL_ORIGIN}${path.startsWith('/') ? path : `/${path}`}`
 }
 
 export function truncateSeoText(value: string, maxLength: number): string {
@@ -89,7 +92,7 @@ export function buildPageMetadata({
     description,
     keywords,
     alternates: {
-      canonical: path === '/' ? '/' : path,
+      canonical: absoluteUrl(path),
     },
     robots: {
       index,
