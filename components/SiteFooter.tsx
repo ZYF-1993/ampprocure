@@ -57,6 +57,7 @@ export default function SiteFooter() {
                 { href: '/products', label: 'Products' },
                 { href: '/blog', label: 'Blog' },
                 { href: '/about', label: 'About Us' },
+                { href: '/solutions', label: 'Solutions' },
                 { href: '/contact', label: 'Contact Us' },
               ].map((item) => (
                 <li key={item.href}>
