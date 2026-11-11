@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import MobileInquiryBar from '@/components/MobileInquiryBar'
 import SiteFooter from '@/components/SiteFooter'
 import SiteHeader from '@/components/SiteHeader'
 import WhatsAppChat from '@/components/WhatsAppChat'
 import I18nRuntime from '@/components/I18nRuntime'
-import { CONTACT_EMAIL, DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,10 +21,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/branding/site-favicon.png?v=3', type: 'image/png' },
-      { url: '/branding/site-favicon.png?v=3', rel: 'shortcut icon' },
+      { url: '/branding/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/branding/favicon-32.png', rel: 'shortcut icon', sizes: '32x32', type: 'image/png' },
     ],
-    apple: [{ url: '/branding/site-favicon.png?v=3' }],
+    apple: [{ url: '/branding/apple-touch-icon.png', sizes: '180x180' }],
   },
   title: {
     default: `${SITE_NAME} | Electrical Protection Products Supplier`,
@@ -73,11 +74,11 @@ const organizationJsonLd = {
   legalName: 'Wenzhou Xingliu Gongju Youxian Gongsi',
   url: SITE_URL,
   logo: `${SITE_URL}${SITE_LOGO}`,
-  image: `${SITE_URL}/images/company-exterior.jpg`,
+  image: `${SITE_URL}${DEFAULT_OG_IMAGE}`,
   description:
     'Based in Liushi, Wenzhou (the capital of electrical appliances), UPprocure is a premier global sourcing and supply chain platform specializing in professional industrial electrical protection, power metering, and distribution safety solutions.',
   email: CONTACT_EMAIL,
-  telephone: '+86-13552727303',
+  telephone: CONTACT_PHONE_DISPLAY,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'No. 24, Lane 3, Ouchao South Road, Huanghua Village, Liushi Town',
@@ -88,7 +89,7 @@ const organizationJsonLd = {
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+86-13552727303',
+    telephone: CONTACT_PHONE_DISPLAY,
     contactType: 'sales',
     email: CONTACT_EMAIL,
     availableLanguage: ['English', 'Chinese'],
@@ -102,7 +103,10 @@ const websiteJsonLd = {
   url: SITE_URL,
   potentialAction: {
     '@type': 'SearchAction',
-    target: `${SITE_URL}/search?q={search_term_string}`,
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+    },
     'query-input': 'required name=search_term_string',
   },
 }
@@ -114,7 +118,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" translate="no" className={`notranslate ${inter.variable}`}>
-      <body className="flex min-h-screen flex-col bg-white antialiased">
+      <body className="flex min-h-screen flex-col bg-white pb-24 antialiased lg:pb-0">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-gray-900 focus:shadow"
+        >
+          Skip to content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -129,9 +139,14 @@ export default function RootLayout({
         />
         <I18nRuntime />
         <SiteHeader />
-        {children}
+        <div id="main-content" className="flex flex-1 flex-col">
+          {children}
+        </div>
         <SiteFooter />
-        <WhatsAppChat />
+        <div className="hidden lg:contents">
+          <WhatsAppChat />
+        </div>
+        <MobileInquiryBar />
       </body>
     </html>
   )

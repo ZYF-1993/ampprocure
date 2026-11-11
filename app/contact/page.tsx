@@ -1,26 +1,28 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
 import InquiryForm from '@/components/InquiryForm'
-import { CONTACT_EMAIL } from '@/lib/site-config'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import InquiryActions from '@/components/InquiryActions'
+import { buildPageMetadata } from '@/lib/seo'
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, inquiryMailto, inquiryMessage, whatsappHref } from '@/lib/site-config'
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'Contact Us',
-  description: 'Contact upprocure for product enquiries, OEM pricing, samples, or technical support. Our sales team responds within 24 hours.',
-  alternates: {
-    canonical: '/contact',
-  },
+  description: 'Contact upprocure for product enquiries, OEM pricing, samples, or technical support. Reach sales by email, RFQ form, or WhatsApp.',
+  path: '/contact',
+})
+
+type ContactPageProps = {
+  searchParams: Promise<{ product?: string | string[]; topic?: string | string[] }>
 }
 
-export default function ContactPage() {
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const params = await searchParams
+  const rawTopic = params.product || params.topic || ''
+  const topic = (Array.isArray(rawTopic) ? rawTopic[0] : rawTopic).trim()
   return (
     <main className="bg-white">
       <section className="border-b border-gray-100 bg-gray-50 py-12">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-4 flex items-center gap-2 text-xs text-gray-400" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-gray-600">Home</Link>
-            <span>/</span>
-            <span className="text-gray-600">Contact Us</span>
-          </nav>
+          <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Contact Us', path: '/contact' }]} />
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">Contact Us</h1>
           <p className="mt-3 max-w-2xl text-base text-gray-500">
             Send us an enquiry and our sales team will respond within 24 hours. Samples, technical datasheets, and OEM pricing available on request.
@@ -56,7 +58,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Email</p>
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="mt-0.5 text-sm text-gray-800 transition-colors hover:text-green-700">{CONTACT_EMAIL}</a>
+                  <a href={inquiryMailto(topic ? `RFQ: ${topic}` : 'Product inquiry')} className="mt-0.5 text-sm text-gray-800 transition-colors hover:text-green-700">{CONTACT_EMAIL}</a>
                 </div>
               </div>
 
@@ -68,7 +70,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Phone</p>
-                  <a href="tel:+8613552727303" className="mt-0.5 text-sm text-gray-800 transition-colors hover:text-green-700">+86-13552727303</a>
+                  <a href="tel:+8613552727303" className="mt-0.5 text-sm text-gray-800 transition-colors hover:text-green-700">{CONTACT_PHONE_DISPLAY}</a>
                 </div>
               </div>
 
@@ -81,7 +83,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">WhatsApp</p>
-                  <a href="https://wa.me/8613552727303" target="_blank" rel="noopener noreferrer" className="mt-0.5 text-sm text-gray-800 transition-colors hover:text-green-700">+86-13552727303</a>
+                  <a href={whatsappHref(inquiryMessage(topic))} target="_blank" rel="noopener noreferrer" className="mt-0.5 text-sm text-gray-800 transition-colors hover:text-green-700">{CONTACT_PHONE_DISPLAY}</a>
                 </div>
               </div>
 
@@ -100,10 +102,16 @@ export default function ContactPage() {
             </div>
 
             <div className="lg:col-span-2">
-              <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
-                <h2 className="text-lg font-bold text-gray-900">Send an Enquiry</h2>
-                <p className="mb-6 mt-1 text-xs text-gray-500">All fields marked * are required.</p>
-                <InquiryForm source="contact-sales" submitLabel="Send Enquiry" twoColumnOnDesktop showInquiryType />
+              <div id="rfq" className="scroll-mt-24 rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+                <h2 className="text-lg font-bold text-gray-900">Send an RFQ</h2>
+                <p className="mt-1 text-sm text-gray-600">Use email, this form, or WhatsApp. All three reach the sales team.</p>
+                <div className="my-5">
+                  <InquiryActions topic={topic || undefined} formHref="#rfq-form" />
+                </div>
+                <div id="rfq-form" className="scroll-mt-24">
+                  <p className="mb-4 text-xs text-gray-500">Fields marked * are required.</p>
+                  <InquiryForm source="contact-sales" defaultProduct={topic} submitLabel="Send RFQ" twoColumnOnDesktop showInquiryType redirectOnSuccess="/thank-you" />
+                </div>
               </div>
             </div>
 

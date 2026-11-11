@@ -1,7 +1,7 @@
 'use client'
 
-import Image from 'next/image'
 import { useState } from 'react'
+import OptimizedImage from '@/components/OptimizedImage'
 
 type ProductGalleryProps = {
   images: readonly string[]
@@ -25,7 +25,7 @@ export default function ProductGallery({ images, name }: ProductGalleryProps) {
   return (
     <div className="flex flex-col gap-3">
       <div className="relative aspect-square overflow-hidden rounded-2xl border border-gray-100 bg-gray-50">
-        <Image
+        <OptimizedImage
           src={activeImage}
           alt={name}
           fill
@@ -79,7 +79,7 @@ export default function ProductGallery({ images, name }: ProductGalleryProps) {
               aria-pressed={active}
               onClick={() => setActiveIndex(index)}
             >
-              <Image src={image} alt={name} fill sizes="64px" className="object-contain p-1.5" />
+              <OptimizedImage src={image} alt="" variant="thumb" fill sizes="64px" className="object-contain p-1.5" />
             </button>
           )
         })}

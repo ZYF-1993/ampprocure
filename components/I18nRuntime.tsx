@@ -10,7 +10,9 @@ function applyI18nBindings() {
     return
   }
 
-  document.documentElement.lang = getCurrentLanguage()
+  const language = getCurrentLanguage()
+  document.documentElement.lang = language
+  document.documentElement.dir = language === 'ar' || language === 'he' || language === 'fa' ? 'rtl' : 'ltr'
 
   const textTargets = document.querySelectorAll<HTMLElement>('[data-i18n]')
   textTargets.forEach((element) => {

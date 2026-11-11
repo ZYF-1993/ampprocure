@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
 import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
+import { inquiryMailto, inquiryMessage, whatsappHref } from '@/lib/site-config'
+import HeaderSearch from '@/components/HeaderSearch'
+import OptimizedImage from '@/components/OptimizedImage'
 
 const MAIN_LINKS = [
   { href: '/', label: 'Home' },
@@ -47,7 +49,7 @@ export default function SiteHeader() {
       <div className="container">
         <div className="flex h-16 items-center justify-between lg:h-[72px]">
           <Link href="/" className="flex shrink-0 items-center" aria-label="Go to homepage">
-            <Image src="/branding/site-logo.png" alt="Site logo" width={340} height={92} priority className="h-8 w-auto object-contain lg:h-9" />
+            <OptimizedImage src="/branding/site-logo.png" alt="UPprocure" width={280} height={76} variant="thumb" priority className="h-8 w-auto object-contain lg:h-9" />
           </Link>
 
           <nav className="hidden lg:flex lg:items-center lg:gap-1" aria-label="Main navigation">
@@ -124,11 +126,12 @@ export default function SiteHeader() {
                         <li key={category.slug}>
                           <Link href={`/categories/${category.slug}`} onClick={() => setDesktopProductsOpen(false)} className="product-mega-item">
                             <div className="product-mega-item-thumb">
-                              <Image
+                              <OptimizedImage
                                 src={`/images/categories/${category.slug}.png`}
                                 alt={category.title}
                                 width={100}
                                 height={76}
+                                variant="thumb"
                                 className="h-[76px] w-auto object-contain"
                               />
                             </div>
@@ -215,9 +218,24 @@ export default function SiteHeader() {
             ))}
           </nav>
 
-          <div className="hidden lg:flex lg:items-center lg:gap-3">
-            <Link href="/contact" className="btn-primary">
-              <span data-i18n="header.contactUs">Contact Us</span>
+          <div className="hidden lg:flex lg:items-center lg:gap-2">
+            <HeaderSearch />
+            <a
+              href={inquiryMailto('Product inquiry')}
+              className="rounded-md px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:text-green-700"
+            >
+              Email
+            </a>
+            <a
+              href={whatsappHref(inquiryMessage())}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:text-green-700"
+            >
+              WhatsApp
+            </a>
+            <Link href="/contact#rfq" className="btn-primary">
+              Request Quote
             </Link>
           </div>
 
@@ -348,9 +366,20 @@ export default function SiteHeader() {
                 </Link>
               </li>
             ))}
-            <li className="mt-4 border-t border-gray-100 pt-4">
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn-primary w-full justify-center">
-                <span data-i18n="header.contactUs">Contact Us</span>
+            <li className="mt-4 space-y-2 border-t border-gray-100 pt-4">
+              <a href={inquiryMailto('Product inquiry')} className="flex rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-800">
+                Email inquiry
+              </a>
+              <a
+                href={whatsappHref(inquiryMessage())}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-800"
+              >
+                WhatsApp
+              </a>
+              <Link href="/contact#rfq" onClick={() => setMobileMenuOpen(false)} className="btn-primary w-full justify-center">
+                Request Quote
               </Link>
             </li>
           </ul>

@@ -1,18 +1,14 @@
-import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import SearchClient from './SearchClient'
+import { buildPageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'Search',
   description: 'Search products, categories, pages, and blog content across this B2B website.',
-  alternates: {
-    canonical: '/search',
-  },
-  robots: {
-    index: false,
-    follow: true,
-  },
-}
+  path: '/search',
+  index: false,
+  follow: true,
+})
 
 export default function SearchPage() {
   return (

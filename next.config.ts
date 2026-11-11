@@ -5,7 +5,14 @@ const useR2Assets = process.env.USE_R2_ASSETS === 'true' || process.env.VERCEL =
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, '')
 
 if (useR2Assets && !r2PublicUrl) {
-  throw new Error('R2_PUBLIC_URL is required when deploying with remote static assets.')
+  // Production still fails closed. Preview builds often do not receive
+  // production-scoped env vars, and the pages now ship static files from
+  // /optimized, so a missing R2 URL should skip the rewrite instead of
+  // aborting the deployment.
+  if (process.env.VERCEL_ENV === 'production') {
+    throw new Error('R2_PUBLIC_URL is required when deploying with remote static assets.')
+  }
+  console.warn('R2_PUBLIC_URL is unset; remote image rewrites are disabled for this build.')
 }
 
 const connectSources = ["'self'"]
@@ -40,6 +47,16 @@ const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR || '.next',
   poweredByHeader: false,
 
+  images: {
+    // One format and a short width list so any remaining optimizer calls
+    // do not multiply. Pre-built files in /optimized are served with unoptimized.
+    formats: ['image/webp'],
+    qualities: [75],
+    deviceSizes: [640, 1080, 1920],
+    imageSizes: [64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 31,
+  },
+
   // These packages are loaded from node_modules at runtime (not bundled by webpack).
   // This prevents their entire dependency trees from being inlined into function bundles.
   serverExternalPackages: [
@@ -56,6 +73,7 @@ const nextConfig: NextConfig = {
   outputFileTracingExcludes: {
     '/*': [
       './public/images/**',
+      './public/optimized/**',
       './node_modules/@next/swc-linux-x64-gnu/**/*',
       './node_modules/@next/swc-linux-x64-musl/**/*',
       './node_modules/@next/swc-win32-x64-msvc/**/*',
@@ -85,15 +103,21 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: '/optimized/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=31536000' },
+        ],
+      },
+      {
         source: '/images/:path*',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=31536000' },
         ],
       },
       {
         source: '/branding/:path*',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=31536000' },
         ],
       },
     ]

@@ -126,6 +126,13 @@ export default function InquiryForm({
         className="hidden"
       />
 
+      {defaultProduct ? (
+        <div>
+          <label htmlFor={`${source}-product`} className={labelCls}>Product</label>
+          <input id={`${source}-product`} name="product" type="text" readOnly value={defaultProduct} className={`${inputCls} bg-gray-50 text-gray-700`} />
+        </div>
+      ) : null}
+
       <div className={fieldGridCls}>
         <div>
           <label htmlFor={`${source}-name`} className={labelCls}>Full Name *</label>

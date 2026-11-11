@@ -1,14 +1,12 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
+import { buildPageMetadata } from '@/lib/seo'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'Privacy Policy',
   description: 'upprocure Privacy Policy — how we collect, use, and protect your personal information when you use our website or contact us for B2B inquiries.',
-  alternates: {
-    canonical: '/privacy',
-  },
-}
+  path: '/privacy',
+})
 
 const sections = [
   {
