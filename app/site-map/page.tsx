@@ -3,12 +3,13 @@ import Link from 'next/link'
 import { BLOG_POSTS } from '@/lib/blog-posts'
 import { CATALOG_PRODUCTS } from '@/lib/catalog-products'
 import { FRAMEWORK_CATEGORIES } from '@/lib/framework-data'
+import { absoluteUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Site Map',
   description: 'Browse all key pages, categories, product detail pages, and blog articles on this website.',
   alternates: {
-    canonical: '/site-map',
+    canonical: absoluteUrl('/site-map'),
   },
   robots: {
     index: false,

@@ -5,11 +5,13 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import InquiryActions from '@/components/InquiryActions'
 import InquiryChannels from '@/components/InquiryChannels'
 import OptimizedImage from '@/components/OptimizedImage'
+import RelatedResources from '@/components/RelatedResources'
+import { getCategorySeo } from '@/lib/category-seo'
 import { getCategoryContent } from '@/lib/category-content'
 import { FRAMEWORK_CATEGORIES, getCategoryBySlug, getProductsByCategorySlug } from '@/lib/framework-data'
+import { getCategorySpotlightProducts, getRelatedPostsForTopic } from '@/lib/internal-links'
 import { absoluteOptimizedSrc } from '@/lib/optimized-image'
-import { buildPageMetadata, jsonLdScript } from '@/lib/seo'
-import { SITE_URL } from '@/lib/site-config'
+import { absoluteUrl, buildPageMetadata, jsonLdScript } from '@/lib/seo'
 
 type CategoryPageProps = {
   params: Promise<{ slug: string }>
@@ -30,13 +32,16 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     }
   }
 
-  const title = `${category.title} Manufacturer & Supplier`
+  const seo = getCategorySeo(category.slug)
+  const title = seo?.title ?? `${category.title} Manufacturer & Supplier`
+  const description = seo?.description ?? category.summary
   const image = absoluteOptimizedSrc(`/images/categories/${category.slug}.png`, 'thumb')
 
   return buildPageMetadata({
     title,
-    description: category.summary,
+    description,
     path: `/categories/${category.slug}`,
+    absoluteTitle: Boolean(seo),
     ogImage: image,
   })
 }
@@ -51,7 +56,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   const products = getProductsByCategorySlug(category.slug)
   const content = getCategoryContent(category.slug)
-  const categoryUrl = `${SITE_URL}/categories/${category.slug}`
+  const seo = getCategorySeo(category.slug)
+  const heading = seo?.h1 ?? category.title
+  const description = seo?.description ?? category.summary
+  const categoryUrl = absoluteUrl(`/categories/${category.slug}`)
 
   const faqJsonLd =
     content && content.faq.length > 0
@@ -72,10 +80,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const categoryJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: category.title,
-    description: category.summary,
+    name: heading,
+    description,
     about: 'Industrial product category',
-    isPartOf: `${SITE_URL}/products`,
+    isPartOf: absoluteUrl('/products'),
     numberOfItems: products.length,
     url: categoryUrl,
     mainEntity: {
@@ -85,7 +93,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         '@type': 'ListItem',
         position: index + 1,
         name: product.name,
-        url: `${SITE_URL}/products/${product.slug}`,
+        url: absoluteUrl(`/products/${product.slug}`),
       })),
     },
   }
@@ -117,8 +125,16 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             ]}
           />
 
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{category.title}</h1>
-          <p className="mt-3 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">{category.summary}</p>
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{heading}</h1>
+          {seo ? (
+            <div className="mt-4 max-w-3xl space-y-4 text-base leading-8 text-slate-600 sm:text-lg">
+              {seo.intro.map((paragraph) => (
+                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-3 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">{category.summary}</p>
+          )}
           <div className="mt-6">
             <InquiryActions topic={category.title} formHref="#category-rfq-form" />
           </div>
@@ -244,6 +260,35 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   </div>
                 </article>
 
+                {content.selection && content.selection.length > 0 && (
+                  <article>
+                    <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Catalog selection</h2>
+                    <div className="mt-5 space-y-6">
+                      {content.selection.map((group) => (
+                        <div key={group.title}>
+                          <h3 className="text-base font-semibold text-slate-900">{group.title}</h3>
+                          <ul className="mt-3 space-y-3">
+                            {group.slugs.map((productSlug) => {
+                              const item = products.find((product) => product.slug === productSlug)
+                              if (!item) {
+                                return null
+                              }
+                              return (
+                                <li key={item.slug} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                                  <Link href={`/products/${item.slug}`} className="text-sm font-semibold text-green-700 hover:text-green-800">
+                                    {item.name}
+                                  </Link>
+                                  <p className="mt-1 text-sm leading-6 text-slate-600">{item.technicalSummary}</p>
+                                </li>
+                              )
+                            })}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </article>
+                )}
+
                 <article>
                   <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                     Industry Application Scenarios
@@ -287,6 +332,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
         </section>
       )}
+
+      <RelatedResources
+        showSolutions
+        products={getCategorySpotlightProducts(category.slug)}
+        posts={getRelatedPostsForTopic(category.slug)}
+        productHeading="Products to compare"
+      />
 
       <section className="border-t border-slate-200 bg-white py-12">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">

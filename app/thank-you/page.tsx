@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { absoluteUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Thank You — Enquiry Received',
   description: 'Thank you for contacting upprocure. Our sales team will reply to your enquiry within 24 business hours.',
   alternates: {
-    canonical: '/thank-you',
+    canonical: absoluteUrl('/thank-you'),
   },
   robots: {
     index: false,

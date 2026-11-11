@@ -4,11 +4,12 @@ import OptimizedImage from '@/components/OptimizedImage'
 import { absoluteOptimizedSrc, rewriteContentImages } from '@/lib/optimized-image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import RelatedResources from '@/components/RelatedResources'
 import { BLOG_DETAIL_CONTENT } from '@/lib/blog-detail-content'
 import { BLOG_POSTS } from '@/lib/blog-posts'
-import { CATALOG_PRODUCTS } from '@/lib/catalog-products'
-import { jsonLdScript, truncateSeoText } from '@/lib/seo'
-import { DEFAULT_KEYWORDS, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { getRelatedBlogPosts, getRelatedProductsForBlog } from '@/lib/internal-links'
+import { absoluteUrl, jsonLdScript, truncateSeoText } from '@/lib/seo'
+import { DEFAULT_KEYWORDS, SITE_LOGO, SITE_NAME } from '@/lib/site-config'
 import { getBlogBySlug } from '@/lib/site-content'
 
 type BlogDetailPageProps = {
@@ -22,42 +23,6 @@ function formatDate(value: string) {
     year: 'numeric',
     timeZone: 'UTC',
   }).format(new Date(`${value}T00:00:00Z`))
-}
-
-function formatShortDate(value: string) {
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: 'UTC',
-  }).format(new Date(`${value}T00:00:00Z`))
-}
-
-function scoreProductsByText(text: string) {
-  const tokens = text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, ' ')
-    .split(' ')
-    .filter((token) => token.length >= 3)
-
-  return [...CATALOG_PRODUCTS]
-    .map((product) => {
-      const bag = `${product.name} ${product.category} ${product.technicalSummary}`.toLowerCase()
-      const score = tokens.reduce((sum, token) => (bag.includes(token) ? sum + 1 : sum), 0)
-      return { product, score }
-    })
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 1)
-    .map((item) => item.product)
-}
-
-function getRelatedPosts(slug: string) {
-  const posts = [...BLOG_POSTS].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt))
-  const current = posts.findIndex((post) => post.slug === slug)
-  const afterCurrent = current >= 0 ? posts.slice(current + 1) : []
-  const beforeCurrent = current > 0 ? posts.slice(0, current) : []
-
-  return [...afterCurrent, ...beforeCurrent].slice(0, 3)
 }
 
 export function generateStaticParams() {
@@ -84,16 +49,16 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
     description,
     keywords: [...DEFAULT_KEYWORDS, ...post.tags],
     alternates: {
-      canonical: `/blog/${post.slug}`,
+      canonical: absoluteUrl(`/blog/${post.slug}`),
     },
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/blog/${post.slug}`,
+      url: absoluteUrl(`/blog/${post.slug}`),
       type: 'article',
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
-      authors: [`${SITE_URL}/about`],
+      authors: [absoluteUrl('/about')],
       tags: [...post.tags],
       images: [
         {
@@ -122,9 +87,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     notFound()
   }
 
-  const relatedPosts = getRelatedPosts(post.slug)
-  const featuredProducts = scoreProductsByText(`${detail.title} ${detail.description} ${post.tags.join(' ')}`)
-  const productCategoryHref = post.tags.includes('PV Combiner Box') ? '/categories/pv-combiner-box' : '/categories/aerosol-fire-extinguisher'
+  const relatedPosts = getRelatedBlogPosts(post.slug)
+  const featuredProducts = getRelatedProductsForBlog(post.tags)
+  const productCategoryHref = post.tags.includes('PV Combiner Box')
+    ? '/categories/pv-combiner-box'
+    : post.tags.some((tag) => tag.toLowerCase().includes('aerosol'))
+      ? '/categories/aerosol-fire-extinguisher'
+      : '/products'
 
   const blogJsonLd = {
     '@context': 'https://schema.org',
@@ -137,20 +106,20 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     author: {
       '@type': 'Organization',
       name: detail.author || SITE_NAME,
-      url: `${SITE_URL}/about`,
+      url: absoluteUrl('/about'),
     },
     publisher: {
       '@type': 'Organization',
       name: SITE_NAME,
-      url: SITE_URL,
+      url: absoluteUrl('/'),
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}${SITE_LOGO}`,
+        url: absoluteUrl(SITE_LOGO),
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE_URL}/blog/${post.slug}`,
+      '@id': absoluteUrl(`/blog/${post.slug}`),
     },
     keywords: post.tags.join(', '),
     articleSection: post.tags[0],
@@ -166,19 +135,19 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: SITE_URL,
+        item: absoluteUrl('/'),
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: `${SITE_URL}/blog`,
+        item: absoluteUrl('/blog'),
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: detail.title,
-        item: `${SITE_URL}/blog/${post.slug}`,
+        item: absoluteUrl(`/blog/${post.slug}`),
       },
     ],
   }
@@ -324,55 +293,24 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 </dl>
               </div>
 
-              <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-900">Related Articles</h3>
-                <ul className="mt-4 space-y-4">
-                  {relatedPosts.map((related) => (
-                    <li key={related.slug}>
-                      <Link href={`/blog/${related.slug}`} className="group">
-                        <p className="text-sm font-medium leading-snug text-gray-800 transition-colors group-hover:text-green-700">
-                          {BLOG_DETAIL_CONTENT[related.slug]?.title || related.title}
-                        </p>
-                        <p className="mt-0.5 text-xs text-gray-400">{formatShortDate(related.publishedAt)}</p>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-900">Featured Products</h3>
-                <ul className="mt-4 space-y-3">
-                  {featuredProducts.map((product) => (
-                    <li key={product.slug}>
-                      <Link
-                        href={`/products/${product.slug}`}
-                        className="group flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50 p-2.5 transition-colors hover:border-green-200 hover:bg-green-50"
-                      >
-                        <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md bg-white">
-                          <OptimizedImage src={product.image} alt={product.name} variant="thumb" fill sizes="56px" className="object-contain p-1" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="line-clamp-2 text-xs font-medium leading-snug text-gray-800 transition-colors group-hover:text-green-700">
-                            {product.name}
-                          </p>
-                          <p className="mt-1 text-[11px] font-medium text-green-600">View Product →</p>
-                        </div>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={productCategoryHref}
-                  className="mt-3 inline-flex w-full justify-center rounded-lg border border-gray-200 py-2 text-xs font-medium text-gray-600 transition-colors hover:border-green-300 hover:text-green-700"
-                >
-                  View All Products →
-                </Link>
-              </div>
             </div>
           </aside>
         </div>
       </article>
+
+      <RelatedResources
+        products={featuredProducts}
+        posts={relatedPosts}
+        productHeading="Related products"
+        postHeading="Related articles"
+      />
+      <div className="bg-slate-50 px-4 pb-12 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl">
+          <Link href={productCategoryHref} className="text-sm font-semibold text-green-700 hover:text-green-800">
+            Browse the related category
+          </Link>
+        </div>
+      </div>
     </main>
   )
 }

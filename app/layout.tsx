@@ -6,7 +6,8 @@ import SiteFooter from '@/components/SiteFooter'
 import SiteHeader from '@/components/SiteHeader'
 import WhatsAppChat from '@/components/WhatsAppChat'
 import I18nRuntime from '@/components/I18nRuntime'
-import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { CANONICAL_ORIGIN } from '@/lib/seo'
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_LOGO, SITE_NAME } from '@/lib/site-config'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,7 +16,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(CANONICAL_ORIGIN),
   other: {
     google: 'notranslate',
   },
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME} | Electrical Protection Products Supplier`,
     description: SITE_DESCRIPTION,
-    url: SITE_URL,
+    url: CANONICAL_ORIGIN,
     images: [
       {
         url: DEFAULT_OG_IMAGE,
@@ -72,9 +73,9 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: SITE_NAME,
   legalName: 'Wenzhou Xingliu Gongju Youxian Gongsi',
-  url: SITE_URL,
-  logo: `${SITE_URL}${SITE_LOGO}`,
-  image: `${SITE_URL}${DEFAULT_OG_IMAGE}`,
+  url: CANONICAL_ORIGIN,
+  logo: `${CANONICAL_ORIGIN}${SITE_LOGO}`,
+  image: `${CANONICAL_ORIGIN}${DEFAULT_OG_IMAGE}`,
   description:
     'Based in Liushi, Wenzhou (the capital of electrical appliances), UPprocure is a premier global sourcing and supply chain platform specializing in professional industrial electrical protection, power metering, and distribution safety solutions.',
   email: CONTACT_EMAIL,
@@ -100,12 +101,12 @@ const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: SITE_NAME,
-  url: SITE_URL,
+  url: CANONICAL_ORIGIN,
   potentialAction: {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+      urlTemplate: `${CANONICAL_ORIGIN}/search?q={search_term_string}`,
     },
     'query-input': 'required name=search_term_string',
   },

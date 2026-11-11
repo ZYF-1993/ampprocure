@@ -8,12 +8,18 @@ export type CategoryFaq = {
   answer: string
 }
 
+export type CategorySelectionGroup = {
+  title: string
+  slugs: readonly string[]
+}
+
 export type CategoryContent = {
   buyingGuideTitle: string
   buyingGuide: readonly string[]
   applications: readonly CategoryApplication[]
   logistics: readonly string[]
   faq: readonly CategoryFaq[]
+  selection?: readonly CategorySelectionGroup[]
 }
 
 export const CATEGORY_CONTENT: Readonly<Record<string, CategoryContent>> = {
@@ -147,45 +153,72 @@ export const CATEGORY_CONTENT: Readonly<Record<string, CategoryContent>> = {
     ],
   },
   'over-voltage-protector': {
-    buyingGuideTitle: 'Over/Under Voltage Protector Buying Guide for Global Procurement',
+    buyingGuideTitle: 'How to choose an adjustable voltage protector',
     buyingGuide: [
-      'In regions with unstable grids, the priority is matching protection thresholds and switching capacity to local supply behavior. Confirm the rated switching current (commonly 40 A, 63 A, or 80 A single-phase) and that the internal relay or contactor can make and break the full load without contact welding. The defining feature is adjustable protection: an over-voltage trip (typically 250–300 V), an under-voltage trip (140–200 V), and a configurable auto-recovery delay so the load is not re-energized until the supply is stable.',
-      'Response time should be well under 0.5 s to protect motor-driven appliances from sustained over-voltage. For three-phase systems, look for combined functions — phase-loss, phase-sequence, open-neutral, and three-phase unbalance protection — which prevent the single-phasing and reverse-rotation damage that destroys three-phase motors. Integrated metering (V, I, kWh) adds diagnostic value, and a password lock prevents unauthorized threshold changes. Confirm CE and RoHS conformity for the target market.',
+      'Match the form and the published current to the load. DIN-rail single-phase protection in this catalog is the PN2 series, listed at 40A, 63A, and 80A. Three-phase 4-wire protection is STATS-06 at AC 380V, listed at 63A and 100A. Plug-in protection is CZVA1 (10A / 2300W), CZVA2 (10A / 2200W or 13A / 2860W), and CZVA3 (16A / 3680W, EU plug).',
+      'Use an adjustable model when the trip points have to follow the local grid. PN2-VA2 and PN2-VA4 list over-voltage at 130–300V AC and under-voltage at 80–210V AC. CZVA1 lists 230–300V and 140–210V. CZVA3 lists 130–300V and 80–210V. STATS-06 lists over-voltage at 230–300V and under-voltage at 120–210V. Choose CZVA2 when a fixed cutoff is enough: 165V±5V and 265V±5V.',
+      'Then match the display. Dual voltage and current displays are on the PN2 series and on CZVA3. kWh is on PN2-VAK. Voltage, current, power, frequency, and kWh are on PN2-VAFD. STATS-03 shows three input voltages, STATS-04 adds output current, and STATS-05 adds output voltage and output current. STATS-06 shows L1, L2, and L3 voltage and current. Send the model and rating to sales@upprocure.com, the RFQ form, or WhatsApp +86-13552727303.',
     ],
     applications: [
       {
-        title: 'Unstable-Grid Residential Protection',
-        body: 'Across markets in Africa, South Asia, and the Middle East, self-resetting protectors shield refrigerators, air conditioners, and electronics from over/under-voltage and automatically restore power once the grid stabilizes — with no manual reset call-out.',
+        title: 'DIN-rail single-phase boards',
+        body: 'PN2-VA2, PN2-VA3, PN2-VA4, PN2-VA5, PN2-VAK, and PN2-VAFD are self-resetting protectors with a digital display, listed at 40A, 63A, and 80A. PN2-VA4 is the housing and packaging logo version. PN2-VAK adds kWh. PN2-VAFD shows voltage, current, power, frequency, and kWh.',
       },
       {
-        title: 'Three-Phase Motor & Equipment Protection',
-        body: 'Multi-function relays add phase-loss, phase-sequence, and unbalance detection, preventing single-phasing and reverse rotation that cause costly motor burnout in pumps, compressors, and CNC machinery.',
+        title: 'Plug-in appliance protection',
+        body: 'CZVA1 is an adjustable socket with a digital display for EU, UK, and South Africa plugs, rated 2300W / 10A. CZVA2 is the fixed-threshold socket (165V±5V and 265V±5V) in 10A and 13A versions. CZVA3 is the EU 16A / 3680W socket with voltage and current on one display and over-current protection.',
       },
       {
-        title: 'Commercial & Rental Properties',
-        body: 'Panel-mounted protectors with metering give landlords and facility managers voltage-quality visibility and automatic load protection across multiple tenant circuits.',
+        title: 'Three-phase distribution',
+        body: 'STATS-06 is the AC 380V 3-phase 4-wire protector in 63A and 100A, with a color display of L1/L2/L3 voltage and current. The published functions are over/under voltage, over-current, phase loss, open neutral, phase sequence, and unbalance.',
       },
       {
-        title: 'Source-Redundant Installations',
-        body: 'Three-way transfer variants monitor multiple incoming sources and switch to the next in-spec supply, combining voltage protection with continuity for sites with generators or solar.',
+        title: 'Multiple AC sources',
+        body: 'STATS-03, STATS-04, and STATS-05 are 3-way automatic transfer switches. STATS-03 shows three input voltages. STATS-04 adds output current and is listed at 63A, 80A, and 100A. STATS-05 shows three input voltages, output voltage, and output current, at the same current options.',
       },
     ],
     logistics: [
-      'We ship globally under Incoterms 2020 (EXW, FOB, CIF), with 3–7 working days for stocked models and 15–30 days for OEM/ODM and bulk orders, confirmed on the proforma invoice. Default threshold presets can be factory-set to your local grid profile so units arrive ready to install.',
-      'As electronic assemblies, units are packed in anti-static, moisture-barrier inner cartons inside reinforced master cartons, palletized for container transit and cushioned against vibration. CE/RoHS documentation, test reports, and a packing list accompany each shipment for smooth clearance.',
+      'Ask for a quotation with the model, current rating, destination, and whether you need the logo option published for PN2-VA4, PN2-VA5, or CZVA3. Email sales@upprocure.com, use the RFQ form on this page, or WhatsApp +86-13552727303.',
+      'Packing and shipping terms are confirmed on the quotation. This page does not publish prices, minimum order quantities, or lead times.',
     ],
     faq: [
       {
-        question: 'Can thresholds, display, and branding be customized?',
-        answer: 'Yes. We offer OEM/ODM on factory threshold presets, display type (LED/LCD/color), current rating, housing color, and on-screen and label branding. Provide your grid parameters and artwork for a sample and timeline.',
+        question: 'Which catalog models are adjustable over and under voltage protectors?',
+        answer: 'The PN2 series, CZVA1, CZVA3, and STATS-06 publish adjustable thresholds. PN2-VA2 and PN2-VA4 list over-voltage at 130–300V AC and under-voltage at 80–210V AC. CZVA1 lists 230–300V and 140–210V. CZVA3 lists 130–300V and 80–210V. STATS-06 lists over-voltage at 230–300V and under-voltage at 120–210V. CZVA2 is the fixed-threshold socket, at 165V±5V and 265V±5V.',
       },
       {
-        question: 'How are these devices certified?',
-        answer: 'Our protectors carry CE and RoHS conformity with per-model test reports and are designed to the relevant IEC low-voltage control-gear requirements. Tell us the destination market to confirm the available documentation.',
+        question: 'Which voltage protectors include a display?',
+        answer: 'PN2 models show voltage and current on a dual digital display. PN2-VAK also shows kWh. PN2-VAFD shows voltage, current, power, frequency, and kWh. CZVA1 has a digital LED voltage display. CZVA3 shows voltage and current. STATS-03 shows three input voltages. STATS-04 adds output current. STATS-05 shows three input voltages, output voltage, and output current. STATS-06 shows L1, L2, and L3 voltage and current. CZVA2 uses three LED status indicators rather than a numeric display.',
       },
       {
-        question: 'What are your sample and MOQ terms?',
-        answer: 'Paid samples are available before bulk purchase, typically credited against your first order. Standard models carry a low MOQ, while OEM presets and branding require a higher minimum. Contact us for a model-specific quotation.',
+        question: 'Which models include over-current protection?',
+        answer: 'The PN2 series includes over-current protection with the voltage functions. CZVA3 adds over-current protection on the EU 16A socket. STATS-06 includes over-current protection together with phase-loss, open-neutral, phase-sequence, and unbalance protection. CZVA1 and CZVA2 are voltage cutoff sockets and do not list over-current protection.',
+      },
+      {
+        question: 'Are the voltage protectors on this page AC or DC?',
+        answer: 'They are AC. PN2 models are listed at AC 220V, with AC 110V noted as customizable on the PN2 pages. The CZVA sockets are for AC appliance plugs. STATS-06 is AC 380V 3-phase 4-wire. DC miniature breakers are in the Circuit Breaker category. DC combiner boxes are in PV Combiner Box.',
+      },
+      {
+        question: 'What current ratings are published?',
+        answer: 'PN2 models are listed at 40A, 63A, and 80A. STATS-04 and STATS-05 are listed at 63A, 80A, and 100A. STATS-06 is listed at 63A and 100A. CZVA1 is 10A / 2300W. CZVA2 is 10A / 2200W or 13A / 2860W. CZVA3 is 16A / 3680W.',
+      },
+      {
+        question: 'How do I request a supplier or factory quote?',
+        answer: 'Email sales@upprocure.com, use the RFQ form on this page, or WhatsApp +86-13552727303. Send the model, current rating, and destination. Minimum order and lead time are confirmed on the quotation.',
+      },
+    ],
+    selection: [
+      {
+        title: 'Adjustable DIN-rail protectors with display',
+        slugs: ['PN2-VA2', 'PN2-VA3', 'PN2-VA4', 'PN2-VA5', 'PN2-VAK', 'PN2-VAFD'],
+      },
+      {
+        title: 'Plug-in voltage protector sockets',
+        slugs: ['CZVA1', 'CZVA2', 'CZVA3'],
+      },
+      {
+        title: 'Three-phase protection and 3-way transfer',
+        slugs: ['STATS-06', 'STATS-03', 'STATS-04', 'STATS-05'],
       },
     ],
   },

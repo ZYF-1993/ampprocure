@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { SITE_URL } from '@/lib/site-config'
+import { CANONICAL_ORIGIN } from '@/lib/seo'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/', '/search', '/thank-you'],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
+    sitemap: `${CANONICAL_ORIGIN}/sitemap.xml`,
+    host: CANONICAL_ORIGIN,
   }
 }

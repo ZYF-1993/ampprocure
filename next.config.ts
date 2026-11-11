@@ -126,6 +126,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/inquire', destination: '/contact', permanent: true },
+      { source: '/blog/placeholder-blog-post-:id(\\d+)', destination: '/blog', permanent: true },
+      { source: '/blog/:slug(placeholder-.+)', destination: '/blog', permanent: true },
       { source: '/product/:slug*', destination: '/products/:slug*', permanent: true },
       { source: '/productshow/:slug*', destination: '/products/:slug*', permanent: true },
     ]
