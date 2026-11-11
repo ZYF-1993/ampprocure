@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import OptimizedImage from '@/components/OptimizedImage'
+import { absoluteOptimizedSrc, rewriteContentImages } from '@/lib/optimized-image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BLOG_DETAIL_CONTENT } from '@/lib/blog-detail-content'
 import { BLOG_POSTS } from '@/lib/blog-posts'
 import { CATALOG_PRODUCTS } from '@/lib/catalog-products'
-import { truncateSeoText } from '@/lib/seo'
+import { jsonLdScript, truncateSeoText } from '@/lib/seo'
 import { DEFAULT_KEYWORDS, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site-config'
 import { getBlogBySlug } from '@/lib/site-content'
 
@@ -95,7 +97,7 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
       tags: [...post.tags],
       images: [
         {
-          url: `${SITE_URL}${post.image}`,
+          url: absoluteOptimizedSrc(post.image),
           width: 1200,
           height: 630,
           alt: detail?.title || post.title,
@@ -106,7 +108,7 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
       card: 'summary_large_image',
       title,
       description,
-      images: [`${SITE_URL}${post.image}`],
+      images: [absoluteOptimizedSrc(post.image)],
     },
   }
 }
@@ -129,7 +131,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     '@type': 'BlogPosting',
     headline: detail.title,
     description: detail.description,
-    image: [`${SITE_URL}${post.image}`],
+    image: [absoluteOptimizedSrc(post.image)],
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     author: {
@@ -186,29 +188,25 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(blogJsonLd).replace(/</g, '\\u003c'),
+          __html: jsonLdScript(blogJsonLd),
         }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, '\\u003c'),
+          __html: jsonLdScript(breadcrumbJsonLd),
         }}
       />
 
       <section className="border-b border-gray-100 bg-gray-50 py-10">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-5 flex items-center gap-2 text-xs text-gray-400" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-gray-600">
-              Home
-            </Link>
-            <span>/</span>
-            <Link href="/blog" className="hover:text-gray-600">
-              Blog
-            </Link>
-            <span>/</span>
-            <span className="max-w-[220px] truncate text-gray-600">{detail.title}</span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { name: 'Home', href: '/' },
+              { name: 'Blog', href: '/blog' },
+              { name: detail.title, path: `/blog/${post.slug}` },
+            ]}
+          />
 
           <div className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
@@ -235,7 +233,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:px-8">
           <div className="min-w-0">
             <div className="relative mb-8 aspect-[1200/650] overflow-hidden rounded-xl bg-gray-100">
-              <Image
+              <OptimizedImage
                 src={post.image}
                 alt={detail.title}
                 fill
@@ -245,7 +243,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               />
             </div>
 
-            <div dangerouslySetInnerHTML={{ __html: detail.articleHtml }} />
+            <div dangerouslySetInnerHTML={{ __html: rewriteContentImages(detail.articleHtml) }} />
 
             <div className="mt-10 rounded-xl border border-green-100 bg-gradient-to-br from-green-50 to-white p-6">
               <p className="text-xs font-semibold uppercase tracking-wider text-green-600">Factory Direct · OEM Available</p>
@@ -277,9 +275,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <div className="sticky top-24 space-y-6">
               <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
                 <div className="relative h-36 w-full">
-                  <Image
+                  <OptimizedImage
                     src="/images/banner/about-bg.jpg"
-                    alt="UPPROCURE factory — IEC-certified electrical component manufacturer"
+                    alt="UPprocure factory"
                     fill
                     sizes="280px"
                     className="object-cover"
@@ -293,13 +291,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   </p>
                   <div className="mt-3 flex items-center justify-center gap-3">
                     <div className="relative h-8 w-8">
-                      <Image src="/images/ce.png" alt="CE certified" fill sizes="32px" className="object-contain" />
+                      <OptimizedImage src="/images/ce.png" alt="CE certified" variant="thumb" fill sizes="32px" className="object-contain" />
                     </div>
                     <div className="relative h-8 w-12">
-                      <Image src="/images/TUV.png" alt="TUV certified" fill sizes="48px" className="object-contain" />
+                      <OptimizedImage src="/images/TUV.png" alt="TUV certified" variant="thumb" fill sizes="48px" className="object-contain" />
                     </div>
                     <div className="relative h-8 w-12">
-                      <Image src="/images/rohs.png" alt="RoHS compliant" fill sizes="48px" className="object-contain" />
+                      <OptimizedImage src="/images/rohs.png" alt="RoHS compliant" variant="thumb" fill sizes="48px" className="object-contain" />
                     </div>
                   </div>
                   <Link href="/contact" className="btn-primary mt-4 inline-flex w-full justify-center py-2 text-xs">
@@ -352,7 +350,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                         className="group flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50 p-2.5 transition-colors hover:border-green-200 hover:bg-green-50"
                       >
                         <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md bg-white">
-                          <Image src={product.image} alt={product.name} fill sizes="56px" className="object-contain p-1" />
+                          <OptimizedImage src={product.image} alt={product.name} variant="thumb" fill sizes="56px" className="object-contain p-1" />
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="line-clamp-2 text-xs font-medium leading-snug text-gray-800 transition-colors group-hover:text-green-700">

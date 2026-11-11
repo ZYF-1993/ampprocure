@@ -1,12 +1,16 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import InquiryActions from '@/components/InquiryActions'
+import InquiryChannels from '@/components/InquiryChannels'
+import OptimizedImage from '@/components/OptimizedImage'
 import ProductGallery from '@/components/ProductGallery'
 import { CATALOG_PRODUCTS, type CatalogProduct } from '@/lib/catalog-products'
+import { absoluteOptimizedSrc } from '@/lib/optimized-image'
 import { PRODUCT_DETAIL_CONTENT } from '@/lib/product-detail-content'
 import { PRODUCT_GALLERY_IMAGES } from '@/lib/product-gallery-images.generated'
-import { getProductDisplayName, getProductSeoDescription, getProductSeoTitle } from '@/lib/seo'
+import { absoluteUrl, getProductDisplayName, getProductSeoDescription, getProductSeoTitle, jsonLdScript } from '@/lib/seo'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 import { getCanonicalProductSlug, getProductBySlug } from '@/lib/site-content'
 
@@ -701,9 +705,10 @@ function ProductCard({ product }: { product: CatalogProduct }) {
       aria-label={product.name}
     >
       <div className="relative h-48 w-full overflow-hidden bg-gray-50">
-        <Image
+        <OptimizedImage
           src={product.image}
           alt={product.name}
+          variant="thumb"
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
@@ -754,10 +759,10 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
     openGraph: {
       title: `${title} | ${SITE_NAME}`,
       description,
-      url: `${SITE_URL}/products/${product.slug}`,
+      url: absoluteUrl(`/products/${getCanonicalProductSlug(product.slug)}`),
       images: [
         {
-          url: product.image,
+          url: absoluteOptimizedSrc(product.image),
           alt: displayName,
         },
       ],
@@ -767,7 +772,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
       card: 'summary_large_image',
       title: `${title} | ${SITE_NAME}`,
       description,
-      images: [product.image],
+      images: [absoluteOptimizedSrc(product.image)],
     },
   }
 }
@@ -786,33 +791,22 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   const displayName = getProductDisplayName(product)
   const productUrl = `${SITE_URL}/products/${product.slug}`
 
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/products` },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: product.category,
-        item: `${SITE_URL}/categories/${product.categoryCode}`,
-      },
-      { '@type': 'ListItem', position: 4, name: displayName, item: productUrl },
-    ],
-  }
-
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: displayName,
-    image: galleryImages.map((src) => (src.startsWith('http') ? src : `${SITE_URL}${src}`)),
+    image: galleryImages.map((src) => absoluteOptimizedSrc(src)),
     description: detailCopy.description,
     sku: product.slug,
     mpn: product.slug,
     brand: {
       '@type': 'Brand',
       name: SITE_NAME,
+    },
+    manufacturer: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
     },
     category: product.category,
     url: productUrl,
@@ -821,17 +815,6 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       name,
       value,
     })),
-    offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'USD',
-      itemCondition: 'https://schema.org/NewCondition',
-      availability: 'https://schema.org/InStock',
-      url: productUrl,
-      seller: {
-        '@type': 'Organization',
-        name: SITE_NAME,
-      },
-    },
   }
 
   return (
@@ -839,33 +822,20 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productJsonLd).replace(/</g, '\\u003c'),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, '\\u003c'),
+          __html: jsonLdScript(productJsonLd),
         }}
       />
 
       <div className="border-b border-gray-100 bg-gray-50 py-3">
         <div className="container">
-          <nav className="flex items-center gap-2 text-xs text-gray-400" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-gray-600" data-i18n="header.home">
-              Home
-            </Link>
-            <span>/</span>
-            <Link href="/products" className="hover:text-gray-600" data-i18n="products.breadcrumbProducts">
-              Products
-            </Link>
-            <span>/</span>
-            <Link href={`/categories/${product.categoryCode}`} className="hover:text-gray-600">
-              {product.category}
-            </Link>
-            <span>/</span>
-            <span className="max-w-[160px] truncate text-gray-600">{displayName}</span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { name: 'Home', href: '/' },
+              { name: 'Products', href: '/products' },
+              { name: product.category, href: `/categories/${product.categoryCode}` },
+              { name: displayName, path: `/products/${product.slug}` },
+            ]}
+          />
         </div>
       </div>
 
@@ -901,24 +871,11 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 </ul>
               </div>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href={`/contact?product=${encodeURIComponent(displayName)}`}
-                  className="btn-primary-lg flex-1 justify-center"
-                  data-i18n="product.requestQuote"
-                >
-                  Request Quotation
-                </Link>
-                <Link
-                  href="/contact"
-                  className="btn-outline-lg flex-1 justify-center"
-                  data-i18n="product.askTechnical"
-                >
-                  Ask Technical Question
-                </Link>
+              <div className="mt-8">
+                <InquiryActions topic={displayName} formHref="#product-rfq-form" />
               </div>
 
-              <p className="mt-4 text-xs text-gray-400" data-i18n="product.availability">
+              <p className="mt-4 text-xs text-gray-500" data-i18n="product.availability">
                 Samples available &middot; OEM pricing on request &middot; Ships worldwide
               </p>
             </div>
@@ -933,7 +890,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 <tbody className="divide-y divide-gray-100">
                   {detailCopy.specs.map(([label, value], index) => (
                     <tr key={label} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                      <td className="w-1/3 px-5 py-3 font-medium text-gray-700">{label}</td>
+                      <th scope="row" className="w-1/3 px-5 py-3 text-left font-medium text-gray-700">{label}</th>
                       <td className="px-5 py-3 text-gray-600">{value}</td>
                     </tr>
                   ))}
@@ -941,6 +898,18 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               </table>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-gray-100 bg-gray-50 py-14">
+        <div className="container">
+          <InquiryChannels
+            id="product-rfq"
+            source="product-detail"
+            topic={displayName}
+            heading={`Request a quote for ${displayName}`}
+            description="Send the model, quantity, destination, and certification requirements. The same request can go by email, this form, or WhatsApp."
+          />
         </div>
       </section>
 

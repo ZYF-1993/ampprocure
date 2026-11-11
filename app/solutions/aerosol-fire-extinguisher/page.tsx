@@ -1,17 +1,19 @@
-﻿import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import InquiryForm from '@/components/InquiryForm'
+﻿import Link from 'next/link'
 import AboutTestimonials from '@/components/AboutTestimonials'
 import FaqAccordion from '@/components/FaqAccordion'
-import { CONTACT_EMAIL } from '@/lib/site-config'
+import InquiryActions from '@/components/InquiryActions'
+import InquiryForm from '@/components/InquiryForm'
+import OptimizedImage from '@/components/OptimizedImage'
+import { buildPageMetadata, jsonLdScript } from '@/lib/seo'
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, inquiryMailto, inquiryMessage, whatsappHref } from '@/lib/site-config'
 
 const imageBase = '/images/solutions/aerosol-fire-extinguisher'
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'Aerosol Fire Extinguisher Manufacturer & OEM Supplier',
   description:
-    'upprocure manufactures DIN rail thermal aerosol fire extinguishers for electrical cabinets, PV combiner boxes & industrial enclosures. ISO certified, 15+ years experience, OEM/ODM available. Request a quote today.',
+    'upprocure manufactures DIN rail thermal aerosol fire extinguishers for electrical cabinets, PV combiner boxes and industrial enclosures. Request a quote by email, RFQ form, or WhatsApp.',
+  path: '/solutions/aerosol-fire-extinguisher',
   keywords: [
     'aerosol fire extinguisher manufacturer',
     'electrical cabinet fire suppression',
@@ -20,10 +22,8 @@ export const metadata: Metadata = {
     'PV combiner box fire protection',
     'thermal aerosol suppression supplier',
   ],
-  alternates: {
-    canonical: '/solutions/aerosol-fire-extinguisher',
-  },
-}
+  ogImage: '/optimized/display/images/solutions/aerosol-fire-extinguisher/hero-bg.webp',
+})
 
 const stats = [
   ['15+', 'Years Manufacturing'],
@@ -159,11 +159,25 @@ function ServiceIcon({ title }: { title: string }) {
   )
 }
 
+const solutionFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(([question, answer]) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+}
+
 export default function AerosolFireExtinguisherSolutionPage() {
   return (
     <main className="bg-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(solutionFaqJsonLd) }} />
       <section className="relative overflow-hidden bg-gray-900 py-20 sm:py-28">
-        <Image src={`${imageBase}/hero-bg.jpg`} alt="Aerosol fire extinguisher manufacturing facility" fill priority className="object-cover opacity-30" sizes="100vw" />
+        <OptimizedImage src={`${imageBase}/hero-bg.jpg`} alt="Aerosol fire extinguisher manufacturing facility" fill priority className="object-cover opacity-30" sizes="100vw" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
             <div className="max-w-xl flex-1">
@@ -172,13 +186,13 @@ export default function AerosolFireExtinguisherSolutionPage() {
               <p className="mt-5 text-lg leading-8 text-gray-300">
                 Passive thermal aerosol fire suppression systems engineered for total enclosure protection. Zero power requirements, zero wiring, zero maintenance — deliver industrial-grade fire safety backed by 15+ years of manufacturing expertise.
               </p>
-              <Link href="#contact-form" className="mt-8 inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-800">
-                Get a Free Quote
-              </Link>
+              <div className="mt-8">
+                <InquiryActions topic="DIN rail aerosol fire extinguisher" formHref="#contact-form" tone="dark" />
+              </div>
             </div>
             <div className="w-full shrink-0 lg:w-[420px] xl:w-[500px]">
               <div className="relative h-[280px] overflow-hidden rounded-3xl shadow-2xl">
-                <Image src={`${imageBase}/Aerosol-Fire-Extinguisher-Solutions.jpg`} alt="Aerosol fire extinguisher for electrical cabinet" fill priority className="object-cover brightness-75" sizes="(max-width: 1024px) 100vw, 500px" />
+                <OptimizedImage src={`${imageBase}/Aerosol-Fire-Extinguisher-Solutions.jpg`} alt="Aerosol fire extinguisher for electrical cabinet" fill priority className="object-cover brightness-75" sizes="(max-width: 1024px) 100vw, 500px" />
               </div>
             </div>
           </div>
@@ -205,7 +219,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
             {products.map((product) => (
               <article key={product.title} className="flex flex-col rounded-2xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md">
                 <div className="relative h-52 w-full overflow-hidden rounded-t-2xl bg-white">
-                  <Image src={`${imageBase}/${product.image}`} alt={product.title} fill className="object-contain p-4" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+                  <OptimizedImage src={`${imageBase}/${product.image}`} alt={product.title} fill className="object-contain p-4" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="text-sm font-semibold leading-snug text-gray-950">{product.title}</h3>
@@ -241,10 +255,10 @@ export default function AerosolFireExtinguisherSolutionPage() {
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="relative h-[420px] overflow-hidden rounded-2xl bg-white shadow-sm sm:col-span-2">
-                <Image src={`${imageBase}/aerosol-tech-diagram.jpg`} alt="Aerosol fire extinguisher internal structure diagram" fill className="object-contain p-4" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <OptimizedImage src={`${imageBase}/aerosol-tech-diagram.jpg`} alt="Aerosol fire extinguisher internal structure diagram" fill className="object-contain p-4" sizes="(max-width: 1024px) 100vw, 50vw" />
               </div>
               <div className="relative h-64 overflow-hidden rounded-2xl bg-gray-200 shadow-sm sm:col-span-2">
-                <Image src={`${imageBase}/aerosol-installed.jpg`} alt="Aerosol fire extinguisher installed in electrical cabinet" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <OptimizedImage src={`${imageBase}/aerosol-installed.jpg`} alt="Aerosol fire extinguisher installed in electrical cabinet" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               </div>
             </div>
           </div>
@@ -254,7 +268,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
       <section className="py-16 sm:py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
           <div className="relative min-h-[430px] overflow-hidden rounded-3xl bg-gray-100">
-            <Image src={`${imageBase}/Aerosol-Fire-Extinguisher-factory.jpg`} alt="upprocure aerosol fire extinguisher manufacturing facility" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+            <OptimizedImage src={`${imageBase}/Aerosol-Fire-Extinguisher-factory.jpg`} alt="upprocure aerosol fire extinguisher manufacturing facility" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             <div className="absolute bottom-5 left-5 rounded-2xl bg-white/95 p-5 shadow-lg">
               <p className="text-3xl font-bold text-blue-700">15+</p>
               <p className="mt-1 text-sm font-medium text-gray-700">Years of Experience</p>
@@ -289,7 +303,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {facilities.map(([image, alt]) => (
               <div key={image} className="relative h-56 overflow-hidden rounded-2xl bg-gray-200 shadow-sm">
-                <Image src={`${imageBase}/${image}`} alt={alt} fill className="object-cover transition duration-300 hover:scale-105" sizes="(max-width: 1024px) 50vw, 33vw" />
+                <OptimizedImage src={`${imageBase}/${image}`} alt={alt} fill className="object-cover transition duration-300 hover:scale-105" sizes="(max-width: 1024px) 50vw, 33vw" />
               </div>
             ))}
           </div>
@@ -306,7 +320,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
                 className={`overflow-hidden rounded-xl ${index === 0 ? 'col-span-2 md:col-span-1 md:row-span-2' : ''}`}
               >
                 <div className={`relative w-full ${index === 0 ? 'h-64 md:h-full' : 'h-52 md:h-64'}`} style={index === 0 ? { minHeight: '320px' } : undefined}>
-                  <Image
+                  <OptimizedImage
                     src={`${imageBase}/${image}`}
                     alt={alt}
                     fill
@@ -386,7 +400,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
       </section>
 
       <section className="relative overflow-hidden bg-gray-900 py-16 text-white sm:py-20">
-        <Image src={`${imageBase}/world-map.jpg`} alt="" fill className="object-cover opacity-25" sizes="100vw" />
+        <OptimizedImage src={`${imageBase}/world-map.jpg`} alt="" fill className="object-cover opacity-25" sizes="100vw" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Your Trusted Aerosol Fire Extinguisher</h2>
@@ -424,11 +438,15 @@ export default function AerosolFireExtinguisherSolutionPage() {
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Email</p>
-                <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 block text-sm text-gray-800 hover:text-green-700">{CONTACT_EMAIL}</a>
+                <a href={inquiryMailto('RFQ: DIN rail aerosol fire extinguisher')} className="mt-1 block text-sm text-gray-800 hover:text-green-700">{CONTACT_EMAIL}</a>
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Phone / WhatsApp</p>
-                <a href="tel:+8613552727303" className="mt-1 block text-sm text-gray-800 hover:text-green-700">+86-13552727303</a>
+                <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Phone</p>
+                <a href="tel:+8613552727303" className="mt-1 block text-sm text-gray-800 hover:text-green-700">{CONTACT_PHONE_DISPLAY}</a>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">WhatsApp</p>
+                <a href={whatsappHref(inquiryMessage('DIN rail aerosol fire extinguisher'))} target="_blank" rel="noopener noreferrer" className="mt-1 block text-sm text-gray-800 hover:text-green-700">{CONTACT_PHONE_DISPLAY}</a>
               </div>
               <div className="rounded-xl border border-gray-100 bg-gray-50 p-5">
                 <h3 className="text-sm font-semibold text-gray-900">Business Hours</h3>

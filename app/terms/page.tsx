@@ -1,14 +1,12 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
+import { buildPageMetadata } from '@/lib/seo'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'Terms of Use',
   description: 'upprocure Terms of Use — the rules and conditions that govern your use of our website and services.',
-  alternates: {
-    canonical: '/terms',
-  },
-}
+  path: '/terms',
+})
 
 const sections = [
   {

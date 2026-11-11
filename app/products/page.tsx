@@ -1,8 +1,10 @@
-﻿import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
+﻿import Link from 'next/link'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import InquiryChannels from '@/components/InquiryChannels'
+import OptimizedImage from '@/components/OptimizedImage'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
 import { FRAMEWORK_CATEGORIES, getProductsByCategorySlug } from '@/lib/framework-data'
+import { buildPageMetadata, jsonLdScript } from '@/lib/seo'
 import { SITE_URL } from '@/lib/site-config'
 
 type CategoryBucket = {
@@ -31,14 +33,12 @@ function getBuckets(): CategoryBucket[] {
   })
 }
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'Products',
   description:
     "Browse upprocure's full range of low-voltage electrical protection products: circuit breakers, SPDs, DC fuse holders, power meters, ATS, PV combiner boxes and more.",
-  alternates: {
-    canonical: '/products',
-  },
-}
+  path: '/products',
+})
 
 export default function ProductsPage() {
   const buckets = getBuckets()
@@ -49,21 +49,13 @@ export default function ProductsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productsJsonLd).replace(/</g, '\\u003c'),
+          __html: jsonLdScript(productsJsonLd),
         }}
       />
 
       <section className="border-b border-gray-100 bg-gray-50 py-12">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-4 flex items-center gap-2 text-xs text-gray-400" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-gray-600">
-              <span data-i18n="header.home">Home</span>
-            </Link>
-            <span>/</span>
-            <span className="text-gray-600" data-i18n="products.breadcrumbProducts">
-              Products
-            </span>
-          </nav>
+          <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Products', path: '/products' }]} />
 
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl" data-i18n="products.title">
             All Products
@@ -116,9 +108,10 @@ export default function ProductsPage() {
                     aria-label={product.name}
                   >
                     <div className="relative h-48 w-full overflow-hidden bg-gray-50">
-                      <Image
+                      <OptimizedImage
                         src={product.image}
                         alt={product.name}
+                        variant="thumb"
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
@@ -146,16 +139,14 @@ export default function ProductsPage() {
       </section>
 
       <section className="border-t border-gray-100 bg-gray-50 py-12">
-        <div className="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-gray-900" data-i18n="products.cta.title">
-            Can&apos;t find what you need?
-          </h2>
-          <p className="mt-2 text-sm text-gray-500" data-i18n="products.cta.description">
-            Contact our sales team for custom specifications, OEM programmes, or bulk pricing.
-          </p>
-          <Link href="/contact" className="mt-6 inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-800">
-            <span data-i18n="products.cta.button">Contact Sales</span>
-          </Link>
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <InquiryChannels
+            id="catalog-rfq"
+            source="product-catalog"
+            topic="electrical protection products"
+            heading="Can't find the exact model?"
+            description="Send the specification, quantity, and destination by email, the RFQ form, or WhatsApp."
+          />
         </div>
       </section>
     </main>

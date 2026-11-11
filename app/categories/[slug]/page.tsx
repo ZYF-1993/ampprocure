@@ -1,10 +1,15 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import InquiryActions from '@/components/InquiryActions'
+import InquiryChannels from '@/components/InquiryChannels'
+import OptimizedImage from '@/components/OptimizedImage'
 import { getCategoryContent } from '@/lib/category-content'
 import { FRAMEWORK_CATEGORIES, getCategoryBySlug, getProductsByCategorySlug } from '@/lib/framework-data'
-import { SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { absoluteOptimizedSrc } from '@/lib/optimized-image'
+import { buildPageMetadata, jsonLdScript } from '@/lib/seo'
+import { SITE_URL } from '@/lib/site-config'
 
 type CategoryPageProps = {
   params: Promise<{ slug: string }>
@@ -26,33 +31,14 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   }
 
   const title = `${category.title} Manufacturer & Supplier`
-  const image = `/images/categories/${category.slug}.png`
+  const image = absoluteOptimizedSrc(`/images/categories/${category.slug}.png`, 'thumb')
 
-  return {
+  return buildPageMetadata({
     title,
     description: category.summary,
-    alternates: {
-      canonical: `/categories/${category.slug}`,
-    },
-    openGraph: {
-      title: `${title} | ${SITE_NAME}`,
-      description: category.summary,
-      url: `${SITE_URL}/categories/${category.slug}`,
-      type: 'website',
-      images: [
-        {
-          url: image,
-          alt: `${category.title} product range`,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${title} | ${SITE_NAME}`,
-      description: category.summary,
-      images: [image],
-    },
-  }
+    path: `/categories/${category.slug}`,
+    ogImage: image,
+  })
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
@@ -104,54 +90,38 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     },
   }
 
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/products` },
-      { '@type': 'ListItem', position: 3, name: category.title, item: categoryUrl },
-    ],
-  }
-
   return (
     <main className="bg-slate-50">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(categoryJsonLd).replace(/</g, '\\u003c'),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, '\\u003c'),
+          __html: jsonLdScript(categoryJsonLd),
         }}
       />
       {faqJsonLd && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqJsonLd).replace(/</g, '\\u003c'),
+            __html: jsonLdScript(faqJsonLd),
           }}
         />
       )}
 
       <section className="border-b border-slate-200 bg-white py-12">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-sm text-slate-500">
-            <Link href="/" className="hover:text-slate-700" data-i18n="header.home">
-              Home
-            </Link>{' '}
-            /{' '}
-            <Link href="/products" className="hover:text-slate-700" data-i18n="products.breadcrumbProducts">
-              Products
-            </Link>{' '}
-            / <span className="text-slate-700">{category.title}</span>
-          </p>
+          <Breadcrumbs
+            items={[
+              { name: 'Home', href: '/' },
+              { name: 'Products', href: '/products' },
+              { name: category.title, path: `/categories/${category.slug}` },
+            ]}
+          />
 
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{category.title}</h1>
           <p className="mt-3 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">{category.summary}</p>
+          <div className="mt-6">
+            <InquiryActions topic={category.title} formHref="#category-rfq-form" />
+          </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
             <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700">
@@ -230,9 +200,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 aria-label={product.name}
               >
                 <div className="relative h-48 w-full overflow-hidden bg-gray-50">
-                  <Image
+                  <OptimizedImage
                     src={product.image}
                     alt={product.name}
+                    variant="thumb"
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
@@ -241,7 +212,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
                 <div className="flex flex-1 flex-col p-5">
                   <p className="text-xs font-medium uppercase tracking-wide text-green-700">{product.category}</p>
-                  <h2 className="mt-1 text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-green-700">{product.name}</h2>
+                  <h3 className="mt-1 text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-green-700">{product.name}</h3>
                   <p className="mt-2 line-clamp-3 flex-1 text-xs leading-relaxed text-gray-500">{product.technicalSummary}</p>
 
                   <span className="mt-4 flex items-center gap-1 text-xs font-semibold text-green-700">
@@ -318,22 +289,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       )}
 
       <section className="border-t border-slate-200 bg-white py-12">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
-          <article>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900" data-i18n="categories.ctaTitle">
-              Need Application-Based Product Matching?
-            </h2>
-            <p className="mt-2 text-sm text-slate-600" data-i18n="categories.ctaDescription">
-              Share your project context and get a recommended model list with technical notes.
-            </p>
-          </article>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-800"
-            data-i18n="categories.ctaButton"
-          >
-            Request Quote
-          </Link>
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <InquiryChannels
+            id="category-rfq"
+            source={`category-${category.slug}`}
+            topic={category.title}
+            heading={`Request a quote for ${category.title}`}
+            description="Share the application, voltage, quantity, and destination. Email, the form, and WhatsApp all reach the same sales team."
+          />
         </div>
       </section>
     </main>

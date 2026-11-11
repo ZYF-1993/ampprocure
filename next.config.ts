@@ -40,6 +40,16 @@ const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR || '.next',
   poweredByHeader: false,
 
+  images: {
+    // One format and a short width list so any remaining optimizer calls
+    // do not multiply. Pre-built files in /optimized are served with unoptimized.
+    formats: ['image/webp'],
+    qualities: [75],
+    deviceSizes: [640, 1080, 1920],
+    imageSizes: [64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 31,
+  },
+
   // These packages are loaded from node_modules at runtime (not bundled by webpack).
   // This prevents their entire dependency trees from being inlined into function bundles.
   serverExternalPackages: [
@@ -85,15 +95,21 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: '/optimized/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=31536000' },
+        ],
+      },
+      {
         source: '/images/:path*',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=31536000' },
         ],
       },
       {
         source: '/branding/:path*',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+          { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=31536000' },
         ],
       },
     ]

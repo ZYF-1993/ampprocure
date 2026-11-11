@@ -1,6 +1,8 @@
-﻿import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
+﻿import Link from 'next/link'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import InquiryActions from '@/components/InquiryActions'
+import OptimizedImage from '@/components/OptimizedImage'
+import { buildPageMetadata } from '@/lib/seo'
 
 const strengths = [
   'ISO & CE Certified Quality',
@@ -51,13 +53,11 @@ const certifications = [
   { title: 'TÜV', text: 'Independent safety testing and certification' },
 ] as const
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'About Us',
   description: 'Learn about upprocure, a supplier of low-voltage electrical protection products for distributors, system integrators, and project contractors.',
-  alternates: {
-    canonical: '/about',
-  },
-}
+  path: '/about',
+})
 
 function CheckIcon({ className = 'h-5 w-5' }: { className?: string }) {
   return (
@@ -104,9 +104,12 @@ export default function AboutPage() {
     <main className="bg-white">
       <section className="relative overflow-hidden bg-gray-900 py-20 sm:py-24">
         <div className="absolute inset-0 -z-10">
-          <Image src="/images/company-exterior.jpg" alt="upprocure company exterior" fill priority sizes="100vw" className="object-cover opacity-15" />
+          <OptimizedImage src="/images/company-exterior.jpg" alt="upprocure company exterior" fill priority sizes="100vw" className="object-cover opacity-15" />
         </div>
         <div className="mx-auto w-full max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+          <div className="mb-6 text-left">
+            <Breadcrumbs tone="inverse" items={[{ name: 'Home', href: '/' }, { name: 'About Us', path: '/about' }]} />
+          </div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-400">About upprocure</p>
           <h1 className="mt-3 text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl">15+ Years of Engineering Excellence</h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-gray-300">
@@ -144,7 +147,7 @@ export default function AboutPage() {
           </article>
 
           <div className="relative h-80 overflow-hidden rounded-2xl bg-gray-100 lg:h-96">
-            <Image src="/images/company-exterior.jpg" alt="upprocure company exterior" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+            <OptimizedImage src="/images/company-exterior.jpg" alt="upprocure company exterior" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
           </div>
         </div>
       </section>
@@ -258,8 +261,11 @@ export default function AboutPage() {
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-green-100">
             We work with distributors, wholesalers, and project contractors. Reach out to discuss pricing, OEM programmes, or technical requirements.
           </p>
-          <Link href="/contact" className="mt-7 inline-flex items-center justify-center rounded-lg bg-white px-8 py-3.5 text-sm font-semibold text-green-700 shadow-sm transition hover:bg-green-50 active:scale-[0.98]">
-            Get in Touch
+          <div className="mx-auto mt-7 max-w-3xl text-left">
+            <InquiryActions topic="partnership" formHref="/contact#rfq" tone="dark" />
+          </div>
+          <Link href="/contact#rfq" className="mt-5 inline-flex items-center justify-center rounded-lg bg-white px-8 py-3.5 text-sm font-semibold text-green-700 shadow-sm transition hover:bg-green-50 active:scale-[0.98]">
+            Open the RFQ form
           </Link>
         </div>
       </section>

@@ -1,18 +1,18 @@
-﻿import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
+﻿import Link from 'next/link'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import OptimizedImage from '@/components/OptimizedImage'
 import { BLOG_POSTS, BLOG_TAGS } from '@/lib/blog-posts'
+import { absoluteOptimizedSrc } from '@/lib/optimized-image'
+import { buildPageMetadata, jsonLdScript } from '@/lib/seo'
 import { DEFAULT_KEYWORDS, SITE_URL } from '@/lib/site-config'
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'Blog',
   description:
     'Technical articles, selection guides, and installation best practices from UPprocure engineers — covering circuit breakers, SPDs, ATS, PV systems, and more.',
+  path: '/blog',
   keywords: [...DEFAULT_KEYWORDS, ...BLOG_TAGS],
-  alternates: {
-    canonical: '/blog',
-  },
-}
+})
 
 const posts = [...BLOG_POSTS].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt))
 
@@ -37,7 +37,7 @@ const blogListJsonLd = {
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     url: `${SITE_URL}/blog/${post.slug}`,
-    image: `${SITE_URL}${post.image}`,
+    image: absoluteOptimizedSrc(post.image),
   })),
 }
 
@@ -47,19 +47,13 @@ export default function BlogPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(blogListJsonLd).replace(/</g, '\\u003c'),
+          __html: jsonLdScript(blogListJsonLd),
         }}
       />
 
       <section className="border-b border-gray-100 bg-gray-50 py-12">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-4 flex items-center gap-2 text-xs text-gray-400" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-gray-600">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-gray-600">Blog</span>
-          </nav>
+          <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Blog', path: '/blog' }]} />
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">Technical Resources</h1>
           <p className="mt-3 max-w-2xl text-base text-gray-500">
             Selection guides, installation tips, and technical insights from the UPprocure engineering team.
@@ -85,9 +79,10 @@ export default function BlogPage() {
                 className="group flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
               >
                 <div className="relative h-48 w-full overflow-hidden bg-gray-100">
-                  <Image
+                  <OptimizedImage
                     src={post.image}
                     alt={post.title}
+                    variant="thumb"
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

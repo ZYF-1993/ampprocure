@@ -1277,6 +1277,7 @@ export async function setSiteLanguage(nextLanguage: SiteLanguage) {
 
   if (typeof document !== 'undefined') {
     document.documentElement.lang = normalized
+    document.documentElement.dir = normalized === 'ar' || normalized === 'he' || normalized === 'fa' ? 'rtl' : 'ltr'
   }
 }
 

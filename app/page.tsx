@@ -1,10 +1,11 @@
-import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
+import InquiryActions from '@/components/InquiryActions'
 import InquiryForm from '@/components/InquiryForm'
+import OptimizedImage from '@/components/OptimizedImage'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import { CATALOG_PRODUCT_COUNT } from '@/lib/catalog-products'
-import { CONTACT_EMAIL } from '@/lib/site-config'
+import { buildPageMetadata } from '@/lib/seo'
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, inquiryMailto, inquiryMessage, whatsappHref } from '@/lib/site-config'
 
 const focusBlocks = [
   {
@@ -185,13 +186,12 @@ const heroMetrics = [
   },
 ] as const
 
-export const metadata: Metadata = {
-  title: { absolute: 'UPprocure | Electrical Protection Products Supplier' },
+export const metadata = buildPageMetadata({
+  title: 'UPprocure | Electrical Protection Products Supplier',
   description: 'upprocure supplies circuit breakers, surge protectors, DC fuse holders, power meters, ATS switches, and PV combiner boxes for B2B wholesale and OEM projects.',
-  alternates: {
-    canonical: '/',
-  },
-}
+  path: '/',
+  absoluteTitle: true,
+})
 
 function CardIcon({ type }: { type: (typeof trustCards)[number]['icon'] }) {
   if (type === 'certified') {
@@ -259,26 +259,22 @@ function HeroMetricIcon({ type }: { type: (typeof heroMetrics)[number]['icon'] }
   )
 }
 
-function WhatsAppIcon() {
-  return (
-    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12.04 2.1A9.82 9.82 0 0 0 3.6 16.93L2.4 21.3l4.48-1.17a9.8 9.8 0 0 0 5.16 1.46h.01A9.82 9.82 0 0 0 12.04 2.1Zm5.79 14.04c-.24.67-1.38 1.28-1.93 1.36-.49.07-1.12.1-1.8-.11-.42-.13-.95-.31-1.64-.61-2.88-1.24-4.75-4.13-4.9-4.32-.14-.19-1.17-1.56-1.17-2.98 0-1.42.74-2.12 1-2.41.27-.29.59-.36.78-.36h.56c.18.01.43-.07.67.51.24.58.83 2 .9 2.15.08.14.12.31.03.5-.1.2-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.58.17.29.76 1.25 1.62 2.03 1.12.99 2.06 1.3 2.35 1.44.29.15.46.12.63-.07.17-.2.72-.84.91-1.13.2-.29.39-.24.66-.15.27.1 1.72.82 2.02.96.29.15.49.22.56.34.07.12.07.7-.17 1.37Z" />
-    </svg>
-  )
-}
-
 function HeroSection() {
   return (
     <section className="relative isolate overflow-hidden bg-slate-950 py-20 sm:py-24 lg:py-28">
       {/* 背景：使用本地生成图，并叠加深色遮罩，保证白色主标题与背景有清晰区分 */}
-      <Image
-        src="/images/hero-industrial-sourcing-bg.png"
-        alt="Industrial electrical sourcing and global logistics background"
-        fill
-        priority
-        sizes="100vw"
-        className="-z-20 object-cover object-center"
-      />
+      <picture>
+        <source media="(max-width: 900px)" srcSet="/optimized/medium/images/hero-industrial-sourcing-bg.webp" />
+        <img
+          src="/optimized/display/images/hero-industrial-sourcing-bg.webp"
+          alt="Industrial electrical sourcing and global logistics background"
+          width={1600}
+          height={900}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+      </picture>
       <div className="pointer-events-none absolute inset-0 -z-10 bg-slate-950/72" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.92)_0%,rgba(15,23,42,0.78)_42%,rgba(15,23,42,0.42)_100%)]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-slate-950 to-transparent" />
@@ -294,22 +290,8 @@ function HeroSection() {
               {SUBHEADLINE}
             </p>
 
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(37,99,235,0.35)] transition duration-200 hover:scale-105 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-[0.98]"
-              >
-                Request a Free Quote
-              </Link>
-              <a
-                href="https://wa.me/8613552727303"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/35 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white shadow-sm backdrop-blur-md transition duration-200 hover:scale-105 hover:border-emerald-300 hover:bg-white/15 hover:text-emerald-100 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-[0.98]"
-              >
-                <WhatsAppIcon />
-                Talk on WhatsApp
-              </a>
+            <div className="mt-9">
+              <InquiryActions topic="electrical protection products" formHref="#home-rfq" tone="dark" />
             </div>
           </div>
 
@@ -447,11 +429,12 @@ export default function HomePage() {
                   className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_20px_50px_rgba(59,130,246,0.06)]"
                 >
                   <div className="flex items-center justify-center bg-gray-50 p-6 transition-colors group-hover:bg-green-50">
-                    <Image
+                    <OptimizedImage
                       src={category.image}
                       alt={`${category.title} product category`}
                       width={160}
                       height={160}
+                      variant="thumb"
                       className="h-24 w-24 object-contain transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
@@ -497,7 +480,7 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="relative min-h-[360px] overflow-hidden rounded-3xl shadow-lg lg:min-h-full">
-              <Image src="/images/company-exterior.jpg" alt="upprocure manufacturing facility" fill className="h-full w-full object-cover" />
+              <OptimizedImage src="/images/company-exterior.jpg" alt="upprocure manufacturing facility" fill className="h-full w-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">About upprocure</p>
@@ -518,8 +501,8 @@ export default function HomePage() {
                 ))}
               </div>
               <div className="mt-10">
-                <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
-                  Get Contact
+                <Link href="/contact#rfq" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
+                  Contact Sales
                 </Link>
               </div>
             </div>
@@ -562,7 +545,7 @@ export default function HomePage() {
               </div>
             </div>
             <div>
-              <Image src="/images/证书图片.png" alt="upprocure certifications" width={720} height={540} className="w-full object-contain" />
+              <OptimizedImage src="/images/证书图片.png" alt="upprocure certifications" width={720} height={540} className="w-full object-contain" />
             </div>
           </div>
         </div>
@@ -581,27 +564,27 @@ export default function HomePage() {
           <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
             <div className="col-span-2 overflow-hidden rounded-2xl md:col-span-1 md:row-span-2">
               <div className="relative h-64 w-full md:h-full" style={{ minHeight: '320px' }}>
-                <Image alt="upprocure exhibition booth" fill sizes="(max-width: 768px) 100vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片1.jpg" />
+                <OptimizedImage alt="upprocure exhibition booth" fill sizes="(max-width: 768px) 100vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片1.jpg" />
               </div>
             </div>
             <div className="overflow-hidden rounded-2xl">
               <div className="relative h-52 w-full md:h-64">
-                <Image alt="upprocure trade show photo 2" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片2.jpg" />
+                <OptimizedImage alt="upprocure trade show photo 2" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片2.jpg" />
               </div>
             </div>
             <div className="overflow-hidden rounded-2xl">
               <div className="relative h-52 w-full md:h-64">
-                <Image alt="upprocure trade show photo 3" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片3.jpg" />
+                <OptimizedImage alt="upprocure trade show photo 3" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片3.jpg" />
               </div>
             </div>
             <div className="overflow-hidden rounded-2xl">
               <div className="relative h-52 w-full md:h-64">
-                <Image alt="upprocure trade show photo 4" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片4.jpg" />
+                <OptimizedImage alt="upprocure trade show photo 4" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片4.jpg" />
               </div>
             </div>
             <div className="overflow-hidden rounded-2xl">
               <div className="relative h-52 w-full md:h-64">
-                <Image alt="upprocure trade show photo 5" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片5.jpg" />
+                <OptimizedImage alt="upprocure trade show photo 5" fill sizes="(max-width: 768px) 50vw, 420px" className="object-cover transition-transform duration-500 hover:scale-105" src="/images/展会图片5.jpg" />
               </div>
             </div>
           </div>
@@ -621,8 +604,8 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="flex flex-col gap-4 lg:items-end">
-                <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-3.5 text-base font-semibold text-blue-700 shadow-sm transition-all hover:bg-blue-50 active:scale-[0.98]">
-                  Contact Our Sales Team
+                <Link href="#home-rfq" className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-3.5 text-base font-semibold text-blue-700 shadow-sm transition-all hover:bg-blue-50 active:scale-[0.98]">
+                  Request a Quote
                 </Link>
                 <Link href="/products" className="inline-flex items-center justify-center rounded-lg border border-white/40 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-white/10 active:scale-[0.98]">
                   Browse Products
@@ -651,7 +634,7 @@ export default function HomePage() {
             {insights.map((post) => (
               <Link key={post.title} href={post.href} className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_20px_50px_rgba(59,130,246,0.06)]">
                 <div className="relative h-48 w-full overflow-hidden bg-gray-100">
-                  <Image src={post.image} alt={post.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-105" />
+                  <OptimizedImage src={post.image} alt={post.title} variant="thumb" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-105" />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <div className="flex flex-wrap gap-1.5">
@@ -674,7 +657,7 @@ export default function HomePage() {
 
       <TestimonialsCarousel />
 
-      <section className="bg-slate-50 py-16 sm:py-20">
+      <section id="home-rfq" className="scroll-mt-24 bg-slate-50 py-16 sm:py-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
             <article className="lg:col-span-1">
@@ -686,30 +669,30 @@ export default function HomePage() {
 
               <ul className="mt-8 space-y-5">
                 <li className="text-sm text-gray-700">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Email</p>
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 inline-block hover:text-green-700">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">Email</p>
+                  <a href={inquiryMailto('Product inquiry')} className="mt-1 inline-block hover:text-green-700">
                     {CONTACT_EMAIL}
                   </a>
                 </li>
                 <li className="text-sm text-gray-700">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Phone</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">Phone</p>
                   <a href="tel:+8613552727303" className="mt-1 inline-block hover:text-green-700">
-                    +86-13552727303
+                    {CONTACT_PHONE_DISPLAY}
                   </a>
                 </li>
                 <li className="text-sm text-gray-700">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">WhatsApp</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">WhatsApp</p>
                   <a
-                    href="https://wa.me/8613552727303"
+                    href={whatsappHref(inquiryMessage())}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-1 inline-block hover:text-green-700"
                   >
-                    +86-13552727303
+                    {CONTACT_PHONE_DISPLAY}
                   </a>
                 </li>
                 <li className="text-sm text-gray-700">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Response Time</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">Response Time</p>
                   <p className="mt-1">Within 24 business hours for most RFQs.</p>
                 </li>
               </ul>

@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 
-const WA_NUMBER = '8613552727303'
-const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Thank you for contacting UPprocure. You will be chatting with +86 135 5272 7303 on WhatsApp.')}`
+import { inquiryMessage, whatsappHref } from '@/lib/site-config'
+
+const WA_LINK = whatsappHref(inquiryMessage())
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -18,7 +19,7 @@ export default function WhatsAppChat() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-6 right-6 z-50 hidden flex-col items-end gap-3 lg:flex">
       {open && (
         <div className="w-72 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/10">
           <div className="flex items-start justify-between bg-teal-700 px-4 py-3">

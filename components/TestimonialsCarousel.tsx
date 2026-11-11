@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import OptimizedImage from '@/components/OptimizedImage'
 
 const testimonials = [
   {
@@ -36,7 +36,7 @@ export default function TestimonialsCarousel() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-24">
       <div className="pointer-events-none absolute inset-0">
-        <Image src="/images/banner/about-bg.jpg" alt="" fill className="object-cover object-center" priority={false} />
+        <OptimizedImage src="/images/banner/about-bg.jpg" alt="" fill sizes="100vw" className="object-cover object-center" />
         <div className="absolute inset-0 bg-slate-950/70" />
       </div>
 

@@ -22,6 +22,7 @@ const corePages = [
   { href: '/products', label: 'Products' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
+  { href: '/solutions/aerosol-fire-extinguisher', label: 'Aerosol Fire Extinguisher Solution' },
   { href: '/privacy', label: 'Privacy Policy' },
   { href: '/terms', label: 'Terms of Use' },
   { href: '/thank-you', label: 'Thank You' },
