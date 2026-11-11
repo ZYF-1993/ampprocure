@@ -114,6 +114,7 @@ const relatedLinks = [
   { href: '/categories/wifi-smart-low-voltage-device', label: 'WiFi smart low-voltage devices', text: 'Related monitoring and control devices already listed on the site.' },
   { href: '/products/D52-2066', label: 'D52-2066 power meter', text: 'A DIN-rail 6-in-1 AC power monitor already listed on this site.' },
   { href: '/products/PN2-VA4', label: 'PN2-VA4 voltage protector', text: 'A self-resetting voltage protector already listed on this site.' },
+  { href: '/solutions/metal-push-button', label: 'Metal push button solutions', text: 'Anti-vandal metal push buttons for 12, 16, 19, 22 and 25 mm panel cutouts.' },
   { href: '/solutions/aerosol-fire-extinguisher', label: 'Aerosol fire extinguisher solutions', text: 'Cabinet fire suppression, listed as a separate solution.' },
   { href: '/contact', label: 'Contact / RFQ', text: 'Send a quotation request from the contact page.' },
 ] as const

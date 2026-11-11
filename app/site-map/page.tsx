@@ -25,6 +25,7 @@ const corePages = [
   { href: '/solutions', label: 'Solutions' },
   { href: '/solutions/aerosol-fire-extinguisher', label: 'Aerosol Fire Extinguisher Solution' },
   { href: '/solutions/22mm-digital-display-indicator', label: '22mm Digital Display Indicator Solution' },
+  { href: '/solutions/metal-push-button', label: 'Metal Push Button Solution' },
   { href: '/privacy', label: 'Privacy Policy' },
   { href: '/terms', label: 'Terms of Use' },
   { href: '/thank-you', label: 'Thank You' },

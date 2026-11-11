@@ -9,10 +9,12 @@ import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 export const metadata = buildPageMetadata({
   title: 'Solutions',
   description:
-    'Application solutions from UPprocure, including DIN rail aerosol fire extinguishers and 22mm digital display indicators for control cabinets. Request a quote.',
+    'Application solutions from UPprocure, including metal push buttons, 22mm digital display indicators, and DIN rail aerosol fire extinguishers. Request a quote.',
   path: '/solutions',
   keywords: [
     'electrical cabinet solutions',
+    'metal push button',
+    'anti-vandal push button',
     'aerosol fire extinguisher',
     '22mm digital display indicator',
     'control cabinet panel meter',

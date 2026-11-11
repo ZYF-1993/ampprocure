@@ -59,7 +59,7 @@ const CORE_PAGES: readonly SiteSearchItem[] = [
     id: 'page-solutions',
     type: 'Page',
     title: 'Solutions',
-    summary: 'Application pages for cabinet equipment, including aerosol fire extinguishers and 22mm digital display indicators.',
+    summary: 'Application pages for cabinet equipment, including metal push buttons, 22mm digital display indicators, and aerosol fire extinguishers.',
     href: '/solutions',
     tags: ['solutions', 'applications'],
   },
