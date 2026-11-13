@@ -181,6 +181,7 @@ const faqs: readonly SpecRow[] = [
   ['Which lamp voltages can I order?', '6, 12, 24, 36, 48, 110 and 127 V AC/DC, 220 V DC, and 220 V or 380 V AC, as printed.'],
   ['Is the series IP65?', 'The series is rated IP40 / IP65. IP rating depends on operator type; confirm with your quote.'],
   ['What do f, fu and f.fu mean on selector switches?', 'They are spring-return options: f returns from left to center, fu from right to center, and f.fu from both sides to center. Codes without them are maintained.'],
+  ['What is the difference between momentary and maintained (latching) push buttons?', 'A momentary push button changes its contacts only while it is pressed and springs back when released. A maintained (latching) push button stays in the pressed position until it is pressed again. In the EB2M codes, a T marks the maintained version: -10 is momentary and -10T is maintained, -10M and -10MT are the mushroom-head versions, and -10D and -10DT are the illuminated versions. Selector and key switches without f, fu or f.fu in the code are maintained.'],
   ['Which certificates can you provide?', 'CE and RoHS documentation is available on request.'],
 ]
 
