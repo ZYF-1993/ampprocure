@@ -209,7 +209,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 </>
               ) : (
                 <>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-green-600">Factory Direct · OEM Available</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-green-600">Direct Supply Chain · OEM Available</p>
                   <h3 className="mt-2 text-lg font-bold text-gray-900">Ready to Source? Get a Project Quote.</h3>
                   <ul className="mt-4 space-y-2">
                     <li className="flex items-start gap-2 text-sm text-gray-600">
@@ -249,7 +249,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   {!ceRohsOnly && (
-                    <span className="absolute bottom-3 left-4 text-sm font-bold tracking-wide text-white">Factory Direct</span>
+                    <span className="absolute bottom-3 left-4 text-sm font-bold tracking-wide text-white">Direct Supply Chain</span>
                   )}
                 </div>
                 <div className="p-4">
