@@ -79,7 +79,7 @@ export default function ProductGallery({ images, name }: ProductGalleryProps) {
               aria-pressed={active}
               onClick={() => setActiveIndex(index)}
             >
-              <OptimizedImage src={image} alt="" variant="thumb" fill sizes="64px" className="object-contain p-1.5" />
+              <OptimizedImage src={image} alt={`${name} – image ${index + 1}`} variant="thumb" fill sizes="64px" className="object-contain p-1.5" />
             </button>
           )
         })}

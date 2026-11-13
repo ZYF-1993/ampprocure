@@ -9,6 +9,7 @@ import { BLOG_DETAIL_CONTENT } from '@/lib/blog-detail-content'
 import { BLOG_POSTS } from '@/lib/blog-posts'
 import { getRelatedBlogPosts, getRelatedProductsForBlog } from '@/lib/internal-links'
 import { absoluteUrl, jsonLdScript, truncateSeoText } from '@/lib/seo'
+import { getSeoOverride } from '@/lib/seo-overrides'
 import { DEFAULT_KEYWORDS, SITE_LOGO, SITE_NAME } from '@/lib/site-config'
 import { getBlogBySlug } from '@/lib/site-content'
 
@@ -41,11 +42,13 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
     }
   }
 
-  const title = truncateSeoText(detail?.metaTitle || post.title, 57)
-  const description = detail?.description || post.description
+  const override = getSeoOverride(`/blog/${post.slug}`)
+  const title = override?.title ?? truncateSeoText(detail?.metaTitle || post.title, 57)
+  const description = override?.description ?? (detail?.description || post.description)
+  // An explicit override is the full <title>; generated titles get the site-name template.
 
   return {
-    title,
+    title: override?.title ? { absolute: title } : title,
     description,
     keywords: [...DEFAULT_KEYWORDS, ...post.tags],
     alternates: {
@@ -129,31 +132,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     inLanguage: 'en-US',
   }
 
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: absoluteUrl('/'),
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Blog',
-        item: absoluteUrl('/blog'),
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: detail.title,
-        item: absoluteUrl(`/blog/${post.slug}`),
-      },
-    ],
-  }
-
   return (
     <main className="bg-white">
       <script
@@ -162,12 +140,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           __html: jsonLdScript(blogJsonLd),
         }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: jsonLdScript(breadcrumbJsonLd),
-        }}
-      />
+      {/* BreadcrumbList JSON-LD is emitted by <Breadcrumbs> below. */}
 
       <section className="border-b border-gray-100 bg-gray-50 py-10">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">

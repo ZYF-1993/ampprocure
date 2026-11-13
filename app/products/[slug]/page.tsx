@@ -14,6 +14,7 @@ import { PRODUCT_DETAIL_CONTENT } from '@/lib/product-detail-content'
 import { PRODUCT_GALLERY_IMAGES } from '@/lib/product-gallery-images.generated'
 import { getProductEnrichment } from '@/lib/product-seo'
 import { absoluteUrl, getProductDisplayName, getProductSeoDescription, getProductSeoTitle, jsonLdScript } from '@/lib/seo'
+import { getSeoOverride } from '@/lib/seo-overrides'
 import { SITE_NAME } from '@/lib/site-config'
 import { getCanonicalProductSlug, getProductBySlug } from '@/lib/site-content'
 
@@ -750,13 +751,15 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
   }
 
   const enrichment = getProductEnrichment(product.slug)
-  const title = enrichment?.title ?? getProductSeoTitle(product)
-  const description = enrichment?.description ?? getProductSeoDescription(product)
+  const override = getSeoOverride(`/products/${getCanonicalProductSlug(product.slug)}`)
+  const title = override?.title ?? enrichment?.title ?? getProductSeoTitle(product)
+  const description = override?.description ?? enrichment?.description ?? getProductSeoDescription(product)
   const displayName = getProductDisplayName(product)
-  const fullTitle = enrichment ? title : `${title} | ${SITE_NAME}`
+  const isAbsoluteTitle = Boolean(override?.title || enrichment)
+  const fullTitle = isAbsoluteTitle ? title : `${title} | ${SITE_NAME}`
 
   return {
-    title: enrichment ? { absolute: title } : title,
+    title: isAbsoluteTitle ? { absolute: title } : title,
     description,
     alternates: {
       canonical: absoluteUrl(`/products/${getCanonicalProductSlug(product.slug)}`),

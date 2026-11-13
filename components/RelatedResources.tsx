@@ -61,7 +61,7 @@ export default function RelatedResources({
                   >
                     <OptimizedImage
                       src={product.image}
-                      alt=""
+                      alt={product.name}
                       width={64}
                       height={64}
                       variant="thumb"

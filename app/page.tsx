@@ -487,7 +487,7 @@ export default function HomePage() {
             {featuredProducts.map((product) => (
               <Link key={product.slug} href={`/products/${product.slug}`} className="flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:border-green-200 hover:shadow-md">
                 <div className="relative h-40 bg-gray-50">
-                  <OptimizedImage src={product.image} alt="" fill variant="thumb" sizes="(max-width: 1024px) 50vw, 25vw" className="object-contain p-4" />
+                  <OptimizedImage src={product.image} alt={product.name} fill variant="thumb" sizes="(max-width: 1024px) 50vw, 25vw" className="object-contain p-4" />
                 </div>
                 <div className="p-4">
                   <p className="text-xs font-medium uppercase tracking-wide text-green-700">{product.category}</p>
