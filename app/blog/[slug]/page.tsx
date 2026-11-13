@@ -223,7 +223,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   <ul className="mt-4 space-y-2">
                     <li className="flex items-start gap-2 text-sm text-gray-600">
                       <span className="mt-0.5 font-bold text-green-500">✓</span>
-                      CE, RoHS, ISO 9001 and TÜV documentation available on request
+                      CE, RoHS and ISO 9001 documentation available on request
                     </li>
                   </ul>
                   <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -239,7 +239,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   <ul className="mt-4 space-y-2">
                     <li className="flex items-start gap-2 text-sm text-gray-600">
                       <span className="mt-0.5 font-bold text-green-500">✓</span>
-                      Wholesale pricing with full CE &amp; TUV documentation
+                      Wholesale pricing with full CE &amp; RoHS documentation
                     </li>
                     <li className="flex items-start gap-2 text-sm text-gray-600">
                       <span className="mt-0.5 font-bold text-green-500">✓</span>
@@ -280,15 +280,12 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 <div className="p-4">
                   <p className="text-xs leading-relaxed text-gray-500">
                     {ceRohsOnly
-                      ? 'CE, RoHS, ISO 9001 and TÜV documentation available on request.'
+                      ? 'CE, RoHS and ISO 9001 documentation available on request'
                       : 'IEC-certified manufacturer of low-voltage electrical protection products. OEM & private label available.'}
                   </p>
                   <div className="mt-3 flex items-center justify-center gap-3">
                     <div className="relative h-8 w-8">
                       <OptimizedImage src="/images/ce.png" alt="CE certified" variant="thumb" fill sizes="32px" className="object-contain" />
-                    </div>
-                    <div className="relative h-8 w-12">
-                      <OptimizedImage src="/images/TUV.png" alt="TUV certified" variant="thumb" fill sizes="48px" className="object-contain" />
                     </div>
                     <div className="relative h-8 w-12">
                       <OptimizedImage src="/images/rohs.png" alt="RoHS compliant" variant="thumb" fill sizes="48px" className="object-contain" />

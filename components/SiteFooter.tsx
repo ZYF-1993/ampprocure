@@ -28,7 +28,7 @@ export default function SiteFooter() {
               <InquiryActions layout="stack" />
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
-              {['CE', 'RoHS', 'ISO 9001', 'IEC', 'TÜV'].map((badge) => (
+              {['CE', 'RoHS', 'ISO 9001', 'IEC'].map((badge) => (
                 <span key={badge} className="rounded border border-gray-700 px-2 py-0.5 text-xs font-medium text-gray-400">
                   {badge}
                 </span>
