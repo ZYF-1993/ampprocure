@@ -579,7 +579,6 @@ export default function HomePage() {
                 {[
                   'ISO 9001:2015 Quality Management System',
                   'CE Marking — IEC/EN Standards Compliant',
-                  'CCC Certification (China Compulsory Certificate)',
                   'RoHS Compliant — Environmentally Responsible',
                   'Trusted Supplier for Global Electrical Brands',
                 ].map((item) => (

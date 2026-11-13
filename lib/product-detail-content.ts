@@ -582,11 +582,10 @@ export const PRODUCT_DETAIL_CONTENT = {
     ]
   },
   "SPD-AC-1P-Grey": {
-    "description": "The SPD-AC-1P-Grey is a single-pole AC surge protection device designed specifically for neutral-ground (N-PE) protection in TN-S low-voltage distribution systems. It safeguards the neutral line of single-phase systems against surge transients caused by lightning or switching events, with a maximum discharge current of 40kA and a nominal discharge current of 20kA. The voltage protection level of –.0kV ensures downstream equipment is kept within safe limits during transient events. At its core is a metal oxide varistor (MOV) that responds in under 25 nanoseconds – effectively instantaneous suppression. The grey flame-retardant PC housing (UL94 V-0 rated) snaps onto a standard 35mm DIN rail and features a modular, hot-swappable design, allowing replacement under live conditions without rewiring. Suitable for installation in sub-distribution boxes and combined lightning boxes.",
+    "description": "The SPD-AC-1P-Grey is a single-pole AC surge protection device designed specifically for neutral-ground (N-PE) protection in TN-S low-voltage distribution systems. It safeguards the neutral line of single-phase systems against surge transients caused by lightning or switching events, with a maximum discharge current of 40kA and a nominal discharge current of 20kA. At its core is a metal oxide varistor (MOV) that responds in under 25 nanoseconds – effectively instantaneous suppression. The grey flame-retardant PC housing (UL94 V-0 rated) snaps onto a standard 35mm DIN rail and features a modular, hot-swappable design, allowing replacement under live conditions without rewiring. Suitable for installation in sub-distribution boxes and combined lightning boxes.",
     "features": [
       "1-pole N-PE protection for TN-S low-voltage distribution systems",
       "40kA max discharge current (Imax), 20kA nominal discharge current (In)",
-      "Voltage protection level –.0kV – protects neutral line from transient overvoltage",
       "<25ns ultra-fast response time – instantaneous transient suppression",
       "Metal oxide varistor (MOV) core – excellent conductivity and corrosion resistance",
       "Modular hot-swappable design – replace without rewiring",
@@ -609,10 +608,6 @@ export const PRODUCT_DETAIL_CONTENT = {
       [
         "Max. Discharge Current (Imax)",
         "40kA"
-      ],
-      [
-        "Voltage Protection Level (Up)",
-        "–.0kV"
       ],
       [
         "System Type",
@@ -653,11 +648,10 @@ export const PRODUCT_DETAIL_CONTENT = {
     ]
   },
   "SPD-AC-2P-Grey": {
-    "description": "The SPD-AC-2P-Grey is a 2-pole AC surge protection device providing full-mode protection across all three paths – L-N, L-PE, and N-PE – in a single module. This comprehensive coverage ensures that single-phase electrical devices and precision instruments are shielded from surge transients regardless of which conductor the overvoltage appears on. The maximum discharge current is 40kA with a nominal of 20kA, and the voltage protection level is kept at –.0kV. At its core, a metal oxide varistor (MOV) responds in under 25 nanoseconds for instantaneous suppression. Compatible with single-phase AC and IT systems, the SPD-AC-2P connects via L (In/Out) and N (In/Out) terminals and clips onto a standard 35mm DIN rail. The grey flame-retardant PC housing (UL94 V-0) features a modular, hot-swappable design for maintenance without rewiring. Suitable for main distribution boxes, sub-distribution boxes, and small industrial circuit panels.",
+    "description": "The SPD-AC-2P-Grey is a 2-pole AC surge protection device providing full-mode protection across all three paths – L-N, L-PE, and N-PE – in a single module. This comprehensive coverage ensures that single-phase electrical devices and precision instruments are shielded from surge transients regardless of which conductor the overvoltage appears on. The maximum discharge current is 40kA with a nominal of 20kA. At its core, a metal oxide varistor (MOV) responds in under 25 nanoseconds for instantaneous suppression. Compatible with single-phase AC and IT systems, the SPD-AC-2P connects via L (In/Out) and N (In/Out) terminals and clips onto a standard 35mm DIN rail. The grey flame-retardant PC housing (UL94 V-0) features a modular, hot-swappable design for maintenance without rewiring. Suitable for main distribution boxes, sub-distribution boxes, and small industrial circuit panels.",
     "features": [
       "2-pole full-mode protection: L-N, L-PE and N-PE in a single module",
       "40kA max discharge current (Imax), 20kA nominal discharge current (In)",
-      "Voltage protection level –.0kV – protects single-phase devices and precision instruments",
       "<25ns ultra-fast response time – instantaneous transient suppression",
       "Metal oxide varistor (MOV) core – excellent conductivity and corrosion resistance",
       "Compatible with single-phase AC systems and IT systems",
@@ -680,10 +674,6 @@ export const PRODUCT_DETAIL_CONTENT = {
       [
         "Max. Discharge Current (Imax)",
         "40kA"
-      ],
-      [
-        "Voltage Protection Level (Up)",
-        "–.0kV"
       ],
       [
         "System Type",
@@ -724,11 +714,10 @@ export const PRODUCT_DETAIL_CONTENT = {
     ]
   },
   "SPD-AC-3P-Grey": {
-    "description": "The SPD-AC-3P-Grey is a 3-pole AC surge protection device for three-phase 3-wire low-voltage systems without neutral. It provides independent phase-to-earth (L-PE) protection on each of the three phases – L1-PE, L2-PE, and L3-PE – shielding industrial power devices and three-phase loads from surge transients caused by lightning strikes or switching events. The maximum discharge current is 40kA with a nominal of 20kA, and the voltage protection level is –.5kV per phase. A metal oxide varistor (MOV) core delivers sub-25ns response for instantaneous transient clamping. The grey flame-retardant PC housing (UL94 V-0) mounts directly on a 35mm DIN rail with a modular, hot-swappable design – modules can be replaced individually during maintenance without full rewiring. Suitable for installation in power distribution cabinets and equipment control boxes serving three-phase industrial loads.",
+    "description": "The SPD-AC-3P-Grey is a 3-pole AC surge protection device for three-phase 3-wire low-voltage systems without neutral. It provides independent phase-to-earth (L-PE) protection on each of the three phases – L1-PE, L2-PE, and L3-PE – shielding industrial power devices and three-phase loads from surge transients caused by lightning strikes or switching events. The maximum discharge current is 40kA with a nominal of 20kA. A metal oxide varistor (MOV) core delivers sub-25ns response for instantaneous transient clamping. The grey flame-retardant PC housing (UL94 V-0) mounts directly on a 35mm DIN rail with a modular, hot-swappable design – modules can be replaced individually during maintenance without full rewiring. Suitable for installation in power distribution cabinets and equipment control boxes serving three-phase industrial loads.",
     "features": [
       "3-pole independent L-PE protection per phase: L1-PE, L2-PE, L3-PE",
       "40kA max discharge current (Imax), 20kA nominal discharge current (In)",
-      "Voltage protection level –.5kV per phase – for three-phase industrial loads",
       "<25ns ultra-fast response time – instantaneous transient suppression",
       "Metal oxide varistor (MOV) core – excellent conductivity and corrosion resistance",
       "Three-phase 3-wire system (no neutral) – suitable for industrial installations",
@@ -751,10 +740,6 @@ export const PRODUCT_DETAIL_CONTENT = {
       [
         "Max. Discharge Current (Imax)",
         "40kA"
-      ],
-      [
-        "Voltage Protection Level (Up)",
-        "–.5kV"
       ],
       [
         "System Type",
@@ -795,11 +780,10 @@ export const PRODUCT_DETAIL_CONTENT = {
     ]
   },
   "SPD-AC-4P-Grey": {
-    "description": "The SPD-AC-4P-Grey is a 4-pole AC surge protection device providing complete full-mode protection across all four conductors – L1-PE, L2-PE, L3-PE and N-PE – in three-phase 4-wire TT and TN-S low-voltage systems. By covering all three phases and the neutral line simultaneously, it shields three-phase electrical devices, precision instruments, and the neutral conductor from surge transients caused by lightning or switching events. The maximum discharge current is 40kA with a nominal of 20kA, and the voltage protection level is –.5kV per mode. A metal oxide varistor (MOV) core responds in under 25 nanoseconds for instantaneous clamping of transient overvoltages. The grey flame-retardant PC housing (UL94 V-0) mounts on a standard 35mm DIN rail and features a modular, hot-swappable design for easy on-site maintenance. Designed for the highest level of entry-point protection in factory main distribution cabinets, data centers, and large commercial building entry panels.",
+    "description": "The SPD-AC-4P-Grey is a 4-pole AC surge protection device providing complete full-mode protection across all four conductors – L1-PE, L2-PE, L3-PE and N-PE – in three-phase 4-wire TT and TN-S low-voltage systems. By covering all three phases and the neutral line simultaneously, it shields three-phase electrical devices, precision instruments, and the neutral conductor from surge transients caused by lightning or switching events. The maximum discharge current is 40kA with a nominal of 20kA. A metal oxide varistor (MOV) core responds in under 25 nanoseconds for instantaneous clamping of transient overvoltages. The grey flame-retardant PC housing (UL94 V-0) mounts on a standard 35mm DIN rail and features a modular, hot-swappable design for easy on-site maintenance. Designed for the highest level of entry-point protection in factory main distribution cabinets, data centers, and large commercial building entry panels.",
     "features": [
       "4-pole full-mode protection: L1-PE, L2-PE, L3-PE and N-PE in one unit",
       "40kA max discharge current (Imax), 20kA nominal discharge current (In)",
-      "Voltage protection level –.5kV – covers all phases and neutral",
       "<25ns ultra-fast response time – instantaneous transient suppression",
       "Metal oxide varistor (MOV) core – excellent conductivity and corrosion resistance",
       "Compatible with TT and TN-S three-phase 4-wire low-voltage systems",
@@ -822,10 +806,6 @@ export const PRODUCT_DETAIL_CONTENT = {
       [
         "Max. Discharge Current (Imax)",
         "40kA"
-      ],
-      [
-        "Voltage Protection Level (Up)",
-        "–.5kV"
       ],
       [
         "System Type",
@@ -1000,12 +980,11 @@ export const PRODUCT_DETAIL_CONTENT = {
     ]
   },
   "SPD-DC-3P-White": {
-    "description": "The SPD-DC-3P-White is a 3-pole high-voltage DC surge protection device for utility and commercial-scale photovoltaic systems, supporting both 1000VDC and 1500VDC operating voltages. It provides full-mode protection across all three DC protection paths simultaneously – DC+ to PE, DC- to PE, and DC+ to DC- – ensuring that inverters, PV arrays, and DC loads are comprehensively shielded against lightning-induced surges, switching transients, and overvoltage events regardless of which conductor is affected. The maximum discharge current is 40kA with a nominal of 20kA, and the voltage protection level is –.0kV. At its core is a high-energy metal oxide varistor (MOV) that responds in under 25 nanoseconds. The modular, hot-swappable design allows individual modules to be replaced without rewiring, minimizing downtime in live installations. The white flame-retardant PC housing (UL94 V-0) mounts on a standard 35mm DIN rail and is suitable for installation in DC distribution cabinets and PV combiner boxes at solar power stations.",
+    "description": "The SPD-DC-3P-White is a 3-pole high-voltage DC surge protection device for utility and commercial-scale photovoltaic systems, supporting both 1000VDC and 1500VDC operating voltages. It provides full-mode protection across all three DC protection paths simultaneously – DC+ to PE, DC- to PE, and DC+ to DC- – ensuring that inverters, PV arrays, and DC loads are comprehensively shielded against lightning-induced surges, switching transients, and overvoltage events regardless of which conductor is affected. The maximum discharge current is 40kA with a nominal of 20kA. At its core is a high-energy metal oxide varistor (MOV) that responds in under 25 nanoseconds. The modular, hot-swappable design allows individual modules to be replaced without rewiring, minimizing downtime in live installations. The white flame-retardant PC housing (UL94 V-0) mounts on a standard 35mm DIN rail and is suitable for installation in DC distribution cabinets and PV combiner boxes at solar power stations.",
     "features": [
       "3-pole full-mode DC protection: DC+/PE, DC-/PE and DC+/DC- in one unit",
       "High voltage: supports 1000VDC and 1500VDC PV systems",
       "40kA max discharge current (Imax), 20kA nominal discharge current (In)",
-      "Voltage protection level –.0kV – for high-voltage PV arrays and inverters",
       "<25ns ultra-fast response – high-energy MOV core for instantaneous clamping",
       "Protects inverters, PV arrays and DC loads from lightning and transient overvoltage",
       "Modular hot-swappable design – minimize downtime in live solar installations",
@@ -1027,10 +1006,6 @@ export const PRODUCT_DETAIL_CONTENT = {
       [
         "Max. Discharge Current (Imax)",
         "40kA"
-      ],
-      [
-        "Voltage Protection Level (Up)",
-        "–.0kV"
       ],
       [
         "Application System",
@@ -1071,13 +1046,12 @@ export const PRODUCT_DETAIL_CONTENT = {
     ]
   },
   "SPD-DC-4P-White": {
-    "description": "The SPD-DC-4P-White is a 4-pole high-voltage DC surge protection device designed for photovoltaic systems with dual DC inputs, supporting both 1000VDC and 1500VDC. Unlike single-input DC SPDs, it provides two completely independent protection circuits – DC1 (DC1+/PE and DC1-/PE) and DC2 (DC2+/PE and DC2-/PE) – allowing a single unit to simultaneously protect both input channels of a dual MPPT inverter or two separate PV arrays in a combiner box. Maximum discharge current is 40kA with a nominal of 20kA, and the voltage protection level is –.0kV per channel. The high-energy metal oxide varistor (MOV) core responds in under 25 nanoseconds. The modular hot-swappable design allows individual pole modules to be replaced without rewiring. The white flame-retardant PC housing (UL94 V-0) mounts on a standard 35mm DIN rail and is built for installation in DC distribution cabinets and at inverter DC inputs in solar power and energy storage systems.",
+    "description": "The SPD-DC-4P-White is a 4-pole high-voltage DC surge protection device designed for photovoltaic systems with dual DC inputs, supporting both 1000VDC and 1500VDC. Unlike single-input DC SPDs, it provides two completely independent protection circuits – DC1 (DC1+/PE and DC1-/PE) and DC2 (DC2+/PE and DC2-/PE) – allowing a single unit to simultaneously protect both input channels of a dual MPPT inverter or two separate PV arrays in a combiner box. Maximum discharge current is 40kA with a nominal of 20kA. The high-energy metal oxide varistor (MOV) core responds in under 25 nanoseconds. The modular hot-swappable design allows individual pole modules to be replaced without rewiring. The white flame-retardant PC housing (UL94 V-0) mounts on a standard 35mm DIN rail and is built for installation in DC distribution cabinets and at inverter DC inputs in solar power and energy storage systems.",
     "features": [
       "4-pole dual-input protection: two independent DC circuits in one module",
       "Protects DC1 (DC1+/PE, DC1-/PE) and DC2 (DC2+/PE, DC2-/PE) simultaneously",
       "High voltage: supports 1000VDC and 1500VDC PV systems",
       "40kA max discharge current (Imax), 20kA nominal discharge current (In)",
-      "Voltage protection level –.0kV per channel",
       "<25ns ultra-fast response – high-energy MOV core for instantaneous clamping",
       "Ideal for dual MPPT inverters, PV combiner boxes and energy storage systems",
       "Modular hot-swappable design, white flame-retardant PC housing, 35mm DIN rail"
@@ -1098,10 +1072,6 @@ export const PRODUCT_DETAIL_CONTENT = {
       [
         "Max. Discharge Current (Imax)",
         "40kA"
-      ],
-      [
-        "Voltage Protection Level (Up)",
-        "–.0kV"
       ],
       [
         "Application System",
@@ -1276,12 +1246,11 @@ export const PRODUCT_DETAIL_CONTENT = {
     ]
   },
   "SPD-DC-3P-Orange": {
-    "description": "The SPD-DC-3P-Orange is a 3-pole high-voltage DC surge protection device for utility and commercial-scale photovoltaic systems, supporting both 1000VDC and 1500VDC operating voltages. It provides full-mode protection across all three DC protection paths simultaneously – DC+ to PE, DC- to PE, and DC+ to DC- – ensuring that inverters, PV arrays, and DC loads are comprehensively shielded against lightning-induced surges, switching transients, and overvoltage events regardless of which conductor is affected. The maximum discharge current is 40kA with a nominal of 20kA, and the voltage protection level is –.0kV. At its core is a high-energy metal oxide varistor (MOV) that responds in under 25 nanoseconds. The modular, hot-swappable design allows individual modules to be replaced without rewiring, minimizing downtime in live installations. The orange flame-retardant PC housing (UL94 V-0) mounts on a standard 35mm DIN rail and is suitable for installation in DC distribution cabinets and PV combiner boxes at solar power stations.",
+    "description": "The SPD-DC-3P-Orange is a 3-pole high-voltage DC surge protection device for utility and commercial-scale photovoltaic systems, supporting both 1000VDC and 1500VDC operating voltages. It provides full-mode protection across all three DC protection paths simultaneously – DC+ to PE, DC- to PE, and DC+ to DC- – ensuring that inverters, PV arrays, and DC loads are comprehensively shielded against lightning-induced surges, switching transients, and overvoltage events regardless of which conductor is affected. The maximum discharge current is 40kA with a nominal of 20kA. At its core is a high-energy metal oxide varistor (MOV) that responds in under 25 nanoseconds. The modular, hot-swappable design allows individual modules to be replaced without rewiring, minimizing downtime in live installations. The orange flame-retardant PC housing (UL94 V-0) mounts on a standard 35mm DIN rail and is suitable for installation in DC distribution cabinets and PV combiner boxes at solar power stations.",
     "features": [
       "3-pole full-mode DC protection: DC+/PE, DC-/PE and DC+/DC- in one unit",
       "High voltage: supports 1000VDC and 1500VDC PV systems",
       "40kA max discharge current (Imax), 20kA nominal discharge current (In)",
-      "Voltage protection level –.0kV – for high-voltage PV arrays and inverters",
       "<25ns ultra-fast response – high-energy MOV core for instantaneous clamping",
       "Protects inverters, PV arrays and DC loads from lightning and transient overvoltage",
       "Modular hot-swappable design – minimize downtime in live solar installations",
@@ -1303,10 +1272,6 @@ export const PRODUCT_DETAIL_CONTENT = {
       [
         "Max. Discharge Current (Imax)",
         "40kA"
-      ],
-      [
-        "Voltage Protection Level (Up)",
-        "–.0kV"
       ],
       [
         "Application System",
@@ -1347,13 +1312,12 @@ export const PRODUCT_DETAIL_CONTENT = {
     ]
   },
   "SPD-DC-4P-Orange": {
-    "description": "The SPD-DC-4P-Orange is a 4-pole high-voltage DC surge protection device designed for photovoltaic systems with dual DC inputs, supporting both 1000VDC and 1500VDC. Unlike single-input DC SPDs, it provides two completely independent protection circuits – DC1 (DC1+/PE and DC1-/PE) and DC2 (DC2+/PE and DC2-/PE) – allowing a single unit to simultaneously protect both input channels of a dual MPPT inverter or two separate PV arrays in a combiner box. Maximum discharge current is 40kA with a nominal of 20kA, and the voltage protection level is –.0kV per channel. The high-energy metal oxide varistor (MOV) core responds in under 25 nanoseconds. The modular hot-swappable design allows individual pole modules to be replaced without rewiring. The orange flame-retardant PC housing (UL94 V-0) mounts on a standard 35mm DIN rail and is built for installation in DC distribution cabinets and at inverter DC inputs in solar power and energy storage systems.",
+    "description": "The SPD-DC-4P-Orange is a 4-pole high-voltage DC surge protection device designed for photovoltaic systems with dual DC inputs, supporting both 1000VDC and 1500VDC. Unlike single-input DC SPDs, it provides two completely independent protection circuits – DC1 (DC1+/PE and DC1-/PE) and DC2 (DC2+/PE and DC2-/PE) – allowing a single unit to simultaneously protect both input channels of a dual MPPT inverter or two separate PV arrays in a combiner box. Maximum discharge current is 40kA with a nominal of 20kA. The high-energy metal oxide varistor (MOV) core responds in under 25 nanoseconds. The modular hot-swappable design allows individual pole modules to be replaced without rewiring. The orange flame-retardant PC housing (UL94 V-0) mounts on a standard 35mm DIN rail and is built for installation in DC distribution cabinets and at inverter DC inputs in solar power and energy storage systems.",
     "features": [
       "4-pole dual-input protection: two independent DC circuits in one module",
       "Protects DC1 (DC1+/PE, DC1-/PE) and DC2 (DC2+/PE, DC2-/PE) simultaneously",
       "High voltage: supports 1000VDC and 1500VDC PV systems",
       "40kA max discharge current (Imax), 20kA nominal discharge current (In)",
-      "Voltage protection level –.0kV per channel",
       "<25ns ultra-fast response – high-energy MOV core for instantaneous clamping",
       "Ideal for dual MPPT inverters, PV combiner boxes and energy storage systems",
       "Modular hot-swappable design, orange flame-retardant PC housing, 35mm DIN rail"
@@ -1374,10 +1338,6 @@ export const PRODUCT_DETAIL_CONTENT = {
       [
         "Max. Discharge Current (Imax)",
         "40kA"
-      ],
-      [
-        "Voltage Protection Level (Up)",
-        "–.0kV"
       ],
       [
         "Application System",
