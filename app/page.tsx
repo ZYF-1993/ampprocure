@@ -534,7 +534,7 @@ export default function HomePage() {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">About upprocure</p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Factory-Direct Electrical Solutions</h2>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Electrical Protection Solutions for B2B Projects</h2>
               <p className="mt-4 text-sm leading-relaxed text-gray-500">
                 Explore our 50,000 m² facility with automated lines and R&amp;D centers. We deliver reliable electrical solutions.
               </p>
@@ -544,7 +544,7 @@ export default function HomePage() {
                 upprocure produces a full range of low-voltage electrical products, including circuit breakers, SPDs, DC fuse holders, power meters, and ATS systems. Our solutions are widely used in residential, commercial, and industrial applications. Backed by ISO 9001 certification and advanced production facilities, we deliver consistent quality at competitive prices.
               </p>
               <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
-                {['ISO & CE Certified Quality', 'Factory Direct Supply', 'Smart Power Monitoring', 'Wide Application', 'Global Customer Trust', 'Competitive Pricing'].map((item) => (
+                {['ISO & CE Certified Quality', 'Direct Supply Chain', 'Smart Power Monitoring', 'Wide Application', 'Global Customer Trust', 'Clear Project Quotations'].map((item) => (
                   <div key={item} className="border-l-2 border-green-500 pl-3">
                     <span className="text-base font-bold leading-snug text-green-700">{item}</span>
                   </div>

@@ -890,7 +890,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               </div>
 
               <p className="mt-4 text-xs text-gray-500" data-i18n="product.availability">
-                Samples available &middot; OEM pricing on request &middot; Ships worldwide
+                Samples available &middot; OEM quotations on request &middot; Ships worldwide
               </p>
             </div>
           </div>

@@ -62,7 +62,7 @@ export default function ProductsPage() {
           </h1>
 
           <p className="mt-3 max-w-2xl text-base text-gray-500" data-i18n="products.subtitle">
-            {CATALOG_PRODUCT_COUNT} products across {FRAMEWORK_CATEGORIES.length} categories - CE certified, IEC compliant, wholesale & OEM pricing available.
+            {CATALOG_PRODUCT_COUNT} products across {FRAMEWORK_CATEGORIES.length} categories - CE certified, IEC compliant, volume and OEM quotations available.
           </p>
         </div>
       </section>

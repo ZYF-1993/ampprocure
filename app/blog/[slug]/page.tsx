@@ -210,7 +210,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               ) : (
                 <>
                   <p className="text-xs font-semibold uppercase tracking-wider text-green-600">Factory Direct · OEM Available</p>
-                  <h3 className="mt-2 text-lg font-bold text-gray-900">Ready to Source? Get a Factory-Direct Quote.</h3>
+                  <h3 className="mt-2 text-lg font-bold text-gray-900">Ready to Source? Get a Project Quote.</h3>
                   <ul className="mt-4 space-y-2">
                     <li className="flex items-start gap-2 text-sm text-gray-600">
                       <span className="mt-0.5 font-bold text-green-500">✓</span>
