@@ -278,7 +278,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-green-700">About upprocure</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl">We Are The Leading Manufacturer For Aerosol Fire Extinguisher Solutions</h2>
             <p className="mt-5 text-base leading-8 text-gray-600">
-              upprocure is a B2B supplier specializing in aerosol fire suppression devices for electrical cabinets and industrial enclosures. With over 15 years of expertise, ISO 9001 certified production, and 200,000+ units delivered annually, we provide reliable OEM and ODM solutions to distributors and system integrators across 80+ countries.
+              upprocure is a manufacturer specializing in aerosol fire suppression devices for electrical cabinets and industrial enclosures. With over 15 years of expertise, ISO 9001 certified production, and 200,000+ units delivered annually, we provide reliable OEM and ODM solutions to distributors and system integrators across 80+ countries.
             </p>
             <div className="mt-7 grid gap-4 sm:grid-cols-2">
               <div className="rounded-xl bg-green-50 p-5">
