@@ -6018,7 +6018,7 @@ export const PRODUCT_DETAIL_CONTENT = {
       ],
       [
         "Transfer Time",
-        "–.05s (50ms)"
+        "0.05s (50ms)"
       ],
       [
         "Over-voltage Protection",
@@ -6093,7 +6093,7 @@ export const PRODUCT_DETAIL_CONTENT = {
       ],
       [
         "Transfer Time",
-        "–.05s (50ms)"
+        "0.05s (50ms)"
       ],
       [
         "Over-voltage Protection",
@@ -6168,7 +6168,7 @@ export const PRODUCT_DETAIL_CONTENT = {
       ],
       [
         "Transfer Time",
-        "–.05s (50ms)"
+        "0.05s (50ms)"
       ],
       [
         "Housing",
@@ -6235,7 +6235,7 @@ export const PRODUCT_DETAIL_CONTENT = {
       ],
       [
         "Transfer Time",
-        "–.05s (50ms)"
+        "0.05s (50ms)"
       ],
       [
         "Housing",
@@ -6302,7 +6302,7 @@ export const PRODUCT_DETAIL_CONTENT = {
       ],
       [
         "Transfer Time",
-        "–.05s (50ms)"
+        "0.05s (50ms)"
       ],
       [
         "Housing",
@@ -6315,7 +6315,7 @@ export const PRODUCT_DETAIL_CONTENT = {
     ]
   },
   "STQ1-63-2P-220V-110V": {
-    "description": "The STQ1-63-2P is a CB class automatic transfer switch for single-phase 110V or 220V AC systems up to 63A, designed as an economical civilian-grade solution for non-critical backup power applications. Unlike PC class switches, the STQ1-63 uses a circuit breaker with mechanical interlock mechanism – physically preventing both power sources from connecting simultaneously. When Normal Power (N/mains) fails, the unit automatically transfers the load to the backup source (generator or PV inverter) in approximately 2 seconds; a brief 2s power interruption occurs during the switchover, which is acceptable for most residential and light-commercial loads. The unit reverts to Normal Power priority automatically once mains is restored. With a maximum load capacity of approximately 6930W ( –.9kW) and compatibility with mains, generator, and PV inverter sources, the STQ1-63-2P is a cost-effective solution for home emergency backup, RV setups, elevators, and fire-protection panel circuits.",
+    "description": "The STQ1-63-2P is a CB class automatic transfer switch for single-phase 110V or 220V AC systems up to 63A, designed as an economical civilian-grade solution for non-critical backup power applications. Unlike PC class switches, the STQ1-63 uses a circuit breaker with mechanical interlock mechanism – physically preventing both power sources from connecting simultaneously. When Normal Power (N/mains) fails, the unit automatically transfers the load to the backup source (generator or PV inverter) in approximately 2 seconds; a brief 2s power interruption occurs during the switchover, which is acceptable for most residential and light-commercial loads. The unit reverts to Normal Power priority automatically once mains is restored. With a maximum load capacity of approximately 6930W (6.9kW) and compatibility with mains, generator, and PV inverter sources, the STQ1-63-2P is a cost-effective solution for home emergency backup, RV setups, elevators, and fire-protection panel circuits.",
     "features": [
       "2-pole switching (Live + Neutral) – 2 inputs / 1 output",
       "CB class – circuit breaker with mechanical interlock, prevents dual-power connection",
@@ -6323,7 +6323,7 @@ export const PRODUCT_DETAIL_CONTENT = {
       "Dual voltage: supports both 110V and 220V AC single-phase",
       "Auto & manual transfer modes; Normal Power (N) priority with auto return",
       "Compatible with mains, generator, and PV inverter sources",
-      "Max load capacity: ~6930W ( –.9kW)",
+      "Max load capacity: ~6930W (6.9kW)",
       "Economical civilian-grade ATS – cost-effective alternative to PC class units"
     ],
     "specs": [
@@ -6377,7 +6377,7 @@ export const PRODUCT_DETAIL_CONTENT = {
       ],
       [
         "Max Load Power",
-        "~6930W ( –.9kW)"
+        "~6930W (6.9kW)"
       ],
       [
         "Internal Components",
@@ -6544,7 +6544,7 @@ export const PRODUCT_DETAIL_CONTENT = {
     ]
   },
   "STQ2-63-2P-220V-110V": {
-    "description": "The STQ2-63-2P is a CB class automatic transfer switch for single-phase 110V or 220V AC systems up to 63A, designed as an economical civilian-grade backup power solution. Using a circuit breaker with mechanical interlock mechanism, it physically prevents both power sources from being connected simultaneously. When Normal Power (N/mains) fails, the unit automatically switches to the backup supply (generator or PV inverter) in approximately 2 seconds; a brief ~2s power outage occurs during transfer, which is acceptable for most residential and light-duty loads. Once mains is restored, the unit reverts to Normal Power priority automatically. With a maximum load capacity of approximately 6930W ( –.9kW) and support for both auto and manual switching modes, the STQ2-63-2P is a straightforward, cost-effective choice for home emergency backup, RV power systems, fire-protection panels, elevator circuits, and general backup power applications.",
+    "description": "The STQ2-63-2P is a CB class automatic transfer switch for single-phase 110V or 220V AC systems up to 63A, designed as an economical civilian-grade backup power solution. Using a circuit breaker with mechanical interlock mechanism, it physically prevents both power sources from being connected simultaneously. When Normal Power (N/mains) fails, the unit automatically switches to the backup supply (generator or PV inverter) in approximately 2 seconds; a brief ~2s power outage occurs during transfer, which is acceptable for most residential and light-duty loads. Once mains is restored, the unit reverts to Normal Power priority automatically. With a maximum load capacity of approximately 6930W (6.9kW) and support for both auto and manual switching modes, the STQ2-63-2P is a straightforward, cost-effective choice for home emergency backup, RV power systems, fire-protection panels, elevator circuits, and general backup power applications.",
     "features": [
       "2-pole switching (Live + Neutral) – 2 inputs / 1 output",
       "CB class – circuit breaker with mechanical interlock, prevents dual-power connection",
@@ -6552,7 +6552,7 @@ export const PRODUCT_DETAIL_CONTENT = {
       "Dual voltage: supports both 110V and 220V AC single-phase",
       "Auto & manual transfer modes; Normal Power (N) priority with auto return",
       "Compatible with mains, generator, and PV inverter sources",
-      "Max load capacity: ~6930W ( –.9kW)",
+      "Max load capacity: ~6930W (6.9kW)",
       "Economical civilian-grade ATS – cost-effective alternative to PC class units"
     ],
     "specs": [
@@ -6606,7 +6606,7 @@ export const PRODUCT_DETAIL_CONTENT = {
       ],
       [
         "Max Load Power",
-        "~6930W ( –.9kW)"
+        "~6930W (6.9kW)"
       ],
       [
         "Internal Components",
