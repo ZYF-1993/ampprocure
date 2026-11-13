@@ -338,10 +338,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               href="/solutions/22mm-push-button-switch"
               className="block max-w-md rounded-xl border border-slate-200 bg-white p-4 hover:border-green-300"
             >
-              <span className="text-sm font-semibold text-slate-900">22mm Push Button Switch Solutions</span>
+              <span className="text-sm font-semibold text-slate-900">Φ22 mm Push Buttons and Operators</span>
               <span className="mt-2 block text-xs leading-5 text-slate-600">
-                Push buttons, emergency stops, selector and key switches in one 22mm panel series.
+                Flush, mushroom, emergency-stop, key and selector operators in one EB2M series. Check the model tables, then send your list for a quote.
               </span>
+              <span className="mt-3 block text-sm font-semibold text-green-700">View the 22mm Range</span>
             </Link>
           ) : (
             <Link href={productCategoryHref} className="text-sm font-semibold text-green-700 hover:text-green-800">
