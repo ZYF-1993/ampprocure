@@ -87,6 +87,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     notFound()
   }
 
+  const ceRohsOnly = detail.ctaVariant === 'ce-rohs'
   const relatedPosts = getRelatedBlogPosts(post.slug)
   const featuredProducts = getRelatedProductsForBlog(post.tags)
   const productCategoryHref = post.tags.includes('PV Combiner Box')
@@ -215,28 +216,47 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <div dangerouslySetInnerHTML={{ __html: rewriteContentImages(detail.articleHtml) }} />
 
             <div className="mt-10 rounded-xl border border-green-100 bg-gradient-to-br from-green-50 to-white p-6">
-              <p className="text-xs font-semibold uppercase tracking-wider text-green-600">Factory Direct · OEM Available</p>
-              <h3 className="mt-2 text-lg font-bold text-gray-900">Ready to Source? Get a Factory-Direct Quote.</h3>
-              <ul className="mt-4 space-y-2">
-                <li className="flex items-start gap-2 text-sm text-gray-600">
-                  <span className="mt-0.5 font-bold text-green-500">✓</span>
-                  Wholesale pricing with full CE &amp; TUV documentation
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-600">
-                  <span className="mt-0.5 font-bold text-green-500">✓</span>
-                  OEM &amp; private label — custom spec, your brand
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-600">
-                  <span className="mt-0.5 font-bold text-green-500">✓</span>
-                  Samples, datasheets &amp; tech support on request
-                </li>
-              </ul>
-              <div className="mt-5 flex flex-wrap items-center gap-3">
-                <Link href="/contact" className="btn-primary inline-flex">
-                  Request a Quote
-                </Link>
-                <span className="text-xs text-gray-400">Reply within 24 hours</span>
-              </div>
+              {ceRohsOnly ? (
+                <>
+                  <h3 className="text-lg font-bold text-gray-900">Send Your Model List for a Quote</h3>
+                  <ul className="mt-4 space-y-2">
+                    <li className="flex items-start gap-2 text-sm text-gray-600">
+                      <span className="mt-0.5 font-bold text-green-500">✓</span>
+                      CE and RoHS documentation available on request
+                    </li>
+                  </ul>
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <Link href="/contact" className="btn-primary inline-flex">
+                      Request a Quote
+                    </Link>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-green-600">Factory Direct · OEM Available</p>
+                  <h3 className="mt-2 text-lg font-bold text-gray-900">Ready to Source? Get a Factory-Direct Quote.</h3>
+                  <ul className="mt-4 space-y-2">
+                    <li className="flex items-start gap-2 text-sm text-gray-600">
+                      <span className="mt-0.5 font-bold text-green-500">✓</span>
+                      Wholesale pricing with full CE &amp; TUV documentation
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-gray-600">
+                      <span className="mt-0.5 font-bold text-green-500">✓</span>
+                      OEM &amp; private label — custom spec, your brand
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-gray-600">
+                      <span className="mt-0.5 font-bold text-green-500">✓</span>
+                      Samples, datasheets &amp; tech support on request
+                    </li>
+                  </ul>
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <Link href="/contact" className="btn-primary inline-flex">
+                      Request a Quote
+                    </Link>
+                    <span className="text-xs text-gray-400">Reply within 24 hours</span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -252,19 +272,25 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <span className="absolute bottom-3 left-4 text-sm font-bold tracking-wide text-white">Factory Direct</span>
+                  {!ceRohsOnly && (
+                    <span className="absolute bottom-3 left-4 text-sm font-bold tracking-wide text-white">Factory Direct</span>
+                  )}
                 </div>
                 <div className="p-4">
                   <p className="text-xs leading-relaxed text-gray-500">
-                    IEC-certified manufacturer of low-voltage electrical protection products. OEM &amp; private label available.
+                    {ceRohsOnly
+                      ? 'CE and RoHS documentation available on request.'
+                      : 'IEC-certified manufacturer of low-voltage electrical protection products. OEM & private label available.'}
                   </p>
                   <div className="mt-3 flex items-center justify-center gap-3">
                     <div className="relative h-8 w-8">
                       <OptimizedImage src="/images/ce.png" alt="CE certified" variant="thumb" fill sizes="32px" className="object-contain" />
                     </div>
-                    <div className="relative h-8 w-12">
-                      <OptimizedImage src="/images/TUV.png" alt="TUV certified" variant="thumb" fill sizes="48px" className="object-contain" />
-                    </div>
+                    {!ceRohsOnly && (
+                      <div className="relative h-8 w-12">
+                        <OptimizedImage src="/images/TUV.png" alt="TUV certified" variant="thumb" fill sizes="48px" className="object-contain" />
+                      </div>
+                    )}
                     <div className="relative h-8 w-12">
                       <OptimizedImage src="/images/rohs.png" alt="RoHS compliant" variant="thumb" fill sizes="48px" className="object-contain" />
                     </div>
