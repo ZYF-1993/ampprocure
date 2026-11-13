@@ -173,12 +173,12 @@ const eb2mPostData: readonly BlogPostSource[] = [
     publishedAt: 'Nov 13, 2026',
     readingMinutes: 10,
     heroSummary:
-      'A 22mm push button switch looks simple, but most ordering errors come from a handful of details: operator type, momentary or latching action, the contact code, lamp voltage and body size. This guide walks through each one, using the EB2M series as a worked example, so your inquiry describes exactly the part your panel needs.',
+      'A 22mm push button switch looks simple, but common ordering errors come from a handful of details: operator type, momentary or latching action, the contact code, lamp voltage and body size. This guide walks through each one, using the EB2M series as a worked example, so your inquiry describes exactly the part your panel needs.',
     sections: [
       {
         heading: 'Why Small Details Decide the Right Part',
         paragraphs: [
-          'On a control panel, the 22mm push button switch is the part operators touch most often. It is also one of the easiest parts to order wrong. A request for "red 22mm button, NC" can match many different products: flush or mushroom head, momentary or latching, with or without a lamp, in a standard or a compact body. Each choice changes how the panel behaves or whether the part fits.',
+          'On a control panel, the 22mm push button switch is the part operators use every shift. It is also easy to misorder when key details are left out of the inquiry. A request for "red 22mm button, NC" can match many different products: flush or mushroom head, momentary or latching, with or without a lamp, in a standard or a compact body. Each choice changes how the panel behaves or whether the part fits.',
           'This guide follows the order an engineer normally works through. As a worked example we use the EB2M series, a Φ22 mm range with two body types and a model code that states the contacts and the action. Full model tables are on our 22mm push button switch solutions page.',
         ],
       },
@@ -206,9 +206,9 @@ const eb2mPostData: readonly BlogPostSource[] = [
         ],
       },
       {
-        heading: 'Read the NO NC Contact Code',
+        heading: 'Read the NO/NC Contact Code',
         paragraphs: [
-          'A normally open (NO) contact is open at rest and closes when the operator is actuated. A normally closed (NC) contact is closed at rest and opens when actuated. Start functions are usually wired through NO contacts. Stop functions are usually wired through NC contacts, so that a broken wire or loose terminal has the same effect as pressing stop.',
+          'A normally open (NO) contact is open at rest and closes when the operator is actuated. A normally closed (NC) contact is closed at rest and opens when actuated. Start functions are usually wired through NO contacts. Stop functions are usually wired through NC contacts, so that an open-circuit fault, such as a broken wire or loose terminal, interrupts the control path in the same way as pressing stop.',
           'In the EB2M series the contacts are part of the model code: the first digit is the number of NO contacts and the second digit is the number of NC contacts.',
           'So EB2M-A-10D is an illuminated flush button with one NO contact, and EB2M-B-01ZS is a twist-release emergency stop with one NC contact. If you need more contacts than the code lists, ask before ordering; stacking blocks beyond what the supplier specifies can make any button stick.',
         ],
@@ -233,9 +233,9 @@ const eb2mPostData: readonly BlogPostSource[] = [
         ],
       },
       {
-        heading: 'Illuminated Push Button 22mm: Specify the Lamp Voltage Separately',
+        heading: '22mm Illuminated Push Button: Specify the Lamp Voltage Separately',
         paragraphs: [
-          'An illuminated push button 22mm has two independent circuits: the contacts and the lamp. The contact rating says nothing about the lamp, and the lamp voltage says nothing about the contacts. A button with a 24 V lamp connected to a 220 V indicator supply will fail, and a lamp chosen for 220 V will not light properly on 24 V.',
+          'A 22mm illuminated push button has two independent circuits: the contacts and the lamp. The contact rating says nothing about the lamp, and the lamp voltage says nothing about the contacts. A button with a 24 V lamp connected to a 220 V indicator supply will fail, and a lamp chosen for 220 V will not light properly on 24 V.',
           'Treat the lamp voltage as its own line item. The EB2M lamp voltages printed in the catalog are:',
           'If your design depends on lamp current or lamp type, confirm those values with the supplier before you finalize the drawing.',
         ],
@@ -249,7 +249,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
         heading: 'IP Rating: What It Covers and What Installation Can Undo',
         paragraphs: [
           'The EB2M series is rated IP40 / IP65, and the rating depends on the operator type, so confirm it for the exact model on your quote. If the panel front will see dust or splashing, make IP65 an explicit line in the inquiry.',
-          'The rating only holds if the installation is right. Common reasons an IP65 push button leaks in service:',
+          'Keeping the rated protection in service depends on correct cutout preparation and mounting. Common reasons an IP65 push button leaks in service:',
           "The operator's IP rating is not the panel's IP rating; the enclosure, door seals and cable entries need to reach the same level.",
         ],
         bullets: [
@@ -331,7 +331,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
     publishedAt: 'Nov 13, 2026',
     readingMinutes: 8,
     heroSummary:
-      'An emergency stop button is the operator on a panel that has to work the first time it is needed. This guide explains what defines a 22mm emergency stop button, why it uses a normally closed contact and a twist-release reset, and what panel builders and OEM buyers should confirm before they place an order.',
+      'An emergency stop button is the manual control an operator uses to initiate an emergency stop. This guide explains what defines a 22mm emergency stop button, why it uses a normally closed contact and a twist-release reset, and what panel builders and OEM buyers should confirm before they place an order.',
     sections: [
       {
         heading: 'What an Emergency Stop Button Is For',
@@ -344,15 +344,15 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: 'Why the Contact Is Normally Closed',
         paragraphs: [
-          'The emergency stop contact is normally closed (NC). At rest the contact is closed and the stop circuit is complete; pressing the head opens the contact and breaks the circuit. The reason is fault behavior. If a wire breaks, a terminal works loose or a connector is unplugged, an NC circuit opens just as it would if the button were pressed, and the machine stops. A circuit built on a normally open contact would fail silently: the wire could be broken for months and nobody would know until the button was needed.',
+          'The emergency stop contact is normally closed (NC). At rest the contact is closed and the stop circuit is complete; pressing the head opens the contact and breaks the circuit. The reason is fault behavior. If a wire breaks, a terminal works loose or a connector is unplugged, an NC contact path opens just as it would when the button is pressed, removing the continuity the run circuit depends on. A circuit built on a normally open contact would fail silently: the wire could be broken for months and nobody would know until the button was needed.',
           'This is why emergency stops are normally specified with NC contacts, and why the EB2M emergency stop models are all printed as -01, meaning 1NC. Reading the code is enough to confirm the contact arrangement.',
-          'If you also want a status signal to a PLC, raise that in the inquiry rather than assuming an additional contact can be added to the printed configuration. On any brand, adding contact blocks beyond what the supplier specifies can slow the actuator or make it stick, which is the last thing you want on an emergency stop.',
+          'If you also want a status signal to a PLC, raise that in the inquiry rather than assuming an additional contact can be added to the printed configuration. Adding contact blocks beyond what the supplier specifies can slow the actuator or cause binding, which can interfere with emergency stop operation.',
         ],
       },
       {
         heading: 'Twist Release: Why the Button Stays Down',
         paragraphs: [
-          'A twist release emergency stop latches in the pressed position. The contact stays open until someone turns the head to release it. This has two practical effects. A machine cannot restart simply because the operator let go of the button, and the reset becomes a deliberate action that the person has to think about.',
+          'A twist-release emergency stop latches in the pressed position. The contact stays open until someone turns the head to release it. This has two practical effects. The switch contact does not reclose simply because the operator lets go of the button, and resetting the head requires a deliberate manual action.',
           'Releasing the head should not restart the machine on its own. In a typical control circuit, releasing the emergency stop only allows the machine to be restarted; a separate start or reset command is still needed. That logic lives in the control circuit, not in the button, so it has to be designed and checked by the machine builder.',
           'Other reset styles exist in the market, such as key release or pull release. Your customer or end user may have a preference, so confirm it early. The EB2M range lists twist release.',
         ],
@@ -372,7 +372,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: 'Illuminated Emergency Stops: When They Help',
         paragraphs: [
-          'An illuminated head (-01DZS or -01DZS/A) can show the state of the emergency stop circuit, which helps operators and maintenance staff find which station was pressed on a long line. As with any illuminated push button 22mm, the lamp is a separate circuit from the contact. Specify the lamp voltage from the printed list (6, 12, 24, 36, 48, 110 and 127 V AC/DC; 220 V DC; 220 V and 380 V AC) and make sure it matches the supply that will feed the lamp.',
+          'An illuminated head (-01DZS or -01DZS/A) can show the state of the emergency stop circuit, which helps operators and maintenance staff find which station was pressed on a long line. As with any 22mm illuminated push button, the lamp is wired on a separate circuit from the contact. Specify the lamp voltage from the printed list (6, 12, 24, 36, 48, 110 and 127 V AC/DC; 220 V DC; 220 V and 380 V AC) and make sure it matches the supply that will feed the lamp.',
           'What the light means is a design decision. Agree on it with the end user and document it, so operators read it the same way on every machine in the plant.',
         ],
       },
@@ -419,7 +419,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
     faq: [
       {
         question: 'Why does an emergency stop use an NC contact instead of an NO contact?',
-        answer: 'With an NC contact, a broken wire or loose terminal opens the circuit just like pressing the button, so the fault stops the machine instead of going unnoticed. The EB2M emergency stops are printed as -01, which is 1NC.',
+        answer: 'With an NC contact, a broken wire or loose terminal opens the circuit just like pressing the button, so a properly designed control circuit can detect the open state and stop. The EB2M emergency stops are printed as -01, which is 1NC.',
       },
       {
         question: 'What does twist release mean on an emergency stop button?',
@@ -443,7 +443,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
     slug: '22mm-selector-switch-key-switch-spring-return-hand-off-auto',
     title: '22mm Selector and Key Switches: 2- vs 3-Position, Spring Return and Hand-Off-Auto Explained',
     description:
-      '2- vs 3-position, maintained or spring return (f, fu, f.fu) and Hand-Off-Auto use: how to specify a 22mm selector switch or key switch.',
+      'Specify a 22mm selector switch or key switch: 2- vs 3-position, maintained or spring return (f, fu, f.fu), and Hand-Off-Auto use.',
     tags: ['22mm Selector Switch', 'Applications'],
     image: '/images/blog/22mm-selector-switch-key-switch.jpg',
     publishedAt: 'Nov 13, 2026',
@@ -477,10 +477,10 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: 'Maintained or Spring Return: The f, fu and f.fu Codes',
         paragraphs: [
-          'The second decision is whether the lever stays in position. A maintained selector stays where it is turned. A spring return selector goes back to the center by itself when released, so in that position it behaves like a momentary push button.',
+          'The second decision is whether the lever stays in position. A maintained selector stays where it is turned. A spring return selector goes back to its rest position by itself when released (the center on a 3-position switch), so in that direction it behaves like a momentary push button. On 2-position models with /fu, confirm the return direction on the catalog drawing of the exact model.',
           'The EB2M series uses three suffixes for spring return:',
           'Examples: EB2M-A-20XS is a 3-position short-lever selector that stays in each position. EB2M-B-20XS/f.fu has the same lever with spring return from both sides to center, a typical choice for a jog left/jog right or raise/lower command. EB2M-A-10CY/fu is a 2-position key switch with the fu spring-return option.',
-          'Write the suffix exactly as printed. "Spring return" without a direction is one of the most frequent gaps in selector and key switch inquiries, and it is the detail most likely to cause a wrong delivery.',
+          'Write the suffix exactly as printed. "Spring return" without a direction is a common gap in selector and key switch inquiries, and it often leads to the wrong variant being delivered.',
         ],
         bullets: [
           '/f: spring return from left to center',
@@ -506,7 +506,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
         ],
         bullets: [
           'HAND position: one NO contact energizes the contactor coil through the local stop and overload circuit.',
-          'OFF (center): both contacts are open, so the motor cannot be started from either source.',
+          'OFF (center): both selector contacts are open, so neither the HAND nor the AUTO branch can energize the contactor coil through the switch.',
           'AUTO position: the second NO contact connects the external run signal to the contactor coil.',
           'Status: an illuminated selector such as -20XSD, or a separate pilot light, shows the operator the mode or run state.',
         ],
@@ -568,7 +568,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       },
       {
         question: 'What is the difference between a selector switch and a key switch?',
-        answer: 'Both select a mode. A key switch needs a key to operate, so only authorized staff can change the mode. Listed mechanical life is ≥300,000 operations for selector switches and ≥50,000 for key switches.',
+        answer: 'Both select a mode. A key switch needs a key to turn, which helps restrict mode changes to the people who hold the key. Listed mechanical life is ≥300,000 operations for selector switches and ≥50,000 for key switches.',
       },
       {
         question: 'Can a 2-position selector be spring return?',
