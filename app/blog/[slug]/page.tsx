@@ -46,6 +46,8 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
   const title = override?.title ?? truncateSeoText(detail?.metaTitle || post.title, 57)
   const description = override?.description ?? (detail?.description || post.description)
   // An explicit override is the full <title>; generated titles get the site-name template.
+  // Open Graph and Twitter use the same full title as the rendered <title>.
+  const fullTitle = override?.title ? title : `${title} | ${SITE_NAME}`
 
   return {
     title: override?.title ? { absolute: title } : title,
@@ -55,7 +57,7 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
       canonical: absoluteUrl(`/blog/${post.slug}`),
     },
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       url: absoluteUrl(`/blog/${post.slug}`),
       type: 'article',
@@ -74,7 +76,7 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: fullTitle,
       description,
       images: [absoluteOptimizedSrc(post.image)],
     },
