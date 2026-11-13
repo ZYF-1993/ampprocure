@@ -89,7 +89,8 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   const ceRohsOnly = detail.ctaVariant === 'ce-rohs'
   const relatedPosts = getRelatedBlogPosts(post.slug)
-  const featuredProducts = getRelatedProductsForBlog(post.tags)
+  // EB2M posts: skip the featured-product fallback (unrelated PV / aerosol items) and link the 22mm solution page instead.
+  const featuredProducts = ceRohsOnly ? [] : getRelatedProductsForBlog(post.tags)
   const productCategoryHref = post.tags.includes('PV Combiner Box')
     ? '/categories/pv-combiner-box'
     : post.tags.some((tag) => tag.toLowerCase().includes('aerosol'))
@@ -332,9 +333,21 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       />
       <div className="bg-slate-50 px-4 pb-12 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-7xl">
-          <Link href={productCategoryHref} className="text-sm font-semibold text-green-700 hover:text-green-800">
-            Browse the related category
-          </Link>
+          {ceRohsOnly ? (
+            <Link
+              href="/solutions/22mm-push-button-switch"
+              className="block max-w-md rounded-xl border border-slate-200 bg-white p-4 hover:border-green-300"
+            >
+              <span className="text-sm font-semibold text-slate-900">22mm Push Button Switch Solutions</span>
+              <span className="mt-2 block text-xs leading-5 text-slate-600">
+                Push buttons, emergency stops, selector and key switches in one 22mm panel series.
+              </span>
+            </Link>
+          ) : (
+            <Link href={productCategoryHref} className="text-sm font-semibold text-green-700 hover:text-green-800">
+              Browse the related category
+            </Link>
+          )}
         </div>
       </div>
     </main>
