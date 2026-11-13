@@ -481,9 +481,9 @@ export const SEO_OVERRIDES: Readonly<Record<string, SeoOverride>> = {
     title: "IP65 vs IP66 vs IP67 PV Combiner Box Guide | UPprocure",
     description: "More IP isn't always better. Match IP65, IP66, or IP67 PV combiner box to your actual climate — without over-spec waste or under-spec field failure.",
   },
-  "/blog/pv-combiner-box-certifications-iec-ce-tuv-ul": {
-    title: "PV Combiner Box Certifications: IEC, CE, TÜV, UL | UPprocure",
-    description: "Which PV combiner box certifications (IEC 61439, CE, TÜV, UL, RoHS) open which markets, and how buyers can verify each one before shipment.",
+  "/blog/pv-combiner-box-certifications-iec-ce-ul": {
+    title: "PV Combiner Box Certifications: IEC, CE & UL | UPprocure",
+    description: "Which PV combiner box certifications (IEC 61439, CE, UL, RoHS) open which markets, and how buyers can verify each one before shipment.",
   },
   "/blog/dc-vs-ac-pv-combiner-box": {
     title: "DC vs AC PV Combiner Box: Which Do You Need? | UPprocure",

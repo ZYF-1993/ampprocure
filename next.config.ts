@@ -131,6 +131,7 @@ const nextConfig: NextConfig = {
       { source: '/product/:slug*', destination: '/products/:slug*', permanent: true },
       { source: '/productshow/:slug*', destination: '/products/:slug*', permanent: true },
       { source: '/products/din-rail-aerosol-fire-extinguisher', destination: '/products/Aerosol-DIN-Rail', permanent: true },
+      { source: '/blog/pv-combiner-box-certifications-iec-ce-tuv-ul', destination: '/blog/pv-combiner-box-certifications-iec-ce-ul', permanent: true },
     ]
   },
 

@@ -724,12 +724,12 @@ const postData = [
     readingMinutes: 9,
   },
   {
-    slug: 'pv-combiner-box-certifications-iec-ce-tuv-ul',
-    title: 'Must-Have Certifications for PV Combiner Boxes: IEC 61439, TÜV, CE, UL Explained',
+    slug: 'pv-combiner-box-certifications-iec-ce-ul',
+    title: 'Must-Have Certifications for PV Combiner Boxes: IEC 61439, CE, UL Explained',
     description:
-      'Wrong certification at the port = 11 days of demurrage and a refused container. This guide explains the six PV combiner box certifications that actually matter for B2B import, which market each unlocks, and how to verify every certificate before you sign the PO.',
+      'Wrong certification at the port = 11 days of demurrage and a refused container. This guide explains the five PV combiner box certifications that actually matter for B2B import, which market each unlocks, and how to verify every certificate before you sign the PO.',
     tags: ['PV Combiner Box', 'Certification'],
-    image: '/images/blog/pv-combiner-box-certifications-iec-ce-tuv-ul.jpg',
+    image: '/images/blog/pv-combiner-box-certifications-iec-ce-ul.jpg',
     publishedAt: 'Apr 24, 2026',
     readingMinutes: 10,
   },

@@ -17,7 +17,7 @@ const slugs = [
   'pv-combiner-box-price-guide-2026',
   'how-to-choose-pv-combiner-box-string-count',
   'ip65-vs-ip66-vs-ip67-pv-combiner-box',
-  'pv-combiner-box-certifications-iec-ce-tuv-ul',
+  'pv-combiner-box-certifications-iec-ce-ul',
   'dc-vs-ac-pv-combiner-box',
   'pv-combiner-box-buyers-checklist',
   'pv-combiner-box-sourcing-china-2026',
