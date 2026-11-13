@@ -47,6 +47,11 @@ export const metadata = buildPageMetadata({
     'IP65 push button',
     'EB2M push button',
     'panel push button switch',
+    'twist release emergency stop button',
+    'spring return selector switch',
+    'Hand-Off-Auto selector switch',
+    'panel mount push button',
+    'start stop double push button',
   ],
   ogImage: '/optimized/display/images/solutions/22mm-push-button-switch/hero.webp',
 })
