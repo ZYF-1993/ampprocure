@@ -25,7 +25,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Contact Us', path: '/contact' }]} />
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">Contact Us</h1>
           <p className="mt-3 max-w-2xl text-base text-gray-500">
-            Send us an enquiry and our sales team will respond within 24 hours. Samples, technical datasheets, and OEM pricing available on request.
+            Send us an enquiry and our sales team will respond within 24 hours. Samples, technical datasheets, and OEM quotations available on request.
           </p>
         </div>
       </section>

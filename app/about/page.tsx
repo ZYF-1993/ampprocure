@@ -6,11 +6,11 @@ import { buildPageMetadata } from '@/lib/seo'
 
 const strengths = [
   'ISO & CE Certified Quality',
-  'Factory Direct Supply',
+  'Direct Supply Chain',
   'Smart Power Monitoring',
   'Wide Range of Applications',
   'Trusted by Global Customers',
-  'Competitive Pricing',
+  'Clear Project Quotations',
 ] as const
 
 const capabilities = [

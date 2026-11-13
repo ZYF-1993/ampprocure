@@ -98,7 +98,7 @@ const insights = [
 
 const HEADLINE = 'One-Stop Industrial Electrical Sourcing Platform.'
 const SUBHEADLINE = 'Leveraging the unparalleled manufacturing cluster of Liushi, Wenzhou—the capital of electrical appliances—UPprocure delivers end-to-end procurement for global buyers. We integrate multi-category matching, rigorous QC inspections, and flexible MOQ options into a seamless, contract-ready supply chain.'
-const TRUST_BADGES = ['Flexible MOQ', 'Factory-Direct Costing', '100% Quality Inspected', 'Global Logistics Control'] as const
+const TRUST_BADGES = ['OEM Labeling', 'Project Quotations', '100% Quality Inspected', 'Global Logistics Control'] as const
 
 const productCategoryCards = [
   {
