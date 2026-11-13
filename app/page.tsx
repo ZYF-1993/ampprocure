@@ -98,7 +98,7 @@ const insights = [
 
 const HEADLINE = 'One-Stop Industrial Electrical Sourcing Platform.'
 const SUBHEADLINE = 'Leveraging the unparalleled manufacturing cluster of Liushi, Wenzhou—the capital of electrical appliances—UPprocure delivers end-to-end procurement for global buyers. We integrate multi-category matching, rigorous QC inspections, and flexible MOQ options into a seamless, contract-ready supply chain.'
-const TRUST_BADGES = ['Flexible MOQ', 'Factory-Direct Costing', '100% Quality Inspected', 'Global Logistics Control'] as const
+const TRUST_BADGES = ['OEM Labeling', 'Project Quotations', '100% Quality Inspected', 'Global Logistics Control'] as const
 
 const productCategoryCards = [
   {
@@ -487,7 +487,7 @@ export default function HomePage() {
             {featuredProducts.map((product) => (
               <Link key={product.slug} href={`/products/${product.slug}`} className="flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:border-green-200 hover:shadow-md">
                 <div className="relative h-40 bg-gray-50">
-                  <OptimizedImage src={product.image} alt="" fill variant="thumb" sizes="(max-width: 1024px) 50vw, 25vw" className="object-contain p-4" />
+                  <OptimizedImage src={product.image} alt={product.name} fill variant="thumb" sizes="(max-width: 1024px) 50vw, 25vw" className="object-contain p-4" />
                 </div>
                 <div className="p-4">
                   <p className="text-xs font-medium uppercase tracking-wide text-green-700">{product.category}</p>
@@ -534,7 +534,7 @@ export default function HomePage() {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">About upprocure</p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Factory-Direct Electrical Solutions</h2>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Electrical Protection Solutions for B2B Projects</h2>
               <p className="mt-4 text-sm leading-relaxed text-gray-500">
                 Explore our 50,000 m² facility with automated lines and R&amp;D centers. We deliver reliable electrical solutions.
               </p>
@@ -544,7 +544,7 @@ export default function HomePage() {
                 upprocure produces a full range of low-voltage electrical products, including circuit breakers, SPDs, DC fuse holders, power meters, and ATS systems. Our solutions are widely used in residential, commercial, and industrial applications. Backed by ISO 9001 certification and advanced production facilities, we deliver consistent quality at competitive prices.
               </p>
               <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
-                {['ISO & CE Certified Quality', 'Factory Direct Supply', 'Smart Power Monitoring', 'Wide Application', 'Global Customer Trust', 'Competitive Pricing'].map((item) => (
+                {['ISO & CE Certified Quality', 'Direct Supply Chain', 'Smart Power Monitoring', 'Wide Application', 'Global Customer Trust', 'Clear Project Quotations'].map((item) => (
                   <div key={item} className="border-l-2 border-green-500 pl-3">
                     <span className="text-base font-bold leading-snug text-green-700">{item}</span>
                   </div>
@@ -579,7 +579,6 @@ export default function HomePage() {
                 {[
                   'ISO 9001:2015 Quality Management System',
                   'CE Marking — IEC/EN Standards Compliant',
-                  'CCC Certification (China Compulsory Certificate)',
                   'RoHS Compliant — Environmentally Responsible',
                   'Trusted Supplier for Global Electrical Brands',
                 ].map((item) => (

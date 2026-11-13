@@ -87,7 +87,7 @@ const PRODUCT_DATA = [
     "category": "Surge Protector Device",
     "categoryCode": "surge-protector-device",
     "image": "/images/products/SPD-AC-1P-Grey-1.jpg",
-    "technicalSummary": "1-pole 385VAC surge protector for TN-S neutral-ground (N-PE) protection. 40kA max discharge current, – .0kV protection level, <25ns response – modular hot-swappable DIN rail design for sub-distribution and combined lightning boxes."
+    "technicalSummary": "1-pole 385VAC surge protector for TN-S neutral-ground (N-PE) protection. 40kA max discharge current, <25ns response – modular hot-swappable DIN rail design for sub-distribution and combined lightning boxes."
   },
   {
     "slug": "SPD-AC-2P-Grey",
@@ -95,7 +95,7 @@ const PRODUCT_DATA = [
     "category": "Surge Protector Device",
     "categoryCode": "surge-protector-device",
     "image": "/images/products/SPD-AC-2P-Grey-1.jpg",
-    "technicalSummary": "2-pole 385VAC full-mode surge protector covering L-N, L-PE and N-PE protection. 40kA max discharge, – .0kV protection level, <25ns response – modular hot-swappable DIN rail SPD for residential and small industrial distribution boxes."
+    "technicalSummary": "2-pole 385VAC full-mode surge protector covering L-N, L-PE and N-PE protection. 40kA max discharge, <25ns response – modular hot-swappable DIN rail SPD for residential and small industrial distribution boxes."
   },
   {
     "slug": "SPD-AC-3P-Grey",
@@ -103,7 +103,7 @@ const PRODUCT_DATA = [
     "category": "Surge Protector Device",
     "categoryCode": "surge-protector-device",
     "image": "/images/products/SPD-AC-3P-Grey-1.jpg",
-    "technicalSummary": "3-pole 385VAC surge protector for three-phase 3-wire systems (no neutral). Independent L1-PE, L2-PE, L3-PE protection per phase. 40kA max discharge, – .5kV protection level, <25ns response – for industrial power equipment and motor control panels."
+    "technicalSummary": "3-pole 385VAC surge protector for three-phase 3-wire systems (no neutral). Independent L1-PE, L2-PE, L3-PE protection per phase. 40kA max discharge, <25ns response – for industrial power equipment and motor control panels."
   },
   {
     "slug": "SPD-AC-4P-Grey",
@@ -111,7 +111,7 @@ const PRODUCT_DATA = [
     "category": "Surge Protector Device",
     "categoryCode": "surge-protector-device",
     "image": "/images/products/SPD-AC-4P-Grey-1.jpg",
-    "technicalSummary": "4-pole 385VAC full-mode surge protector for TT/TN-S three-phase 4-wire systems. L1-PE, L2-PE, L3-PE and N-PE protection in one unit. 40kA max discharge, – .5kV, <25ns response – for factory main cabinets, data centers and large building entry panels."
+    "technicalSummary": "4-pole 385VAC full-mode surge protector for TT/TN-S three-phase 4-wire systems. L1-PE, L2-PE, L3-PE and N-PE protection in one unit. 40kA max discharge, <25ns response – for factory main cabinets, data centers and large building entry panels."
   },
   {
     "slug": "SPD-DC-1P-White",
@@ -135,7 +135,7 @@ const PRODUCT_DATA = [
     "category": "Surge Protector Device",
     "categoryCode": "surge-protector-device",
     "image": "/images/products/SPD-DC-3P-White-1.jpg",
-    "technicalSummary": "3-pole high-voltage DC surge protector for 1000VDC and 1500VDC PV systems. Full-mode protection: DC+/PE, DC-/PE and DC+/DC-. 40kA max discharge, – .0kV protection level – for PV combiner boxes, inverter DC sides, and solar power stations."
+    "technicalSummary": "3-pole high-voltage DC surge protector for 1000VDC and 1500VDC PV systems. Full-mode protection: DC+/PE, DC-/PE and DC+/DC-. 40kA max discharge – for PV combiner boxes, inverter DC sides, and solar power stations."
   },
   {
     "slug": "SPD-DC-4P-White",
@@ -167,7 +167,7 @@ const PRODUCT_DATA = [
     "category": "Surge Protector Device",
     "categoryCode": "surge-protector-device",
     "image": "/images/products/SPD-DC-3P-Orange-1.jpg",
-    "technicalSummary": "3-pole high-voltage DC surge protector for 1000VDC and 1500VDC PV systems. Full-mode protection: DC+/PE, DC-/PE and DC+/DC-. 40kA max discharge, – .0kV protection level – for PV combiner boxes, inverter DC sides, and solar power stations."
+    "technicalSummary": "3-pole high-voltage DC surge protector for 1000VDC and 1500VDC PV systems. Full-mode protection: DC+/PE, DC-/PE and DC+/DC-. 40kA max discharge – for PV combiner boxes, inverter DC sides, and solar power stations."
   },
   {
     "slug": "SPD-DC-4P-Orange",

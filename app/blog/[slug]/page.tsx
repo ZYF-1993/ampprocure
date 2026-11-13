@@ -9,6 +9,7 @@ import { BLOG_DETAIL_CONTENT } from '@/lib/blog-detail-content'
 import { BLOG_POSTS } from '@/lib/blog-posts'
 import { getRelatedBlogPosts, getRelatedProductsForBlog } from '@/lib/internal-links'
 import { absoluteUrl, jsonLdScript, truncateSeoText } from '@/lib/seo'
+import { getSeoOverride } from '@/lib/seo-overrides'
 import { DEFAULT_KEYWORDS, SITE_LOGO, SITE_NAME } from '@/lib/site-config'
 import { getBlogBySlug } from '@/lib/site-content'
 
@@ -41,18 +42,22 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
     }
   }
 
-  const title = truncateSeoText(detail?.metaTitle || post.title, 57)
-  const description = detail?.description || post.description
+  const override = getSeoOverride(`/blog/${post.slug}`)
+  const title = override?.title ?? truncateSeoText(detail?.metaTitle || post.title, 57)
+  const description = override?.description ?? (detail?.description || post.description)
+  // An explicit override is the full <title>; generated titles get the site-name template.
+  // Open Graph and Twitter use the same full title as the rendered <title>.
+  const fullTitle = override?.title ? title : `${title} | ${SITE_NAME}`
 
   return {
-    title,
+    title: override?.title ? { absolute: title } : title,
     description,
     keywords: [...DEFAULT_KEYWORDS, ...post.tags],
     alternates: {
       canonical: absoluteUrl(`/blog/${post.slug}`),
     },
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       url: absoluteUrl(`/blog/${post.slug}`),
       type: 'article',
@@ -71,7 +76,7 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: fullTitle,
       description,
       images: [absoluteOptimizedSrc(post.image)],
     },
@@ -129,31 +134,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     inLanguage: 'en-US',
   }
 
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: absoluteUrl('/'),
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Blog',
-        item: absoluteUrl('/blog'),
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: detail.title,
-        item: absoluteUrl(`/blog/${post.slug}`),
-      },
-    ],
-  }
-
   return (
     <main className="bg-white">
       <script
@@ -162,12 +142,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           __html: jsonLdScript(blogJsonLd),
         }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: jsonLdScript(breadcrumbJsonLd),
-        }}
-      />
+      {/* BreadcrumbList JSON-LD is emitted by <Breadcrumbs> below. */}
 
       <section className="border-b border-gray-100 bg-gray-50 py-10">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -223,7 +198,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   <ul className="mt-4 space-y-2">
                     <li className="flex items-start gap-2 text-sm text-gray-600">
                       <span className="mt-0.5 font-bold text-green-500">✓</span>
-                      CE, RoHS, ISO 9001 and TÜV documentation available on request
+                      CE, RoHS and ISO 9001 documentation available on request
                     </li>
                   </ul>
                   <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -234,12 +209,12 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 </>
               ) : (
                 <>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-green-600">Factory Direct · OEM Available</p>
-                  <h3 className="mt-2 text-lg font-bold text-gray-900">Ready to Source? Get a Factory-Direct Quote.</h3>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-green-600">Direct Supply Chain · OEM Available</p>
+                  <h3 className="mt-2 text-lg font-bold text-gray-900">Ready to Source? Get a Project Quote.</h3>
                   <ul className="mt-4 space-y-2">
                     <li className="flex items-start gap-2 text-sm text-gray-600">
                       <span className="mt-0.5 font-bold text-green-500">✓</span>
-                      Wholesale pricing with full CE &amp; TUV documentation
+                      Wholesale pricing with full CE &amp; RoHS documentation
                     </li>
                     <li className="flex items-start gap-2 text-sm text-gray-600">
                       <span className="mt-0.5 font-bold text-green-500">✓</span>
@@ -274,21 +249,18 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   {!ceRohsOnly && (
-                    <span className="absolute bottom-3 left-4 text-sm font-bold tracking-wide text-white">Factory Direct</span>
+                    <span className="absolute bottom-3 left-4 text-sm font-bold tracking-wide text-white">Direct Supply Chain</span>
                   )}
                 </div>
                 <div className="p-4">
                   <p className="text-xs leading-relaxed text-gray-500">
                     {ceRohsOnly
-                      ? 'CE, RoHS, ISO 9001 and TÜV documentation available on request.'
+                      ? 'CE, RoHS and ISO 9001 documentation available on request'
                       : 'IEC-certified manufacturer of low-voltage electrical protection products. OEM & private label available.'}
                   </p>
                   <div className="mt-3 flex items-center justify-center gap-3">
                     <div className="relative h-8 w-8">
                       <OptimizedImage src="/images/ce.png" alt="CE certified" variant="thumb" fill sizes="32px" className="object-contain" />
-                    </div>
-                    <div className="relative h-8 w-12">
-                      <OptimizedImage src="/images/TUV.png" alt="TUV certified" variant="thumb" fill sizes="48px" className="object-contain" />
                     </div>
                     <div className="relative h-8 w-12">
                       <OptimizedImage src="/images/rohs.png" alt="RoHS compliant" variant="thumb" fill sizes="48px" className="object-contain" />

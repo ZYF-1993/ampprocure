@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { CatalogProduct } from '@/lib/catalog-products'
+import { getSeoOverride } from '@/lib/seo-overrides'
 import { DEFAULT_OG_IMAGE, SITE_NAME } from '@/lib/site-config'
 
 /** Production origin used for self-referencing canonicals and the sitemap. */
@@ -75,16 +76,20 @@ type PageMetadataInput = {
 }
 
 export function buildPageMetadata({
-  title,
-  description,
+  title: generatedTitle,
+  description: generatedDescription,
   path,
-  absoluteTitle = false,
+  absoluteTitle: generatedAbsoluteTitle = false,
   index = true,
   follow = true,
   keywords,
   ogImage = DEFAULT_OG_IMAGE,
   ogType = 'website',
 }: PageMetadataInput): Metadata {
+  const override = getSeoOverride(path)
+  const title = override?.title ?? generatedTitle
+  const description = override?.description ?? generatedDescription
+  const absoluteTitle = override?.title ? true : generatedAbsoluteTitle
   const fullTitle = absoluteTitle || title.includes(`| ${SITE_NAME}`) ? title : `${title} | ${SITE_NAME}`
 
   return {

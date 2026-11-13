@@ -280,7 +280,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: 'Operating Environment and Mechanical Life',
         paragraphs: [
-          'Series data: ambient −25 °C to +40 °C, altitude ≤2000 m, relative humidity ≤90% and pollution degree 3. Mechanical life is listed as ≥1,000,000 operations for push buttons, ≥300,000 for selector switches and ≥50,000 for key switches and emergency-stop buttons. CE, RoHS, ISO 9001 and TÜV documentation is available on request.',
+          'Series data: ambient −25 °C to +40 °C, altitude ≤2000 m, relative humidity ≤90% and pollution degree 3. Mechanical life is listed as ≥1,000,000 operations for push buttons, ≥300,000 for selector switches and ≥50,000 for key switches and emergency-stop buttons. CE, RoHS and ISO 9001 documentation is available on request.',
         ],
       },
       {
@@ -393,7 +393,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: 'Standards and Responsibility',
         paragraphs: [
-          'Emergency stop devices fall under machinery safety rules in many markets, and the requirements depend on the machine, the risk assessment and the destination country. Check which standards and regulations your machine has to meet, and confirm with the supplier which documents are available for the exact model you order. For the EB2M series, CE, RoHS, ISO 9001 and TÜV documentation is available on request.',
+          'Emergency stop devices fall under machinery safety rules in many markets, and the requirements depend on the machine, the risk assessment and the destination country. Check which standards and regulations your machine has to meet, and confirm with the supplier which documents are available for the exact model you order. For the EB2M series, CE, RoHS and ISO 9001 documentation is available on request.',
           'A device on its own does not make a machine safe. Machine safety design must be verified by the machine builder, including the choice of device, the circuit that it switches and the way the machine is restarted.',
         ],
       },
@@ -411,7 +411,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
           'Body: Type A or Type B, based on depth and spacing behind the door.',
           'Electrical rating: the switched current checked against the AC-15/DC-13 table at your actual control voltage, not just the voltage itself.',
           'Protection: IP40 or IP65 as required, confirmed for the exact model on the quote.',
-          'Documents: CE, RoHS, ISO 9001 and TÜV documentation, requested together with the quote.',
+          'Documents: CE, RoHS and ISO 9001 documentation, requested together with the quote.',
           'Labels and placement: any background label or legend your customer requires.',
         ],
       },
@@ -435,7 +435,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       },
       {
         question: 'Which documents are available for the EB2M emergency stops?',
-        answer: 'CE, RoHS, ISO 9001 and TÜV documentation is available on request. Check which standards and regulations your machine has to meet; machine safety design must be verified by the machine builder.',
+        answer: 'CE, RoHS and ISO 9001 documentation is available on request. Check which standards and regulations your machine has to meet; machine safety design must be verified by the machine builder.',
       },
     ],
   },
@@ -724,12 +724,12 @@ const postData = [
     readingMinutes: 9,
   },
   {
-    slug: 'pv-combiner-box-certifications-iec-ce-tuv-ul',
-    title: 'Must-Have Certifications for PV Combiner Boxes: IEC 61439, TÜV, CE, UL Explained',
+    slug: 'pv-combiner-box-certifications-iec-ce-ul',
+    title: 'Must-Have Certifications for PV Combiner Boxes: IEC 61439, CE, UL Explained',
     description:
-      'Wrong certification at the port = 11 days of demurrage and a refused container. This guide explains the six PV combiner box certifications that actually matter for B2B import, which market each unlocks, and how to verify every certificate before you sign the PO.',
+      'Wrong certification at the port = 11 days of demurrage and a refused container. This guide explains the five PV combiner box certifications that actually matter for B2B import, which market each unlocks, and how to verify every certificate before you sign the PO.',
     tags: ['PV Combiner Box', 'Certification'],
-    image: '/images/blog/pv-combiner-box-certifications-iec-ce-tuv-ul.jpg',
+    image: '/images/blog/pv-combiner-box-certifications-iec-ce-ul.jpg',
     publishedAt: 'Apr 24, 2026',
     readingMinutes: 10,
   },

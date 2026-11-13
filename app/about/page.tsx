@@ -6,11 +6,11 @@ import { buildPageMetadata } from '@/lib/seo'
 
 const strengths = [
   'ISO & CE Certified Quality',
-  'Factory Direct Supply',
+  'Direct Supply Chain',
   'Smart Power Monitoring',
   'Wide Range of Applications',
   'Trusted by Global Customers',
-  'Competitive Pricing',
+  'Clear Project Quotations',
 ] as const
 
 const capabilities = [
@@ -26,7 +26,7 @@ const capabilities = [
   },
   {
     title: 'Quality Assurance',
-    text: 'ISO 9001:2015 certified. Every product batch undergoes 100% electrical testing before shipment. CE, RoHS, TÜV certified.',
+    text: 'ISO 9001:2015 certified. Every product batch undergoes 100% electrical testing before shipment. CE marked and RoHS compliant.',
     icon: 'shield',
   },
   {
@@ -41,7 +41,7 @@ const milestones = [
   { year: '2012', event: 'Obtained ISO 9001 certification and launched SPD product line.' },
   { year: '2016', event: 'Expanded into PV protection products to meet growing solar demand.' },
   { year: '2019', event: 'Launched WiFi smart low-voltage device range for smart buildings.' },
-  { year: '2022', event: 'Passed TÜV audit; extended distribution to 80+ countries.' },
+  { year: '2022', event: 'Extended distribution to 80+ countries.' },
   { year: '2024', event: 'Introduced 1500V DC product line for utility-scale solar projects.' },
 ] as const
 
@@ -50,7 +50,6 @@ const certifications = [
   { title: 'RoHS', text: 'Restriction of hazardous substances compliance' },
   { title: 'ISO 9001:2015', text: 'Quality management system certification' },
   { title: 'IEC Standards', text: 'Products tested to IEC 60898, 61643, 61008 and more' },
-  { title: 'TÜV', text: 'Independent safety testing and certification' },
 ] as const
 
 export const metadata = buildPageMetadata({
@@ -241,7 +240,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {certifications.map((item) => (
               <article key={item.title} className="rounded-xl border border-gray-200 bg-white p-6 text-center shadow-sm">
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-50">
