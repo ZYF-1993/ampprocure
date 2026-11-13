@@ -9,6 +9,15 @@ export type SolutionListing = {
 
 export const SOLUTIONS: readonly SolutionListing[] = [
   {
+    href: '/solutions/22mm-push-button-switch',
+    title: '22mm Push Button Switch Solutions',
+    navLabel: '22mm Push Button Switches (EB2M)',
+    summary:
+      'Φ22 mm EB2M push buttons, selector switches, key switches and emergency stops. 10 A Ith, AC-15 220 V / 5 A, IP40/IP65, six colors. Request a quote.',
+    image: '/images/solutions/22mm-push-button-switch/eb2m-a-hero.jpg',
+    imageAlt: 'EB2M 22mm push buttons, selector, key switch and emergency stop',
+  },
+  {
     href: '/solutions/aerosol-fire-extinguisher',
     title: 'Aerosol Fire Extinguisher Solutions',
     navLabel: 'Aerosol Fire Extinguisher Solution',
