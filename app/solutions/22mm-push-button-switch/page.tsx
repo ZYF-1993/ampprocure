@@ -176,7 +176,7 @@ const faqs: readonly SpecRow[] = [
   ['Which lamp voltages can I order?', '6, 12, 24, 36, 48, 110 and 127 V AC/DC, 220 V DC, and 220 V or 380 V AC, as printed.'],
   ['Is the series IP65?', 'The series is rated IP40 / IP65. IP rating depends on operator type; confirm with your quote.'],
   ['What do f, fu and f.fu mean on selector switches?', 'They are spring-return options: f returns from left to center, fu from right to center, and f.fu from both sides to center. Codes without them are maintained.'],
-  ['Which certificates can you provide?', 'CE and RoHS documentation is available on request. Other certificates such as CCC or UL are not offered on this page.'],
+  ['Which certificates can you provide?', 'CE and RoHS documentation is available on request.'],
 ]
 
 const environment: readonly SpecRow[] = [
