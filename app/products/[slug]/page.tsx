@@ -811,30 +811,21 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   const displayName = getProductDisplayName(product)
   const productUrl = absoluteUrl(`/products/${product.slug}`)
 
+  // ItemPage, not Product. A Product node is an invalid product snippet unless
+  // it has offers, review, or aggregateRating, and this catalog publishes none.
   const productJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'ItemPage',
+    '@id': `${productUrl}#webpage`,
     name: displayName,
-    image: galleryImages.map((src) => absoluteOptimizedSrc(src)),
     description: detailCopy.description,
-    sku: product.slug,
-    mpn: product.slug,
-    brand: {
-      '@type': 'Brand',
-      name: SITE_NAME,
-    },
-    manufacturer: {
-      '@type': 'Organization',
+    url: productUrl,
+    image: galleryImages.map((src) => absoluteOptimizedSrc(src)),
+    isPartOf: {
+      '@type': 'WebSite',
       name: SITE_NAME,
       url: absoluteUrl('/'),
     },
-    category: product.category,
-    url: productUrl,
-    additionalProperty: detailCopy.specs.map(([name, value]) => ({
-      '@type': 'PropertyValue',
-      name,
-      value,
-    })),
   }
 
   return (
