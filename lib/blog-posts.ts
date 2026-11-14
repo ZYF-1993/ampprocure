@@ -156,6 +156,7 @@ type BlogPostSource = {
   tags: readonly string[]
   image: string
   publishedAt: string
+  updatedAt?: string
   readingMinutes: number
   heroSummary?: string
   sections?: readonly BlogSection[]
@@ -731,6 +732,7 @@ const postData = [
     tags: ['PV Combiner Box', 'Certification'],
     image: '/images/blog/pv-combiner-box-certifications-iec-ce-ul.jpg',
     publishedAt: 'Apr 24, 2026',
+    updatedAt: 'Nov 13, 2026',
     readingMinutes: 10,
   },
   {
@@ -790,7 +792,7 @@ export const BLOG_POSTS: readonly BlogPost[] = allPostData.map((post) => {
     category,
     tags: post.tags,
     publishedAt,
-    updatedAt: publishedAt,
+    updatedAt: post.updatedAt ? dateFromSource(post.updatedAt) : publishedAt,
     readingMinutes: post.readingMinutes,
     heroSummary: post.heroSummary ?? post.description,
     sections: post.sections ?? buildSections(post.title, post.description, post.tags),
