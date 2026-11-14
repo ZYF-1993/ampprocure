@@ -116,7 +116,8 @@ export default function SiteFooter() {
       <div className="border-t border-gray-800">
         <div className="container flex flex-col items-center justify-between gap-3 py-5 sm:flex-row">
           <p className="text-xs text-gray-500">© {new Date().getFullYear()} upprocure. All rights reserved.</p>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap justify-center gap-5">
+            <Link href="/site-map" className="text-xs text-gray-300 transition-colors hover:text-white">Site Map</Link>
             <Link href="/privacy" className="text-xs text-gray-300 transition-colors hover:text-white">Privacy Policy</Link>
             <Link href="/terms" className="text-xs text-gray-300 transition-colors hover:text-white">Terms of Use</Link>
           </div>

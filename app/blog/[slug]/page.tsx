@@ -169,6 +169,12 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <span>{detail.author}</span>
             <span>·</span>
             <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+            {post.updatedAt !== post.publishedAt && (
+              <>
+                <span>·</span>
+                <span>Updated <time dateTime={post.updatedAt}>{formatDate(post.updatedAt)}</time></span>
+              </>
+            )}
             <span>·</span>
             <span>{post.readingMinutes} min read</span>
           </div>
