@@ -1,15 +1,22 @@
-﻿export type BlogDetailContent = {
+﻿import type { BlogFaq } from '@/lib/blog-posts'
+import { EB2M_ARTICLES } from '@/lib/eb2m-blog-articles'
+
+export type BlogDetailContent = {
   title: string
   metaTitle: string
   description: string
   author: string
   wordCount: number
   articleHtml: string
+  closingHtml?: string
+  faq?: readonly BlogFaq[]
+  ogImage?: { src: string; alt: string }
   /** 'ce-rohs': the CTA and sidebar mention CE, RoHS and ISO 9001 documentation, with no pricing line. */
   ctaVariant?: 'ce-rohs'
 }
 
 export const BLOG_DETAIL_CONTENT: Readonly<Record<string, BlogDetailContent>> = {
+  ...Object.fromEntries(EB2M_ARTICLES.map(({ post, detail }) => [post.slug, detail])),
   "how-to-choose-22mm-push-button-switch": {
     title: `How to Choose a 22mm Push Button Switch: Operator, Contacts, Lamp Voltage and IP Rating`,
     metaTitle: `How to Choose a 22mm Push Button Switch: Contacts & IP`,

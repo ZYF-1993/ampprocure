@@ -1,3 +1,5 @@
+import { EB2M_ARTICLES } from '@/lib/eb2m-blog-articles'
+
 export type BlogSection = {
   heading: string
   paragraphs: readonly string[]
@@ -15,6 +17,7 @@ export type BlogPost = {
   title: string
   description: string
   image: string
+  imageAlt?: string
   publishedAt: string
   updatedAt: string
   readingMinutes: number
@@ -29,10 +32,12 @@ export const BLOG_TAGS = [
   '1500V DC',
   '22mm Emergency Stop Button',
   '22mm Push Button Switch',
+  '22mm Push Buttons',
   '22mm Selector Switch',
   'Aerosol Chemistry',
   'Aerosol Fire Extinguisher',
   'Applications',
+  'Applications & IP',
   'B2B',
   'B2B Procurement',
   "Buyer's Checklist",
@@ -59,10 +64,13 @@ export const BLOG_TAGS = [
   'Factory Audit',
   'Fire Suppression',
   'IP Rating',
+  'Illuminated Controls',
+  'Industrial Panels',
   'Manufacturer Vetting',
   'Market Analysis',
   'Novec 1230',
   'OEM',
+  'Panel Design',
   'PV Combiner Box',
   'Pre-PO Verification',
   'Price Guide',
@@ -78,10 +86,12 @@ export const BLOG_TAGS = [
   'TCO Analysis',
   'Technical Guide',
   'UL 2775',
+  'Wiring & Installation',
 ] as const
 
 const categoryByTag: Readonly<Record<string, BlogPost['category']>> = {
   Applications: 'Application',
+  'Applications & IP': 'Application',
   "Buyer's Checklist": 'Selection Guide',
   "Buyer's Guide": 'Selection Guide',
   Certification: 'Technical Knowledge',
@@ -155,6 +165,7 @@ type BlogPostSource = {
   description: string
   tags: readonly string[]
   image: string
+  imageAlt?: string
   publishedAt: string
   updatedAt?: string
   readingMinutes: number
@@ -777,7 +788,11 @@ const postData = [
   },
 ] as const
 
-const allPostData: readonly BlogPostSource[] = [...eb2mPostData, ...postData]
+const allPostData: readonly BlogPostSource[] = [
+  ...EB2M_ARTICLES.map(({ post, detail }) => ({ ...post, faq: detail.faq })),
+  ...eb2mPostData,
+  ...postData,
+]
 
 export const BLOG_POSTS: readonly BlogPost[] = allPostData.map((post) => {
   const publishedAt = dateFromSource(post.publishedAt)
@@ -789,6 +804,7 @@ export const BLOG_POSTS: readonly BlogPost[] = allPostData.map((post) => {
     title: post.title,
     description: post.description,
     image: post.image,
+    imageAlt: post.imageAlt,
     category,
     tags: post.tags,
     publishedAt,
