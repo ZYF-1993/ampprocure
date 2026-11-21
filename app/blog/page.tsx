@@ -81,7 +81,7 @@ export default function BlogPage() {
                 <div className="relative h-48 w-full overflow-hidden bg-gray-100">
                   <OptimizedImage
                     src={post.image}
-                    alt={post.title}
+                    alt={post.imageAlt ?? post.title}
                     variant="thumb"
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"

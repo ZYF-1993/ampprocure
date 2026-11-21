@@ -48,6 +48,10 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
   // An explicit override is the full <title>; generated titles get the site-name template.
   // Open Graph and Twitter use the same full title as the rendered <title>.
   const fullTitle = override?.title ? title : `${title} | ${SITE_NAME}`
+  const socialImage = {
+    url: absoluteOptimizedSrc(detail?.ogImage?.src ?? post.image),
+    alt: detail?.ogImage?.alt ?? detail?.title ?? post.title,
+  }
 
   return {
     title: override?.title ? { absolute: title } : title,
@@ -67,10 +71,9 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
       tags: [...post.tags],
       images: [
         {
-          url: absoluteOptimizedSrc(post.image),
+          ...socialImage,
           width: 1200,
           height: 630,
-          alt: detail?.title || post.title,
         },
       ],
     },
@@ -78,7 +81,7 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [absoluteOptimizedSrc(post.image)],
+      images: detail?.ogImage ? [socialImage] : [socialImage.url],
     },
   }
 }
@@ -93,9 +96,10 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   }
 
   const ceRohsOnly = detail.ctaVariant === 'ce-rohs'
+  const faq = detail.faq ?? []
   const relatedPosts = getRelatedBlogPosts(post.slug)
   // EB2M posts: skip the featured-product fallback (unrelated PV / aerosol items) and link the 22mm solution page instead.
-  const featuredProducts = ceRohsOnly ? [] : getRelatedProductsForBlog(post.tags)
+  const featuredProducts = ceRohsOnly || detail.closingHtml ? [] : getRelatedProductsForBlog(post.tags)
   const productCategoryHref = post.tags.includes('PV Combiner Box')
     ? '/categories/pv-combiner-box'
     : post.tags.some((tag) => tag.toLowerCase().includes('aerosol'))
@@ -134,6 +138,16 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     inLanguage: 'en-US',
   }
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: answer },
+    })),
+  }
+
   return (
     <main className="bg-white">
       <script
@@ -142,6 +156,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           __html: jsonLdScript(blogJsonLd),
         }}
       />
+      {faq.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(faqJsonLd) }} />
+      )}
       {/* BreadcrumbList JSON-LD is emitted by <Breadcrumbs> below. */}
 
       <section className="border-b border-gray-100 bg-gray-50 py-10">
@@ -184,10 +201,10 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       <article className="py-12">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:px-8">
           <div className="min-w-0">
-            <div className="relative mb-8 aspect-[1200/650] overflow-hidden rounded-xl bg-gray-100">
+            <div className={`relative mb-8 overflow-hidden rounded-xl bg-gray-100 ${detail.ogImage ? 'aspect-video' : 'aspect-[1200/650]'}`}>
               <OptimizedImage
                 src={post.image}
-                alt={detail.title}
+                alt={post.imageAlt ?? detail.title}
                 fill
                 priority
                 className="object-cover"
@@ -197,8 +214,22 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
             <div dangerouslySetInnerHTML={{ __html: rewriteContentImages(detail.articleHtml) }} />
 
+            {faq.length > 0 && (
+              <section className="mt-8" aria-labelledby="faq">
+                <h2 id="faq" className="mb-4 text-xl font-bold text-gray-900">FAQ</h2>
+                {faq.map(({ question, answer }) => (
+                  <div key={question} className="mb-4">
+                    <h3 className="mb-2 text-base font-semibold text-gray-900">{question}</h3>
+                    <p className="text-sm leading-7 text-gray-600">{answer}</p>
+                  </div>
+                ))}
+              </section>
+            )}
+
             <div className="mt-10 rounded-xl border border-green-100 bg-gradient-to-br from-green-50 to-white p-6">
-              {ceRohsOnly ? (
+              {detail.closingHtml ? (
+                <div className="prose-custom" dangerouslySetInnerHTML={{ __html: detail.closingHtml }} />
+              ) : ceRohsOnly ? (
                 <>
                   <h3 className="text-lg font-bold text-gray-900">Send Your Model List for a Quote</h3>
                   <ul className="mt-4 space-y-2">
@@ -244,7 +275,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
           <aside className="hidden lg:block">
             <div className="sticky top-24 space-y-6">
-              <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+              {!detail.closingHtml && <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
                 <div className="relative h-36 w-full">
                   <OptimizedImage
                     src="/images/banner/about-bg.jpg"
@@ -276,7 +307,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     Request a Quote
                   </Link>
                 </div>
-              </div>
+              </div>}
 
               <div className="rounded-xl border border-gray-100 bg-gray-50 p-5">
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-900">About This Article</h3>
@@ -307,7 +338,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         productHeading="Related products"
         postHeading="Related articles"
       />
-      <div className="bg-slate-50 px-4 pb-12 sm:px-6 lg:px-8">
+      {!detail.closingHtml && <div className="bg-slate-50 px-4 pb-12 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-7xl">
           {ceRohsOnly ? (
             <Link
@@ -326,7 +357,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </Link>
           )}
         </div>
-      </div>
+      </div>}
     </main>
   )
 }

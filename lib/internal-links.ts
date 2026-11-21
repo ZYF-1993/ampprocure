@@ -1,5 +1,6 @@
 import { BLOG_POSTS, type BlogPost } from '@/lib/blog-posts'
 import { CATALOG_PRODUCTS, type CatalogProduct } from '@/lib/catalog-products'
+import { EB2M_ARTICLES } from '@/lib/eb2m-blog-articles'
 
 const FEATURED_PRODUCT_SLUGS = [
   'PN2-VA4',
@@ -34,6 +35,8 @@ const DEFAULT_ARTICLE_SLUGS = [
   'pv-combiner-box-buyers-checklist',
   'what-is-din-rail-aerosol-fire-extinguisher-technical-guide',
 ] as const
+
+const EB2M_EDITORIAL_SLUGS = EB2M_ARTICLES.map(({ post }) => post.slug)
 
 function productsBySlug(slugs: readonly string[]): CatalogProduct[] {
   return slugs.flatMap((slug) => {
@@ -72,6 +75,15 @@ export function getRelatedPostsForTopic(categoryCode: string, limit = 3): BlogPo
 }
 
 export function getRelatedBlogPosts(slug: string, limit = 3): BlogPost[] {
+  if (EB2M_EDITORIAL_SLUGS.some((postSlug) => postSlug === slug)) {
+    return postsBySlug([
+      ...EB2M_EDITORIAL_SLUGS.filter((postSlug) => postSlug !== slug),
+      'how-to-choose-22mm-push-button-switch',
+      '22mm-selector-switch-key-switch-spring-return-hand-off-auto',
+      '22mm-emergency-stop-button-twist-release-guide',
+    ]).slice(0, limit)
+  }
+
   const current = BLOG_POSTS.find((post) => post.slug === slug)
   if (!current) {
     return []
