@@ -21,7 +21,6 @@
 html,
 body {
   margin: 0;
-  padding: 0;
 }
 
 html {
@@ -1045,6 +1044,43 @@ h6 {
 
 .prose-custom table {
   min-width: 640px;
+}
+
+.eb2m-guide {
+  container: eb2m-guide / inline-size;
+}
+
+.eb2m-guide th {
+  min-width: 10.5rem;
+}
+
+.eb2m-guide .eb2m-table-8 th:first-child {
+  min-width: 13.5rem;
+}
+
+.eb2m-guide .eb2m-table-8 :is(th:nth-child(3), th:nth-child(5), th:last-child) {
+  min-width: 15.5rem;
+}
+
+.eb2m-guide .eb2m-table-8 :is(th:nth-child(4), th:nth-child(7)) {
+  min-width: 8rem;
+}
+
+.eb2m-guide table code {
+  display: inline-block;
+  overflow-wrap: normal;
+}
+
+@container eb2m-guide (width >= 640px) {
+  .eb2m-table-hint-3 { display: none; }
+}
+
+@container eb2m-guide (width >= 42rem) {
+  .eb2m-table-hint-4 { display: none; }
+}
+
+@container eb2m-guide (width >= 52.5rem) {
+  .eb2m-table-hint-5 { display: none; }
 }
 
 .prose-custom a {
