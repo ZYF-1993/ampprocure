@@ -1,4 +1,5 @@
 import { EB2M_ARTICLES } from '@/lib/eb2m-blog-articles'
+import { EB2M_PROCUREMENT_ARTICLES } from '@/lib/eb2m-procurement-blog-articles'
 
 export type BlogSection = {
   heading: string
@@ -18,6 +19,7 @@ export type BlogPost = {
   description: string
   image: string
   imageAlt?: string
+  imageFit?: 'contain'
   publishedAt: string
   updatedAt: string
   readingMinutes: number
@@ -166,6 +168,7 @@ type BlogPostSource = {
   tags: readonly string[]
   image: string
   imageAlt?: string
+  imageFit?: 'contain'
   publishedAt: string
   updatedAt?: string
   readingMinutes: number
@@ -789,6 +792,7 @@ const postData = [
 ] as const
 
 const allPostData: readonly BlogPostSource[] = [
+  ...EB2M_PROCUREMENT_ARTICLES.map(({ post, detail }) => ({ ...post, faq: detail.faq })),
   ...EB2M_ARTICLES.map(({ post, detail }) => ({ ...post, faq: detail.faq })),
   ...eb2mPostData,
   ...postData,
@@ -805,6 +809,7 @@ export const BLOG_POSTS: readonly BlogPost[] = allPostData.map((post) => {
     description: post.description,
     image: post.image,
     imageAlt: post.imageAlt,
+    imageFit: post.imageFit,
     category,
     tags: post.tags,
     publishedAt,

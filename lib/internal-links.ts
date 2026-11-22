@@ -1,6 +1,7 @@
 import { BLOG_POSTS, type BlogPost } from '@/lib/blog-posts'
 import { CATALOG_PRODUCTS, type CatalogProduct } from '@/lib/catalog-products'
 import { EB2M_ARTICLES } from '@/lib/eb2m-blog-articles'
+import { EB2M_PROCUREMENT_ARTICLES } from '@/lib/eb2m-procurement-blog-articles'
 
 const FEATURED_PRODUCT_SLUGS = [
   'PN2-VA4',
@@ -37,6 +38,7 @@ const DEFAULT_ARTICLE_SLUGS = [
 ] as const
 
 const EB2M_EDITORIAL_SLUGS = EB2M_ARTICLES.map(({ post }) => post.slug)
+const EB2M_PROCUREMENT_SLUGS: ReadonlySet<string> = new Set(EB2M_PROCUREMENT_ARTICLES.map(({ post }) => post.slug))
 
 function productsBySlug(slugs: readonly string[]): CatalogProduct[] {
   return slugs.flatMap((slug) => {
@@ -75,7 +77,7 @@ export function getRelatedPostsForTopic(categoryCode: string, limit = 3): BlogPo
 }
 
 export function getRelatedBlogPosts(slug: string, limit = 3): BlogPost[] {
-  if (EB2M_EDITORIAL_SLUGS.some((postSlug) => postSlug === slug)) {
+  if (EB2M_PROCUREMENT_SLUGS.has(slug) || EB2M_EDITORIAL_SLUGS.some((postSlug) => postSlug === slug)) {
     return postsBySlug([
       ...EB2M_EDITORIAL_SLUGS.filter((postSlug) => postSlug !== slug),
       'how-to-choose-22mm-push-button-switch',
@@ -89,7 +91,7 @@ export function getRelatedBlogPosts(slug: string, limit = 3): BlogPost[] {
     return []
   }
 
-  return BLOG_POSTS.filter((post) => post.slug !== slug)
+  return BLOG_POSTS.filter((post) => post.slug !== slug && !EB2M_PROCUREMENT_SLUGS.has(post.slug))
     .map((post) => ({
       post,
       score: post.tags.filter((tag) => current.tags.includes(tag)).length,
