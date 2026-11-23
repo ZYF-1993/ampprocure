@@ -97,6 +97,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   const ceRohsOnly = detail.ctaVariant === 'ce-rohs'
   const faq = detail.faq ?? []
+  const HeroContainer = detail.heroCaption ? 'figure' : 'div'
   const relatedPosts = getRelatedBlogPosts(post.slug)
   // EB2M posts: skip the featured-product fallback (unrelated PV / aerosol items) and link the 22mm solution page instead.
   const featuredProducts = ceRohsOnly || detail.closingHtml ? [] : getRelatedProductsForBlog(post.tags)
@@ -201,16 +202,21 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       <article className="py-12">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:px-8">
           <div className="min-w-0">
-            <div className={`relative mb-8 overflow-hidden rounded-xl bg-gray-100 ${detail.ogImage ? 'aspect-video' : 'aspect-[1200/650]'}`}>
-              <OptimizedImage
-                src={post.image}
-                alt={post.imageAlt ?? detail.title}
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 800px"
-              />
-            </div>
+            <HeroContainer className="mb-8">
+              <div className={`relative overflow-hidden rounded-xl bg-gray-100 ${detail.ogImage ? 'aspect-video' : 'aspect-[1200/650]'}`}>
+                <OptimizedImage
+                  src={post.image}
+                  alt={post.imageAlt ?? detail.title}
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 800px"
+                />
+              </div>
+              {detail.heroCaption && (
+                <figcaption className="mt-2 text-sm leading-6 text-gray-600">{detail.heroCaption}</figcaption>
+              )}
+            </HeroContainer>
 
             <div dangerouslySetInnerHTML={{ __html: rewriteContentImages(detail.articleHtml) }} />
 
@@ -271,6 +277,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 </>
               )}
             </div>
+            {detail.sourcesHtml && (
+              <section className="prose-custom mt-8" dangerouslySetInnerHTML={{ __html: detail.sourcesHtml }} />
+            )}
           </div>
 
           <aside className="hidden lg:block">

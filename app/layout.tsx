@@ -119,7 +119,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" translate="no" className={`notranslate ${inter.variable}`}>
-      <body className="flex min-h-screen flex-col bg-white pb-24 antialiased lg:pb-0">
+      <body className="flex min-h-screen flex-col bg-white pb-[calc(6rem+env(safe-area-inset-bottom,0px))] antialiased lg:pb-0">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-gray-900 focus:shadow"
