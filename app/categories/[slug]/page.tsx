@@ -6,6 +6,7 @@ import InquiryActions from '@/components/InquiryActions'
 import InquiryChannels from '@/components/InquiryChannels'
 import OptimizedImage from '@/components/OptimizedImage'
 import RelatedResources from '@/components/RelatedResources'
+import VoltageProtectorIntro from '@/components/VoltageProtectorIntro'
 import { getCategorySeo } from '@/lib/category-seo'
 import { getCategoryContent } from '@/lib/category-content'
 import { FRAMEWORK_CATEGORIES, getCategoryBySlug, getProductsByCategorySlug } from '@/lib/framework-data'
@@ -60,6 +61,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const heading = seo?.h1 ?? category.title
   const description = seo?.description ?? category.summary
   const categoryUrl = absoluteUrl(`/categories/${category.slug}`)
+  const title = <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{heading}</h1>
 
   const faqJsonLd =
     content && content.faq.length > 0
@@ -125,19 +127,25 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             ]}
           />
 
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{heading}</h1>
-          {seo ? (
-            <div className="mt-4 max-w-3xl space-y-4 text-base leading-8 text-slate-600 sm:text-lg">
-              {seo.intro.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-              ))}
-            </div>
+          {category.slug === 'over-voltage-protector' ? (
+            <VoltageProtectorIntro title={title} lead={seo?.intro[0] ?? category.summary} topic={category.title} />
           ) : (
-            <p className="mt-3 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">{category.summary}</p>
+            <>
+              {title}
+              {seo ? (
+                <div className="mt-4 max-w-3xl space-y-4 text-base leading-8 text-slate-600 sm:text-lg">
+                  {seo.intro.map((paragraph) => (
+                    <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-3 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">{category.summary}</p>
+              )}
+              <div className="mt-6">
+                <InquiryActions topic={category.title} formHref="#category-rfq-form" />
+              </div>
+            </>
           )}
-          <div className="mt-6">
-            <InquiryActions topic={category.title} formHref="#category-rfq-form" />
-          </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
             <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700">

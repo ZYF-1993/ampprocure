@@ -18,10 +18,6 @@ export const CATEGORY_SEO: Readonly<Record<string, CategorySeo>> = {
     h1: 'Adjustable Over and Under Voltage Protectors',
     intro: [
       'UPprocure supplies adjustable AC over-voltage and under-voltage protectors for distributors, panel builders, and OEM programs. The models below are the ones published in the current catalog.',
-      'The DIN-rail PN2 series (PN2-VA2, PN2-VA3, PN2-VA4, PN2-VA5, PN2-VAK, and PN2-VAFD) is self-resetting, with a digital display and over-current protection, in 40A, 63A, and 80A options. PN2-VA4 is the housing and packaging logo version. PN2-VA5 puts a logo on the display. PN2-VAK adds kWh. PN2-VAFD shows voltage, current, power, frequency, and kWh.',
-      'Plug-in sockets: CZVA1 is adjustable (over-voltage 230–300V, under-voltage 140–210V) with a digital display, in EU, UK, and South Africa plugs, rated 2300W / 10A. CZVA2 uses fixed cutoffs at 165V±5V and 265V±5V, in 10A and 13A versions. CZVA3 is an EU 16A / 3680W socket with voltage and current on the display and over-current protection.',
-      'STATS-06 is the AC 380V 3-phase 4-wire protector, 63A or 100A, with a color display and over/under voltage, over-current, phase-loss, open-neutral, phase-sequence, and unbalance protection. STATS-03, STATS-04, and STATS-05 are 3-way automatic transfer switches with voltage displays. These protectors are AC devices. DC breakers are under Circuit Breaker, and DC combiner boxes are under PV Combiner Box.',
-      'For a factory or supplier quote, email sales@upprocure.com, use the RFQ form, or WhatsApp +86-13552727303. Include the model and current rating.',
     ],
   },
   'power-meter': {
