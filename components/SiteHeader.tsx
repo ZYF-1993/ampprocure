@@ -255,26 +255,53 @@ export default function SiteHeader() {
             </Link>
           </div>
 
-          <button
-            type="button"
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 lg:hidden"
-            aria-expanded={mobileMenuOpen}
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-          >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              )}
-            </svg>
-          </button>
+          <div className="flex items-center gap-1 lg:hidden">
+            <Link
+              href="/search"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100"
+              aria-label="Search products and guides"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-4.35-4.35m1.85-5.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+              </svg>
+            </Link>
+            <button
+              type="button"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100"
+              aria-expanded={mobileMenuOpen}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
       <div className={`overflow-hidden border-t border-gray-100 transition-all duration-300 lg:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-64px)]' : 'max-h-0'}`}>
         <nav className="container max-h-[calc(100vh-64px)] overflow-y-auto py-4" aria-label="Mobile navigation">
+          <form action="/search" method="get" className="mb-3 flex gap-2" onSubmit={() => setMobileMenuOpen(false)}>
+            <label htmlFor="mobile-header-search" className="sr-only">Search catalog</label>
+            <input
+              id="mobile-header-search"
+              type="search"
+              name="q"
+              placeholder="Search models, categories, guides..."
+              className="min-w-0 flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600"
+            />
+            <button
+              type="submit"
+              className="rounded-lg bg-green-700 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-green-800"
+            >
+              Search
+            </button>
+          </form>
           <ul className="space-y-0.5">
             <li>
               <Link
