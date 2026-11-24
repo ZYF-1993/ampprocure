@@ -284,7 +284,11 @@ export default function SiteHeader() {
         </div>
       </div>
 
-      <div className={`overflow-hidden border-t border-gray-100 transition-all duration-300 lg:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-64px)]' : 'max-h-0'}`}>
+      <div
+        inert={!mobileMenuOpen || undefined}
+        aria-hidden={!mobileMenuOpen}
+        className={`overflow-hidden border-t border-gray-100 transition-all duration-300 lg:hidden ${mobileMenuOpen ? 'visible max-h-[calc(100vh-64px)]' : 'invisible max-h-0 border-t-0'}`}
+      >
         <nav className="container max-h-[calc(100vh-64px)] overflow-y-auto py-4" aria-label="Mobile navigation">
           <form action="/search" method="get" className="mb-3 flex gap-2" onSubmit={() => setMobileMenuOpen(false)}>
             <label htmlFor="mobile-header-search" className="sr-only">Search catalog</label>
@@ -318,6 +322,7 @@ export default function SiteHeader() {
             <li>
               <button
                 type="button"
+                aria-expanded={mobileProductsOpen}
                 onClick={() => setMobileProductsOpen((prev) => !prev)}
                 className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
                   isProductsRoute ? 'bg-green-50 font-semibold text-green-700' : 'text-gray-700 hover:bg-gray-50'
@@ -327,7 +332,11 @@ export default function SiteHeader() {
                 <Chevron open={mobileProductsOpen} />
               </button>
 
-              <div className={`overflow-hidden transition-all duration-200 ${mobileProductsOpen ? 'max-h-[520px]' : 'max-h-0'}`}>
+              <div
+                inert={!mobileProductsOpen || undefined}
+                aria-hidden={!mobileProductsOpen}
+                className={`overflow-hidden transition-all duration-200 ${mobileProductsOpen ? 'visible max-h-[520px]' : 'invisible max-h-0'}`}
+              >
                 <ul className="mt-1 ml-4 space-y-0.5 border-l-2 border-gray-100 pl-4">
                   <li>
                     <Link
@@ -371,6 +380,7 @@ export default function SiteHeader() {
             <li>
               <button
                 type="button"
+                aria-expanded={mobileSolutionsOpen}
                 onClick={() => setMobileSolutionsOpen((prev) => !prev)}
                 className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
                   isSolutionsRoute ? 'bg-green-50 font-semibold text-green-700' : 'text-gray-700 hover:bg-gray-50'
@@ -380,7 +390,11 @@ export default function SiteHeader() {
                 <Chevron open={mobileSolutionsOpen} />
               </button>
 
-              <div className={`overflow-hidden transition-all duration-200 ${mobileSolutionsOpen ? 'max-h-80' : 'max-h-0'}`}>
+              <div
+                inert={!mobileSolutionsOpen || undefined}
+                aria-hidden={!mobileSolutionsOpen}
+                className={`overflow-hidden transition-all duration-200 ${mobileSolutionsOpen ? 'visible max-h-80' : 'invisible max-h-0'}`}
+              >
                 <ul className="mt-1 ml-4 space-y-0.5 border-l-2 border-gray-100 pl-4">
                   <li>
                     <Link
