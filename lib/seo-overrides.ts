@@ -119,7 +119,7 @@ export const SEO_OVERRIDES: Readonly<Record<string, SeoOverride>> = {
   },
   "/products/MCB-DC-3P": {
     title: "3P DC Circuit Breaker 500V 6–63A, MCB-DC-3P | UPprocure",
-    description: "Three-pole DC miniature circuit breaker, 500V DC per pole, 6–63A, 6kA DC, with arc chambers on every pole for commercial PV arrays and DC buses. Request a quote.",
+    description: "Three-pole DC miniature circuit breaker, 500V per pole, 6–63A, 6kA DC, with arc chambers on every pole for commercial PV arrays and DC buses. Request a quote.",
   },
   "/products/MCB-DC-4P": {
     title: "4P DC Circuit Breaker 500V 6–63A, MCB-DC-4P | UPprocure",
