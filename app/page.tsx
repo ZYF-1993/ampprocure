@@ -45,23 +45,23 @@ const processSteps = [
 
 const trustCards = [
   {
-    title: 'IEC / CE Certified',
-    text: 'All products comply with IEC standards and carry CE marking, ensuring safety and regulatory acceptance in global markets.',
+    title: 'Standards & Documentation',
+    text: 'Catalog models align with applicable IEC standards, with CE, RoHS, and ISO 9001 documentation available on request by model.',
     icon: 'certified',
   },
   {
     title: 'OEM & Private Label',
-    text: 'Full OEM support with custom branding, packaging, and product specifications. Dedicated engineering team for customization.',
+    text: 'OEM branding, custom rating labels, and tailored export packaging coordinated directly with partner production lines.',
     icon: 'oem',
   },
   {
-    title: 'Fast Global Shipping',
-    text: 'In-stock products ship quickly. Dedicated logistics support helps ensure customs clearance and on-time global delivery.',
+    title: 'Mixed-SKU Consolidation',
+    text: 'Combine circuit breakers, SPDs, fuse holders, meters, and panel controls in one shipment with export-ready packing.',
     icon: 'shipping',
   },
   {
-    title: 'Dedicated Account Support',
-    text: 'Every B2B client receives a dedicated account manager for technical consultation, sample coordination, and after-sales support.',
+    title: 'Technical RFQ Support',
+    text: 'Pre-sales assistance on pole configuration, current ratings, trip curves, and model matching for panel and project BOMs.',
     icon: 'support',
   },
 ] as const
@@ -96,9 +96,9 @@ const insights = [
   },
 ] as const
 
-const HEADLINE = 'One-Stop Industrial Electrical Sourcing Platform.'
-const SUBHEADLINE = 'Leveraging the unparalleled manufacturing cluster of Liushi, Wenzhou—the capital of electrical appliances—UPprocure delivers end-to-end procurement for global buyers. We integrate multi-category matching, rigorous QC inspections, and flexible MOQ options into a seamless, contract-ready supply chain.'
-const TRUST_BADGES = ['OEM Labeling', 'Project Quotations', '100% Quality Inspected', 'Global Logistics Control'] as const
+const HEADLINE = 'Low-Voltage Electrical Protection & Panel Components'
+const SUBHEADLINE = 'Based in Liushi, Wenzhou, UPprocure supplies circuit breakers, surge protectors, DC fuse holders, power meters, ATS switches, PV combiner boxes, 22mm controls, and cabinet fire extinguishers for distributors, panel builders, system integrators, and EPC contractors.'
+const TRUST_BADGES = ['OEM & Private Label', 'Pre-Shipment QC', 'Mixed-SKU Consolidation', 'Export Documentation'] as const
 
 const productCategoryCards = [
   {
@@ -159,29 +159,29 @@ const productCategoryCards = [
 
 const heroMetrics = [
   {
-    value: '87+',
-    label: 'Certified Products',
+    value: `${CATALOG_PRODUCT_COUNT}+`,
+    label: 'Published Catalog Models',
     icon: 'circuit',
     tone: 'text-blue-600',
     bg: 'bg-blue-50',
   },
   {
-    value: '99.8%',
-    label: 'QC Pass Rate',
+    value: '9',
+    label: 'Core Protection Categories',
     icon: 'shield',
     tone: 'text-emerald-600',
     bg: 'bg-emerald-50',
   },
   {
-    value: 'Flexible',
-    label: 'MOQ Options',
+    value: '4',
+    label: 'Cabinet & Panel Solutions',
     icon: 'globe',
     tone: 'text-violet-600',
     bg: 'bg-violet-50',
   },
   {
-    value: '24/7',
-    label: 'Response Time',
+    value: 'OEM',
+    label: 'Labeling & Mixed-SKU Orders',
     icon: 'bolt',
     tone: 'text-amber-600',
     bg: 'bg-amber-50',
@@ -343,20 +343,20 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <dl className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4">
             <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
-              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">15+</dt>
-              <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Years of Industry Focus</dd>
-            </div>
-            <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
-              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">80+</dt>
-              <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Export Markets Supported</dd>
-            </div>
-            <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
-              <dt className="text-4xl font-extrabold tracking-tight text-orange-500 sm:text-5xl">{CATALOG_PRODUCT_COUNT}+</dt>
+              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">{CATALOG_PRODUCT_COUNT}</dt>
               <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Catalog Models Listed</dd>
             </div>
             <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
-              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">24h</dt>
-              <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Typical Quote Response</dd>
+              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">9</dt>
+              <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Product Categories</dd>
+            </div>
+            <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
+              <dt className="text-4xl font-extrabold tracking-tight text-orange-500 sm:text-5xl">4</dt>
+              <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Cabinet Solutions</dd>
+            </div>
+            <div className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_12px_40px_rgba(59,130,246,0.08)]">
+              <dt className="text-4xl font-extrabold tracking-tight text-green-700 sm:text-5xl">OEM</dt>
+              <dd className="mt-2 text-xs font-medium uppercase tracking-wider text-gray-500">Branding &amp; Packaging</dd>
             </div>
           </dl>
         </div>
@@ -415,7 +415,7 @@ export default function HomePage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Our Product Range</p>
                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">{productCategoryCards.length} Product Categories</h2>
                 <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-500">
-                  From miniature circuit breakers to smart WiFi devices, every upprocure product category is selected for performance, safety, and long-term sourcing reliability.
+                  From miniature circuit breakers to smart WiFi devices, every UPprocure product category is curated for electrical safety, standards alignment, and consistent B2B supply.
                 </p>
                 <Link
                   href="/products"
@@ -459,12 +459,12 @@ export default function HomePage() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Solutions</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Cabinet and protection solutions</h2>
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-gray-500">
-            Application pages for aerosol fire extinguishers, 22mm digital display indicators, and metal push buttons supplied with the electrical catalog.
+            Application pages for 22mm push button switches (EB2M), aerosol fire extinguishers, 22mm digital display indicators, and anti-vandal metal push buttons supplied alongside the electrical catalog.
           </p>
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link href="/solutions" className="flex h-full flex-col justify-between rounded-2xl border border-gray-100 bg-slate-950 p-5 text-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
               <span className="text-sm font-semibold">All solutions</span>
-              <span className="mt-3 text-xs leading-5 text-slate-300">Browse the three application pages.</span>
+              <span className="mt-3 text-xs leading-5 text-slate-300">Browse all four application solution pages.</span>
             </Link>
             {SOLUTIONS.map((solution) => (
               <Link key={solution.href} href={solution.href} className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:border-green-200 hover:shadow-md">
@@ -504,10 +504,10 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Why upprocure</p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Your Trusted Manufacturing Partner</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Why UPprocure</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Built for B2B Electrical Procurement</h2>
               <p className="mt-4 text-sm leading-relaxed text-gray-500">
-                We combine international quality standards with tailored services to ensure a seamless supply chain experience for every partner.
+                We combine vetted Liushi partner-factory production with clear technical documentation, OEM coordination, and consolidated export shipping.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-8">
@@ -530,21 +530,21 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="relative min-h-[360px] overflow-hidden rounded-3xl shadow-lg lg:min-h-full">
-              <OptimizedImage src="/images/company-exterior.jpg" alt="upprocure manufacturing facility" fill className="h-full w-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <OptimizedImage src="/images/company-exterior.jpg" alt="UPprocure operations in Liushi, Wenzhou" fill className="h-full w-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">About upprocure</p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Electrical Protection Solutions for B2B Projects</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">About UPprocure</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Electrical Protection Supply for B2B Projects</h2>
               <p className="mt-4 text-sm leading-relaxed text-gray-500">
-                Explore our 50,000 m² facility with automated lines and R&amp;D centers. We deliver reliable electrical solutions.
+                Operating from Liushi, Wenzhou, UPprocure connects global electrical buyers with vetted low-voltage production lines and coordinated export fulfillment.
               </p>
-              <h3 className="mt-8 text-2xl font-bold leading-snug text-gray-900 sm:text-3xl">Reliable &amp; Smart Power Solutions.</h3>
+              <h3 className="mt-8 text-2xl font-bold leading-snug text-gray-900 sm:text-3xl">Consolidated Sourcing, Verified Specifications.</h3>
               <p className="mt-4 text-sm leading-relaxed text-gray-600">
-                <span className="font-semibold text-gray-900">With over 15 years of manufacturing expertise,</span>{' '}
-                upprocure produces a full range of low-voltage electrical products, including circuit breakers, SPDs, DC fuse holders, power meters, and ATS systems. Our solutions are widely used in residential, commercial, and industrial applications. Backed by ISO 9001 certification and advanced production facilities, we deliver consistent quality at competitive prices.
+                <span className="font-semibold text-gray-900">Built for distributors, panel builders, and EPC teams,</span>{' '}
+                UPprocure supplies circuit breakers, SPDs, DC fuse holders, voltage protectors, power meters, ATS switches, PV combiner boxes, and 22mm panel controls. We coordinate pre-shipment quality checks, OEM labeling, and multi-category consolidation so your project BOM ships together with consistent documentation.
               </p>
               <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
-                {['ISO & CE Certified Quality', 'Direct Supply Chain', 'Smart Power Monitoring', 'Wide Application', 'Global Customer Trust', 'Clear Project Quotations'].map((item) => (
+                {['CE, RoHS & ISO 9001 Support', 'Vetted Partner Factories', 'OEM & Private-Label Ready', 'Multi-Category Consolidation', 'Pre-Shipment Quality Checks', 'Clear Project Quotations'].map((item) => (
                   <div key={item} className="border-l-2 border-green-500 pl-3">
                     <span className="text-base font-bold leading-snug text-green-700">{item}</span>
                   </div>
@@ -568,19 +568,19 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Certifications</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Compliance &amp; Documentation</p>
               <h2 className="mt-3 text-3xl font-bold leading-snug tracking-tight text-gray-900 sm:text-4xl">
-                Quality You Can Trust,<br />Certified Worldwide.
+                Documentation Ready for<br />Export Compliance.
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-gray-600">
-                upprocure maintains a global presence, supplying certified low-voltage electrical products to customers in over 80 countries. Every product is backed by internationally recognized certifications, ensuring compliance, safety, and reliability across markets.
+                UPprocure coordinates model-specific compliance documentation for international electrical projects. Confirm your destination-market standards during quotation so we match the right models and available certificates.
               </p>
               <ul className="mt-6 space-y-2.5">
                 {[
-                  'ISO 9001:2015 Quality Management System',
-                  'CE Marking — IEC/EN Standards Compliant',
-                  'RoHS Compliant — Environmentally Responsible',
-                  'Trusted Supplier for Global Electrical Brands',
+                  'ISO 9001 Quality Management System documentation',
+                  'CE Marking — applicable IEC/EN standards by model',
+                  'RoHS Compliance documentation on request',
+                  'CCC coverage on applicable domestic-standard models',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <svg className="mt-0.5 h-5 w-5 shrink-0 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
@@ -597,7 +597,7 @@ export default function HomePage() {
               </div>
             </div>
             <div>
-              <OptimizedImage src="/images/证书图片.png" alt="upprocure certifications" width={720} height={540} className="w-full object-contain" />
+              <OptimizedImage src="/images/证书图片.png" alt="UPprocure product compliance documentation overview" width={720} height={540} className="w-full object-contain" />
             </div>
           </div>
         </div>
@@ -652,7 +652,7 @@ export default function HomePage() {
               <div>
                 <h2 className="text-3xl font-bold text-white sm:text-4xl">Ready to Start Your Next Order?</h2>
                 <p className="mt-4 max-w-xl text-base text-blue-100/90">
-                  Tell us your market, specs, and target quantity. Our technical sales team will send a clear quotation plan within one business day.
+                  Share your model list, voltage and current ratings, quantities, and destination port. Our sales team will follow up with pricing, sample options, and available documentation.
                 </p>
               </div>
               <div className="flex flex-col gap-4 lg:items-end">
@@ -727,10 +727,10 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
             <article className="lg:col-span-1">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Contact upprocure</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Contact UPprocure</p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Send Your Product Requirement</h2>
               <p className="mt-3 text-sm leading-relaxed text-gray-500">
-                Tell us the product category, voltage platform, quantity, packaging needs, and target delivery timeline. Our team will reply with next-step details.
+                Tell us the product category, model codes, voltage platform, quantity, packaging needs, and destination. Our team will reply with quotation and availability details.
               </p>
 
               <ul className="mt-8 space-y-5">
@@ -758,17 +758,17 @@ export default function HomePage() {
                   </a>
                 </li>
                 <li className="text-sm text-gray-700">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">Response Time</p>
-                  <p className="mt-1">Within 24 business hours for most RFQs.</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">Business Hours</p>
+                  <p className="mt-1">09:00 – 22:00 CST (Monday – Sunday)</p>
                 </li>
               </ul>
             </article>
 
             <article className="lg:col-span-2">
               <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900">Send an Enquiry</h3>
-                <p className="mb-6 mt-1 text-xs text-gray-500">Product details, quantities, and target market help us reply faster.</p>
-                <InquiryForm source="home-enquiry" submitLabel="Send Now" twoColumnOnDesktop showInquiryType redirectOnSuccess="/thank-you" />
+                <h3 className="text-lg font-bold text-gray-900">Send an Inquiry</h3>
+                <p className="mb-6 mt-1 text-xs text-gray-500">Model codes, quantities, and destination market help us prepare an accurate quotation.</p>
+                <InquiryForm source="home-enquiry" submitLabel="Request a Quote" twoColumnOnDesktop showInquiryType redirectOnSuccess="/thank-you" />
               </div>
             </article>
           </div>

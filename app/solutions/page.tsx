@@ -75,7 +75,7 @@ export default function SolutionsIndexPage() {
                 </h2>
                 <p className="mt-3 flex-1 text-sm leading-7 text-gray-600">{solution.summary}</p>
                 <Link href={solution.href} className="mt-5 inline-flex font-semibold text-green-700 hover:text-green-800">
-                  View solution
+                  Explore {solution.navLabel} →
                 </Link>
               </div>
             </article>
@@ -83,11 +83,49 @@ export default function SolutionsIndexPage() {
         </div>
       </section>
 
+      <section className="border-t border-gray-100 bg-white py-14">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-950">How Panel Builders &amp; Contractors Pair These Solutions</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-gray-600">
+            Control cabinets and outdoor enclosures rarely source door operators, panel indicators, and internal protection from separate vendors. UPprocure consolidates cabinet-door controls and internal DIN-rail protection into a single BOM and shipment.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <article className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+              <h3 className="text-sm font-bold text-gray-950">Industrial Control Panels</h3>
+              <p className="mt-2 text-xs leading-6 text-gray-600">
+                Combine EB2M 22mm push buttons, selector switches, and emergency stops with SA50/SA60 digital voltage/current indicators, backed by DIN-rail MCBs and fuse holders inside the cabinet.
+              </p>
+            </article>
+            <article className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+              <h3 className="text-sm font-bold text-gray-950">Solar PV &amp; ESS Enclosures</h3>
+              <p className="mt-2 text-xs leading-6 text-gray-600">
+                Pair passive DIN-rail thermal aerosol fire extinguishers with IP65 PV combiner boxes, 500V–1500V DC SPDs, and gPV fuse holders for enclosed DC fire risk mitigation.
+              </p>
+            </article>
+            <article className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+              <h3 className="text-sm font-bold text-gray-950">Public Kiosks &amp; Harsh Doors</h3>
+              <p className="mt-2 text-xs leading-6 text-gray-600">
+                Specify stainless steel or plated-brass anti-vandal metal push buttons in 12–25 mm cutouts for access control, machinery doors, and outdoor control stations.
+              </p>
+            </article>
+            <article className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+              <h3 className="text-sm font-bold text-gray-950">Related Protection Catalog</h3>
+              <ul className="mt-2 space-y-1.5 text-xs font-medium text-green-700">
+                <li><Link href="/categories/circuit-breaker" className="hover:underline">AC &amp; DC Circuit Breakers</Link></li>
+                <li><Link href="/categories/surge-protector-device" className="hover:underline">AC &amp; DC Surge Protectors</Link></li>
+                <li><Link href="/categories/pv-combiner-box" className="hover:underline">IP65 PV Combiner Boxes</Link></li>
+                <li><Link href="/categories/power-meter" className="hover:underline">DIN Rail Power Meters</Link></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-gray-50 py-14">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-950">Request a quote</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-gray-950">Request a Project Quotation</h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-gray-600">
-            Send the model, quantity, and destination by email, the RFQ form, or WhatsApp.
+            Send the model codes, cutout diameter or DIN-rail module count, rated voltage/current, quantity, and destination by email, the RFQ form, or WhatsApp.
           </p>
           <div className="mt-6">
             <InquiryActions topic="UPprocure solutions" formHref="/contact#rfq" />

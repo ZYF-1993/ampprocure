@@ -4,7 +4,7 @@ import { CONTACT_EMAIL } from '@/lib/site-config'
 
 export const metadata = buildPageMetadata({
   title: 'Privacy Policy',
-  description: 'upprocure Privacy Policy — how we collect, use, and protect your personal information when you use our website or contact us for B2B inquiries.',
+  description: 'UPprocure Privacy Policy — how we collect, use, and protect your business and personal information when you use our website or submit B2B inquiries.',
   path: '/privacy',
 })
 
@@ -19,7 +19,7 @@ const sections = [
   },
   {
     title: 'Information Sharing',
-    body: `upprocure does not sell, rent, or trade your personal information to any third parties. We may share information with trusted logistics and payment partners strictly as required to fulfill your orders. All third-party partners are contractually required to handle your data in accordance with applicable privacy laws and to use it only for the purpose of fulfilling the service requested.`,
+    body: `UPprocure does not sell, rent, or trade your personal information to any third parties. We may share information with trusted logistics and payment partners strictly as required to fulfill your orders. All third-party partners are contractually required to handle your data in accordance with applicable privacy laws and to use it only for the purpose of fulfilling the service requested.`,
   },
   {
     title: 'Data Security',
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
       <section className="py-12">
         <div className="mx-auto w-full max-w-4xl space-y-8 px-4 text-sm leading-7 text-slate-700 sm:px-6 lg:px-8">
           <p className="text-base leading-relaxed text-slate-600">
-            upprocure (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting the privacy of our business customers and website visitors. This Privacy Policy explains what information we collect, how we use it, and your rights regarding your data.
+            UPprocure (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting the privacy of our business customers and website visitors. This Privacy Policy explains what information we collect, how we use it, and your rights regarding your data.
           </p>
           {sections.map((section) => (
             <article key={section.title}>

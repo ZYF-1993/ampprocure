@@ -25,8 +25,10 @@ type FormState = {
 
 const EMPTY: FormState = { name: '', company: '', email: '', phone: '', inquiryType: '', message: '', website: '' }
 
+const MAX_MESSAGE_LENGTH = 5000
+
 const INQUIRY_TYPES = [
-  'Product Enquiry',
+  'Product Inquiry',
   'Request for Quotation',
   'OEM / Private Label',
   'Sample Request',
@@ -39,7 +41,7 @@ const labelCls = 'mb-1.5 block text-sm font-medium text-gray-700'
 const inputCls = 'w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm placeholder:text-gray-400 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500'
 
 export default function InquiryForm({
-  submitLabel = 'Send Enquiry',
+  submitLabel = 'Send Inquiry',
   source,
   defaultProduct = '',
   twoColumnOnDesktop = false,
@@ -61,6 +63,10 @@ export default function InquiryForm({
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setError(null)
+    if (form.message.trim().length > MAX_MESSAGE_LENGTH) {
+      setError(`Message must be ${MAX_MESSAGE_LENGTH.toLocaleString()} characters or fewer. For larger BOM lists, please email sales@upprocure.com directly.`)
+      return
+    }
     setSubmitting(true)
     try {
       const res = await fetch('/api/send-email', {
@@ -93,7 +99,7 @@ export default function InquiryForm({
         </div>
         <h3 className="mt-5 text-xl font-bold text-gray-900">Message Sent!</h3>
         <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-500">
-          Thank you for reaching out. Our sales team will reply within <strong className="font-semibold text-gray-700">24 business hours</strong>.
+          Thank you for reaching out. Our sales team has received your inquiry and will follow up with quotation and availability details.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <button
@@ -166,8 +172,23 @@ export default function InquiryForm({
       )}
 
       <div>
-        <label htmlFor={`${source}-message`} className={labelCls}>Message *</label>
-        <textarea id={`${source}-message`} name="message" rows={4} required value={form.message} onChange={update} placeholder="Please describe your requirements, including product names, quantities, and any special specifications..." className={inputCls} />
+        <div className="mb-1.5 flex items-baseline justify-between gap-2">
+          <label htmlFor={`${source}-message`} className="block text-sm font-medium text-gray-700">Message *</label>
+          <span className={`text-xs ${form.message.length > MAX_MESSAGE_LENGTH ? 'font-semibold text-red-600' : 'text-gray-400'}`}>
+            {form.message.length.toLocaleString()} / {MAX_MESSAGE_LENGTH.toLocaleString()}
+          </span>
+        </div>
+        <textarea
+          id={`${source}-message`}
+          name="message"
+          rows={5}
+          required
+          maxLength={MAX_MESSAGE_LENGTH}
+          value={form.message}
+          onChange={update}
+          placeholder="Please describe your requirements, including model codes, ratings, quantities, and destination (line breaks are preserved)..."
+          className={inputCls}
+        />
       </div>
 
       <button

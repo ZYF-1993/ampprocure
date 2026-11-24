@@ -45,6 +45,14 @@ export const SEO_OVERRIDES: Readonly<Record<string, SeoOverride>> = {
     title: "Panel Components & Fire Suppression Solutions | UPprocure",
     description: "Solutions for control panels and enclosures: 22mm push buttons, metal push buttons, 22mm digital indicators and DIN rail aerosol fire extinguishers.",
   },
+  "/solutions/22mm-push-button-switch": {
+    title: "22mm Push Button Switches & E-Stops (EB2M) | UPprocure",
+    description: "Φ22 mm EB2M push buttons, selector switches, key switches, and emergency stops. 10 A Ith, AC-15 220 V / 5 A, IP40/IP65, six colors. Request a quote.",
+  },
+  "/solutions/22mm-digital-display-indicator": {
+    title: "22mm Digital Panel Meters & Indicators SA50 | UPprocure",
+    description: "22mm digital display indicators for voltage, current, frequency, and temperature. SA50, SA60, and ED16-22 meters for control cabinets. Request a quote.",
+  },
   "/solutions/aerosol-fire-extinguisher": {
     title: "Aerosol Fire Extinguisher Solutions for Cabinets | UPprocure",
     description: "DIN rail thermal aerosol fire extinguishers for electrical cabinets, PV combiner boxes and industrial enclosures, with OEM options. Send your inquiry.",
@@ -52,6 +60,14 @@ export const SEO_OVERRIDES: Readonly<Record<string, SeoOverride>> = {
   "/solutions/metal-push-button": {
     title: "Anti-Vandal Metal Push Buttons, 12–25mm | UPprocure",
     description: "Anti-vandal metal push buttons in 12–25 mm cutouts. Momentary or latching action, ring or dot illumination, screw or pin terminals. Request a quote.",
+  },
+  "/categories/circuit-breaker": {
+    title: "AC & DC Miniature Circuit Breaker Supplier | UPprocure",
+    description: "AC and DC miniature circuit breakers, 1P to 4P, 6–63A, B/C/D trip curves, 35mm DIN rail. DC models rated 500V DC for solar PV strings. Request a quote.",
+  },
+  "/categories/over-voltage-protector": {
+    title: "Adjustable Over/Under Voltage Protector | UPprocure",
+    description: "Adjustable AC over/under voltage and over-current protectors with digital display for 35mm DIN rail, 3-phase boards, and plug-in sockets. Request a quote.",
   },
   "/categories/surge-protector-device": {
     title: "AC & DC Surge Protective Devices (SPD) 1P–4P | UPprocure",
@@ -66,16 +82,16 @@ export const SEO_OVERRIDES: Readonly<Record<string, SeoOverride>> = {
     description: "Tuya WiFi smart DIN rail circuit breakers, reclosing leakage protectors and energy meters with app control and energy monitoring. Request a quote.",
   },
   "/categories/pv-combiner-box": {
-    title: "PV Combiner Box Manufacturer & Supplier | UPprocure",
+    title: "Solar PV Combiner Box Supplier (IP65 OEM) | UPprocure",
     description: "IP65 PV combiner boxes with 1 to 6 string inputs, DC breakers, PV fuses, isolators and 40kA SPDs in plastic or steel enclosures. Request a quote.",
   },
   "/categories/ats-dual-power-switch": {
-    title: "ATS Dual Power Switch Manufacturer & Supplier | UPprocure",
+    title: "ATS Dual Power Automatic Transfer Switches | UPprocure",
     description: "Automatic transfer switches for mains, generator and inverter backup: PC class 50ms and CB class models, 2P, 3P and 4P, 63A, 110V/220V. Request a quote.",
   },
   "/categories/aerosol-fire-extinguisher": {
-    title: "DIN Rail Aerosol Fire Extinguishers | UPprocure",
-    description: "Compact DIN rail thermal aerosol fire suppression devices for electrical cabinets, PV combiner boxes and enclosed control equipment. Request a quote.",
+    title: "DIN Rail Aerosol Fire Extinguisher Supplier | UPprocure",
+    description: "Compact DIN rail thermal aerosol fire suppression devices for electrical cabinets, PV combiner boxes, and industrial control enclosures. Request a quote.",
   },
   "/products/MCB-AC-1P": {
     title: "1P AC Miniature Circuit Breaker 6–63A, MCB-AC-1P | UPprocure",
@@ -95,7 +111,7 @@ export const SEO_OVERRIDES: Readonly<Record<string, SeoOverride>> = {
   },
   "/products/MCB-DC-1P": {
     title: "1P DC Circuit Breaker 500V 6–63A, MCB-DC-1P | UPprocure",
-    description: "Single-pole 500V DC MCB, 6–63A, 6kA DC, C curve, just 18mm wide for PV string and DC branch protection on 35mm DIN rail. Request a quote.",
+    description: "Single-pole 500V DC miniature circuit breaker, 6–63A, 6kA DC, C curve, 18mm wide for PV string and DC branch protection on 35mm DIN rail. Request a quote.",
   },
   "/products/MCB-DC-2P": {
     title: "2P DC Circuit Breaker 500V 6–63A, MCB-DC-2P | UPprocure",
@@ -103,7 +119,7 @@ export const SEO_OVERRIDES: Readonly<Record<string, SeoOverride>> = {
   },
   "/products/MCB-DC-3P": {
     title: "3P DC Circuit Breaker 500V 6–63A, MCB-DC-3P | UPprocure",
-    description: "Three-pole DC MCB, 500V per pole, 6–63A, 6kA DC, with an arc chamber on every pole for commercial PV arrays and DC buses. Request a quote.",
+    description: "Three-pole DC miniature circuit breaker, 500V per pole, 6–63A, 6kA DC, with arc chambers on every pole for commercial PV arrays and DC buses. Request a quote.",
   },
   "/products/MCB-DC-4P": {
     title: "4P DC Circuit Breaker 500V 6–63A, MCB-DC-4P | UPprocure",
@@ -413,9 +429,13 @@ export const SEO_OVERRIDES: Readonly<Record<string, SeoOverride>> = {
     title: "CB Class Transfer Switch 3P 63A, STQ2-63-3P | UPprocure",
     description: "STQ2-63 3-pole CB class transfer switch, 63A, 110V/220V, interlocked sources and about 2s changeover for three-phase motors. Request a quote.",
   },
+  "/products/DDS": {
+    title: "DDS Single-Phase DIN Rail Energy Meter | UPprocure",
+    description: "DDS662, DDS667, and DDS668 single-phase DIN rail energy meters, 5(80)A, 110/230V, with kWh LCD display and 1600 imp/kWh pulse output. Request a quote.",
+  },
   "/products/STQ2-63-4P-220V-110V": {
     title: "CB Class Transfer Switch 4P 63A, STQ2-63-4P | UPprocure",
-    description: "STQ2-63 4-pole CB class transfer switch, 63A, with over/under voltage protection for mixed 3-phase and single-phase loads. Request a quote.",
+    description: "STQ2-63 4-pole CB class automatic transfer switch, 63A, 110V/220V, with over/under voltage protection for mixed 3-phase and single-phase loads. Request a quote.",
   },
   "/products/Aerosol-DIN-Rail": {
     title: "DIN Rail Thermal Aerosol Fire Extinguisher | UPprocure",
@@ -423,7 +443,15 @@ export const SEO_OVERRIDES: Readonly<Record<string, SeoOverride>> = {
   },
   "/blog/how-to-choose-22mm-push-button-switch": {
     title: "How to Choose a 22mm Push Button Switch | UPprocure",
-    description: "Choose a 22mm push button switch by operator, NO/NC contacts, lamp voltage, IP rating and body size. A practical guide for panel builders.",
+    description: "How to choose a 22mm push button switch by operator head, NO/NC contact code, lamp voltage, IP rating, and body size. A practical guide for panel builders.",
+  },
+  "/blog/22mm-emergency-stop-button-twist-release-guide": {
+    title: "22mm Emergency Stop Button Guide (EB2M) | UPprocure",
+    description: "How a 22mm twist-release emergency stop button works: red mushroom head, NC contacts, mechanical life, and a pre-order checklist for panel builders and OEMs.",
+  },
+  "/blog/22mm-selector-switch-key-switch-spring-return-hand-off-auto": {
+    title: "22mm Selector & Key Switch Selection Guide | UPprocure",
+    description: "How to specify 2- or 3-position 22mm selector and key switches, maintained vs spring-return action, contact codes, and Hand-Off-Auto panel operation.",
   },
   "/blog/what-is-din-rail-aerosol-fire-extinguisher-technical-guide": {
     title: "What Is a DIN Rail Aerosol Fire Extinguisher? | UPprocure",
@@ -483,7 +511,7 @@ export const SEO_OVERRIDES: Readonly<Record<string, SeoOverride>> = {
   },
   "/blog/pv-combiner-box-certifications-iec-ce-ul": {
     title: "PV Combiner Box Certifications: IEC, CE & UL | UPprocure",
-    description: "Which PV combiner box certifications (IEC 61439, CE, UL, RoHS) open which markets, and how buyers can verify each one before shipment.",
+    description: "Which PV combiner box certifications (IEC 61439, CE, UL, RoHS) apply to each export market, and how B2B buyers can verify certificates before shipment.",
   },
   "/blog/dc-vs-ac-pv-combiner-box": {
     title: "DC vs AC PV Combiner Box: Which Do You Need? | UPprocure",

@@ -24,10 +24,9 @@ export default function WhatsAppChat() {
         <div className="w-72 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/10">
           <div className="flex items-start justify-between bg-teal-700 px-4 py-3">
             <div>
-              <p className="text-base font-bold text-white">Click to Chat</p>
-              <p className="mt-0.5 flex items-center gap-1.5 text-sm text-teal-100">
-                <span className="h-2 w-2 rounded-full bg-green-400" />
-                I am Online Now!
+              <p className="text-base font-bold text-white">WhatsApp Sales</p>
+              <p className="mt-0.5 text-xs text-teal-100">
+                09:00 – 22:00 CST · Direct RFQ Support
               </p>
             </div>
             <button
@@ -43,7 +42,7 @@ export default function WhatsAppChat() {
 
           <div className="bg-[#e5ddd5] px-4 py-5" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c4b5a0' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }}>
             <div className="inline-block rounded-lg rounded-tl-none bg-white px-4 py-2.5 shadow-sm">
-              <p className="text-sm text-gray-800">Chat for UPprocure Now! 👋</p>
+              <p className="text-sm text-gray-800">Send your model list, quantities, or technical questions to UPprocure sales on WhatsApp.</p>
             </div>
           </div>
 
@@ -55,11 +54,11 @@ export default function WhatsAppChat() {
               className="flex w-full items-center justify-center gap-2 rounded-full bg-green-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-600"
             >
               <WhatsAppIcon className="h-5 w-5" />
-              WhatsApp Us
+              Message on WhatsApp
             </a>
             <p className="mt-2 text-center text-xs text-gray-400">
-              Online |{' '}
-              <a href="/privacy" className="hover:underline">Privacy policy</a>
+              UPprocure Sales |{' '}
+              <a href="/privacy" className="hover:underline">Privacy Policy</a>
             </p>
           </div>
         </div>

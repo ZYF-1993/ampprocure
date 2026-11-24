@@ -96,7 +96,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   }
 
   const ceRohsOnly = detail.ctaVariant === 'ce-rohs'
-  const faq = detail.faq ?? []
+  const faq = detail.faq ?? (post.faq.length >= 3 ? post.faq : [])
   const HeroContainer = detail.heroCaption ? 'figure' : 'div'
   const relatedPosts = getRelatedBlogPosts(post.slug)
   // EB2M posts: skip the featured-product fallback (unrelated PV / aerosol items) and link the 22mm solution page instead.
@@ -272,7 +272,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     <Link href="/contact" className="btn-primary inline-flex">
                       Request a Quote
                     </Link>
-                    <span className="text-xs text-gray-400">Reply within 24 hours</span>
                   </div>
                 </>
               )}
@@ -288,21 +287,21 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 <div className="relative h-36 w-full">
                   <OptimizedImage
                     src="/images/banner/about-bg.jpg"
-                    alt="UPprocure factory"
+                    alt="UPprocure electrical supply operations"
                     fill
                     sizes="280px"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   {!ceRohsOnly && (
-                    <span className="absolute bottom-3 left-4 text-sm font-bold tracking-wide text-white">Direct Supply Chain</span>
+                    <span className="absolute bottom-3 left-4 text-sm font-bold tracking-wide text-white">B2B Electrical Supply</span>
                   )}
                 </div>
                 <div className="p-4">
                   <p className="text-xs leading-relaxed text-gray-500">
                     {ceRohsOnly
                       ? detail.quoteDocumentation ?? 'CE, RoHS and ISO 9001 documentation available on request'
-                      : 'IEC-certified manufacturer of low-voltage electrical protection products. OEM & private label available.'}
+                      : 'Low-voltage electrical protection supplier in Liushi, Wenzhou. OEM and private-label coordination available.'}
                   </p>
                   {!detail.quoteDocumentation && (
                     <div className="mt-3 flex items-center justify-center gap-3">

@@ -255,26 +255,57 @@ export default function SiteHeader() {
             </Link>
           </div>
 
-          <button
-            type="button"
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 lg:hidden"
-            aria-expanded={mobileMenuOpen}
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-          >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              )}
-            </svg>
-          </button>
+          <div className="flex items-center gap-1 lg:hidden">
+            <Link
+              href="/search"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100"
+              aria-label="Search products and guides"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-4.35-4.35m1.85-5.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+              </svg>
+            </Link>
+            <button
+              type="button"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100"
+              aria-expanded={mobileMenuOpen}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className={`overflow-hidden border-t border-gray-100 transition-all duration-300 lg:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-64px)]' : 'max-h-0'}`}>
+      <div
+        inert={!mobileMenuOpen || undefined}
+        aria-hidden={!mobileMenuOpen}
+        className={`overflow-hidden border-t border-gray-100 transition-all duration-300 lg:hidden ${mobileMenuOpen ? 'visible max-h-[calc(100vh-64px)]' : 'invisible max-h-0 border-t-0'}`}
+      >
         <nav className="container max-h-[calc(100vh-64px)] overflow-y-auto py-4" aria-label="Mobile navigation">
+          <form action="/search" method="get" className="mb-3 flex gap-2" onSubmit={() => setMobileMenuOpen(false)}>
+            <label htmlFor="mobile-header-search" className="sr-only">Search catalog</label>
+            <input
+              id="mobile-header-search"
+              type="search"
+              name="q"
+              placeholder="Search models, categories, guides..."
+              className="min-w-0 flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-green-600 focus:outline-none focus:ring-1 focus:ring-green-600"
+            />
+            <button
+              type="submit"
+              className="rounded-lg bg-green-700 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-green-800"
+            >
+              Search
+            </button>
+          </form>
           <ul className="space-y-0.5">
             <li>
               <Link
@@ -291,6 +322,7 @@ export default function SiteHeader() {
             <li>
               <button
                 type="button"
+                aria-expanded={mobileProductsOpen}
                 onClick={() => setMobileProductsOpen((prev) => !prev)}
                 className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
                   isProductsRoute ? 'bg-green-50 font-semibold text-green-700' : 'text-gray-700 hover:bg-gray-50'
@@ -300,7 +332,11 @@ export default function SiteHeader() {
                 <Chevron open={mobileProductsOpen} />
               </button>
 
-              <div className={`overflow-hidden transition-all duration-200 ${mobileProductsOpen ? 'max-h-[520px]' : 'max-h-0'}`}>
+              <div
+                inert={!mobileProductsOpen || undefined}
+                aria-hidden={!mobileProductsOpen}
+                className={`overflow-hidden transition-all duration-200 ${mobileProductsOpen ? 'visible max-h-[520px]' : 'invisible max-h-0'}`}
+              >
                 <ul className="mt-1 ml-4 space-y-0.5 border-l-2 border-gray-100 pl-4">
                   <li>
                     <Link
@@ -344,6 +380,7 @@ export default function SiteHeader() {
             <li>
               <button
                 type="button"
+                aria-expanded={mobileSolutionsOpen}
                 onClick={() => setMobileSolutionsOpen((prev) => !prev)}
                 className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
                   isSolutionsRoute ? 'bg-green-50 font-semibold text-green-700' : 'text-gray-700 hover:bg-gray-50'
@@ -353,7 +390,11 @@ export default function SiteHeader() {
                 <Chevron open={mobileSolutionsOpen} />
               </button>
 
-              <div className={`overflow-hidden transition-all duration-200 ${mobileSolutionsOpen ? 'max-h-80' : 'max-h-0'}`}>
+              <div
+                inert={!mobileSolutionsOpen || undefined}
+                aria-hidden={!mobileSolutionsOpen}
+                className={`overflow-hidden transition-all duration-200 ${mobileSolutionsOpen ? 'visible max-h-80' : 'invisible max-h-0'}`}
+              >
                 <ul className="mt-1 ml-4 space-y-0.5 border-l-2 border-gray-100 pl-4">
                   <li>
                     <Link

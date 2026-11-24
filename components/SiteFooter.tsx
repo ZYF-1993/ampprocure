@@ -22,7 +22,7 @@ export default function SiteFooter() {
               />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-gray-400">
-              upprocure is an electrical equipment company committed to providing quality products at affordable prices. We&apos;re proud to have maintained a 98.9% customer satisfaction rate through dedication and excellent service.
+              UPprocure supplies low-voltage electrical protection, power metering, and control-panel components from Liushi, Wenzhou for global distributors, panel builders, and project contractors.
             </p>
             <div className="mt-5">
               <InquiryActions layout="stack" />
@@ -58,6 +58,7 @@ export default function SiteFooter() {
                 { href: '/blog', label: 'Blog' },
                 { href: '/about', label: 'About Us' },
                 { href: '/solutions', label: 'Solutions' },
+                { href: '/solutions/22mm-push-button-switch', label: '22mm Push Button Switches' },
                 { href: '/solutions/aerosol-fire-extinguisher', label: 'Aerosol Fire Extinguisher' },
                 { href: '/solutions/22mm-digital-display-indicator', label: '22mm Digital Display Indicator' },
                 { href: '/solutions/metal-push-button', label: 'Metal Push Button' },
@@ -115,7 +116,7 @@ export default function SiteFooter() {
 
       <div className="border-t border-gray-800">
         <div className="container flex flex-col items-center justify-between gap-3 py-5 sm:flex-row">
-          <p className="text-xs text-gray-500">© {new Date().getFullYear()} upprocure. All rights reserved.</p>
+          <p className="text-xs text-gray-500">© {new Date().getFullYear()} UPprocure. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-5">
             <Link href="/site-map" className="text-xs text-gray-300 transition-colors hover:text-white">Site Map</Link>
             <Link href="/privacy" className="text-xs text-gray-300 transition-colors hover:text-white">Privacy Policy</Link>
