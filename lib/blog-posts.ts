@@ -185,6 +185,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       'Choose a 22mm push button switch by operator, NO/NC contacts, lamp voltage, IP rating and body size. A practical guide for panel builders.',
     tags: ['22mm Push Button Switch', "Buyer's Guide"],
     image: '/images/blog/how-to-choose-22mm-push-button-switch.jpg',
+    imageAlt: 'I/O double push button, lever selector, twist-release emergency stop, and red flush push button.',
     publishedAt: 'Nov 13, 2026',
     readingMinutes: 10,
     heroSummary:
@@ -206,10 +207,10 @@ const eb2mPostData: readonly BlogPostSource[] = [
         bullets: [
           'Flush push buttons: the general-purpose head for start, reset and jog functions. Momentary -10, maintained -10T, illuminated -10D and -10DT. Symbol versions (/FH) carry one of 12 printed symbols, and custom marking is listed as available.',
           'Mushroom head push buttons: a larger head that is easy to press with the palm or a gloved hand. -10M, -10MT, illuminated -10MD and -10MTD.',
-          'Emergency stop, twist release: red head, one NC contact. -01ZS, -01ZS/A and -01ZS/B; illuminated -01DZS and -01DZS/A.',
+          'Emergency stop, twist release: red head, nominal -01 (1NC) code. -01ZS, -01ZS/A and -01ZS/B; illuminated -01DZS and -01DZS/A.',
           'Key switches: 2-position (-10Y, -10CY, -10CY/fu) and 3-position (-20YS, -20CYS, -20CYS/f.fu), for functions only authorized staff should change.',
           'Selector switches: short lever or long lever, 2- or 3-position, with illuminated versions, for mode selection such as Hand-Off-Auto or local/remote.',
-          'Double push buttons: two buttons in one Φ22 mm hole with 1NO1NC contacts, in flat (-11PRG), extended (-11HRG) or oval (-11RG) styles, plus illuminated versions, with markings such as I/O, ON/OFF and START/STOP.',
+          'Double push buttons: two buttons in one nominal Φ22 mm hole with nominal 1NO1NC contacts, in flat (-11PRG), extended (-11HRG) or oval (-11RG) styles, plus illuminated versions. In the catalog, flat and extended groups list R1/R5 (I/O), while the oval group lists R and R1–R7 (blank, I/O, ON/OFF, and START/STOP—printed legend wording only).',
         ],
       },
       {
@@ -225,21 +226,21 @@ const eb2mPostData: readonly BlogPostSource[] = [
         paragraphs: [
           'A normally open (NO) contact is open at rest and closes when the operator is actuated. A normally closed (NC) contact is closed at rest and opens when actuated. Start functions are usually wired through NO contacts. Stop functions are usually wired through NC contacts, so that an open-circuit fault, such as a broken wire or loose terminal, interrupts the control path in the same way as pressing stop.',
           'In the EB2M series the contacts are part of the model code: the first digit is the number of NO contacts and the second digit is the number of NC contacts.',
-          'So EB2M-A-10D is an illuminated flush button with one NO contact, and EB2M-B-01ZS is a twist-release emergency stop with one NC contact. If you need more contacts than the code lists, ask before ordering; stacking blocks beyond what the supplier specifies can make any button stick.',
+          'EB2M-A-10D is listed as an illuminated flush button with nominal 1NO, and EB2M-B-01ZS as a twist-release model with nominal 1NC. The Type A photo adjacent to -01ZS/-01DZS shows 13–14 (NO). Confirm the exact model\'s controlled wiring diagram and terminal table and verify delivered units de-energized. If you need more contacts than the code lists, ask before ordering; stacking blocks beyond what the supplier specifies can make any button stick.',
         ],
         bullets: [
-          '-10 = 1NO',
-          '-01 = 1NC',
-          '-11 = 1NO1NC',
-          '-20 = 2NO',
+          '-10 = nominal 1NO',
+          '-01 = nominal 1NC',
+          '-11 = nominal 1NO1NC',
+          '-20 = nominal 2NO',
         ],
       },
       {
         heading: 'Check Current, Not Just Voltage',
         paragraphs: [
           'A frequent mistake is to check only the control voltage. Contacts that switch a coil see an inductive load, and the current a contact can switch drops as voltage rises. A contact that is comfortable at 110 V AC can be overloaded at 380 V AC, and DC loads are harder to break than AC loads at the same voltage. Overloaded contacts pit and can weld.',
-          'That is why ratings should be read by utilization category. The EB2M catalog prints the full table for utilization categories AC-15/DC-13 as defined in IEC 60947-5-1:',
-          'Read the table against your actual circuit. At 220 V AC the rating is 5 A, but at 220 V DC it is 1 A. If a DC coil draws more than the listed value, switch it through an interposing relay instead of directly. Ith 10 A describes how much current the contact can carry continuously without overheating; it is not a switching rating for inductive loads.',
+          'That is why ratings should be read by utilization category. The EB2M series catalog prints series-level ratings under utilization categories AC-15 and DC-13:',
+          'Read the table against your actual circuit. At 220 V AC the rating is 5 A, but at 220 V DC it is 1 A. If a DC coil draws more than the listed value, switch it through an interposing relay instead of directly. Ith 10 A is the catalog\'s conventional thermal current; it is not a switching rating for inductive loads.',
         ],
         bullets: [
           'AC-15: 36 V / 10 A, 110 V / 10 A, 220 V / 5 A, 380 V / 2.7 A, 660 V / 1.8 A',
@@ -250,7 +251,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: '22mm Illuminated Push Button: Specify the Lamp Voltage Separately',
         paragraphs: [
-          'A 22mm illuminated push button has two independent circuits: the contacts and the lamp. The contact rating says nothing about the lamp, and the lamp voltage says nothing about the contacts. A button with a 24 V lamp connected to a 220 V indicator supply will fail, and a lamp chosen for 220 V will not light properly on 24 V.',
+          'On a 22mm illuminated push button, you must specify the ordering lamp voltage separately from the contact switching ratings. Match the lamp\'s rated voltage and supply type to the intended supply. Because the EB2M catalog does not publish internal lamp wiring diagrams, shared-terminal details, or lamp-to-contact isolation ratings, do not assume the lamp and contacts are electrically independent—confirm internal topology, lamp type, current draw, and DC polarity from the supplier\'s model wiring diagram.',
           'Treat the lamp voltage as its own line item. The EB2M lamp voltages printed in the catalog are:',
           'If your design depends on lamp current or lamp type, confirm those values with the supplier before you finalize the drawing.',
         ],
@@ -263,39 +264,39 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: 'IP Rating: What It Covers and What Installation Can Undo',
         paragraphs: [
-          'The EB2M series is rated IP40 / IP65, and the rating depends on the operator type, so confirm it for the exact model on your quote. If the panel front will see dust or splashing, make IP65 an explicit line in the inquiry.',
-          'Keeping the rated protection in service depends on correct cutout preparation and mounting. Common reasons an IP65 push button leaks in service:',
+          'The EB2M catalog lists IP40 / IP65 side by side as series-level data without assigning IP40 or IP65 to individual models or documenting per-model sealing hardware. If the panel front will see dust or splashing, make IP65 an explicit project target in your inquiry and confirm the exact model\'s IP rating, required sealing components, and installation conditions with the supplier.',
+          'Where a verified IP65 model is supplied, maintaining ingress protection in service depends on correct cutout preparation and mounting. Common installation causes of leaks include:',
           "The operator's IP rating is not the panel's IP rating; the enclosure, door seals and cable entries need to reach the same level.",
         ],
         bullets: [
-          'Burrs or a rough edge around the Φ22 mm cutout that stop the gasket from seating flat. Deburr every hole.',
-          'An oversized or out-of-round cutout. Use a proper panel punch where possible.',
-          'A missing, twisted or crushed gasket.',
-          "A mounting nut left loose or overtightened. Tighten it evenly according to the supplier's installation instructions.",
+          'Burrs or a rough edge around the Φ22 mm cutout that stop a supplied sealing gasket from seating flat. Deburr every hole.',
+          'An oversized or out-of-round cutout. Use a proper panel punch matching the supplier\'s machining drawing where possible.',
+          'A missing, twisted or crushed sealing gasket (where supplied with the model).',
+          "A mounting nut left loose or overtightened. Tighten it evenly according to the supplier's model installation instructions.",
         ],
       },
       {
         heading: 'Type A vs Type B: Body Size, Spacing and Depth',
         paragraphs: [
-          'The EB2M series is offered in two bodies with the same operators, ratings, environment and colors:',
-          'Choose Type B where buttons are closely spaced. Because the electrical data is the same, moving from Type A to Type B does not change the rating check above. These dimensions come from the outline drawings for the flush button, so check the drawing of the exact model you order, and leave room for wiring and wire markers, not just the body.',
+          'The EB2M catalog shows two body ranges and shared series-level data. Confirm the exact operator and color by model.',
+          'Because the catalog does not publish minimum hole center-to-center spacing or tight-spacing rules, compare exact head-type outline drawings, panel-thickness callouts, and rear wiring/tool clearances before choosing between Type A and Type B for tight panel layouts. Series-level electrical data are shared across both ranges, but always verify the outline drawing and specifications of the exact model you order.',
         ],
         bullets: [
-          'Type A (EB2M-A): standard modular body, 52 × 30 mm behind the panel (43 mm without the side clips), 50 mm deep behind the panel and 11 mm above the panel. Contact blocks clip on at the side.',
-          'Type B (EB2M-B): compact body, 40 × 30 mm, 33.5 mm wide in side view, 60 mm overall height including 11 mm above the panel.',
+          'Type A (EB2M-A): standard modular body. On the EB2M-A-10 flush button outline drawing, the end-view outline is 52 × 30 mm (with an additional 43 mm drawing dimension), 50 mm behind the panel, and 11 mm above the panel.',
+          'Type B (EB2M-B): compact body. On the EB2M-B-10 flush button outline drawing, the end-view outline is 40 × 30 mm, 33.5 mm side-view width, and 60 mm overall height including 11 mm above the panel.',
         ],
       },
       {
         heading: 'Colors and Markings Across One Panel',
         paragraphs: [
           'When buttons on one panel come from several suppliers, the reds, greens and yellows often do not match, and bezels differ. Sourcing the operators from one series keeps the panel consistent and gives you one part-numbering logic for spares.',
-          'The EB2M series lists six colors: red, green, yellow, blue, white and black (R, G, Y, B, W, K). Flush buttons can carry one of 12 printed symbols, with custom marking listed as available, and double push buttons offer markings R and R1–R7, including I/O, ON/OFF and START/STOP. State the color code on every order line.',
+          'The EB2M series field key lists six color codes: red, green, yellow, blue, white and black (R, G, Y, B, W, K), though exact orderable colors vary by operator row (shown illuminated flush and illuminated selector rows display five-color margin dots). Flush /FH buttons list 12 printed symbols plus a customizable option; for double push buttons, the catalog prints R1/R5 (I/O) beside flat and extended groups and R, R1–R7 (blank, I/O, ON/OFF, and START/STOP—printed legend text only) beside the oval group. State the required color and confirm availability on every order line.',
         ],
       },
       {
         heading: 'Operating Environment and Mechanical Life',
         paragraphs: [
-          'Series data: ambient −25 °C to +40 °C, altitude ≤2000 m, relative humidity ≤90% and pollution degree 3. Mechanical life is listed as ≥1,000,000 operations for push buttons, ≥300,000 for selector switches and ≥50,000 for key switches and emergency-stop buttons. CE, RoHS and ISO 9001 documentation is available on request.',
+          'Series data: ambient −25 °C to +40 °C, altitude ≤2000 m, relative humidity ≤90% and pollution degree 3. Mechanical life is listed as ≥1,000,000 operations for push buttons, ≥300,000 for selector switches and ≥50,000 for key switches and emergency-stop buttons. If your project requires specific compliance documentation, state those requirements in your inquiry so issuing entity, validity, covered models, and target-market scope can be verified before ordering.',
         ],
       },
       {
@@ -320,7 +321,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       },
       {
         question: 'How do I read the contact code on an EB2M push button?',
-        answer: 'The first digit is the number of NO contacts and the second is the number of NC contacts: -10 is 1NO, -01 is 1NC, -11 is 1NO1NC and -20 is 2NO.',
+        answer: 'In the catalog code, the first digit indicates the nominal NO count and the second indicates the nominal NC count: -10 is nominal 1NO, -01 is nominal 1NC, -11 is nominal 1NO1NC, and -20 is nominal 2NO. These are nominal printed meanings, not a verified terminal map—confirm the supplier\'s controlled wiring diagram and terminal table for the exact model and verify delivered units de-energized.',
       },
       {
         question: 'Can I use a 24 V lamp on a panel with a 220 V AC indicator supply?',
@@ -328,11 +329,11 @@ const eb2mPostData: readonly BlogPostSource[] = [
       },
       {
         question: 'Is every EB2M operator IP65?',
-        answer: 'The series is rated IP40 / IP65, and the rating depends on the operator type. Confirm it for the exact model on your quote.',
+        answer: 'No. The catalog lists IP40 / IP65 side by side as series-level data without allocating IP ratings to individual models. Confirm the exact IP rating, sealing hardware, and mounting requirements for each model on your quote.',
       },
       {
         question: 'When should I choose Type B instead of Type A?',
-        answer: 'Choose Type B (EB2M-B, 40 × 30 mm body) when buttons are closely spaced. Type A (EB2M-A) uses a standard modular body of 52 × 30 mm. Both mount in a Φ22 mm hole and share the same electrical data.',
+        answer: 'Type B (EB2M-B) uses a compact body (40 × 30 mm end-view outline on the -10 flush drawing), while Type A (EB2M-A) uses a standard modular body (52 × 30 mm end-view outline on the -10 flush drawing). Both mount in a nominal Φ22 mm hole and share series-level electrical data; because the catalog does not publish minimum hole spacing, compare exact head-type outline drawings and rear wiring clearance before choosing.',
       },
     ],
   },
@@ -340,9 +341,10 @@ const eb2mPostData: readonly BlogPostSource[] = [
     slug: '22mm-emergency-stop-button-twist-release-guide',
     title: '22mm Emergency Stop Buttons: Twist Release, NC Contacts and What to Check Before You Order',
     description:
-      'How a 22mm emergency stop button works: red head, twist release, 1NC contact, plus a pre-order checklist for panel builders and OEM buyers.',
+      'How a 22mm emergency stop button works: red head, twist release, NC contacts, plus a pre-order checklist for panel builders and OEM buyers.',
     tags: ['22mm Emergency Stop Button', 'Technical Guide'],
     image: '/images/blog/22mm-emergency-stop-button-twist-release.jpg',
+    imageAlt: 'Twist-release emergency-stop sample showing the head, arrows, and collar',
     publishedAt: 'Nov 13, 2026',
     readingMinutes: 8,
     heroSummary:
@@ -359,8 +361,8 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: 'Why the Contact Is Normally Closed',
         paragraphs: [
-          'The emergency stop contact is normally closed (NC). At rest the contact is closed and the stop circuit is complete; pressing the head opens the contact and breaks the circuit. The reason is fault behavior. If a wire breaks, a terminal works loose or a connector is unplugged, an NC contact path opens just as it would when the button is pressed, removing the continuity the run circuit depends on. A circuit built on a normally open contact would fail silently: the wire could be broken for months and nobody would know until the button was needed.',
-          'This is why emergency stops are normally specified with NC contacts, and why the EB2M emergency stop models are all printed as -01, meaning 1NC. Reading the code is enough to confirm the contact arrangement.',
+          'The emergency stop contact is normally closed (NC). At rest the contact is closed and the stop circuit is complete; pressing the head opens the contact and breaks the circuit. The reason is fault behavior. If a wire breaks, a terminal works loose or a connector is unplugged, an NC contact path opens just as it would when the button is pressed, removing the continuity the run circuit depends on. In an unmonitored normally open path, a broken wire could go undetected until the button is needed.',
+          'This is why emergency stops are normally specified with NC contacts, and why the EB2M emergency stop models are printed as -01, denoting nominal 1NC. However, reading the catalog code alone is not enough to confirm actual terminals: in the Type A catalog section, the sample photo beside -01ZS/-01DZS visibly shows 13–14 (NO), conflicting with the -01 code. Always request the supplier\'s controlled wiring diagram and terminal table for the exact ordered model and verify delivered units while de-energized.',
           'If you also want a status signal to a PLC, raise that in the inquiry rather than assuming an additional contact can be added to the printed configuration. Adding contact blocks beyond what the supplier specifies can slow the actuator or cause binding, which can interfere with emergency stop operation.',
         ],
       },
@@ -376,18 +378,18 @@ const eb2mPostData: readonly BlogPostSource[] = [
         heading: 'EB2M Emergency Stop Models',
         paragraphs: [
           'The EB2M series lists the following twist-release emergency stop codes. Each code is listed in both the Type A (EB2M-A) and Type B (EB2M-B) body:',
-          'The series data apply to the emergency stops as well. Ratings are given for utilization categories AC-15/DC-13 as defined in IEC 60947-5-1, for example AC-15 220 V / 5 A and DC-13 24 V / 4 A, with Ith 10 A. Ambient temperature is −25 °C to +40 °C, and protection is IP40 / IP65 depending on the operator type, so confirm it for the exact model on your quote. Mechanical life for emergency-stop buttons is listed as ≥50,000 operations. Full tables and outline drawings are on our 22mm push button switch page.',
+          'The series data apply to the emergency stops as well. Series-level ratings are printed for utilization categories AC-15 and DC-13, including AC-15 220 V / 5 A and DC-13 24 V / 4 A, with Ith 10 A. Series ambient temperature is −25 °C to +40 °C, and series-level protection is listed as IP40 / IP65 (not allocated by individual model in the catalog), so confirm the exact model\'s IP rating and sealing requirements on your quote. Mechanical life for emergency-stop buttons is listed as ≥50,000 mechanical operations (electrical life is not published). Series overview and model tables are on our 22mm push button switch page; request order-level outline drawings from the supplier for each emergency stop variant (noting that /A has no separate catalog outline drawing).',
         ],
         bullets: [
-          '-01ZS: twist-release emergency stop, red head, 1NC',
-          '-01ZS/A and -01ZS/B: listed variants of the same function; check the catalog drawing of each to confirm the head and outline before ordering',
+          '-01ZS: twist-release emergency stop, red head, nominal 1NC per the -01 code; confirm actual terminals on the supplier\'s wiring diagram before ordering',
+          '-01ZS/A and -01ZS/B: listed twist-release variants. Request the exact-model outline drawing from the supplier.',
           '-01DZS and -01DZS/A: illuminated versions',
         ],
       },
       {
         heading: 'Illuminated Emergency Stops: When They Help',
         paragraphs: [
-          'An illuminated head (-01DZS or -01DZS/A) can show the state of the emergency stop circuit, which helps operators and maintenance staff find which station was pressed on a long line. As with any 22mm illuminated push button, the lamp is wired on a separate circuit from the contact. Specify the lamp voltage from the printed list (6, 12, 24, 36, 48, 110 and 127 V AC/DC; 220 V DC; 220 V and 380 V AC) and make sure it matches the supply that will feed the lamp.',
+          'An illuminated head can provide a status indication if the verified exact-model wiring and project design support it. Specify the ordering lamp voltage separately from the printed catalog list (6, 12, 24, 36, 48, 110 and 127 V AC/DC; 220 V DC; 220 V and 380 V AC) so it matches the intended supply rail. Because the EB2M catalog does not publish lamp terminal diagrams, shared-terminal details, lamp type/current, DC polarity, or lamp-to-contact isolation ratings, do not assume the lamp is electrically isolated from the contact—confirm the internal wiring topology and lamp specifications from the supplier\'s model wiring diagram.',
           'What the light means is a design decision. Agree on it with the end user and document it, so operators read it the same way on every machine in the plant.',
         ],
       },
@@ -399,8 +401,8 @@ const eb2mPostData: readonly BlogPostSource[] = [
         bullets: [
           'Place the emergency stop where operators can reach it quickly from their working position, and where it is unlikely to be pressed by accident during normal work.',
           'On long conveyors and packaging lines, plan several emergency stop stations rather than one central button.',
-          'Keep the area around the head clear. A crowded row of buttons makes the emergency stop harder to find. The compact Type B body can free up space elsewhere on the door, but the emergency stop itself should stand out.',
-          "Prepare the Φ22 mm cutout cleanly: deburr it, keep it round, seat the gasket flat and tighten the nut evenly according to the supplier's installation instructions.",
+          'Keep the area around the head clear. A crowded row of buttons makes the emergency stop harder to find. Compare Type A and Type B head-specific outline drawings and rear clearances when laying out the door, and keep the emergency stop clearly separated so it stands out.',
+          "Prepare the nominal Φ22 mm cutout cleanly per the supplier's machining drawing: deburr it, keep it round, seat any supplied sealing gasket flat (confirming sealing hardware with the supplier), and tighten the mounting nut evenly according to the supplier's model installation instructions.",
           'Many panels place a yellow background label behind the red head. Check what your customer and market expect, and source the label separately if needed.',
           'Test the function after installation and at regular intervals as part of maintenance, including the reset.',
         ],
@@ -408,7 +410,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: 'Standards and Responsibility',
         paragraphs: [
-          'Emergency stop devices fall under machinery safety rules in many markets, and the requirements depend on the machine, the risk assessment and the destination country. Check which standards and regulations your machine has to meet, and confirm with the supplier which documents are available for the exact model you order. For the EB2M series, CE, RoHS and ISO 9001 documentation is available on request.',
+          'Emergency stop devices fall under machinery safety rules in many markets, and the requirements depend on the machine, the risk assessment and the destination country. Check which standards and regulations your machine has to meet, and confirm with the supplier which documents are available for the exact model you order. State any compliance documentation required for your project and destination market in your inquiry so the supplier can confirm issuing entity, validity, covered models, and scope before you order.',
           'A device on its own does not make a machine safe. Machine safety design must be verified by the machine builder, including the choice of device, the circuit that it switches and the way the machine is restarted.',
         ],
       },
@@ -420,13 +422,13 @@ const eb2mPostData: readonly BlogPostSource[] = [
         ],
         bullets: [
           'Function: the device is used as an emergency stop and the circuit design has been reviewed by the machine builder.',
-          'Contact: NC for the stop circuit (-01 on EB2M). Identify any additional signals you need and raise them in the inquiry.',
+          'Contact: NC for the stop circuit (-01 denotes nominal 1NC on EB2M, but confirm the exact model\'s controlled wiring diagram and terminal table with the supplier and verify delivered units while de-energized). Identify any additional signals you need and raise them in the inquiry.',
           'Reset: twist release, and confirm it matches what your customer expects.',
           'Head and illumination: plain head (-01ZS and its listed variants) or illuminated (-01DZS, -01DZS/A); if illuminated, the lamp voltage.',
           'Body: Type A or Type B, based on depth and spacing behind the door.',
           'Electrical rating: the switched current checked against the AC-15/DC-13 table at your actual control voltage, not just the voltage itself.',
           'Protection: IP40 or IP65 as required, confirmed for the exact model on the quote.',
-          'Documents: CE, RoHS and ISO 9001 documentation, requested together with the quote.',
+          'Documents: controlled wiring diagram, terminal table, outline drawing, and any project-required compliance documentation, verified for exact model coverage together with the quote.',
           'Labels and placement: any background label or legend your customer requires.',
         ],
       },
@@ -434,7 +436,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
     faq: [
       {
         question: 'Why does an emergency stop use an NC contact instead of an NO contact?',
-        answer: 'With an NC contact, a broken wire or loose terminal opens the circuit just like pressing the button, so a properly designed control circuit can detect the open state and stop. The EB2M emergency stops are printed as -01, which is 1NC.',
+        answer: 'With an NC contact, a broken wire or loose terminal opens the circuit just like pressing the button, so a properly designed control circuit can detect the open state and stop. On EB2M emergency stops, the printed -01 code denotes nominal 1NC, not a verified terminal map: in the Type A catalog section, a sample photo beside -01ZS/-01DZS visibly shows 13–14 (NO), which conflicts with the -01 code and cannot be used to define the rated contact arrangement. Always confirm the exact ordered model against the supplier\'s controlled wiring diagram and terminal table, and verify delivered units while de-energized.',
       },
       {
         question: 'What does twist release mean on an emergency stop button?',
@@ -450,7 +452,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       },
       {
         question: 'Which documents are available for the EB2M emergency stops?',
-        answer: 'CE, RoHS and ISO 9001 documentation is available on request. Check which standards and regulations your machine has to meet; machine safety design must be verified by the machine builder.',
+        answer: 'Specify any compliance documentation required for your project alongside the controlled wiring diagram, terminal table, and outline drawing for the exact ordered model so the supplier can confirm validity, issuing entity, and covered model scope before ordering. Check which standards and regulations your machine must meet; machine safety design must be verified by a qualified engineer or machine builder.',
       },
     ],
   },
@@ -458,9 +460,10 @@ const eb2mPostData: readonly BlogPostSource[] = [
     slug: '22mm-selector-switch-key-switch-spring-return-hand-off-auto',
     title: '22mm Selector and Key Switches: 2- vs 3-Position, Spring Return and Hand-Off-Auto Explained',
     description:
-      'Specify a 22mm selector switch or key switch: 2- vs 3-position, maintained or spring return (f, fu, f.fu), and Hand-Off-Auto use.',
+      'Specify 2- or 3-position 22mm selector and key switches, maintained or spring-return action, and Hand-Off-Auto operation.',
     tags: ['22mm Selector Switch', 'Applications'],
     image: '/images/blog/22mm-selector-switch-key-switch.jpg',
+    imageAlt: 'Black lever selector beside a key switch with an inserted key and a hanging spare key.',
     publishedAt: 'Nov 13, 2026',
     readingMinutes: 8,
     heroSummary:
@@ -492,15 +495,15 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: 'Maintained or Spring Return: The f, fu and f.fu Codes',
         paragraphs: [
-          'The second decision is whether the lever stays in position. A maintained selector stays where it is turned. A spring return selector goes back to its rest position by itself when released (the center on a 3-position switch), so in that direction it behaves like a momentary push button. On 2-position models with /fu, confirm the return direction on the catalog drawing of the exact model.',
-          'The EB2M series uses three suffixes for spring return:',
-          'Examples: EB2M-A-20XS is a 3-position short-lever selector that stays in each position. EB2M-B-20XS/f.fu has the same lever with spring return from both sides to center, a typical choice for a jog left/jog right or raise/lower command. EB2M-A-10CY/fu is a 2-position key switch with the fu spring-return option.',
+          'The second decision is whether the lever stays in position. A maintained selector stays where it is turned. A spring return selector goes back to its rest position when released, so it behaves like a momentary push button in the returning direction. Confirm the exact model\'s rest position and return direction against the supplier\'s controlled action diagram.` |',
+          'In the EB2M catalog field key, spring-return entries are printed as f (left to center), fu (right to center), and ffu (both sides to center), while the printed model tables use a slash (/) between Field 3 and Field 4 and print /fu on 2-position rows and /f.fu on 3-position rows:',
+          'Examples: EB2M-A-20XS is a 3-position short-lever selector that stays in each position. EB2M-B-20XS/f.fu is printed with a spring-return suffix. Confirm the exact return direction and suitability for the intended operation against the supplier\'s controlled action diagram.` | EB2M-A-10CY/fu is a 2-position key switch with the fu spring-return option.',
           'Write the suffix exactly as printed. "Spring return" without a direction is a common gap in selector and key switch inquiries, and it often leads to the wrong variant being delivered.',
         ],
         bullets: [
-          '/f: spring return from left to center',
-          '/fu: spring return from right to center',
-          '/f.fu: spring return from both sides to center',
+          'f: general-key entry for spring return from left to center',
+          '/fu: printed on 2-position spring-return model rows (general key lists fu as right to center; confirm exact 2-position return direction on the model drawing)',
+          '/f.fu: printed on 3-position model rows. Keep the dot verbatim and confirm the exact return direction against the supplier\'s controlled action diagram.` |',
           'No suffix: maintained',
         ],
       },
@@ -508,8 +511,8 @@ const eb2mPostData: readonly BlogPostSource[] = [
         heading: 'Contacts: How Positions Map to NO Contacts',
         paragraphs: [
           'In a typical 3-position selector with two NO contacts, the center position leaves both contacts open and each side position closes one of them. That is what a Hand-Off-Auto or forward-off-reverse circuit needs: one contact for each active mode and nothing in the middle. A 2-position selector with one NO contact closes that contact in one position and leaves it open in the other.',
-          'The switching diagram is what counts, not the typical pattern. Before wiring, confirm which contact closes in which position from the catalog drawing of the exact model, and mark it on your schematic.',
-          'Ratings are the same as for the other operators in the series: utilization categories AC-15/DC-13 as defined in IEC 60947-5-1, for example AC-15 220 V / 5 A and DC-13 24 V / 4 A, with Ith 10 A. If the selector switches a contactor coil directly, check the coil current against the rating at your control voltage, not just the voltage.',
+          'The switching diagram is what counts, not the typical pattern. Before wiring, confirm the position-to-contact map from the supplier\'s controlled switching diagram for the exact model and verify delivered units de-energized, then mark the verified map on your schematic.',
+          'Series-level electrical ratings are printed under utilization categories AC-15 and DC-13, including AC-15 220 V / 5 A and DC-13 24 V / 4 A, with Ith 10 A. Confirm model-specific ratings and note that -20 (2NO) does not confirm electrical independence between contacts without the model wiring diagram. If the selector switches a contactor coil directly, check the coil current against the rating at your control voltage, not just the voltage.',
         ],
       },
       {
@@ -517,13 +520,13 @@ const eb2mPostData: readonly BlogPostSource[] = [
         paragraphs: [
           'Hand-Off-Auto (HOA) is common on pumps, fans, HVAC and air-handling units, and conveyors. In HAND, the motor runs on the local command. In OFF, it does not run. In AUTO, it runs when an external signal calls for it, such as a PLC output, a level switch or a building management system.',
           'A typical way to build HOA with a 3-position, 2NO selector:',
-          'For HOA, the lever should normally stay in position, so a maintained selector such as -20XS or -20CXS fits. A spring-return version (f.fu) would drop back to OFF as soon as it is released; that suits jog functions but not mode selection. Which side is HAND and which is AUTO is a convention, so follow your drawing and label the positions clearly on the panel. Also make sure the control logic handles the change from AUTO to HAND in a controlled way.',
+          'For a generic HOA example, the lever normally stays in position, so a maintained selector such as -20XS or -20CXS may fit if the supplier confirms the exact model\'s availability, position assignment, and switching diagram. If the exact spring-return model returns to the verified center-OFF state, it will return there on release; that suits jog functions but not mode selection. Which side is HAND and which is AUTO is a convention, so follow your drawing and label the positions clearly on the panel. Also make sure the control logic handles the change from AUTO to HAND in a controlled way.',
         ],
         bullets: [
           'HAND position: one NO contact energizes the contactor coil through the local stop and overload circuit.',
           'OFF (center): both selector contacts are open, so neither the HAND nor the AUTO branch can energize the contactor coil through the switch.',
           'AUTO position: the second NO contact connects the external run signal to the contactor coil.',
-          'Status: an illuminated selector such as -20XSD, or a separate pilot light, shows the operator the mode or run state.',
+          'Status: an illuminated selector such as -20XSD, or a separate pilot light, can provide visual status—confirm ordering lamp voltage, lamp type/current, DC polarity, and lamp-to-contact wiring topology on the supplier\'s model wiring diagram before wiring.',
         ],
       },
       {
@@ -534,9 +537,9 @@ const eb2mPostData: readonly BlogPostSource[] = [
         bullets: [
           'Local/remote selection in distribution and switchgear panels: a 2-position maintained selector (-10X or -10CX), or a key switch if only authorized staff should change it.',
           'Forward-off-reverse on motor starters: a 3-position maintained selector, with the two directions interlocked in the control circuit.',
-          'Jog left/jog right or raise/lower: a 3-position selector with spring return from both sides (f.fu).',
+          'Jog left/jog right or raise/lower: specify a 3-position selector with return from both sides to center if the application requires it. Confirm the exact model and return action against the supplier\'s controlled action diagram.` |',
           'Maintenance or setup mode: a key switch, so the mode cannot be changed without the key.',
-          'Short test or bypass commands: a 2-position selector with the fu spring-return option, so it returns on release.',
+          'Momentary test commands: a 2-position spring-return selector (confirm the exact model suffix, return direction, and switching diagram with the supplier), so it returns on release.',
         ],
       },
       {
@@ -549,8 +552,8 @@ const eb2mPostData: readonly BlogPostSource[] = [
       {
         heading: 'Body, Color and Panel Fit',
         paragraphs: [
-          'Like the rest of the series, selectors and key switches come in two bodies with the same electrical data. Type A (EB2M-A) is the standard modular body, 52 × 30 mm behind the panel; Type B (EB2M-B) is the compact 40 × 30 mm body for closely spaced devices. Both mount in a Φ22 mm hole. Colors are listed per model from red, green, yellow, blue, white and black.',
-          'Using one series for the selectors, push buttons and pilot devices on a door keeps bezels, colors and part numbers consistent, which makes the panel easier to read and spares easier to stock. Protection is IP40 / IP65 depending on the operator type, so confirm it for the exact model on your quote.',
+          'Like the rest of the series, selectors and key switches are offered in Type A (EB2M-A, standard modular body) and Type B (EB2M-B, compact body), both mounting in a nominal Φ22 mm cutout and sharing series-level electrical data. Note that the commonly cited 52 × 30 mm (Type A) and 40 × 30 mm (Type B) figures are end-view outlines from the -10 flush push button drawings—not selector or key-switch dimensions—and the catalog does not publish minimum hole spacing or complete Type B panel-thickness callouts for lever selectors and -10CY/-20CYS key switches. Request exact head-type outline drawings and panel-thickness limits from the supplier before finalizing door layouts. The series color key lists red, green, yellow, blue, white, and black (R, G, Y, B, W, K); because illuminated selector rows show five-color margin dots while non-illuminated selector rows show a six-color example, confirm exact orderable colors by model.',
+          'Using one series across a door helps keep bezels, colors, and part-numbering logic consistent. Series-level protection is listed as IP40 / IP65 (not allocated by individual model in the catalog), so confirm the exact model\'s IP rating and sealing requirements on your quote.',
         ],
       },
       {
@@ -562,7 +565,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
         bullets: [
           'Operator style: short lever, long lever or key',
           'Positions: 2 or 3',
-          'Action: maintained (no suffix) or spring return with the direction (/f, /fu or /f.fu)',
+          'Action: maintained or spring return. State the required direction and confirm the printed suffix and exact action with the supplier.',
           'Contacts: from the code, -10 or -20',
           'Illumination: if required, the lamp voltage from the printed list',
           'Body: EB2M-A or EB2M-B',
@@ -575,11 +578,11 @@ const eb2mPostData: readonly BlogPostSource[] = [
     faq: [
       {
         question: 'What do f, fu and f.fu mean on a selector switch?',
-        answer: 'They are spring-return options. f returns from left to center, fu from right to center, and f.fu from both sides to center. A code without these suffixes is maintained.',
+        answer: 'They denote spring-return options. In the catalog field key, f is listed as left to center, fu as right to center, and ffu as both sides to center; in the printed model tables, 2-position spring-return rows use /fu and 3-position rows use /f.fu. A code without these suffixes is maintained. Always confirm exact return behavior on the model drawing.',
       },
       {
         question: 'Which selector switch do I need for Hand-Off-Auto?',
-        answer: 'Usually a 3-position maintained selector with two NO contacts, such as EB2M -20XS (short lever) or -20CXS (long lever). Confirm the switching diagram of the exact model before wiring.',
+        answer: 'In a generic Hand-Off-Auto (HOA) setup, a 3-position maintained selector (such as EB2M -20XS with a short lever or -20CXS with a long lever, where available and suitable for the control circuit) is typically considered, depending on the required contact arrangement. Before wiring, confirm the position-to-contact map and position assignment from the supplier\'s controlled switching diagram for the exact model and verify delivered units de-energized.',
       },
       {
         question: 'What is the difference between a selector switch and a key switch?',
@@ -591,7 +594,7 @@ const eb2mPostData: readonly BlogPostSource[] = [
       },
       {
         question: 'Are selector switch ratings different from push button ratings?',
-        answer: 'No. The series uses the same ratings for all operators: utilization categories AC-15/DC-13 as defined in IEC 60947-5-1, for example AC-15 220 V / 5 A, with Ith 10 A.',
+        answer: 'The catalog publishes shared series-level ratings under utilization categories AC-15 and DC-13, including AC-15 220 V / 5 A and Ith 10 A. Confirm model-specific ratings and electrical endurance with the supplier for your load.',
       },
     ],
   },
