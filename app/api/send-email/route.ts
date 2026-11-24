@@ -20,7 +20,8 @@ const FALLBACK_SENDER_EMAIL = 'onboarding@resend.dev'
 
 const resendApiKey = process.env.RESEND_API_KEY
 const senderEmail = process.env.RESEND_FROM_EMAIL?.trim() || FALLBACK_SENDER_EMAIL
-const MAX_BODY_BYTES = 16_000
+const MAX_BODY_BYTES = 24_000
+const MAX_MESSAGE_LENGTH = 5000
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000
 const RATE_LIMIT_MAX_REQUESTS = 5
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
@@ -40,6 +41,17 @@ function parseEmailList(value: string | undefined): string[] {
 function sanitize(value: string | undefined, max = 500): string {
   if (!value) return ''
   return value.trim().replace(/\s+/g, ' ').slice(0, max)
+}
+
+function sanitizeMultiline(value: string | undefined): string {
+  if (!value) return ''
+  return value
+    .replace(/\r\n?/g, '\n')
+    .split('\n')
+    .map((line) => line.replace(/[ \t]+/g, ' ').trimEnd())
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
 }
 
 function escapeHtml(value: string): string {
@@ -146,11 +158,20 @@ export async function POST(request: Request) {
     const source = sanitize(payload.source, 120)
     const pageUrl = sanitize(payload.pageUrl, 500)
     const legacyTitle = sanitize(payload.title, 200)
-    const message = sanitize(payload.message, 3000)
+    const message = sanitizeMultiline(payload.message)
     const website = sanitize(payload.website, 200)
 
     if (website) {
       return NextResponse.json({ success: true })
+    }
+
+    if (message.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        {
+          error: `Inquiry message exceeds the ${MAX_MESSAGE_LENGTH.toLocaleString()}-character limit. Please shorten your message or email sales@upprocure.com with your full BOM.`,
+        },
+        { status: 400 }
+      )
     }
 
     const authenticatedAdmin = legacyTitle ? await getAuthenticatedAdmin(request) : null
@@ -202,7 +223,7 @@ export async function POST(request: Request) {
           <table style="border-collapse:collapse;font-size:14px;line-height:1.5;margin-bottom:14px;">
             ${tableRows}
           </table>
-          <p style="font-size:15px;line-height:1.7;background:#f3f4f6;padding:14px;border-radius:8px;margin:0;">
+          <p style="font-size:15px;line-height:1.7;background:#f3f4f6;padding:14px;border-radius:8px;margin:0;white-space:pre-wrap;">
             ${escapeHtml(summary)}
           </p>
         </div>
