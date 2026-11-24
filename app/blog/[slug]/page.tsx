@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
   const fullTitle = override?.title ? title : `${title} | ${SITE_NAME}`
   const socialImage = {
     url: absoluteOptimizedSrc(detail?.ogImage?.src ?? post.image),
-    alt: detail?.ogImage?.alt ?? detail?.title ?? post.title,
+    alt: detail?.ogImage?.alt ?? (detail?.ogImageDimensions ? post.imageAlt : undefined) ?? detail?.title ?? post.title,
   }
 
   return {
@@ -72,8 +72,8 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
       images: [
         {
           ...socialImage,
-          width: 1200,
-          height: 630,
+          width: detail?.ogImageDimensions?.width ?? 1200,
+          height: detail?.ogImageDimensions?.height ?? 630,
         },
       ],
     },
@@ -241,7 +241,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   <ul className="mt-4 space-y-2">
                     <li className="flex items-start gap-2 text-sm text-gray-600">
                       <span className="mt-0.5 font-bold text-green-500">✓</span>
-                      CE, RoHS and ISO 9001 documentation available on request
+                      {detail.quoteDocumentation ?? 'CE, RoHS and ISO 9001 documentation available on request'}
                     </li>
                   </ul>
                   <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -301,17 +301,19 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 <div className="p-4">
                   <p className="text-xs leading-relaxed text-gray-500">
                     {ceRohsOnly
-                      ? 'CE, RoHS and ISO 9001 documentation available on request'
+                      ? detail.quoteDocumentation ?? 'CE, RoHS and ISO 9001 documentation available on request'
                       : 'IEC-certified manufacturer of low-voltage electrical protection products. OEM & private label available.'}
                   </p>
-                  <div className="mt-3 flex items-center justify-center gap-3">
-                    <div className="relative h-8 w-8">
-                      <OptimizedImage src="/images/ce.png" alt="CE certified" variant="thumb" fill sizes="32px" className="object-contain" />
+                  {!detail.quoteDocumentation && (
+                    <div className="mt-3 flex items-center justify-center gap-3">
+                      <div className="relative h-8 w-8">
+                        <OptimizedImage src="/images/ce.png" alt="CE certified" variant="thumb" fill sizes="32px" className="object-contain" />
+                      </div>
+                      <div className="relative h-8 w-12">
+                        <OptimizedImage src="/images/rohs.png" alt="RoHS compliant" variant="thumb" fill sizes="48px" className="object-contain" />
+                      </div>
                     </div>
-                    <div className="relative h-8 w-12">
-                      <OptimizedImage src="/images/rohs.png" alt="RoHS compliant" variant="thumb" fill sizes="48px" className="object-contain" />
-                    </div>
-                  </div>
+                  )}
                   <Link href="/contact" className="btn-primary mt-4 inline-flex w-full justify-center py-2 text-xs">
                     Request a Quote
                   </Link>

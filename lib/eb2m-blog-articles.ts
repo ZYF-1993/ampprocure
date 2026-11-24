@@ -9,13 +9,14 @@ export const EB2M_ARTICLES = [
         "22mm Push Buttons"
       ],
       image: "/optimized/display/images/blog/eb2m-22mm-push-button-wiring-hero.webp",
-      imageAlt: "Rear view of mounted 22mm push button switch bodies with neatly dressed control panel wiring",
+      imageAlt: "Illustrative panel view of mounted 22mm push button switch bodies and wiring",
       publishedAt: "Nov 21, 2026",
       readingMinutes: 7
     },
     detail: {
       title: "22mm Push Button Switch Wiring and Panel Installation Guide",
       metaTitle: "22mm Push Button Switch Wiring & Installation",
+      heroCaption: "Illustrative panel view only. Verify exact terminals, wiring, clearances, and mounting dimensions against the model drawings.",
       description: "Mount and plan EB2M 22mm push button switches accurately: Φ22 mm nominal cutout, Type A/B flush outlines, NO/NC codes, and verification checks.",
       author: "UPprocure Engineering Team",
       wordCount: 1658,
@@ -25,7 +26,7 @@ export const EB2M_ARTICLES = [
 <h2 class="mt-8 mb-4 text-xl font-bold text-gray-900">Panel Cutout, Head-Type Thickness, and Mechanical Mounting</h2>
 <p class="mb-4 text-sm leading-7 text-gray-600">Both Type A (<code>EB2M-A</code>) and Type B (<code>EB2M-B</code>) series pages state the catalog nominal designation <strong>Φ22 mm</strong> for panel mounting. The catalog does not publish a toleranced cutout drawing, anti-rotation notch dimensions, or minimum hole pitch. Before cutting steel, request the panel machining drawing for each ordered model from the supplier to verify cutout tolerance, panel thickness limits, anti-rotation provisions, and spacing.</p>
 <h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Reading Type A and Type B Flush Outline Dimensions</h3>
-<p class="mb-4 text-sm leading-7 text-gray-600">Type A (<code>EB2M-A</code>, standard modular body) and Type B (<code>EB2M-B</code>, compact body) share series-level electrical data and six colors. Commonly cited dimensions come strictly from the <strong><code>EB2M-A-10</code></strong> and <strong><code>EB2M-B-10</code></strong> flush button outline drawings, not from every operator in the catalog.</p>
+<p class="mb-4 text-sm leading-7 text-gray-600">Type A (<code>EB2M-A</code>, standard modular body) and Type B (<code>EB2M-B</code>, compact body) share series-level electrical data and the series six-color key (confirm exact color availability by model). Commonly cited dimensions come strictly from the <strong><code>EB2M-A-10</code></strong> and <strong><code>EB2M-B-10</code></strong> flush button outline drawings, not from every operator in the catalog.</p>
 <div class="mb-5 overflow-x-auto"><table class="w-full border-collapse text-left text-sm text-gray-600">
 <thead class="bg-gray-50"><tr>
 <th scope="col" class="border border-gray-200 px-3 py-2 font-semibold text-gray-900">Attribute (<code>-10</code> Flush Drawing Only)</th>
@@ -61,7 +62,7 @@ export const EB2M_ARTICLES = [
 <p class="mb-4 text-sm leading-7 text-gray-600">Note two points during layout: <strong>43 mm</strong> on <code>EB2M-A-10</code> is an additional drawing dimension to verify on the outline sheet, and <strong>60 mm</strong> on <code>EB2M-B-10</code> is the <strong>overall height</strong> including the 11 mm front projection, not rear depth alone.</p>
 <p class="mb-4 text-sm leading-7 text-gray-600">Do not use <code>-10</code> flush outlines to size spacing across mixed operators. Other heads have different envelopes—Type A drawings show a 54 mm head and 52 mm rear depth on the flat double button and a Φ40 mm head on the emergency stop, while <code>/FH</code> symbol flush buttons have no separate outline drawing. Check head envelopes, rear wire bend radius, and tool access against each ordered model's drawing.</p>
 <h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Catalog Panel-Thickness Evidence by Head Type</h3>
-<figure class="my-6"><img src="/optimized/display/images/blog/eb2m-panel-cutout-rear-wiring-inline.webp" alt="Comparison of rear panel clearance and wiring layout for modular and compact 22mm push button bodies" width="1600" height="1200" loading="lazy" decoding="async" class="h-auto w-full rounded-xl" /></figure>
+<figure class="my-6"><img src="/optimized/display/images/blog/eb2m-panel-cutout-rear-wiring-inline.webp" alt="Illustrative rear view of modular and compact push button bodies" width="1600" height="1200" loading="lazy" decoding="async" class="h-auto w-full rounded-xl" /><figcaption class="mt-2 text-sm leading-6 text-gray-600">Illustrative rear panel view of modular and compact push button bodies. Exact terminals, wiring, clearances, and mounting dimensions require the model drawings.</figcaption></figure>
 <p class="mb-4 text-sm leading-7 text-gray-600">Panel thickness is labeled selectively across head-type drawing groups. Confirm every unlabeled or ambiguous model with the supplier before fabrication.</p>
 <div class="mb-5 overflow-x-auto"><table class="w-full border-collapse text-left text-sm text-gray-600">
 <thead class="bg-gray-50"><tr>
@@ -117,10 +118,10 @@ export const EB2M_ARTICLES = [
 <li>Deburr every Φ22 mm cutout so sharp metal or paint edges do not damage the body or impede firm seating.</li>
 <li>Check for firm mounting without play; do not assume sealing gasket hardware or anti-rotation structures as fixed model features without supplier confirmation.</li>
 <li>Verify door-swing clearance and rear tool access against subpanel gear, distinguishing <code>EB2M-A-10</code> rear depth (50 mm) from <code>EB2M-B-10</code> overall height (60 mm including 11 mm above panel).</li>
-<li>Check upright orientation on double push buttons (<code>-11PRG</code>, <code>-11HRG</code>, <code>-11RG</code>, and illuminated versions) and selectors so legends (<code>I/O</code>, <code>ON/OFF</code>, <code>START/STOP</code>) align cleanly.</li>
+<li>Check upright orientation on double push buttons (<code>-11PRG</code>, <code>-11HRG</code>, <code>-11RG</code>, and illuminated versions) and selectors against signed artwork so printed legends align cleanly (note that the catalog prints only <code>R1/R5</code> <code>I/O</code> beside flat and extended double groups, and R, <code>R1–R7</code> including <code>I/O</code>, <code>ON/OFF</code>, and <code>START/STOP</code> beside the oval group).</li>
 </ul>
 <h2 class="mt-8 mb-4 text-xl font-bold text-gray-900">Mapping NO and NC Contact Codes Before Termination</h2>
-<p class="mb-4 text-sm leading-7 text-gray-600">Accurate wiring starts by reading the catalog suffix and verifying delivered hardware before termination. In the <a href="/solutions/22mm-push-button-switch" class="font-medium text-green-700 underline">EB2M 22mm push button catalog</a>, the two-digit code after the body prefix states the documented contact arrangement.</p>
+<p class="mb-4 text-sm leading-7 text-gray-600">Accurate wiring starts by reading the catalog suffix and verifying delivered hardware before termination. In the <a href="/solutions/22mm-push-button-switch" class="font-medium text-green-700 underline">EB2M 22mm push button catalog</a>, the two-digit code after the body prefix identifies the nominal catalog contact counts.</p>
 <h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Decoding EB2M Contact Suffixes (-10, -01, -11, -20)</h3>
 <p class="mb-4 text-sm leading-7 text-gray-600">The first digit states normally open (NO) contacts; the second states normally closed (NC) contacts:</p>
 <ul class="mb-4 list-disc space-y-1 pl-5 text-sm leading-7 text-gray-600">
@@ -151,12 +152,12 @@ export const EB2M_ARTICLES = [
 </ol>
 <p class="mb-4 text-sm leading-7 text-gray-600">Pressing start energizes and latches the coil; pressing stop opens the series path. Do <strong>not</strong> assign EB2M terminal numbers from this generic principle or insert an emergency stop into this generic chain. No emergency-stop wiring is inferred here; any safety circuit must follow applicable machine-safety standards, rely on confirmed supplier wiring documentation, and be designed and verified by a qualified engineer. See our <a href="/blog/22mm-emergency-stop-button-twist-release-guide" class="font-medium text-green-700 underline">22mm emergency stop button guide</a> for pre-order checks.</p>
 <h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Reviewing Double Push Buttons (-11) Without Assumed Terminal Mapping</h3>
-<p class="mb-4 text-sm leading-7 text-gray-600">EB2M double push buttons (<code>-11PRG</code>, <code>-11HRG</code>, <code>-11RG</code>, illuminated <code>-11PDRG</code>, <code>-11HDRG</code>, <code>-11DRG</code>) carry a nominal <code>-11</code> (1NO1NC) code with red/green actuators and markings <code>R</code>, <code>R1–R7</code> (<code>I/O</code>, <code>ON/OFF</code>, <code>START/STOP</code>). Because the catalog gives no color-to-terminal map, do not assign terminals by actuator color or pre-plan jumpers from catalog codes. Confirm actuator-to-contact mapping from supplier wiring diagrams and de-energized continuity checks.</p>
+<p class="mb-4 text-sm leading-7 text-gray-600">EB2M double push buttons (<code>-11PRG</code>, <code>-11HRG</code>, <code>-11RG</code>, illuminated <code>-11PDRG</code>, <code>-11HDRG</code>, <code>-11DRG</code>) carry a nominal <code>-11</code> (1NO1NC) code. In the catalog, flat and extended groups list <code>R1/R5</code> (<code>I/O</code>), while the oval group lists R and <code>R1–R7</code> across green/red and light gray/black columns (blank, <code>I/O</code>, <code>ON/OFF</code>, <code>START/STOP</code>—printed legend wording only). Because the catalog gives no color-to-terminal map, do not assign terminals by actuator color or pre-plan jumpers from catalog codes. Confirm actuator-to-contact mapping from supplier wiring diagrams and de-energized continuity checks.</p>
 <h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Verifying Lamp Data and Contact Ratings on Illuminated Models</h3>
 <p class="mb-4 text-sm leading-7 text-gray-600">On illuminated models (<code>-10D</code>, <code>-10DT</code>, <code>-10MD</code>, <code>-10MTD</code>, <code>-10XD</code>, <code>-20XSD</code>, <code>-10CXD</code>, <code>-20CXSD</code>, <code>-11PDRG</code>, <code>-11HDRG</code>, <code>-11DRG</code>, <code>-01DZS</code>, <code>-01DZS/A</code>), check ordering lamp voltage and contact ratings separately against supplier data.</p>
 <p class="mb-4 text-sm leading-7 text-gray-600">Catalog lamp voltages are <strong>6, 12, 24, 36, 48, 110, and 127 V AC/DC; 220 V DC; and 220 V or 380 V AC</strong>. The catalog does <strong>not</strong> confirm lamp type, replaceability, operating/inrush current, DC polarity, lamp terminal numbers, shared terminals, or lamp-to-contact isolation (printed <code>≥10 MΩ</code> insulation resistance does not specify lamp-to-contact scope). Do not assume isolated lamp terminals, mixed-voltage supply, lamp-in-parallel-with-coil wiring, auxiliary-contact feeds, or PLC direct drive. Confirm exact model and voltage-version wiring diagrams, lamp ratings, DC polarity, and isolation with the supplier before finalizing schematics.</p>
 <h2 class="mt-8 mb-4 text-xl font-bold text-gray-900">Reviewing AC-15 and DC-13 Contact Ratings</h2>
-<p class="mb-4 text-sm leading-7 text-gray-600">The <a href="/solutions/22mm-push-button-switch" class="font-medium text-green-700 underline">EB2M 22mm push button switch specifications</a> state <strong>Ith 10 A</strong> and switching ratings under <strong>AC-15</strong> and <strong>DC-13</strong> (as defined in IEC 60947-5-1):</p>
+<p class="mb-4 text-sm leading-7 text-gray-600">The <a href="/solutions/22mm-push-button-switch" class="font-medium text-green-700 underline">EB2M 22mm push button switch specifications</a> list <strong>Ith 10 A</strong> and switching ratings under utilization categories <strong>AC-15</strong> and <strong>DC-13</strong>:</p>
 <ul class="mb-4 list-disc space-y-1 pl-5 text-sm leading-7 text-gray-600">
 <li><strong>AC-15:</strong> 36 V / 10 A, 110 V / 10 A, 220 V / 5 A, 380 V / 2.7 A, 660 V / 1.8 A.</li>
 <li><strong>DC-13:</strong> 24 V / 4 A, 48 V / 4 A, 110 V / 2 A, 220 V / 1 A, 440 V / 0.6 A.</li>
@@ -183,7 +184,7 @@ export const EB2M_ARTICLES = [
         },
         {
           question: "Can I mount EB2M-A and EB2M-B operators on the same control door?",
-          answer: "Both ranges carry the nominal Φ22 mm cutout and share series-level electrical data (Ith 10 A, AC-15 / DC-13 as defined in IEC 60947-5-1). However, outline dimensions vary by body and head type (52 × 30 mm end-view outline and 50 mm rear depth on EB2M-A-10 vs. 40 × 30 mm end-view outline and 60 mm overall height including 11 mm front projection on EB2M-B-10), and thickness callouts differ across head groups. Confirm exact machining drawings, thickness limits, and combined spacing for both models with the supplier before punching steel."
+          answer: "Both ranges carry the nominal Φ22 mm cutout and share series-level electrical data (Ith 10 A, AC-15 / DC-13 utilization categories). However, outline dimensions vary by body and head type (52 × 30 mm end-view outline and 50 mm rear depth on EB2M-A-10 vs. 40 × 30 mm end-view outline and 60 mm overall height including 11 mm front projection on EB2M-B-10), and thickness callouts differ across head groups. Confirm exact machining drawings, thickness limits, and combined spacing for both models with the supplier before punching steel."
         },
         {
           question: "Are terminal numbers, wire gauge ranges, and tightening torques published in the catalog?",
@@ -194,10 +195,10 @@ export const EB2M_ARTICLES = [
           answer: "That is unconfirmed in the catalog. While lamp voltages and contact ratings are listed separately and insulation resistance is printed as ≥10 MΩ, the catalog does not publish lamp terminal diagrams, shared-terminal details, or lamp-to-contact isolation ratings. Request the model wiring diagram, lamp type, operating/inrush current, DC polarity, and isolation data from the supplier before wiring."
         }
       ],
-      closingHtml: "<p class=\"text-sm leading-7 text-gray-700\">Ready to specify EB2M operators for your next panel build? <a href=\"/contact\" class=\"font-medium text-green-700 underline\">Contact our team</a> for a project quotation—include your printed model codes (such as <code>EB2M-A-10</code> or <code>EB2M-B-11PRG</code>), color, lamp voltage if illuminated, quantity, and target market, and specify whether <code>CE, RoHS and ISO 9001</code> documentation is needed so we can verify document scope and model-specific drawings for your order.</p>",
+      closingHtml: "<p class=\"text-sm leading-7 text-gray-700\">Ready to specify EB2M operators for your next panel build? <a href=\"/contact\" class=\"font-medium text-green-700 underline\">Contact our team</a> for a project quotation—include your printed model codes (such as <code>EB2M-A-10</code> or <code>EB2M-B-11PRG</code>), color, lamp voltage if illuminated, quantity, and target market, and specify any project-required compliance documentation so we can verify issuing entity, validity, document scope, and model-specific drawings for your order.</p>",
       ogImage: {
         src: "/optimized/display/images/blog/eb2m-22mm-push-button-wiring-og.webp",
-        alt: "22mm flush push button, double push button, and rear contact bodies next to a steel mounting plate"
+        alt: "Illustrative panel view of 22mm flush and double push buttons with rear bodies and mounting plate"
       }
     }
   },
@@ -205,20 +206,21 @@ export const EB2M_ARTICLES = [
     post: {
       slug: "22mm-illuminated-push-button-voltage-color-guide",
       title: "22mm Illuminated Push Buttons: Lamp Voltage, Color Conventions, and Action Choice",
-      description: "How to specify 22mm illuminated push buttons and selectors in the EB2M series, covering catalog lamp voltages, unconfirmed lamp-module data, IEC 60204-1 and IEC 60073 color conventions, and momentary versus maintained mechanical action.",
+      description: "How to specify 22mm illuminated push buttons and selectors in the EB2M series, covering catalog lamp voltages, unconfirmed lamp-module data, illustrative lens color planning, and momentary versus maintained mechanical action.",
       tags: [
         "Illuminated Controls",
         "Panel Design"
       ],
       image: "/optimized/display/images/blog/eb2m-22mm-illuminated-push-buttons-hero.webp",
-      imageAlt: "Row of illuminated 22mm push buttons in green, red, yellow, blue, and white mounted on a steel control panel",
+      imageAlt: "Appearance and color illustration of green, red, yellow, blue, and white 22mm push buttons and a green selector on a steel control panel",
       publishedAt: "Nov 21, 2026",
       readingMinutes: 7
     },
     detail: {
       title: "22mm Illuminated Push Buttons: Lamp Voltage, Color Conventions, and Action Choice",
       metaTitle: "22mm Illuminated Push Buttons: Voltage & Color",
-      description: "Specify EB2M 22mm illuminated push buttons: catalog lamp voltages, IEC 60204-1 and IEC 60073 color roles, momentary vs maintained action, and checks.",
+      heroCaption: "Appearance and color illustration only. Rendered brightness and lens colors do not represent verified lamp status, supply voltage, electrical isolation, or exact model availability.",
+      description: "Specify EB2M 22mm illuminated push buttons: catalog lamp voltages, illustrative lens color planning, momentary vs maintained action, and checks.",
       author: "UPprocure Engineering Team",
       wordCount: 1607,
       articleHtml: `<div class="prose-custom">
@@ -269,7 +271,7 @@ export const EB2M_ARTICLES = [
 <td class="border border-gray-200 px-3 py-2 align-top">Double push buttons</td>
 <td class="border border-gray-200 px-3 py-2 align-top"><code>-11PDRG</code> (flat), <code>-11HDRG</code> (extended), <code>-11DRG</code> (oval)</td>
 <td class="border border-gray-200 px-3 py-2 align-top">1NO1NC</td>
-<td class="border border-gray-200 px-3 py-2 align-top">Dual red/green actuator; markings <code>R</code>, <code>R1–R7</code> (<code>I/O</code>, <code>ON/OFF</code>, <code>START/STOP</code>)</td>
+<td class="border border-gray-200 px-3 py-2 align-top">Momentary-listed dual actuator; catalog prints <code>R1/R5</code> (<code>I/O</code>) beside flat/extended and R, <code>R1–R7</code> (green/red and light gray/black: blank, <code>I/O</code>, <code>ON/OFF</code>, <code>START/STOP</code>) beside oval</td>
 </tr>
 </tbody></table></div>
 <p class="mb-4 text-sm leading-7 text-gray-600">For non-illuminated operators and body family selection, see <a href="/blog/how-to-choose-22mm-push-button-switch" class="font-medium text-green-700 underline">how to choose a 22mm push button switch</a>. Note that putting an actuator and lamp in one cutout does not automatically reduce door wiring or guarantee independent status indication; actual wiring depends on the internal lamp-and-contact topology shown in the supplier's model wiring diagram.</p>
@@ -292,17 +294,17 @@ export const EB2M_ARTICLES = [
 </ul>
 <p class="mb-4 text-sm leading-7 text-gray-600">Pay close attention at <strong>220 V</strong>, where <code>220 V AC</code> and <code>220 V DC</code> are two separate catalog ordering options. Specifying "220 V" without AC or DC leaves the order ambiguous. Match the ordered lamp voltage to the verified supply rail in your schematic and confirm voltage-specific current and DC polarity with the supplier.</p>
 <h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Reviewing Lamp Voltage and Contact Ratings Separately</h3>
-<p class="mb-4 text-sm leading-7 text-gray-600">Evaluate ordering lamp voltage and series-level contact ratings as two separate catalog selection datasets. The series lists <strong>Ith 10 A</strong>, with <strong>AC-15</strong> (36 V / 10 A, 110 V / 10 A, 220 V / 5 A, 380 V / 2.7 A, 660 V / 1.8 A) and <strong>DC-13</strong> (24 V / 4 A, 48 V / 4 A, 110 V / 2 A, 220 V / 1 A, 440 V / 0.6 A) utilization categories (as defined in IEC 60947-5-1). Confirm with the supplier that the specific ordered model carries the required contact ratings rather than assuming identical ratings across every variant without verification.</p>
+<p class="mb-4 text-sm leading-7 text-gray-600">Evaluate ordering lamp voltage and series-level contact ratings as two separate catalog selection datasets. The series lists <strong>Ith 10 A</strong>, with <strong>AC-15</strong> (36 V / 10 A, 110 V / 10 A, 220 V / 5 A, 380 V / 2.7 A, 660 V / 1.8 A) and <strong>DC-13</strong> (24 V / 4 A, 48 V / 4 A, 110 V / 2 A, 220 V / 1 A, 440 V / 0.6 A) utilization categories. Confirm with the supplier that the specific ordered model carries the required contact ratings rather than assuming identical ratings across every variant without verification.</p>
 <p class="mb-4 text-sm leading-7 text-gray-600">Checking lamp voltage and contact ratings separately does <strong>not</strong> confirm internal electrical isolation between the lamp and contact circuits. The catalog provides no lamp terminal diagrams, internal schematics, shared-terminal disclosures, or lamp-to-contact dielectric withstand ratings, and its printed <code>≥10 MΩ</code> insulation resistance does not specify applicability between lamp and contacts. Accordingly, do not assume isolated lamp supplies, mixed-voltage operation, parallel connection across a contactor coil, auxiliary-contact feeds on a separate rail, or direct PLC output drive. Determine wiring topology and isolation solely from the supplier's model wiring diagram.</p>
-<h2 class="mt-8 mb-4 text-xl font-bold text-gray-900">Applying IEC 60204-1 and IEC 60073 Color Conventions</h2>
+<h2 class="mt-8 mb-4 text-xl font-bold text-gray-900">Illustrative Lens Color Planning and General Standards References</h2>
 <p class="mb-4 text-sm leading-7 text-gray-600">Consistent color coding reduces operator hesitation on panels exported to the US, EU, and Australia. Two international standards—IEC 60204-1 (electrical equipment of machines) and IEC 60073 (coding principles for indicators and actuators)—provide general industry guidance for panel colors.</p>
-<h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Mapping the Six EB2M Colors to Panel Standards</h3>
-<figure class="my-6"><img src="/optimized/display/images/blog/eb2m-illuminated-operator-colors-inline.webp" alt="Close-up of illuminated flush, mushroom head, and lever selector 22mm operators in a control station" width="1600" height="1200" loading="lazy" decoding="async" class="h-auto w-full rounded-xl" /></figure>
-<p class="mb-4 text-sm leading-7 text-gray-600">EB2M offers six catalog colors: red (<code>R</code>), green (<code>G</code>), yellow (<code>Y</code>), blue (<code>B</code>), white (<code>W</code>), and black (<code>K</code>). The table below summarizes general IEC 60204-1 and IEC 60073 guidance for project planning:</p>
+<h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Illustrative Lens Color Planning Examples</h3>
+<figure class="my-6"><img src="/optimized/display/images/blog/eb2m-illuminated-operator-colors-inline.webp" alt="Illustrative close-up of flush, mushroom-head and lever-selector operators" width="1600" height="1200" loading="lazy" decoding="async" class="h-auto w-full rounded-xl" /><figcaption class="mt-2 text-sm leading-6 text-gray-600">Appearance illustration only. Rendered brightness, operator heads, and colors do not indicate verified model function, lamp supply, or circuit isolation.</figcaption></figure>
+<p class="mb-4 text-sm leading-7 text-gray-600">The EB2M series field key lists six color codes: red (<code>R</code>), green (<code>G</code>), yellow (<code>Y</code>), blue (<code>B</code>), white (<code>W</code>), and black (<code>K</code>). Because shown illuminated flush and illuminated selector rows display five-color margin dots, confirm exact orderable lens colors with the supplier for each illuminated model. The table below provides illustrative planning examples only—not a substitute for checking the full text of IEC 60204-1, IEC 60073, or your project specification:</p>
 <div class="mb-5 overflow-x-auto"><table class="w-full border-collapse text-left text-sm text-gray-600">
 <thead class="bg-gray-50"><tr>
 <th scope="col" class="border border-gray-200 px-3 py-2 font-semibold text-gray-900">EB2M Catalog Color (Code)</th>
-<th scope="col" class="border border-gray-200 px-3 py-2 font-semibold text-gray-900">General Industry Convention (IEC 60204-1 / IEC 60073)</th>
+<th scope="col" class="border border-gray-200 px-3 py-2 font-semibold text-gray-900">Illustrative Planning Example (Confirm Project / Standard Rules)</th>
 <th scope="col" class="border border-gray-200 px-3 py-2 font-semibold text-gray-900">Typical Panel Planning Role</th>
 </tr></thead><tbody>
 <tr>
@@ -346,13 +348,13 @@ export const EB2M_ARTICLES = [
 <p class="mb-4 text-sm leading-7 text-gray-600">In the EB2M catalog, <strong><code>-10D</code></strong> (flush) and <strong><code>-10MD</code></strong> (mushroom head) are momentary illuminated operators: their contacts change state only while pressed and spring back upon release.</p>
 <p class="mb-4 text-sm leading-7 text-gray-600">How illumination behaves on a momentary unit depends entirely on the verified model wiring diagram and control-circuit design. Do not assume that specifying a momentary illuminated button enables independent run-feedback indication from a starter auxiliary contact or PLC output; verify lamp isolation, current draw, and indication architecture with the supplier and project engineer first.</p>
 <h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Maintained Illuminated Operators and Illuminated Selectors</h3>
-<p class="mb-4 text-sm leading-7 text-gray-600">Maintained illuminated push buttons—<strong><code>-10DT</code></strong> (flush) and <strong><code>-10MTD</code></strong> (mushroom head)—latch mechanically in the pressed position until pressed again. Illuminated selectors without spring-return codes (<code>-10XD</code>, <code>-20XSD</code>, <code>-10CXD</code>, <code>-20CXSD</code>) hold their selected position, while <code>fu</code> and <code>f.fu</code> versions (<code>-10XD/fu</code>, <code>-20XSD/f.fu</code>, <code>-10CXD/fu</code>, <code>-20CXSD/f.fu</code>) spring-return from right to center or both sides to center. See our <a href="/blog/22mm-selector-switch-key-switch-spring-return-hand-off-auto" class="font-medium text-green-700 underline">22mm selector and key switch guide</a> for action-code details.</p>
+<p class="mb-4 text-sm leading-7 text-gray-600">Maintained illuminated push buttons—<strong><code>-10DT</code></strong> (flush) and <strong><code>-10MTD</code></strong> (mushroom head)—maintain their actuated state. Illuminated selectors without spring-return codes (<code>-10XD</code>, <code>-20XSD</code>, <code>-10CXD</code>, <code>-20CXSD</code>) hold their selected position, while <code>fu</code> and <code>f.fu</code> versions (<code>-10XD/fu</code>, <code>-20XSD/f.fu</code>, <code>-10CXD/fu</code>, <code>-20CXSD/f.fu</code>) provide spring-return action (confirm the exact return direction and action diagram with the supplier, especially on 2-position <code>/fu</code> models and 3-position <code>/f.fu</code> models). See our <a href="/blog/22mm-selector-switch-key-switch-spring-return-hand-off-auto" class="font-medium text-green-700 underline">22mm selector and key switch guide</a> for action-code details.</p>
 <p class="mb-4 text-sm leading-7 text-gray-600">Evaluate momentary versus maintained action alongside your project's load-switching and restart-prevention requirements. Never treat mechanical push-button action alone as a substitute for engineered anti-restart protection or verified load design; motor control, auxiliary load switching, and safety restart circuits must be designed and verified by a qualified engineer using confirmed model ratings.</p>
 <h2 class="mt-8 mb-4 text-xl font-bold text-gray-900">Panel Specification Checklist for Illuminated Orders</h2>
 <p class="mb-4 text-sm leading-7 text-gray-600">Before submitting an inquiry for illuminated units from the <a href="/solutions/22mm-push-button-switch" class="font-medium text-green-700 underline">EB2M 22mm push button switch line</a>, confirm six items per line:</p>
 <ol class="mb-4 list-decimal space-y-1 pl-5 text-sm leading-7 text-gray-600">
 <li><strong>Exact model code and body prefix:</strong> State <code>EB2M-A</code> or <code>EB2M-B</code> with the exact illuminated suffix (<code>-10D</code>, <code>-10DT</code>, <code>-10MD</code>, <code>-11PDRG</code>, <code>-10XD</code>, <code>-01DZS</code>, etc.) and verify its head-type outline and panel thickness.</li>
-<li><strong>Color and legend:</strong> Specify <code>R</code>, <code>G</code>, <code>Y</code>, <code>B</code>, or <code>W</code> (or double-button marking options <code>R</code>, <code>R1–R7</code>) per project specification.</li>
+<li><strong>Color and legend:</strong> Specify lens color (confirming availability by model) and applicable legend code (<code>R1/R5</code> beside flat/extended double buttons, or R and <code>R1–R7</code> beside oval double buttons) per project specification.</li>
 <li><strong>Catalog lamp voltage and supply type:</strong> Pick from 6, 12, 24, 36, 48, 110, or 127 V AC/DC; 220 V DC; or 220 V / 380 V AC, writing AC or DC explicitly at 220 V.</li>
 <li><strong>Unconfirmed lamp data:</strong> Confirm lamp type, operating/inrush current, and DC polarity with the supplier for the exact model and voltage version.</li>
 <li><strong>Wiring and isolation diagram:</strong> Confirm lamp terminals, shared/common terminals, and lamp-to-contact isolation ratings prior to wiring.</li>
@@ -370,7 +372,7 @@ export const EB2M_ARTICLES = [
         },
         {
           question: "What is the difference between EB2M-A-10D and EB2M-A-10DT?",
-          answer: "Both are illuminated flush push buttons on the Type A body with a documented -10 (1NO) contact code. EB2M-A-10D is momentary (springs back when released), while EB2M-A-10DT is maintained (mechanically latches down until pressed again)."
+          answer: "Both are illuminated flush push buttons on the Type A body with a documented -10 (1NO) contact code. EB2M-A-10D is momentary (springs back when released), while EB2M-A-10DT is maintained (maintains its actuated state)."
         },
         {
           question: "Can the lamp and contact circuits on an illuminated EB2M switch use different voltages?",
@@ -378,13 +380,13 @@ export const EB2M_ARTICLES = [
         },
         {
           question: "How should I choose lens colors for illuminated EB2M push buttons?",
-          answer: "Use IEC 60204-1 and IEC 60073 conventions as general guidance across the six catalog colors (R, G, Y, B, W, K), while checking the end customer's project specification and regional standards. For illuminated emergency stops (-01DZS, -01DZS/A), verify the model wiring diagram and have the final safety and indication design reviewed by a qualified engineer."
+          answer: "Use IEC 60204-1 and IEC 60073 conventions as general guidance and confirm lens color availability for the exact illuminated model, while checking the end customer's project specification and regional standards. For illuminated emergency stops (-01DZS, -01DZS/A), verify the model wiring diagram and have the final safety and indication design reviewed by a qualified engineer."
         }
       ],
-      closingHtml: "<p class=\"text-sm leading-7 text-gray-700\">Need to verify specifications or request a quotation for illuminated operators on your upcoming panel schedule? <a href=\"/contact\" class=\"font-medium text-green-700 underline\">Contact our team</a> with your exact EB2M model codes, lens colors, lamp voltages, quantities, and target market, and specify whether <code>CE, RoHS and ISO 9001</code> documentation is needed so we can verify scope, model-level lamp data, and wiring diagrams for your order.</p>",
+      closingHtml: "<p class=\"text-sm leading-7 text-gray-700\">Need to verify specifications or request a quotation for illuminated operators on your upcoming panel schedule? <a href=\"/contact\" class=\"font-medium text-green-700 underline\">Contact our team</a> with your exact EB2M model codes, lens colors, lamp voltages, quantities, and target market, and specify any project-required compliance documentation so we can verify issuing entity, validity, document scope, model-level lamp data, and wiring diagrams for your order.</p>",
       ogImage: {
         src: "/optimized/display/images/blog/eb2m-22mm-illuminated-push-buttons-og.webp",
-        alt: "Illuminated 22mm push button operators in five lens colors beside an illuminated double push button"
+        alt: "Illustration of five lens colors beside a double push button"
       }
     }
   },
@@ -398,19 +400,20 @@ export const EB2M_ARTICLES = [
         "Industrial Panels"
       ],
       image: "/optimized/display/images/blog/eb2m-ip40-ip65-industrial-applications-hero.webp",
-      imageAlt: "Sealed industrial control station with 22mm push buttons, selector switch, and emergency stop beside a conveyor",
+      imageAlt: "Illustrative control station with push buttons, a selector and an emergency-stop head beside a conveyor",
       publishedAt: "Nov 21, 2026",
       readingMinutes: 7
     },
     detail: {
       title: "IP40 vs IP65 22mm Push Button Switches: Matching Operators to Industrial Applications",
       metaTitle: "IP40 vs IP65 22mm Push Buttons by Application",
+      heroCaption: "Illustrative industrial control station only. Confirm the exact operator model code, operator IP rating, and applicable sealing and mounting requirements separately from the panel or enclosure ingress rating.",
       description: "Evaluate series-level IP40/IP65 on EB2M 22mm push buttons and select flush, mushroom, double, selector, and key operators for industrial panels.",
       author: "UPprocure Engineering Team",
       wordCount: 1536,
       articleHtml: `<div class="prose-custom">
 <p class="mb-4 text-sm leading-7 text-gray-600">Choosing a 22mm push button switch on electrical ratings alone misses the mechanical, environmental, and ergonomic factors that govern field durability. Packaging dust, damp pump rooms, gloved operation along conveyors, and compact metering doors each require matching the operator head to site conditions and verifying model-level data with the supplier.</p>
-<p class="mb-4 text-sm leading-7 text-gray-600">Across the <a href="/solutions/22mm-push-button-switch" class="font-medium text-green-700 underline">EB2M 22mm push button switch series</a>, Type A (<code>EB2M-A</code>) and Type B (<code>EB2M-B</code>) share series-level electrical data (Ith 10 A, AC-15 / DC-13 as defined in IEC 60947-5-1) and series-level environmental limits. Distinguishing published series data from model-specific verification items prevents specification gaps before panel fabrication begins.</p>
+<p class="mb-4 text-sm leading-7 text-gray-600">Across the <a href="/solutions/22mm-push-button-switch" class="font-medium text-green-700 underline">EB2M 22mm push button switch series</a>, Type A (<code>EB2M-A</code>) and Type B (<code>EB2M-B</code>) share series-level electrical data (Ith 10 A and AC-15 / DC-13 utilization categories) and series-level environmental limits. Distinguishing published series data from model-specific verification items prevents specification gaps before panel fabrication begins.</p>
 <h2 class="mt-8 mb-4 text-xl font-bold text-gray-900">Series-Level IP40 / IP65 Data: Scope and Model Verification</h2>
 <p class="mb-4 text-sm leading-7 text-gray-600">The EB2M catalog lists <strong>IP40 / IP65</strong> side by side as <strong>series-level protection data</strong>. It does not allocate IP40 or IP65 to individual model codes, nor does it document sealing hardware, gasket configurations, or mounting-surface conditions needed to achieve a specific ingress rating on a finished door. Treat IP40 or IP65 as a project environmental target that must be confirmed with the supplier for every ordered model.</p>
 <h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Where an IP40 Target Fits Inside Dry Electrical Rooms</h3>
@@ -424,7 +427,7 @@ export const EB2M_ARTICLES = [
 <p class="mb-4 text-sm leading-7 text-gray-600">IP65 covers dust-tight protection and resistance against low-pressure water jets from any direction. Panel builders typically set IP65 as a project target where equipment faces:</p>
 <ul class="mb-4 list-disc space-y-1 pl-5 text-sm leading-7 text-gray-600">
 <li>Fine airborne dust in woodworking, bulk handling, corrugated packaging, or light processing areas.</li>
-<li>Coolant mist, oil droplets, or occasional low-pressure splashing near machinery and conveyor stations (high-pressure or high-temperature washdown exceeds IP65).</li>
+<li>Occasional water splashing near machinery and conveyor stations. Verify oil and coolant compatibility and washdown conditions separately.</li>
 <li>Damp mechanical rooms, booster pump skids, and semi-sheltered utility stations prone to condensation drips or incidental spray.</li>
 </ul>
 <p class="mb-4 text-sm leading-7 text-gray-600">Do not assume that mounting any EB2M switch in a nominal Φ22 mm cutout achieves IP65 front-face protection. Confirm each exact model's IP rating, required sealing components, panel-thickness range, and mounting conditions with the supplier, and verify that the enclosure and panel fabrication meet overall project ingress requirements.</p>
@@ -443,7 +446,7 @@ export const EB2M_ARTICLES = [
 <ul class="mb-4 list-disc space-y-1 pl-5 text-sm leading-7 text-gray-600">
 <li><strong>Push buttons:</strong> <code>≥1,000,000</code> mechanical operations—mechanically suited to frequent cycle start, jog, index, and reset actuation.</li>
 <li><strong>Selector switches:</strong> <code>≥300,000</code> mechanical operations—mechanically suited to mode switching, shift changes, and Hand-Off-Auto selection.</li>
-<li><strong>Key switches and emergency-stop buttons:</strong> <code>≥50,000</code> mechanical operations—mechanically suited to supervisory lockouts, maintenance authorization, and infrequent emergency stops.</li>
+<li><strong>Key switches and emergency-stop buttons:</strong> <code>≥50,000</code> mechanical operations—a mechanical-life reference for key-operated mode selection and infrequent emergency-stop actuation.</li>
 </ul>
 <p class="mb-4 text-sm leading-7 text-gray-600"><strong>Electrical life is not published in the catalog</strong>, and mechanical cycles do not establish contact endurance under electrical load. For high-frequency inductive switching or heavy pilot-duty cycles, request model-specific electrical endurance test evidence from the supplier for your actual load, voltage, current, and switching rate.</p>
 <h2 class="mt-8 mb-4 text-xl font-bold text-gray-900">Matching EB2M Operators Across Five Industrial Applications</h2>
@@ -458,7 +461,7 @@ export const EB2M_ARTICLES = [
 <h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Material Handling and Conveyors</h3>
 <p class="mb-4 text-sm leading-7 text-gray-600">Conveyor systems distribute local control stations across dusty aisles and loading bays:</p>
 <ul class="mb-4 list-disc space-y-1 pl-5 text-sm leading-7 text-gray-600">
-<li><strong>Double push buttons</strong> (<code>-11PRG</code> flat, <code>-11HRG</code> extended, <code>-11RG</code> oval, illuminated <code>-11PDRG</code>, <code>-11HDRG</code>, <code>-11DRG</code>) place dual red/green actuators and nominal <code>-11</code> (1NO1NC) contacts in one nominal Φ22 mm cutout, with marking options <code>R</code> and <code>R1–R7</code> (<code>I/O</code>, <code>ON/OFF</code>, <code>START/STOP</code>). Confirm actuator-to-terminal mapping via the supplier wiring diagram and de-energized continuity testing rather than assuming color-to-terminal assignments.</li>
+<li><strong>Double push buttons</strong> (<code>-11PRG</code> flat, <code>-11HRG</code> extended, <code>-11RG</code> oval, illuminated <code>-11PDRG</code>, <code>-11HDRG</code>, <code>-11DRG</code>) place dual actuators and nominal <code>-11</code> (1NO1NC) contacts in one nominal Φ22 mm cutout; in the catalog, flat and extended groups list <code>R1/R5</code> (<code>I/O</code>), while the oval group lists R and <code>R1–R7</code> across green/red and light gray/black columns (blank, <code>I/O</code>, <code>ON/OFF</code>, <code>START/STOP</code>—printed legend wording only). Confirm actuator-to-terminal mapping via the supplier wiring diagram and de-energized continuity testing rather than assuming color-to-terminal assignments.</li>
 <li><strong>Long-lever selector switches</strong> (<code>-10CX</code>, <code>-20CXS</code>, spring-return <code>-10CX/fu</code>, <code>-20CXS/f.fu</code>) give gloved operators positive leverage for direction or jog selection.</li>
 <li>For dusty or splash-prone conveyor zones, specify <strong>IP65</strong> as a project target and verify model-level IP approval and sealing hardware with the supplier.</li>
 </ul>
@@ -467,10 +470,10 @@ export const EB2M_ARTICLES = [
 <ul class="mb-4 list-disc space-y-1 pl-5 text-sm leading-7 text-gray-600">
 <li><strong>3-position short-lever selectors</strong> (<code>-20XS</code> maintained, <code>-20XSD</code> illuminated) are commonly evaluated for Hand-Off-Auto (HOA) fan and pump selection. Review selector action codes (<code>f</code>, <code>fu</code>, <code>f.fu</code>) in our <a href="/blog/22mm-selector-switch-key-switch-spring-return-hand-off-auto" class="font-medium text-green-700 underline">22mm selector and key switch guide</a>.</li>
 <li><strong>Key switches</strong> (<code>-10Y</code>, <code>-10CY</code>, <code>-20YS</code>, <code>-20CYS</code>, <code>≥50,000</code> mechanical cycles) restrict manual override or damper-test positions to authorized personnel.</li>
-<li><strong>Illuminated flush buttons</strong> (<code>-10D</code>, <code>-10DT</code>) are available across catalog lamp voltages (6, 12, 24, 36, 48, 110, 127 V AC/DC; 220 V DC; 220 V or 380 V AC); verify lamp type, current, DC polarity, and the model wiring diagram with the supplier before integrating illuminated controls.</li>
+<li><strong>Illuminated flush buttons</strong> (<code>-10D</code>, <code>-10DT</code>) use the catalog lamp-voltage list as an ordering reference (6, 12, 24, 36, 48, 110, 127 V AC/DC; 220 V DC; 220 V or 380 V AC); verify exact model and voltage availability, lamp type, current, DC polarity, and the model wiring diagram with the supplier before integrating illuminated controls.</li>
 </ul>
 <h3 class="mt-5 mb-2 text-base font-semibold text-gray-900">Pump Stations and Water-Handling Controls</h3>
-<figure class="my-6"><img src="/optimized/display/images/blog/eb2m-panel-operators-conveyor-pump-inline.webp" alt="Pump control panel fitted with 22mm lever selectors, key switch, and red/green double push buttons" width="1600" height="1200" loading="lazy" decoding="async" class="h-auto w-full rounded-xl" /></figure>
+<figure class="my-6"><img src="/optimized/display/images/blog/eb2m-panel-operators-conveyor-pump-inline.webp" alt="Illustrative pump control station with lever selectors, a key switch and double push buttons" width="1600" height="1200" loading="lazy" decoding="async" class="h-auto w-full rounded-xl" /><figcaption class="mt-2 text-sm leading-6 text-gray-600">Illustrative pump control station only. Confirm the exact operator model configuration, operator IP rating, and applicable sealing and mounting requirements separately from the enclosure ingress protection rating and fluid compatibility.</figcaption></figure>
 <p class="mb-4 text-sm leading-7 text-gray-600">Booster skids, sump panels, and water-handling boards combine moisture exposure with tight wall-mount doors:</p>
 <ul class="mb-4 list-disc space-y-1 pl-5 text-sm leading-7 text-gray-600">
 <li>Set <strong>IP65</strong> as the environmental target near piping manifolds or wet wells, verify model-level IP and sealing components with the supplier, and confirm cabinet conditions remain within <code>−25 °C to +40 °C</code>, <code>≤90%</code> relative humidity, and <code>≤2000 m</code> altitude.</li>
@@ -481,7 +484,7 @@ export const EB2M_ARTICLES = [
 <p class="mb-4 text-sm leading-7 text-gray-600">Feeder panels and switchgear compartments generally operate in dry electrical rooms with compact metering doors:</p>
 <ul class="mb-4 list-disc space-y-1 pl-5 text-sm leading-7 text-gray-600">
 <li>Compare <strong>Type B (<code>EB2M-B</code>)</strong> compact bodies against Type A (<code>EB2M-A</code>) using exact head-type outline drawings, panel-thickness callouts, and clearance around door meters and wire ducts.</li>
-<li>Use <strong>key switches</strong> (<code>-10Y</code>, <code>-10CY/fu</code>, <code>-20CYS</code>) for restricted local/remote or test interlocks, and <strong>flush buttons</strong> (<code>-10</code>, <code>-10D</code>, <code>-10DT</code>, <code>/FH</code>) for infrequent supervisory switching inside dry IP40-targeted rooms.</li>
+<li>Use <strong>key switches</strong> (<code>-10Y</code>, <code>-10CY/fu</code>, <code>-20CYS</code>) for restricted local/remote or test-mode selection, and <strong>flush buttons</strong> (<code>-10</code>, <code>-10D</code>, <code>-10DT</code>, <code>/FH</code>) for infrequent supervisory switching inside dry IP40-targeted rooms.</li>
 <li>Browse related switchgear and control components in our <a href="/products" class="font-medium text-green-700 underline">products section</a>, or revisit selection fundamentals in <a href="/blog/how-to-choose-22mm-push-button-switch" class="font-medium text-green-700 underline">how to choose a 22mm push button switch</a>.</li>
 </ul>
 <h2 class="mt-8 mb-4 text-xl font-bold text-gray-900">Application-to-Operator Evaluation Matrix</h2>
@@ -494,7 +497,7 @@ export const EB2M_ARTICLES = [
 </tr></thead><tbody>
 <tr>
 <td class="border border-gray-200 px-3 py-2 align-top">Production Machinery</td>
-<td class="border border-gray-200 px-3 py-2 align-top">IP65 target (dust/coolant zones)</td>
+<td class="border border-gray-200 px-3 py-2 align-top">IP65 target for dust or water splash. Verify coolant compatibility separately.</td>
 <td class="border border-gray-200 px-3 py-2 align-top">Flush <code>-10</code>/<code>-10D</code>/<code>/FH</code>, Mushroom <code>-10M</code>, E-Stop <code>-01ZS</code>/<code>-01DZS</code></td>
 <td class="border border-gray-200 px-3 py-2 align-top">Push buttons <code>≥1,000,000</code> mechanical cycles; safety design by qualified engineer</td>
 </tr>
@@ -529,7 +532,7 @@ export const EB2M_ARTICLES = [
 <li><strong>Model-level IP and sealing:</strong> State target protection (IP40 or IP65) per line item and confirm each exact model's IP rating, sealing hardware, and mounting requirements.</li>
 <li><strong>Environmental limits:</strong> Verify site conditions remain within <code>−25 °C to +40 °C</code>, <code>≤90%</code> relative humidity, <code>≤2000 m</code> altitude, and pollution degree <code>3</code> (no above-2000 m derating without written supplier confirmation).</li>
 <li><strong>Electrical endurance and layout:</strong> Request model-level electrical life data for high-duty inductive loads, plus head-specific outline drawings and panel-thickness limits.</li>
-<li><strong>Compliance documentation:</strong> State whether <code>CE, RoHS and ISO 9001</code> documentation is needed so the supplier can confirm document validity, issuing entity, covered models, and target-market scope.</li>
+<li><strong>Compliance documentation:</strong> State any compliance documentation required for your project so the supplier can confirm document validity, issuing entity, covered models, and target-market scope.</li>
 </ol>
 </div>`,
       faq: [
@@ -551,13 +554,13 @@ export const EB2M_ARTICLES = [
         },
         {
           question: "Which compliance documents can be requested with EB2M orders?",
-          answer: "When sending an inquiry, specify whether CE, RoHS and ISO 9001 documentation is required for your project. Because certificate numbers are not printed in the catalog, confirm document scope, validity, covered model codes, and target-market applicability with the supplier before placing the order."
+          answer: "When sending an inquiry, specify any compliance documentation required for your project and destination market. Because certificate numbers and model-level declarations are not printed in the series catalog, confirm document scope, validity, issuing entity, covered model codes, and target-market applicability with the supplier before placing the order."
         }
       ],
-      closingHtml: "<p class=\"text-sm leading-7 text-gray-700\">Planning a control panel for machinery, conveyors, HVAC, pumps, or distribution equipment? <a href=\"/contact\" class=\"font-medium text-green-700 underline\">Contact our team</a> for a project quotation—include your EB2M model codes, target IP requirement, color, lamp voltage if illuminated, quantity, and target market, and note whether <code>CE, RoHS and ISO 9001</code> documentation is required so we can verify model-level IP, drawings, and document scope for your project.</p>",
+      closingHtml: "<p class=\"text-sm leading-7 text-gray-700\">Planning a control panel for machinery, conveyors, HVAC, pumps, or distribution equipment? <a href=\"/contact\" class=\"font-medium text-green-700 underline\">Contact our team</a> for a project quotation—include your EB2M model codes, target IP requirement, color, lamp voltage if illuminated, quantity, and target market, and note any project-required compliance documentation so we can verify model-level IP, drawings, and document scope for your project.</p>",
       ogImage: {
         src: "/optimized/display/images/blog/eb2m-ip40-ip65-industrial-applications-og.webp",
-        alt: "Comparison of indoor distribution panel push buttons and sealed pump-room control operators"
+        alt: "Illustrative distribution-panel and pump-room controls"
       }
     }
   }
