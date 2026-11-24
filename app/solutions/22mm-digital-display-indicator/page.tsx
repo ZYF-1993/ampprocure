@@ -241,7 +241,7 @@ function ModelCards({
             <OptimizedImage src={`${imageBase}/${item.photo}`} alt={`${item.model} ${item.name}`} fill className="object-contain p-4" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
           </div>
           <div className="flex flex-1 flex-col border-t border-gray-100 p-5">
-            <h4 className="text-base font-bold text-gray-950">{item.model}</h4>
+            <h3 className="text-base font-bold text-gray-950">{item.model}</h3>
             <p className="mt-1 text-sm text-gray-600">{item.name}</p>
             <p className="mt-3 text-sm font-medium text-gray-900">Range: {item.range}</p>
             <div className="relative mt-4 h-40 rounded-xl bg-gray-50">

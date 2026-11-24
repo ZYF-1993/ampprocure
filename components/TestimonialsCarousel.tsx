@@ -6,7 +6,7 @@ import OptimizedImage from '@/components/OptimizedImage'
 const testimonials = [
   {
     quote:
-      'upprocure has been a steady supplier for our switchgear assembly line. Lead times are predictable, the technical team replies fast on selection questions, and the OEM packaging support fits our regional brand requirements very well.',
+      'UPprocure has been a steady supplier for our switchgear assembly line. Lead times are predictable, the technical team replies fast on selection questions, and the OEM packaging support fits our regional brand requirements very well.',
     name: 'Andrei K.',
     role: 'Procurement Manager, LV Panel Builder',
     initials: 'AK',
@@ -35,15 +35,15 @@ export default function TestimonialsCarousel() {
 
   return (
     <section className="relative overflow-hidden py-20 sm:py-24">
-      <div className="pointer-events-none absolute inset-0">
-        <OptimizedImage src="/images/banner/about-bg.jpg" alt="" fill sizes="100vw" className="object-cover object-center" />
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <OptimizedImage src="/images/banner/about-bg.jpg" alt="" aria-hidden="true" fill sizes="100vw" className="object-cover object-center" />
         <div className="absolute inset-0 bg-slate-950/70" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Satisfied Customers Over The Globe</h2>
-          <p className="mt-3 text-sm text-slate-300">See why global industry leaders rely on upprocure for their electrical systems.</p>
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">What B2B Buyers Say</h2>
+          <p className="mt-3 text-sm text-slate-300">Feedback from distributors, panel builders, and project buyers working with UPprocure.</p>
         </div>
 
         <div className="relative mt-12 flex items-center justify-center gap-4">

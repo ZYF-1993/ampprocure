@@ -1,11 +1,12 @@
 ﻿import Link from 'next/link'
 import AboutTestimonials from '@/components/AboutTestimonials'
+import Breadcrumbs from '@/components/Breadcrumbs'
 import FaqAccordion from '@/components/FaqAccordion'
 import InquiryActions from '@/components/InquiryActions'
 import InquiryForm from '@/components/InquiryForm'
 import OptimizedImage from '@/components/OptimizedImage'
-import { buildPageMetadata, jsonLdScript } from '@/lib/seo'
-import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, inquiryMailto, inquiryMessage, whatsappHref } from '@/lib/site-config'
+import { absoluteUrl, buildPageMetadata, jsonLdScript } from '@/lib/seo'
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, inquiryMailto, inquiryMessage, SITE_NAME, SITE_URL, whatsappHref } from '@/lib/site-config'
 
 const imageBase = '/images/solutions/aerosol-fire-extinguisher'
 
@@ -159,6 +160,25 @@ function ServiceIcon({ title }: { title: string }) {
   )
 }
 
+const solutionPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Aerosol Fire Extinguisher Solutions for Electrical Cabinets',
+  description:
+    'DIN rail thermal aerosol fire extinguishers and wireless cabinet fire suppression units for electrical cabinets, PV combiner boxes, and industrial enclosures.',
+  url: absoluteUrl('/solutions/aerosol-fire-extinguisher'),
+  isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
+  mainEntity: {
+    '@type': 'ItemList',
+    name: 'Aerosol fire suppression models',
+    itemListElement: products.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.title,
+    })),
+  },
+}
+
 const solutionFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -175,16 +195,27 @@ const solutionFaqJsonLd = {
 export default function AerosolFireExtinguisherSolutionPage() {
   return (
     <main className="bg-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(solutionPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(solutionFaqJsonLd) }} />
       <section className="relative overflow-hidden bg-gray-900 py-20 sm:py-28">
-        <OptimizedImage src={`${imageBase}/hero-bg.jpg`} alt="Aerosol fire extinguisher manufacturing facility" fill priority className="object-cover opacity-30" sizes="100vw" />
+        <OptimizedImage src={`${imageBase}/hero-bg.jpg`} alt="Aerosol fire extinguisher production and testing line" fill priority className="object-cover opacity-30" sizes="100vw" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-6">
+            <Breadcrumbs
+              tone="inverse"
+              items={[
+                { name: 'Home', href: '/', path: '/' },
+                { name: 'Solutions', href: '/solutions', path: '/solutions' },
+                { name: 'Aerosol Fire Extinguisher Solutions', path: '/solutions/aerosol-fire-extinguisher' },
+              ]}
+            />
+          </div>
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
             <div className="max-w-xl flex-1">
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-green-400">Manufacturer & OEM Supplier</p>
+              <p className="text-xs font-bold uppercase tracking-[0.28em] text-green-400">Cabinet Fire Suppression · OEM Supply</p>
               <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">Aerosol Fire Extinguisher Solutions</h1>
               <p className="mt-5 text-lg leading-8 text-gray-300">
-                Passive thermal aerosol fire suppression systems engineered for total enclosure protection. Zero power requirements, zero wiring, zero maintenance — deliver industrial-grade fire safety backed by 15+ years of manufacturing expertise.
+                Compact DIN rail thermal aerosol fire suppression units and wireless monitoring devices for switchgear cabinets, PV combiner boxes, and industrial control enclosures. Passive 170°C thermal activation requires no external power or wiring.
               </p>
               <div className="mt-8">
                 <InquiryActions topic="DIN rail aerosol fire extinguisher" formHref="#contact-form" tone="dark" />
@@ -291,7 +322,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
               </div>
             </div>
             <Link href="/about" className="mt-7 inline-flex font-semibold text-green-700 hover:text-green-800">
-              Discover More →
+              About UPprocure →
             </Link>
           </div>
         </div>
@@ -400,7 +431,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
       </section>
 
       <section className="relative overflow-hidden bg-gray-900 py-16 text-white sm:py-20">
-        <OptimizedImage src={`${imageBase}/world-map.jpg`} alt="" fill className="object-cover opacity-25" sizes="100vw" />
+        <OptimizedImage src={`${imageBase}/world-map.jpg`} alt="" aria-hidden="true" fill className="object-cover opacity-25" sizes="100vw" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Your Trusted Aerosol Fire Extinguisher</h2>

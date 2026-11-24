@@ -96,7 +96,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   }
 
   const ceRohsOnly = detail.ctaVariant === 'ce-rohs'
-  const faq = detail.faq ?? []
+  const faq = detail.faq ?? (post.faq.length >= 3 ? post.faq : [])
   const HeroContainer = detail.heroCaption ? 'figure' : 'div'
   const relatedPosts = getRelatedBlogPosts(post.slug)
   // EB2M posts: skip the featured-product fallback (unrelated PV / aerosol items) and link the 22mm solution page instead.

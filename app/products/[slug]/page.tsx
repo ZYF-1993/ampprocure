@@ -8,7 +8,7 @@ import OptimizedImage from '@/components/OptimizedImage'
 import ProductGallery from '@/components/ProductGallery'
 import RelatedResources from '@/components/RelatedResources'
 import { CATALOG_PRODUCTS, type CatalogProduct } from '@/lib/catalog-products'
-import { getRelatedPostsForTopic } from '@/lib/internal-links'
+import { getRelatedPostsForTopic, getRelatedProductsForProduct } from '@/lib/internal-links'
 import { absoluteOptimizedSrc } from '@/lib/optimized-image'
 import { PRODUCT_DETAIL_CONTENT } from '@/lib/product-detail-content'
 import { PRODUCT_GALLERY_IMAGES } from '@/lib/product-gallery-images.generated'
@@ -795,21 +795,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
   const galleryImages = getProductGalleryImages(product)
   const enrichment = getProductEnrichment(product.slug)
-  const preferredRelated = (enrichment?.relatedSlugs ?? []).flatMap((relatedSlug) => {
-    const match = CATALOG_PRODUCTS.find((item) => item.slug === relatedSlug)
-    return match ? [match] : []
-  })
-  const sameCategory = CATALOG_PRODUCTS.filter((item) => item.category === product.category && item.id !== product.id)
-  const relatedSeen = new Set<string>()
-  const relatedProducts = [...preferredRelated, ...sameCategory]
-    .filter((item) => {
-      if (item.slug === product.slug || relatedSeen.has(item.slug)) {
-        return false
-      }
-      relatedSeen.add(item.slug)
-      return true
-    })
-    .slice(0, 4)
+  const relatedProducts = getRelatedProductsForProduct(product, enrichment?.relatedSlugs ?? [], 4)
   const detailCopy = getProductDetailCopy(product)
   const displayName = getProductDisplayName(product)
   const productUrl = absoluteUrl(`/products/${product.slug}`)

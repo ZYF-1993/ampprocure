@@ -77,7 +77,7 @@ const organizationJsonLd = {
   logo: `${CANONICAL_ORIGIN}${SITE_LOGO}`,
   image: `${CANONICAL_ORIGIN}${DEFAULT_OG_IMAGE}`,
   description:
-    'Based in Liushi, Wenzhou (the capital of electrical appliances), UPprocure is a premier global sourcing and supply chain platform specializing in professional industrial electrical protection, power metering, and distribution safety solutions.',
+    'Based in Liushi, Wenzhou, UPprocure supplies low-voltage electrical protection, power metering, and control-panel components for distributors, panel builders, system integrators, and EPC contractors.',
   email: CONTACT_EMAIL,
   telephone: CONTACT_PHONE_DISPLAY,
   address: {

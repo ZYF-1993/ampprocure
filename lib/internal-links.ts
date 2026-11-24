@@ -17,28 +17,26 @@ const FEATURED_PRODUCT_SLUGS = [
 ] as const
 
 const CATEGORY_PRODUCT_SLUGS: Readonly<Record<string, readonly string[]>> = {
-  'over-voltage-protector': [
-    'PN2-VA4',
-    'PN2-VAFD',
-    'STATS-06',
-    'CZVA1',
-    'DDS',
-    'D52-2066-wifi',
-    'MCB-AC-2P',
-    'HA-12Way-2in2out-500VDC-40A-20AFUSE',
-  ],
-  'power-meter': ['DDS', 'D52-2066', 'QY2P', 'ADD', 'DDR', 'D52-2066-wifi', 'PN2-VA4'],
-  'circuit-breaker': ['MCB-AC-1P', 'MCB-AC-2P', 'MCB-DC-2P', 'MCB-DC-4P', 'PN2-VA4', 'HA-12Way-2in2out-500VDC-40A-20AFUSE'],
+  'over-voltage-protector': ['PN2-VA4', 'PN2-VAFD', 'STATS-06', 'CZVA1', 'PN2-VAK', 'CZVA3', 'STATS-05', 'PN2-VA2'],
+  'power-meter': ['DDS', 'D52-2066', 'QY2P', 'ADD', 'DDR', 'D52-2066-wifi'],
+  'circuit-breaker': ['MCB-AC-1P', 'MCB-AC-2P', 'MCB-AC-3P', 'MCB-AC-4P', 'MCB-DC-1P', 'MCB-DC-2P', 'MCB-DC-3P', 'MCB-DC-4P'],
+  'surge-protector-device': ['SPD-AC-2P-Grey', 'SPD-AC-4P-Grey', 'SPD-DC-2P-White', 'SPD-DC-3P-White', 'SPD-DC-4P-White', 'SPD-DC-2P-Orange'],
+  'dc-fuse-holder': ['RT18-32X-2P', 'RT18-32X-3P', 'RT18-63X-2P', 'RT18-63X-3P', 'RT18-125AM-3P', 'RT18-125AM-4P'],
+  'wifi-smart-low-voltage-device': ['SOLT', 'SRP', 'SRP-L', 'D52-2066-wifi'],
+  'pv-combiner-box': ['HA-12Way-2in2out-500VDC-40A-20AFUSE', 'HA-8Way-2in1out-500VDC-40A-20AFUSE', 'HT-8Way-2in1out-600VDC', 'HA-12way-2in1out-1000VDC-DS', 'PCB-M4in-02', 'PCB-M6in-01'],
+  'ats-dual-power-switch': ['ATS-ST-2P-63A-220V-110V', 'ATS-ST-4P-63A-220V-110V', 'ATS-W2R-2P-220V-110V', 'STQ1-63-2P-220V-110V', 'STQ2-63-4P-220V-110V'],
+  'aerosol-fire-extinguisher': ['Aerosol-DIN-Rail'],
 }
 
-const DEFAULT_ARTICLE_SLUGS = [
-  'how-to-vet-pv-combiner-box-manufacturer',
-  'pv-combiner-box-buyers-checklist',
-  'what-is-din-rail-aerosol-fire-extinguisher-technical-guide',
-] as const
+const EB2M_CLUSTER_SLUGS: readonly string[] = [
+  ...EB2M_PROCUREMENT_ARTICLES.map(({ post }) => post.slug),
+  ...EB2M_ARTICLES.map(({ post }) => post.slug),
+  'how-to-choose-22mm-push-button-switch',
+  '22mm-selector-switch-key-switch-spring-return-hand-off-auto',
+  '22mm-emergency-stop-button-twist-release-guide',
+]
 
-const EB2M_EDITORIAL_SLUGS = EB2M_ARTICLES.map(({ post }) => post.slug)
-const EB2M_PROCUREMENT_SLUGS: ReadonlySet<string> = new Set(EB2M_PROCUREMENT_ARTICLES.map(({ post }) => post.slug))
+const EB2M_CLUSTER_SET: ReadonlySet<string> = new Set(EB2M_CLUSTER_SLUGS)
 
 function productsBySlug(slugs: readonly string[]): CatalogProduct[] {
   return slugs.flatMap((slug) => {
@@ -66,24 +64,71 @@ export function getCategorySpotlightProducts(categorySlug: string): CatalogProdu
   return CATALOG_PRODUCTS.filter((product) => product.categoryCode === categorySlug).slice(0, 4)
 }
 
+export function getRelatedProductsForProduct(
+  product: CatalogProduct,
+  preferredSlugs: readonly string[] = [],
+  limit = 4,
+): CatalogProduct[] {
+  const sameCategory = CATALOG_PRODUCTS.filter((item) => item.categoryCode === product.categoryCode)
+  const currentIndex = sameCategory.findIndex((item) => item.slug === product.slug)
+
+  // Rotate sibling products starting after the current product so every item in the
+  // category receives incoming sibling links rather than only the first four items.
+  const rotatedSiblings =
+    currentIndex >= 0
+      ? [...sameCategory.slice(currentIndex + 1), ...sameCategory.slice(0, currentIndex)]
+      : sameCategory
+
+  // Pair color variants (e.g., SPD-DC-2P-White <-> SPD-DC-2P-Orange) first when present.
+  const counterpartSlug = product.slug.endsWith('-White')
+    ? product.slug.replace(/-White$/, '-Orange')
+    : product.slug.endsWith('-Orange')
+      ? product.slug.replace(/-Orange$/, '-White')
+      : null
+  const counterpart = counterpartSlug
+    ? CATALOG_PRODUCTS.find((item) => item.slug === counterpartSlug)
+    : undefined
+
+  const candidates = [
+    ...(counterpart ? [counterpart] : []),
+    ...productsBySlug(preferredSlugs),
+    ...rotatedSiblings,
+  ]
+
+  const seen = new Set<string>([product.slug])
+  const results: CatalogProduct[] = []
+  for (const item of candidates) {
+    if (!seen.has(item.slug)) {
+      seen.add(item.slug)
+      results.push(item)
+      if (results.length >= limit) break
+    }
+  }
+  return results
+}
+
 export function getRelatedPostsForTopic(categoryCode: string, limit = 3): BlogPost[] {
   if (categoryCode === 'pv-combiner-box') {
-    return BLOG_POSTS.filter((post) => post.tags.includes('PV Combiner Box')).slice(0, limit)
+    return postsBySlug([
+      'pv-combiner-box-buyers-checklist',
+      'pv-combiner-box-certifications-iec-ce-ul',
+      'how-to-choose-pv-combiner-box-string-count',
+    ]).slice(0, limit)
   }
   if (categoryCode === 'aerosol-fire-extinguisher') {
     return BLOG_POSTS.filter((post) => post.tags.some((tag) => tag.toLowerCase().includes('aerosol'))).slice(0, limit)
   }
-  return postsBySlug(DEFAULT_ARTICLE_SLUGS).slice(0, limit)
+  return []
 }
 
 export function getRelatedBlogPosts(slug: string, limit = 3): BlogPost[] {
-  if (EB2M_PROCUREMENT_SLUGS.has(slug) || EB2M_EDITORIAL_SLUGS.some((postSlug) => postSlug === slug)) {
-    return postsBySlug([
-      ...EB2M_EDITORIAL_SLUGS.filter((postSlug) => postSlug !== slug),
-      'how-to-choose-22mm-push-button-switch',
-      '22mm-selector-switch-key-switch-spring-return-hand-off-auto',
-      '22mm-emergency-stop-button-twist-release-guide',
-    ]).slice(0, limit)
+  if (EB2M_CLUSTER_SET.has(slug)) {
+    const idx = EB2M_CLUSTER_SLUGS.indexOf(slug)
+    const rotated = [
+      ...EB2M_CLUSTER_SLUGS.slice(idx + 1),
+      ...EB2M_CLUSTER_SLUGS.slice(0, idx),
+    ]
+    return postsBySlug(rotated).slice(0, limit)
   }
 
   const current = BLOG_POSTS.find((post) => post.slug === slug)
@@ -91,14 +136,26 @@ export function getRelatedBlogPosts(slug: string, limit = 3): BlogPost[] {
     return []
   }
 
-  return BLOG_POSTS.filter((post) => post.slug !== slug && !EB2M_PROCUREMENT_SLUGS.has(post.slug))
-    .map((post) => ({
-      post,
-      score: post.tags.filter((tag) => current.tags.includes(tag)).length,
-    }))
-    .sort((a, b) => b.score - a.score || Date.parse(b.post.publishedAt) - Date.parse(a.post.publishedAt))
-    .slice(0, limit)
-    .map((item) => item.post)
+  const sameTopic = BLOG_POSTS.filter(
+    (post) => post.slug !== slug && !EB2M_CLUSTER_SET.has(post.slug),
+  ).sort((a, b) => {
+    const scoreA = a.tags.filter((tag) => current.tags.includes(tag)).length
+    const scoreB = b.tags.filter((tag) => current.tags.includes(tag)).length
+    return scoreB - scoreA || Date.parse(b.publishedAt) - Date.parse(a.publishedAt)
+  })
+
+  // Rotate within top-scoring same-topic articles so older guides (e.g., certifications) also receive internal links.
+  const topicPool = sameTopic.filter((post) => post.tags.some((tag) => current.tags.includes(tag)))
+  if (topicPool.length > limit) {
+    const allTopic = BLOG_POSTS.filter((post) => post.tags.some((tag) => current.tags.includes(tag)))
+    const curIdx = allTopic.findIndex((post) => post.slug === slug)
+    if (curIdx >= 0) {
+      const rotated = [...allTopic.slice(curIdx + 1), ...allTopic.slice(0, curIdx)]
+      return rotated.slice(0, limit)
+    }
+  }
+
+  return sameTopic.slice(0, limit)
 }
 
 export function getRelatedProductsForBlog(tags: readonly string[], limit = 4): CatalogProduct[] {
