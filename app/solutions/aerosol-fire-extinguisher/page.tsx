@@ -11,14 +11,14 @@ import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, inquiryMailto, inquiryMessage, SI
 const imageBase = '/images/solutions/aerosol-fire-extinguisher'
 
 export const metadata = buildPageMetadata({
-  title: 'Aerosol Fire Extinguisher Manufacturer & OEM Supplier',
+  title: 'Aerosol Fire Extinguisher Solutions for Cabinets',
   description:
-    'upprocure manufactures DIN rail thermal aerosol fire extinguishers for electrical cabinets, PV combiner boxes and industrial enclosures. Request a quote by email, RFQ form, or WhatsApp.',
+    'DIN rail thermal aerosol fire extinguishers and wireless cabinet fire suppression units for electrical cabinets, PV combiner boxes, and industrial enclosures. Request a quote.',
   path: '/solutions/aerosol-fire-extinguisher',
   keywords: [
-    'aerosol fire extinguisher manufacturer',
+    'aerosol fire extinguisher supplier',
     'electrical cabinet fire suppression',
-    'DIN rail fire sticker',
+    'DIN rail aerosol fire extinguisher',
     'OEM aerosol fire extinguisher',
     'PV combiner box fire protection',
     'thermal aerosol suppression supplier',
@@ -27,10 +27,10 @@ export const metadata = buildPageMetadata({
 })
 
 const stats = [
-  ['15+', 'Years Manufacturing'],
-  ['80+', 'Countries Served'],
-  ['500+', 'Product Models'],
-  ['ISO', '9001 Certified'],
+  ['170°C', 'Thermal Activation'],
+  ['≤ 6s', 'Cabinet Discharge'],
+  ['10–30g', 'DIN Rail Dosages'],
+  ['4', 'Suppression Models'],
 ] as const
 
 const products = [
@@ -299,26 +299,26 @@ export default function AerosolFireExtinguisherSolutionPage() {
       <section className="py-16 sm:py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
           <div className="relative min-h-[430px] overflow-hidden rounded-3xl bg-gray-100">
-            <OptimizedImage src={`${imageBase}/Aerosol-Fire-Extinguisher-factory.jpg`} alt="upprocure aerosol fire extinguisher manufacturing facility" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+            <OptimizedImage src={`${imageBase}/Aerosol-Fire-Extinguisher-factory.jpg`} alt="Aerosol fire extinguisher partner production facility" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             <div className="absolute bottom-5 left-5 rounded-2xl bg-white/95 p-5 shadow-lg">
-              <p className="text-3xl font-bold text-blue-700">15+</p>
-              <p className="mt-1 text-sm font-medium text-gray-700">Years of Experience</p>
+              <p className="text-2xl font-bold text-blue-700">OEM Ready</p>
+              <p className="mt-1 text-sm font-medium text-gray-700">Cabinet Fire Suppression</p>
             </div>
           </div>
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-green-700">About upprocure</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl">We Are The Leading Manufacturer For Aerosol Fire Extinguisher Solutions</h2>
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-green-700">About UPprocure</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl">Dedicated B2B Supply for Electrical Cabinet Fire Suppression</h2>
             <p className="mt-5 text-base leading-8 text-gray-600">
-              upprocure is a manufacturer specializing in aerosol fire suppression devices for electrical cabinets and industrial enclosures. With over 15 years of expertise, ISO 9001 certified production, and 200,000+ units delivered annually, we provide reliable OEM and ODM solutions to distributors and system integrators across 80+ countries.
+              Based in Liushi, Wenzhou, UPprocure coordinates vetted partner production for DIN rail and wireless aerosol fire suppression devices used in electrical cabinets, PV combiner boxes, and industrial enclosures. We support OEM labeling, model matching, pre-shipment inspection, and consolidated export delivery for distributors and system integrators.
             </p>
             <div className="mt-7 grid gap-4 sm:grid-cols-2">
               <div className="rounded-xl bg-green-50 p-5">
-                <h3 className="text-sm font-bold text-gray-950">In-House R&D</h3>
-                <p className="mt-2 text-sm leading-6 text-gray-600">Own laboratory for product testing and continuous improvement of aerosol suppression technology.</p>
+                <h3 className="text-sm font-bold text-gray-950">Specification &amp; Sizing Support</h3>
+                <p className="mt-2 text-sm leading-6 text-gray-600">Assistance matching aerosol dosage, enclosure volume, and activation mode to your switchgear or PV cabinet layout.</p>
               </div>
               <div className="rounded-xl bg-green-50 p-5">
-                <h3 className="text-sm font-bold text-gray-950">OEM / ODM Ready</h3>
-                <p className="mt-2 text-sm leading-6 text-gray-600">Full customization — your logo, label, capacity and packaging, with flexible MOQ.</p>
+                <h3 className="text-sm font-bold text-gray-950">OEM / Private-Label Ready</h3>
+                <p className="mt-2 text-sm leading-6 text-gray-600">Custom labeling, packaging, and multi-category shipment consolidation alongside DIN-rail protection components.</p>
               </div>
             </div>
             <Link href="/about" className="mt-7 inline-flex font-semibold text-green-700 hover:text-green-800">
@@ -368,13 +368,13 @@ export default function AerosolFireExtinguisherSolutionPage() {
       <section className="bg-gray-700 py-14">
         <div className="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Get Your{' '}
+            Request an{' '}
             <span className="underline decoration-green-400 decoration-2 underline-offset-4">
-              Free Sample!
+              Evaluation Sample
             </span>
           </h2>
           <p className="mt-4 text-base font-medium text-gray-300">
-            We provide samples for free, you just need to tell us what you need.
+            Share your cabinet volume, dosage requirement, and destination to arrange sample evaluation and technical documentation.
           </p>
           <Link
             href="#contact-form"
@@ -383,7 +383,7 @@ export default function AerosolFireExtinguisherSolutionPage() {
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.126A59.768 59.768 0 0 1 21.485 12 59.77 59.77 0 0 1 3.27 20.876L5.999 12Zm0 0h7.5" />
             </svg>
-            Get Sample Now
+            Request Sample &amp; Quote
           </Link>
         </div>
       </section>
@@ -391,13 +391,13 @@ export default function AerosolFireExtinguisherSolutionPage() {
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-green-700">Beyond Manufacturing</p>
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-green-700">Supply Support</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl">
-              More Than Just an Aerosol Fire Extinguisher Manufacturer
+              Value-Added B2B Support for Cabinet Fire Suppression
             </h2>
             <div className="mx-auto mt-3 h-0.5 w-12 rounded bg-green-600" />
             <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-gray-500">
-              At upprocure, we go beyond manufacturing by offering a suite of value-added services tailored to meet your project needs. Every customer receives personalized attention, expert guidance, and seamless support throughout their journey with us.
+              UPprocure supports distributors, panel builders, and EPC contractors from enclosure sizing and documentation checks to OEM packaging and export shipment coordination.
             </p>
           </div>
 
@@ -434,18 +434,18 @@ export default function AerosolFireExtinguisherSolutionPage() {
         <OptimizedImage src={`${imageBase}/world-map.jpg`} alt="" aria-hidden="true" fill className="object-cover opacity-25" sizes="100vw" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Your Trusted Aerosol Fire Extinguisher</h2>
-            <p className="mt-2 text-xl font-semibold text-green-300">Made in China. Global Shipping.</p>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Aerosol Fire Suppression Supply from Liushi, Wenzhou</h2>
+            <p className="mt-2 text-xl font-semibold text-green-300">Consolidated Export Shipping for Global Projects.</p>
             <p className="mt-5 text-base leading-8 text-gray-300">
-              Based in Yueqing, China — the electrical manufacturing hub — upprocure combines in-house production with 15+ years of R&D to deliver reliable aerosol fire suppression devices worldwide.
+              Operating from Yueqing, Zhejiang—China&apos;s low-voltage electrical hub—UPprocure coordinates partner production, pre-shipment inspection, and export logistics for cabinet fire suppression units alongside DIN-rail electrical protection gear.
             </p>
           </div>
           <dl className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
             {[
-              ['200,000+', 'Units Per Year'],
-              ['80+', 'Countries & Regions Served'],
-              ['15+', 'Years Experience'],
-              ['50,000㎡', 'Factory in Total'],
+              ['DIN Rail', '35mm & Magnetic Mount'],
+              ['RS485 / 4G', 'Smart Monitoring Options'],
+              ['OEM', 'Labeling & Packaging'],
+              ['EXW / FOB / CIF', 'Export Logistics'],
             ].map(([value, label]) => (
               <div key={label} className="rounded-2xl bg-white/10 p-5 backdrop-blur">
                 <dt className="text-2xl font-bold text-white">{value}</dt>
@@ -495,9 +495,9 @@ export default function AerosolFireExtinguisherSolutionPage() {
           </div>
           <div className="lg:col-span-2">
             <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-              <h2 className="text-lg font-bold text-gray-900">Send an Enquiry</h2>
+              <h2 className="text-lg font-bold text-gray-900">Send an Inquiry</h2>
               <p className="mt-1 text-xs text-gray-500">All fields marked * are required.</p>
-              <InquiryForm source="aerosol-solution" defaultProduct="Aerosol Fire Extinguisher" submitLabel="Send Now" twoColumnOnDesktop showInquiryType />
+              <InquiryForm source="aerosol-solution" defaultProduct="Aerosol Fire Extinguisher" submitLabel="Request a Quote" twoColumnOnDesktop showInquiryType />
             </div>
           </div>
         </div>

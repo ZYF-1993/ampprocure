@@ -48,7 +48,7 @@ export const CATEGORY_CONTENT: Readonly<Record<string, CategoryContent>> = {
       },
     ],
     logistics: [
-      'We supply B2B buyers worldwide under standard Incoterms 2020, including EXW, FOB, and CIF, so procurement aligns with your existing freight forwarders and customs brokerage. Standard lead time is 3–7 working days for stocked models and 15–30 days for OEM/ODM and high-volume orders, confirmed in writing at the proforma-invoice stage.',
+      'We supply B2B buyers worldwide under standard Incoterms 2020, including EXW, FOB, and CIF, so procurement aligns with your existing freight forwarders and customs brokerage. Lead times, MOQ, and stock availability for standard or OEM/ODM orders are confirmed in writing at the quotation and proforma-invoice stage.',
       'Every shipment uses export-grade, anti-shock packaging: individually boxed units, moisture-barrier inner cartons, and reinforced master cartons palletized and strapped for container transit. Breakers are seated in molded trays to prevent terminal and toggle damage from vibration during long-haul sea and air freight. Full documentation — commercial invoice, packing list, certificate of origin, and test reports — is prepared for smooth customs clearance.',
     ],
     faq: [
@@ -91,7 +91,7 @@ export const CATEGORY_CONTENT: Readonly<Record<string, CategoryContent>> = {
       },
     ],
     logistics: [
-      'We ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with a typical lead time of 3–7 working days for stocked modules and 15–30 days for OEM/ODM and bulk orders, fixed on the proforma invoice. Where a coordinated backup fuse or pluggable spare module is specified, it is matched and packed with the base unit to avoid field mismatches.',
+      'We ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with lead times and MOQ confirmed in writing on the proforma invoice based on stock availability and OEM scope. Where a coordinated backup fuse or pluggable spare module is specified, it is matched and packed with the base unit to avoid field mismatches.',
       'SPD modules ship in anti-static, moisture-barrier inner packaging inside reinforced export cartons, palletized for container transit. Each batch is accompanied by IEC 61643 test reports, CE and RoHS documentation, and a packing list to streamline customs clearance.',
     ],
     faq: [
@@ -134,7 +134,7 @@ export const CATEGORY_CONTENT: Readonly<Record<string, CategoryContent>> = {
       },
     ],
     logistics: [
-      'Orders ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with 3–7 working days for stocked holders and 15–30 days for OEM and volume orders. Fuse links are a separate line item — specify class (gG/aM/gPV), rating, and quantity per holder so we can pre-kit holders with links and prevent field mismatches.',
+      'Orders ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with lead times and MOQ confirmed on the quotation based on model and OEM requirements. Fuse links are a separate line item — specify class (gG/aM/gPV), rating, and quantity per holder so we can pre-kit holders with links and prevent field mismatches.',
       'Ceramic fuse links are individually cushioned in molded trays and moisture-barrier packs to prevent cracking during long-haul transit; holders ship in reinforced export cartons, palletized for containers. IEC 60269 test reports, CE/RoHS documents, and a detailed packing list accompany every shipment.',
     ],
     faq: [
@@ -247,7 +247,7 @@ export const CATEGORY_CONTENT: Readonly<Record<string, CategoryContent>> = {
       },
     ],
     logistics: [
-      'We ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with 3–7 working days for stocked meters and 15–30 days for OEM/ODM and bulk orders. CT-operated meters can be supplied with matched current transformers, and the pulse constant or Modbus address map pre-configured to your specification.',
+      'We ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with lead times and MOQ confirmed on the quotation. CT-operated meters can be supplied with matched current transformers, and the pulse constant or Modbus address map pre-configured to your specification.',
       'Meters with LCD/LED displays are packed in anti-static, moisture-barrier inner cartons and cushioned against impact inside reinforced export cartons, palletized for container transit. Each shipment includes calibration/test reports, CE and RoHS documentation, and a packing list; MID certificates are provided for MID-approved models.',
     ],
     faq: [
@@ -290,7 +290,7 @@ export const CATEGORY_CONTENT: Readonly<Record<string, CategoryContent>> = {
       },
     ],
     logistics: [
-      'We ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with 3–7 working days for stocked devices and 15–30 days for OEM/ODM and bulk orders. App branding and default settings can be pre-configured; tell us the destination market early so the correct radio-certified variant is supplied.',
+      'We ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with lead times and MOQ confirmed in writing on the quotation. App branding and default settings can be pre-configured; tell us the destination market early so the correct radio-certified variant is supplied.',
       'Devices ship in anti-static, moisture-barrier packaging inside reinforced export cartons, palletized for containers. Documentation includes CE (with CE-RED for the radio) and RoHS plus test reports; FCC documentation is provided for US-bound orders. A packing list accompanies each shipment for clearance.',
     ],
     faq: [
@@ -333,7 +333,7 @@ export const CATEGORY_CONTENT: Readonly<Record<string, CategoryContent>> = {
       },
     ],
     logistics: [
-      'We ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with 3–7 working days for stocked configurations and 15–30 days for custom builds and bulk orders. Because combiner boxes are project-specific, send your string count, system voltage, fuse and breaker ratings, and enclosure preference so each unit is pre-wired and tested to your single-line diagram.',
+      'We ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with lead times and MOQ confirmed on the quotation. Because combiner boxes are project-specific, send your string count, system voltage, fuse and breaker ratings, and enclosure preference so each unit is pre-wired and tested to your single-line diagram.',
       'As bulky, weather-sealed assemblies, boxes ship in foam-cushioned cartons or wooden crates, palletized and strapped to protect enclosure gaskets, glands, and internal components during sea freight; dimensional weight is factored into the quotation. Each shipment includes IEC test reports, CE/RoHS documentation, wiring diagrams, and a packing list.',
     ],
     faq: [
@@ -376,7 +376,7 @@ export const CATEGORY_CONTENT: Readonly<Record<string, CategoryContent>> = {
       },
     ],
     logistics: [
-      'We ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with 3–7 working days for stocked switches and 15–30 days for OEM/ODM and bulk orders. Controller voltage thresholds and transfer logic can be preset to your application before dispatch.',
+      'We ship worldwide under Incoterms 2020 (EXW, FOB, CIF), with lead times and MOQ confirmed in writing on the quotation. Controller voltage thresholds and transfer logic can be preset to your application before dispatch.',
       'ATS units contain heavy contactor and interlock mechanisms; they are immobilized in molded supports and cushioned inside reinforced export cartons, palletized and strapped to prevent mechanism damage in transit. IEC 60947-6-1 test reports, CE/RoHS documentation, wiring diagrams, and a packing list accompany every shipment.',
     ],
     faq: [
@@ -419,7 +419,7 @@ export const CATEGORY_CONTENT: Readonly<Record<string, CategoryContent>> = {
       },
     ],
     logistics: [
-      'Condensed aerosol generators are classified as dangerous goods for transport. We prepare the required Safety Data Sheet (SDS/MSDS) and UN/transport classification, and shipments are typically arranged by sea freight under Incoterms 2020 (EXW, FOB, CIF); air freight is restricted and handled only through certified dangerous-goods channels where permitted. Standard lead time is 3–7 working days for stocked units and 15–30 days for OEM and bulk orders.',
+      'Condensed aerosol generators are classified as dangerous goods for transport. We prepare the required Safety Data Sheet (SDS/MSDS) and UN/transport classification, and shipments are typically arranged by sea freight under Incoterms 2020 (EXW, FOB, CIF); air freight is restricted and handled only through certified dangerous-goods channels where permitted. Lead times and MOQ are confirmed in writing on the quotation.',
       'Units are packed to dangerous-goods requirements in UN-compliant cartons with the correct marking and labeling, palletized for container transit. Each shipment includes the SDS, applicable fire-suppression test reports, CE/RoHS documentation, and a packing list to support customs and DG clearance — please confirm your port and any national import rules for fire-suppression devices at the inquiry stage.',
     ],
     faq: [

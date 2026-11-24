@@ -4,7 +4,7 @@ import { CONTACT_EMAIL } from '@/lib/site-config'
 
 export const metadata = buildPageMetadata({
   title: 'Terms of Use',
-  description: 'upprocure Terms of Use — the rules and conditions that govern your use of our website and services.',
+  description: 'UPprocure Terms of Use — the rules and conditions that govern your use of our website and services.',
   path: '/terms',
 })
 

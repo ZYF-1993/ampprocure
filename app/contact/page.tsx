@@ -6,7 +6,7 @@ import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, inquiryMailto, inquiryMessage, wh
 
 export const metadata = buildPageMetadata({
   title: 'Contact Us',
-  description: 'Contact upprocure for product enquiries, OEM pricing, samples, or technical support. Reach sales by email, RFQ form, or WhatsApp.',
+  description: 'Contact UPprocure for product inquiries, OEM pricing, evaluation samples, or technical support. Reach sales by email, RFQ form, or WhatsApp.',
   path: '/contact',
 })
 
@@ -25,7 +25,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Contact Us', path: '/contact' }]} />
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">Contact Us</h1>
           <p className="mt-3 max-w-2xl text-base text-gray-500">
-            Send us an enquiry and our sales team will respond within 24 hours. Samples, technical datasheets, and OEM quotations available on request.
+            Send your product list, specifications, or OEM requirements by email, the RFQ form below, or WhatsApp. Evaluation samples, technical datasheets, and project quotations are available on request.
           </p>
         </div>
       </section>
@@ -97,7 +97,18 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     </div>
                   ))}
                 </dl>
-                <p className="mt-3 text-xs text-gray-400">Emails are monitored outside hours. We aim to respond within 24 hours on business days.</p>
+                <p className="mt-3 text-xs text-gray-500">Inquiries received outside business hours are reviewed on the next working session. Please include full model codes and quantities for faster quotation turnaround.</p>
+              </div>
+
+              <div className="rounded-xl border border-gray-200 bg-white p-5">
+                <h3 className="text-sm font-semibold text-gray-900">What to Include in Your RFQ</h3>
+                <ul className="mt-3 space-y-2 text-xs leading-5 text-gray-600">
+                  <li>• Model code or product category (e.g., MCB-DC-2P, RT18-32X-2P, EB2M-A-10D)</li>
+                  <li>• Electrical ratings: AC/DC voltage, rated current (A), poles, trip curve, or fuse size</li>
+                  <li>• Order quantity and whether evaluation samples are needed first</li>
+                  <li>• OEM branding, custom packaging, or destination-market compliance requirements</li>
+                  <li>• Destination country or port for shipping terms (EXW, FOB, CIF)</li>
+                </ul>
               </div>
             </div>
 
@@ -123,9 +134,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-6 text-center sm:grid-cols-3">
             {([
-              { emoji: '⚡', title: 'Fast Response', text: 'Sales team replies within 24 business hours.' },
-              { emoji: '📦', title: 'Samples Available', text: 'Request product samples before placing bulk orders.' },
-              { emoji: '🔧', title: 'Technical Support', text: 'Engineers available for application consultation.' },
+              { emoji: '📋', title: 'Structured Quotations', text: 'Itemized B2B quotations with model specs, packing details, and Incoterms.' },
+              { emoji: '📦', title: 'Evaluation Samples', text: 'Coordinate sample units for technical and panel-fit verification before volume orders.' },
+              { emoji: '🔧', title: 'Pre-Sales Selection', text: 'Assistance matching pole counts, ratings, and documentation to your project BOM.' },
             ] as const).map((card) => (
               <div key={card.title} className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                 <p className="text-3xl">{card.emoji}</p>

@@ -5,56 +5,56 @@ import OptimizedImage from '@/components/OptimizedImage'
 import { buildPageMetadata } from '@/lib/seo'
 
 const strengths = [
-  'ISO & CE Certified Quality',
-  'Direct Supply Chain',
-  'Smart Power Monitoring',
-  'Wide Range of Applications',
-  'Trusted by Global Customers',
+  'Vetted Liushi Partner Factories',
+  'CE, RoHS & ISO 9001 Support',
+  'OEM & Private-Label Coordination',
+  'Multi-Category Consolidation',
+  'Pre-Shipment Quality Checks',
   'Clear Project Quotations',
 ] as const
 
 const capabilities = [
   {
-    title: 'Advanced Manufacturing',
-    text: '50,000 m² production facility with automated assembly lines, in-process quality control, and full traceability.',
+    title: 'Vetted Partner Production',
+    text: 'Direct coordination with specialized low-voltage electrical factories in Liushi, Wenzhou for circuit breakers, SPDs, meters, fuse holders, and panel controls.',
     icon: 'tools',
   },
   {
-    title: 'In-House R&D',
-    text: '30+ engineers dedicated to product development and IEC standard compliance testing in our accredited laboratory.',
+    title: 'Technical Spec Matching',
+    text: 'Pre-sales model matching across pole counts, rated currents, trip curves, DC voltages, and cutout dimensions for panel builders and EPC BOMs.',
     icon: 'lab',
   },
   {
-    title: 'Quality Assurance',
-    text: 'ISO 9001:2015 certified. Every product batch undergoes 100% electrical testing before shipment. CE marked and RoHS compliant.',
+    title: 'Quality & Compliance Docs',
+    text: 'Pre-shipment inspection coordination and model-specific CE, RoHS, ISO 9001, and applicable IEC test documentation supplied on request.',
     icon: 'shield',
   },
   {
-    title: 'Global Distribution',
-    text: 'Export to 80+ countries with established distribution networks in Europe, Southeast Asia, Middle East, and Africa.',
+    title: 'Consolidated Export Logistics',
+    text: 'Mixed-SKU order consolidation, export-grade packaging, and commercial shipping documentation for global distributors and contractors.',
     icon: 'globe',
   },
 ] as const
 
-const milestones = [
-  { year: '2008', event: 'Founded in Zhejiang, China with focus on miniature circuit breakers.' },
-  { year: '2012', event: 'Obtained ISO 9001 certification and launched SPD product line.' },
-  { year: '2016', event: 'Expanded into PV protection products to meet growing solar demand.' },
-  { year: '2019', event: 'Launched WiFi smart low-voltage device range for smart buildings.' },
-  { year: '2022', event: 'Extended distribution to 80+ countries.' },
-  { year: '2024', event: 'Introduced 1500V DC product line for utility-scale solar projects.' },
+const workflowPillars = [
+  { step: '01', title: 'BOM & Spec Review', event: 'Review target models, AC/DC ratings, pole configurations, trip curves, and destination-market requirements.' },
+  { step: '02', title: 'Partner Factory Matching', event: 'Match each product line to vetted production partners in the Liushi electrical cluster.' },
+  { step: '03', title: 'Sample Evaluation', event: 'Coordinate evaluation samples and specification confirmation before volume production begins.' },
+  { step: '04', title: 'OEM & Packaging Setup', event: 'Confirm custom logo printing, rating labels, instruction sheets, and export carton specifications.' },
+  { step: '05', title: 'Pre-Shipment Verification', event: 'Check model codes, quantities, labeling accuracy, and visual/electrical inspection records prior to dispatch.' },
+  { step: '06', title: 'Consolidated Delivery', event: 'Combine multiple low-voltage categories into one shipment with packing lists and compliance documents.' },
 ] as const
 
 const certifications = [
-  { title: 'CE Marking', text: 'European conformity for low-voltage directive' },
-  { title: 'RoHS', text: 'Restriction of hazardous substances compliance' },
-  { title: 'ISO 9001:2015', text: 'Quality management system certification' },
-  { title: 'IEC Standards', text: 'Products tested to IEC 60898, 61643, 61008 and more' },
+  { title: 'CE Marking', text: 'Conformity documentation available by applicable model' },
+  { title: 'RoHS', text: 'Restriction of hazardous substances documentation on request' },
+  { title: 'ISO 9001', text: 'Quality management system documentation from partner lines' },
+  { title: 'IEC Standards', text: 'Models aligned to applicable IEC 60898, 60947, 61643, and 60269 series' },
 ] as const
 
 export const metadata = buildPageMetadata({
   title: 'About Us',
-  description: 'Learn about upprocure, a supplier of low-voltage electrical protection products for distributors, system integrators, and project contractors.',
+  description: 'Learn about UPprocure, a low-voltage electrical protection supply and OEM partner in Liushi, Wenzhou serving distributors, panel builders, and contractors.',
   path: '/about',
 })
 
@@ -109,10 +109,10 @@ export default function AboutPage() {
           <div className="mb-6 text-left">
             <Breadcrumbs tone="inverse" items={[{ name: 'Home', href: '/' }, { name: 'About Us', path: '/about' }]} />
           </div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-400">About upprocure</p>
-          <h1 className="mt-3 text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl">15+ Years of Engineering Excellence</h1>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-400">About UPprocure</p>
+          <h1 className="mt-3 text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl">Low-Voltage Electrical Supply &amp; OEM Partner</h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-gray-300">
-            upprocure provides low-voltage electrical protection products for distributors, system integrators, and project contractors worldwide.
+            Based in Liushi, Wenzhou, UPprocure supplies low-voltage electrical protection, power metering, and control-panel components for distributors, panel builders, system integrators, and EPC contractors worldwide.
           </p>
         </div>
       </section>
@@ -123,7 +123,7 @@ export default function AboutPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Company Overview</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Built on Quality, Delivered Globally</h2>
             <p className="mt-4 text-sm leading-7 text-gray-600">
-              With focused expertise in electrical protection, upprocure supplies a comprehensive range of low-voltage electrical products, including circuit breakers, RCCBs, surge protectors, and smart meters. Our solutions are widely applied in residential, commercial, and industrial settings, helping customers build safe and efficient power distribution systems.
+              UPprocure coordinates multi-category low-voltage electrical supply from Liushi, Wenzhou—covering AC/DC miniature circuit breakers, surge protective devices, RT18 fuse holders, adjustable voltage protectors, DIN-rail power meters, ATS transfer switches, IP65 PV combiner boxes, 22mm panel controls, and DIN-rail aerosol fire extinguishers. We work with vetted partner factories so B2B buyers can consolidate specifications, OEM labeling, quality checks, and export logistics through one point of contact.
             </p>
 
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -155,7 +155,7 @@ export default function AboutPage() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Our Capabilities</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">End-to-End Manufacturing</h2>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Supply-Chain &amp; OEM Capabilities</h2>
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -187,30 +187,25 @@ export default function AboutPage() {
 
         <div className="relative mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-400">Our Journey</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Company Milestones</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-400">How We Support B2B Buyers</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">From Technical RFQ to Export Dispatch</h2>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-slate-400">
-              16 years of steady growth — from a local circuit breaker workshop to a global electrical protection supplier.
+              A structured six-step sourcing workflow designed to reduce specification errors and simplify multi-category procurement.
             </p>
           </div>
 
           <ol className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {milestones.map((item, index) => (
-              <li key={item.year}
+            {workflowPillars.map((item, index) => (
+              <li key={item.step}
                 className="group relative overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-900/70 p-5 backdrop-blur-sm transition-all duration-300 hover:border-green-500/70 hover:shadow-[0_0_28px_rgba(74,222,128,0.18)]"
               >
                 {/* Corner glow */}
                 <div className="absolute -right-5 -top-5 h-20 w-20 rounded-full bg-green-500/10 blur-2xl transition-all duration-500 group-hover:bg-green-500/25" />
 
                 <div className="relative flex items-center justify-between">
-                  {/* Year badge with lightning bolt */}
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-green-800 bg-green-950 px-3 py-1 text-xs font-bold text-green-400">
-                    <svg className="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
-                    </svg>
-                    {item.year}
+                    Step {item.step}
                   </span>
-                  {/* Animated pulse node */}
                   <div className="relative flex h-5 w-5 items-center justify-center">
                     <span
                       className="absolute inline-flex h-4 w-4 animate-ping rounded-full bg-green-400/30"
@@ -220,9 +215,9 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                <p className="relative mt-3.5 text-sm leading-6 text-slate-300">{item.event}</p>
+                <h3 className="relative mt-3.5 text-sm font-semibold text-white">{item.title}</h3>
+                <p className="relative mt-2 text-sm leading-6 text-slate-300">{item.event}</p>
 
-                {/* Bottom scan line on hover */}
                 <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-linear-to-r from-transparent via-green-500/70 to-transparent transition-all duration-500 group-hover:w-full" />
               </li>
             ))}
@@ -236,7 +231,7 @@ export default function AboutPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green-700">Compliance & Quality</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Certifications</h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
-              All products are independently certified to international standards, ensuring regulatory acceptance in global markets.
+              Compliance documentation varies by product line and destination market. Confirm your required standards during quotation so we verify applicable model coverage before ordering.
             </p>
           </div>
 
@@ -258,7 +253,7 @@ export default function AboutPage() {
         <div className="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">Interested in a Partnership?</h2>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-green-100">
-            We work with distributors, wholesalers, and project contractors. Reach out to discuss pricing, OEM programmes, or technical requirements.
+            We work with distributors, wholesalers, panel builders, and project contractors. Reach out to discuss pricing, OEM programs, or technical requirements.
           </p>
           <div className="mx-auto mt-7 max-w-3xl text-left">
             <InquiryActions topic="partnership" formHref="/contact#rfq" tone="dark" />

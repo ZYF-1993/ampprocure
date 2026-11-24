@@ -47,15 +47,15 @@ function getProductDetailCopy(product: CatalogProduct) {
       '4P': 'Three-phase + neutral protection for TN-S and TN-C-S distribution systems',
     }
     return {
-      description: `The upprocure ${poles} AC MCB provides reliable overcurrent and short-circuit protection for residential and commercial circuits. Its compact ${width} DIN rail form factor and wide current range (6–63A) with B, C, and D trip curves make it the go-to breaker for lighting branches, socket outlets, and motor loads. Manufactured in our ISO 9001 certified facility with 18 years of expertise; 100% electrically tested before shipment.`,
+      description: `The UPprocure ${poles} AC MCB provides reliable overcurrent and short-circuit protection for residential and commercial circuits. Its compact ${width} DIN rail form factor and wide current range (6–63A) with B, C, and D trip curves cover lighting branches, socket outlets, and motor loads. Supplied through ISO 9001 quality-managed production with pre-shipment electrical inspection.`,
       features: [
-        `${width} wide - maximises circuit density on 35mm DIN rail`,
+        `${width} wide - maximizes circuit density on 35mm DIN rail`,
         'B / C / D trip curve options - covers lighting, general use, and high-inrush motor loads',
         useMap[poles] ?? 'Suitable for residential and commercial distribution boards',
-        'CE & RoHS certified - accepted in EU, UK, and global markets',
-        '100% factory electrical test before shipment',
-        'OEM / ODM customization available - logo, color, rating label',
-        '18-year ISO 9001 certified manufacturing facility',
+        'CE & RoHS documentation available on request by model',
+        'Pre-shipment electrical inspection prior to dispatch',
+        'OEM / private-label coordination - logo, color, rating label',
+        'ISO 9001 quality-managed partner production',
       ],
       specs: [
         ['Poles', poles],
@@ -80,15 +80,15 @@ function getProductDetailCopy(product: CatalogProduct) {
     const poleNum = parseInt(poles)
     const width = `${poleNum * 18}mm`
     return {
-      description: `The upprocure ${poles} DC MCB is purpose-built for solar PV string protection and DC circuit disconnection. With a 500V DC rating and compact ${width} DIN rail footprint, it delivers reliable overcurrent and short-circuit protection for battery storage banks, PV arrays, and DC distribution boards. CE certified to IEC 60947-2.`,
+      description: `The UPprocure ${poles} DC MCB is purpose-built for solar PV string protection and DC circuit disconnection. With a 500V DC rating and compact ${width} DIN rail footprint, it delivers reliable overcurrent and short-circuit protection for battery storage banks, PV arrays, and DC distribution boards. Aligned to IEC 60947-2.`,
       features: [
-        `${width} DC-optimised arc extinguishing chamber`,
+        `${width} DC-optimized arc extinguishing chamber`,
         '500V DC rated - solar PV string and battery storage bank protection',
         'B / C / D trip curve for various DC load characteristics',
         'Simultaneous multi-pole disconnection for complete DC circuit isolation',
-        'CE & RoHS certified - accepted in EU, UK, and global markets',
-        'OEM / ODM customization available',
-        '18-year ISO 9001 certified manufacturing facility',
+        'CE & RoHS documentation available on request by model',
+        'OEM / private-label coordination available',
+        'ISO 9001 quality-managed partner production',
       ],
       specs: [
         ['Poles', poles],
@@ -118,7 +118,7 @@ function getProductDetailCopy(product: CatalogProduct) {
       '4P': 'L1-PE, L2-PE, L3-PE, N-PE (full mode 3P+N)',
     }
     return {
-      description: `The upprocure ${poles} AC SPD provides Class II transient overvoltage protection for ${poleNum <= 2 ? 'single-phase' : 'three-phase'} AC distribution systems. Its 40kA maximum discharge capacity and <25ns response time protect sensitive equipment from lightning-induced surges and switching transients. Modular hot-swappable design enables replacement without powering down the panel.`,
+      description: `The UPprocure ${poles} AC SPD provides Class II transient overvoltage protection for ${poleNum <= 2 ? 'single-phase' : 'three-phase'} AC distribution systems. Its 40kA maximum discharge capacity and <25ns response time protect sensitive equipment from lightning-induced surges and switching transients. Modular hot-swappable design enables replacement without powering down the panel.`,
       features: [
         '40kA max discharge current - protects against direct and indirect lightning',
         `${modeMap[poles] ?? 'multi-mode'} protection coverage`,
@@ -156,8 +156,12 @@ function getProductDetailCopy(product: CatalogProduct) {
       '3P': 'DC+/PE, DC-/PE, DC+/DC- (full mode)',
       '4P': 'Dual-circuit: DC1+/PE, DC1-/PE, DC2+/PE, DC2-/PE',
     }
+    const housingColor = slug.endsWith('-Orange') ? 'orange' : slug.endsWith('-White') ? 'white' : ''
+    const housingNote = housingColor
+      ? ` Supplied in a ${housingColor} DIN-rail housing for clear DC circuit visual identification inside combiner boxes and inverter panels.`
+      : ''
     return {
-      description: `The upprocure ${poles} DC SPD is engineered for ${highVoltage ? 'utility-scale high-voltage' : 'residential and commercial'} solar PV protection. Supporting ${voltageRating} systems with 40kA discharge capacity, it guards inverters and DC equipment from lightning transients and switching overvoltages.`,
+      description: `The UPprocure ${poles} DC SPD is engineered for ${highVoltage ? 'utility-scale high-voltage' : 'residential and commercial'} solar PV protection. Supporting ${voltageRating} systems with 40kA discharge capacity, it guards inverters and DC equipment from lightning transients and switching overvoltages.${housingNote}`,
       features: [
         `${voltageRating} support - covers standard residential and commercial PV voltages`,
         '40kA max discharge current (8/20μs) - full lightning protection',
@@ -187,12 +191,12 @@ function getProductDetailCopy(product: CatalogProduct) {
   if (slug.startsWith('RT18-32X-')) {
     const poles = slug.split('-')[2]
     return {
-      description: `The upprocure RT18-32X ${poles} DIN rail fuse holder accepts standard 10×38mm fuse links up to 32A at 690V AC / 500V DC. LED blown-fuse indication per pole eliminates guesswork during fault diagnosis. Compact modular design for 35mm DIN rail.`,
+      description: `The UPprocure RT18-32X ${poles} DIN rail fuse holder accepts standard 10×38mm fuse links up to 32A at 690V AC / 500V DC. LED blown-fuse indication per pole eliminates guesswork during fault diagnosis. Compact modular design for 35mm DIN rail.`,
       features: [
         '32A / 690V AC rated - handles most LV control and distribution circuits',
         'Accepts standard 10×38mm fuse links (gG / gPV type)',
         'LED blown-fuse indicator per pole - instant visual fault detection',
-        'Compact DIN rail design - minimises panel space',
+        'Compact DIN rail design - minimizes panel space',
         'Flame-retardant thermoplastic housing',
         'CE & IEC 60269 certified',
         'OEM / ODM customization available',
@@ -216,7 +220,7 @@ function getProductDetailCopy(product: CatalogProduct) {
   if (slug.startsWith('RT18-63X-')) {
     const poles = slug.split('-')[2]
     return {
-      description: `The upprocure RT18-63X ${poles} DIN rail fuse holder accommodates 14×51mm fuse links up to 63A at 690V. Designed for high-current sub-distribution mains, motor feeds, and industrial equipment with LED blown-fuse indication for rapid fault identification.`,
+      description: `The UPprocure RT18-63X ${poles} DIN rail fuse holder accommodates 14×51mm fuse links up to 63A at 690V. Designed for high-current sub-distribution mains, motor feeds, and industrial equipment with LED blown-fuse indication for rapid fault identification.`,
       features: [
         '63A / 690V rated - high-current distribution circuits',
         'Accepts 14×51mm fuse links (gG / gL type)',
@@ -245,7 +249,7 @@ function getProductDetailCopy(product: CatalogProduct) {
   if (slug.startsWith('RT18-125AM-')) {
     const poles = slug.split('-')[2]
     return {
-      description: `The upprocure RT18-125AM ${poles} DIN rail fuse holder accommodates Φ22×58mm fuse links up to 125A at 690V. Built for high-capacity main circuits, HVAC equipment, and large commercial panels, with individual yellow status indicators per pole.`,
+      description: `The UPprocure RT18-125AM ${poles} DIN rail fuse holder accommodates Φ22×58mm fuse links up to 125A at 690V. Built for high-capacity main circuits, HVAC equipment, and large commercial panels, with individual yellow status indicators per pole.`,
       features: [
         '125A / 690V rated - handles large commercial and industrial loads',
         'Accepts Φ22×58mm fuse links for high fault-energy protection',
@@ -785,6 +789,18 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
   }
 }
 
+const CATEGORY_RFQ_HINTS: Readonly<Record<string, readonly string[]>> = {
+  'circuit-breaker': ['Pole count (1P–4P) and AC or DC system voltage', 'Rated current (6A–63A) and trip curve (B, C, or D)', 'Breaking capacity (4.5kA / 6kA), quantity, and destination'],
+  'surge-protector-device': ['System type (AC 385V or PV DC 500V/1000V/1500V) and poles', 'Discharge rating (In/Imax) and preferred housing color (Grey, White, or Orange)', 'Quantity, OEM labeling needs, and destination port'],
+  'dc-fuse-holder': ['Pole count (1P–4P), rated current (32A / 63A / 125A), and fuse-link size', 'Whether matched gG, aM, or gPV fuse links should be kitted', 'Order quantity, packaging preference, and destination'],
+  'over-voltage-protector': ['Model code, rated current (40A / 63A / 80A / 100A), and grid voltage (110V / 220V / 380V)', 'Display or logo customization requirements (e.g., PN2-VA4/VA5)', 'Quantity, sample needs, and destination country'],
+  'power-meter': ['Single-phase or 3-phase system voltage and current range', 'Display type, pulse output, or WiFi requirement', 'Quantity, OEM marking requirements, and destination'],
+  'wifi-smart-low-voltage-device': ['Model code, rated current (1–63A or 100A), and grid voltage', 'Target export market for radio-compliance confirmation', 'Quantity, Tuya OEM/packaging scope, and destination'],
+  'pv-combiner-box': ['String input/output count, DC system voltage (500V / 600V / 1000V), and enclosure material', 'Fuse rating (15A–30A), main DC breaker or isolator rating, and SPD spec', 'Project quantity, custom wiring diagram (if any), and destination'],
+  'ats-dual-power-switch': ['ATS class (PC 50ms or CB ~2s), pole count (2P–4P), and rated voltage (110V / 220V)', 'Power sources (mains + generator or inverter) and load profile', 'Quantity, OEM requirements, and destination'],
+  'aerosol-fire-extinguisher': ['Enclosure internal volume (m³) and dosage preference (10g / 20g / 30g)', 'Passive DIN-rail thermal activation or wireless/RS485/4G monitoring', 'Quantity and destination port for dangerous-goods sea freight planning'],
+}
+
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
   const { slug } = await params
   const product = getProductBySlug(slug)
@@ -909,6 +925,20 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               </table>
             </div>
           </div>
+
+          {CATEGORY_RFQ_HINTS[product.categoryCode] && (
+            <div className="mt-12 rounded-xl border border-green-100 bg-green-50/50 p-6">
+              <h2 className="text-base font-bold text-gray-900">What to Specify When Requesting a Quote</h2>
+              <ul className="mt-3 grid gap-2 text-sm text-gray-700 sm:grid-cols-3">
+                {CATEGORY_RFQ_HINTS[product.categoryCode].map((hint) => (
+                  <li key={hint} className="flex items-start gap-2">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-green-600" aria-hidden="true" />
+                    <span>{hint}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </section>
 

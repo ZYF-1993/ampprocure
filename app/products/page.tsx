@@ -36,7 +36,7 @@ function getBuckets(): CategoryBucket[] {
 export const metadata = buildPageMetadata({
   title: 'Products',
   description:
-    "Browse upprocure's full range of low-voltage electrical protection products: circuit breakers, SPDs, DC fuse holders, power meters, ATS, PV combiner boxes and more.",
+    "Browse UPprocure's full range of low-voltage electrical protection products: circuit breakers, SPDs, DC fuse holders, power meters, ATS, PV combiner boxes and more.",
   path: '/products',
 })
 
